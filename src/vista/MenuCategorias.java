@@ -71,5 +71,6 @@ public class MenuCategorias {
             System.out.println("Desea retornar al menu de Categorias S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
+
     }
 }
