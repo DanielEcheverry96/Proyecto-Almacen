@@ -15,7 +15,7 @@ public class MenuCategorias {
             Categorias cat = new Categorias();
             System.out.println("Digite el Id de la categoria");
             cat.setId(leer.nextInt());
-            System.out.println("Digite el nombre de la marca");
+            System.out.println("Digite el nombre de la categoria");
             cat.setDescripcion(leer.next());
             if (manejadorcategorias.insertar(cat)) {
                 System.out.println("Categoria insertada");
@@ -39,8 +39,37 @@ public class MenuCategorias {
         Categorias cat2 = new Categorias();
         cat2 = (Categorias) manejadorcategorias.consultar(cat);
         if (!cat2.getDescripcion().equals(null)) {
-
+            System.out.println("Categoria solicitada es " + cat2.toString());
+        } else {
+            System.out.println("Categoria no encontrada");
         }
     }
 
+    public void menuCategorias() {
+        String condicion = "";
+
+        do {
+            Scanner menu = new Scanner(System.in);
+            System.out.println("1-Insertar categorias");
+            System.out.println("2-Consultar todas las categorias");
+            System.out.println("3-Consultar categorias por Id");
+            System.out.println("Digite su opción");
+            int opcion = menu.nextInt();
+            switch (opcion) {
+                case 1:
+                    insertarCategorias();
+                    break;
+                case 2:
+                    manejadorcategorias.consultarTodos();
+                    break;
+                case 3:
+                    consultarUnaCategoria();
+                    break;
+                default:
+                    System.out.println("Opcion no permitida");
+            }
+            System.out.println("Desea retornar al menu de Categorias S/s");
+            condicion = menu.next();
+        } while (condicion.equalsIgnoreCase("s"));
+    }
 }

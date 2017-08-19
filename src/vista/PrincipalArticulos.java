@@ -10,9 +10,15 @@ package vista;
  * @author Unalman
  */
 public class PrincipalArticulos {
+
     public static void main(String[] args) {
-        MenuMarcas marcasmen= new MenuMarcas();
+        MenuCategorias categoriasmenu = new MenuCategorias();
+        categoriasmenu.menuCategorias();
+        MenuMarcas marcasmen = new MenuMarcas();
         marcasmen.menuMarcas();
+        MenuArticulos articulosmenu = new MenuArticulos();
+        articulosmenu.menuArticulos();
+
     }
-    
+
 }

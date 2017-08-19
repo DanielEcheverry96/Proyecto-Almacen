@@ -108,4 +108,9 @@ public class Articulos {
         this.imagen = imagen;
     }
 
+    @Override
+    public String toString() {
+        return "Articulos{" + "idMarca=" + idMarca + ", idCategoria=" + idCategoria + ", idArticulo=" + idArticulo + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", imagen=" + imagen + '}';
+    }
+
 }

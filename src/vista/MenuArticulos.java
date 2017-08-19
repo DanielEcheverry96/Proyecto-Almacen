@@ -13,9 +13,15 @@ public class MenuArticulos {
         Scanner leer = new Scanner(System.in);
         do {
             Articulos art = new Articulos();
+            System.out.println("Digite el Id de la categoria");
+            art.setIdCategoria(leer.nextInt());
+            System.out.println("Digite el Id de la marca");
+            art.setIdMarca(leer.nextInt());
             System.out.println("Digite el Id del articulo");
             art.setIdArticulo(leer.nextInt());
             System.out.println("Digite nombre del articulo");
+            art.setNombre(leer.next());
+            System.out.println("Digite la descripcion del articulo");
             art.setDescripcion(leer.next());
             System.out.println("Digite el precio del articulo");
             art.setPrecio(leer.nextFloat());
@@ -71,7 +77,7 @@ public class MenuArticulos {
                 default:
                     System.out.println("Opción no permitida");
             }
-            System.out.println("Si desea retornar al menu marcar S/s");
+            System.out.println("Desea retornar al menu de Articulos S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
     }

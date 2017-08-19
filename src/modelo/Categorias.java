@@ -33,4 +33,9 @@ public class Categorias {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return "Categorias{" + "id=" + id + ", descripcion=" + descripcion + '}';
+    }
+
 }
