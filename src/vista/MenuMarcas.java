@@ -38,17 +38,11 @@ public class MenuMarcas {
     }
 
     public void consultarUnaMarca() {
-        System.out.println("Digite el id que quiere consultar");
         Scanner leer = new Scanner(System.in);
-        Marca mar = new Marca();
-        mar.setId(leer.nextInt());
-        Marca mar2 = new Marca();
-        mar2 = (Marca) manobj.consultar(mar);
-        if (!mar2.getDescripcion().equals(null)) {
-            System.out.println("Marca solicitada es" + mar2.toString());
-        } else {
-            System.out.println("Marca no encontrada");
-        }
+        System.out.println("Digite el ID a buscar");
+        int a = leer.nextInt();
+        Marca resultado = (Marca) manobj.consultarId(a);
+        System.out.println("Los datos consultados son " + resultado.toString());
 
     }
 

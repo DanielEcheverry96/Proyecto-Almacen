@@ -42,17 +42,11 @@ public class MenuArticulos {
     }
 
     public void consultarUnArticulo() {
-        System.out.println("Digite el id que quiere consultar");
         Scanner leer = new Scanner(System.in);
-        Articulos art = new Articulos();
-        art.setIdArticulo(leer.nextInt());
-        Articulos art2 = new Articulos();
-        art2 = (Articulos) manejadorarticulos.consultar(art);
-        if (!art2.getDescripcion().equals(null)) {
-            System.out.println("Articulo solicitado es " + art2.toString());
-        } else {
-            System.out.println("Articulo no encontrado");
-        }
+        System.out.println("Digite el ID a buscar");
+        int a = leer.nextInt();
+        Articulos resultado = (Articulos) manejadorarticulos.consultarId(a);
+        System.out.println("Los datos consultados son " + resultado.toString());
     }
 
     public void menuArticulos() {

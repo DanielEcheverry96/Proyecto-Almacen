@@ -9,7 +9,7 @@ package modelo;
  *
  * @author Unalman
  */
-public class Articulos {
+public class Articulos implements Comparable<Articulos> {
 
     private int idMarca;
     private int idCategoria;
@@ -111,6 +111,11 @@ public class Articulos {
     @Override
     public String toString() {
         return "Articulos{" + "idMarca=" + idMarca + ", idCategoria=" + idCategoria + ", idArticulo=" + idArticulo + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", imagen=" + imagen + '}';
+    }
+
+    @Override
+    public int compareTo(Articulos t) {
+        return this.idArticulo - t.getIdArticulo();
     }
 
 }

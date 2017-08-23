@@ -6,31 +6,32 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import modelo.Marca;
 
 /**
  *
  * @author Unalman
  */
-public class ManejadorObjetos implements ICRUD{
+public class ManejadorObjetos implements ICRUD {
+
     ArrayList<Marca> arregloMarcas;
 
     public ManejadorObjetos() {
         arregloMarcas = new ArrayList<Marca>();
     }
-    
+
     @Override
     public boolean insertar(Object obj) {
-        boolean insertado=false;
-        if(obj instanceof Marca)
-        {
+        boolean insertado = false;
+        if (obj instanceof Marca) {
             //adicionar datos al arreglo
-            Marca mar= new Marca();
-            mar=(Marca)obj;
+            Marca mar = new Marca();
+            mar = (Marca) obj;
             arregloMarcas.add(mar);
-            insertado= true;
+            insertado = true;
             return insertado;
-        }    
+        }
         return insertado;
     }
 
@@ -40,21 +41,29 @@ public class ManejadorObjetos implements ICRUD{
     }
 
     @Override
-    public Object consultar(Object obj) {
-        Marca mar= new Marca();
-        if(obj instanceof Marca)
-        {
-            
-            mar=(Marca)obj;
-            for(Marca mar1: arregloMarcas)
-            {
-                if(mar1.equals(mar))
-                    return mar1;
-            }    
-            
+    public Object consultarId(int id) {
+        Marca resultado = new Marca();
+        resultado = arregloMarcas.get(busquedaBinaria(id));
+        return resultado;
+    }
+
+    @Override
+    public int busquedaBinaria(int id) {
+        Collections.sort(arregloMarcas);
+        int n = arregloMarcas.size();
+        int centro, inf = 0, sup = n - 1;
+        while (inf <= sup) {
+            centro = (sup + inf) / 2;
+            if (arregloMarcas.get(centro).getId() == id) {
+                return centro;
+
+            } else if (id < arregloMarcas.get(centro).getId()) {
+                sup = centro - 1;
+            } else {
+                inf = centro + 1;
+            }
         }
-        
-        return mar;
+        return -1;
     }
 
     @Override
@@ -67,5 +76,5 @@ public class ManejadorObjetos implements ICRUD{
         System.out.println(arregloMarcas.toString());
         return arregloMarcas;
     }
-    
+
 }

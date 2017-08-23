@@ -1,6 +1,7 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import modelo.Categorias;
 
 /**
@@ -34,18 +35,17 @@ public class ManejadorCategorias implements ICRUD {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public Object consultar(Object obj) {
-        Categorias cat = new Categorias();
-        if (obj instanceof Categorias) {
-            cat = (Categorias) obj;
-            for (Categorias cat1 : arregloCategorias) {
-                return cat1;
-            }
-        }
-        return cat;
-    }
-
+//    @Override
+//    public Object consultar(Object obj) {
+//        Categorias cat = new Categorias();
+//        if (obj instanceof Categorias) {
+//            cat = (Categorias) obj;
+//            for (Categorias cat1 : arregloCategorias) {
+//                return cat1;
+//            }
+//        }
+//        return cat;
+//    }
     @Override
     public boolean borrar(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -55,6 +55,32 @@ public class ManejadorCategorias implements ICRUD {
     public ArrayList consultarTodos() {
         System.out.println(arregloCategorias.toString());
         return arregloCategorias;
+    }
+
+    @Override
+    public int busquedaBinaria(int id) {
+        Collections.sort(arregloCategorias);
+        int n = arregloCategorias.size();
+        int centro, inf = 0, sup = n - 1;
+        while (inf <= sup) {
+            centro = (sup + inf) / 2;
+            if (arregloCategorias.get(centro).getId() == id) {
+                return centro;
+
+            } else if (id < arregloCategorias.get(centro).getId()) {
+                sup = centro - 1;
+            } else {
+                inf = centro + 1;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public Object consultarId(int id) {
+        Categorias resultado = new Categorias();
+        resultado = arregloCategorias.get(busquedaBinaria(id));
+        return resultado;
     }
 
 }

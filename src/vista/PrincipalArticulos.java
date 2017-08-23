@@ -7,11 +7,13 @@ package vista;
 
 /**
  *
+ *
  * @author Unalman
  */
 public class PrincipalArticulos {
 
     public static void main(String[] args) {
+
         MenuCategorias categoriasmenu = new MenuCategorias();
         categoriasmenu.menuCategorias();
         MenuMarcas marcasmen = new MenuMarcas();

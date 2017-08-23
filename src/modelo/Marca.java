@@ -9,7 +9,8 @@ package modelo;
  *
  * @author Unalman
  */
-public class Marca {
+public class Marca implements Comparable<Marca> {
+
     private int id;
     private String descripcion;
 
@@ -37,8 +38,6 @@ public class Marca {
         this.descripcion = descripcion;
     }
 
-    
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -59,9 +58,13 @@ public class Marca {
 
     @Override
     public String toString() {
-        
+
         return "Marca{" + "id=" + id + ", descripcion=" + descripcion + '}';
     }
-    
-    
+
+    @Override
+    public int compareTo(Marca t) {
+        return this.id - t.getId();
+    }
+
 }

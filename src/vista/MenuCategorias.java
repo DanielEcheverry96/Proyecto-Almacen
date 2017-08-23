@@ -32,17 +32,11 @@ public class MenuCategorias {
     }
 
     public void consultarUnaCategoria() {
-        System.out.println("Digite el Id que quiere consultar ");
         Scanner leer = new Scanner(System.in);
-        Categorias cat = new Categorias();
-        cat.setId(leer.nextInt());
-        Categorias cat2 = new Categorias();
-        cat2 = (Categorias) manejadorcategorias.consultar(cat);
-        if (!cat2.getDescripcion().equals(null)) {
-            System.out.println("Categoria solicitada es " + cat2.toString());
-        } else {
-            System.out.println("Categoria no encontrada");
-        }
+        System.out.println("Digite el ID a buscar");
+        int a = leer.nextInt();
+        Categorias resultado = (Categorias) manejadorcategorias.consultarId(a);
+        System.out.println("Los datos consultados son " + resultado.toString());
     }
 
     public void menuCategorias() {
