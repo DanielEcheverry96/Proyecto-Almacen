@@ -24,5 +24,4 @@ public class PrincipalArticulos {
         menelec.MenuElectronicosOficina();
 
     }
-
 }
