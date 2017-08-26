@@ -44,4 +44,5 @@ public class MenuCategoriaElectronicosOficina {
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
     }
+
 }
