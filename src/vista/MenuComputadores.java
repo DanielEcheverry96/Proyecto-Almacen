@@ -17,13 +17,7 @@ public class MenuComputadores {
 
     Scanner leer = new Scanner(System.in);
     ManejadorComputadores mancomp = new ManejadorComputadores();
-    MenuCategoriaElectronicosOficina menofi = new MenuCategoriaElectronicosOficina();
-
-    public static void main(String[] args) {
-
-        MenuComputadores menu = new MenuComputadores();
-        menu.insertarComputadores();
-    }
+    //MenuCategoriaElectronicosOficina menofi = new MenuCategoriaElectronicosOficina();
 
     public void insertarComputadores() {
 

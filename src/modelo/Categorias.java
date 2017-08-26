@@ -6,8 +6,8 @@ package modelo;
  */
 public class Categorias implements Comparable<Categorias> {
 
-    private int id;
-    private String descripcion;
+    protected int id;
+    protected String descripcion;
 
     public Categorias(int id, String descripcion) {
         this.id = id;

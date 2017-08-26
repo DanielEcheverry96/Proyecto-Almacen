@@ -11,15 +11,15 @@ package modelo;
  */
 public class Articulos implements Comparable<Articulos> {
 
-    private int idMarca;
-    private int idCategoria;
-    private int idArticulo;
-    private String nombre;
-    private int cantidad;
-    private float precio;
-    private String descripcion;
-    private String color;
-    private String imagen;
+    protected int idMarca;
+    protected int idCategoria;
+    protected int idArticulo;
+    protected String nombre;
+    protected int cantidad;
+    protected float precio;
+    protected String descripcion;
+    protected String color;
+    protected String imagen;
 
     public Articulos(int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
         this.idMarca = idMarca;
