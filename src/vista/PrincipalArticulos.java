@@ -14,12 +14,14 @@ public class PrincipalArticulos {
 
     public static void main(String[] args) {
 
-        MenuCategorias categoriasmenu = new MenuCategorias();
-        categoriasmenu.menuCategorias();
-        MenuMarcas marcasmen = new MenuMarcas();
-        marcasmen.menuMarcas();
-        MenuArticulos articulosmenu = new MenuArticulos();
-        articulosmenu.menuArticulos();
+//        MenuCategorias categoriasmenu = new MenuCategorias();
+//        categoriasmenu.menuCategorias();
+//        MenuMarcas marcasmen = new MenuMarcas();
+//        marcasmen.menuMarcas();
+//        MenuArticulos articulosmenu = new MenuArticulos();
+//        articulosmenu.menuArticulos();
+        MenuCategoriaElectronicosOficina menelec = new MenuCategoriaElectronicosOficina();
+        menelec.MenuElectronicosOficina();
 
     }
 
