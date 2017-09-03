@@ -41,6 +41,54 @@ public class TelefonosCelulares extends Articulos {
 
     }
 
+    public String getTiprocesador() {
+        return tiprocesador;
+    }
+
+    public void setTiprocesador(String tiprocesador) {
+        this.tiprocesador = tiprocesador;
+    }
+
+    public int getTamañodepantalla() {
+        return tamañodepantalla;
+    }
+
+    public void setTamañodepantalla(int tamañodepantalla) {
+        this.tamañodepantalla = tamañodepantalla;
+    }
+
+    public int getTammemoria() {
+        return tammemoria;
+    }
+
+    public void setTammemoria(int tammemoria) {
+        this.tammemoria = tammemoria;
+    }
+
+    public int getCapalmacenamiento() {
+        return capalmacenamiento;
+    }
+
+    public void setCapalmacenamiento(int capalmacenamiento) {
+        this.capalmacenamiento = capalmacenamiento;
+    }
+
+    public String getTipodepantalla() {
+        return tipodepantalla;
+    }
+
+    public void setTipodepantalla(String tipodepantalla) {
+        this.tipodepantalla = tipodepantalla;
+    }
+
+    public String getInterfacered() {
+        return interfacered;
+    }
+
+    public void setInterfacered(String interfacered) {
+        this.interfacered = interfacered;
+    }
+    
     @Override
     public String toString() {
         return "TelefonosCelulares{" + "tiprocesador=" + tiprocesador + ", tama\u00f1odepantalla=" + tamañodepantalla + ", tammemoria=" + tammemoria + ", capalmacenamiento=" + capalmacenamiento + ", tipodepantalla=" + tipodepantalla + ", interfacered=" + interfacered + '}';

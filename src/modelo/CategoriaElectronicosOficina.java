@@ -20,6 +20,10 @@ public class CategoriaElectronicosOficina extends Categorias {
     public CategoriaElectronicosOficina() {
     }
 
-    public static ArrayList<Computadores> arreglocomputadores
-            = new ArrayList<Computadores>();
+    public static ArrayList<Computadores> arreglocomputadores = new ArrayList<Computadores>();
+    public static ArrayList<TelefonosCelulares> arreglotelefonoscelulares = new ArrayList<TelefonosCelulares>();
+    public static ArrayList<TelefonosIp> arreglotelefonosip = new ArrayList<TelefonosIp>();
+    public static ArrayList<Impresores> arregloimpresores = new ArrayList<Impresores>();
+    
+    
 }

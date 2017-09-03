@@ -14,6 +14,10 @@ import java.util.Scanner;
 public class MenuCategoriaElectronicosOficina {
 
     MenuComputadores mencomp = new MenuComputadores();
+    MenuTelefonosCelulares mentelcel = new MenuTelefonosCelulares();
+    MenuTelefonosIp mentelip = new MenuTelefonosIp();
+    MenuImpresores menimpre = new MenuImpresores();
+    
 
     Scanner menu = new Scanner(System.in);
     String condicion = "";
@@ -30,17 +34,19 @@ public class MenuCategoriaElectronicosOficina {
                 case 1:
                     mencomp.menuComputador();
                     break;
-//                case 2:
-//                    manobj.consultarTodos();
-//                    break;
-//                case 3:
-//                    consultarUnaMarca();
-//                    break;
-
+                case 2:
+                    mentelcel.menuTelefonoCelular();
+                    break;
+                case 3:
+                    mentelip.menuTelefonoIp();
+                    break;
+                case 4:
+                    menimpre.menuImpresor();
+                    break;
                 default:
                     System.out.println("Opcion no permitida");
             }
-            System.out.println("Desea retornar al menu de Marcas S/s");
+            System.out.println("Desea retornar al menu categorias S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
     }
