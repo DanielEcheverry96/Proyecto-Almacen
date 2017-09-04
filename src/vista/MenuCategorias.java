@@ -35,8 +35,13 @@ public class MenuCategorias {
         Scanner leer = new Scanner(System.in);
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
-        Categorias resultado = (Categorias) manejadorcategorias.consultarId(a);
-        System.out.println("Los datos consultados son " + resultado.toString());
+        Categorias resultado =(Categorias) manejadorcategorias.consultarId(a);
+        if (resultado == null){
+            System.out.println("No se encontró");
+        }
+        else{
+            System.out.println("Los datos consultados son " + resultado.toString());
+        }
     }
 
     public void menuCategorias() {
