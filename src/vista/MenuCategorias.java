@@ -37,7 +37,7 @@ public class MenuCategorias {
         int a = leer.nextInt();
         Categorias resultado =(Categorias) manejadorcategorias.consultarId(a);
         if (resultado == null){
-            System.out.println("No se encontró");
+            System.out.println("No se encontró la categoría");
         }
         else{
             System.out.println("Los datos consultados son " + resultado.toString());
