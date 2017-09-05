@@ -55,7 +55,12 @@ public class MenuTelefonosIp {
         System.out.println("Digite el Id a buscar");
         int a = leer.nextInt();
         TelefonosIp resultado = (TelefonosIp)mantelip.consultarId(a);
-        System.out.println("Los datos consultados son "+resultado.toString());
+        if (resultado == null) {
+            System.out.println("No se encontro el articulo");
+        }
+        else{
+            System.out.println("Los datos consultados son "+resultado.toString());
+        }
     }
     
      public void menuTelefonoIp(){

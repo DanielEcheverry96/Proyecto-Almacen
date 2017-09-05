@@ -22,12 +22,23 @@ public class MenuComputadores {
     public void insertarComputadores() {
 
         Computadores compu = new Computadores();
-        System.out.println("Digite el id del computador");
+        
+        System.out.println("Digite el ID del computador");
         compu.setIdArticulo(leer.nextInt());
-        System.out.println("Digite la marca del computador");
+        System.out.println("Digite el Id de la marca de la nevera");
         compu.setNombre(leer.next());
+        System.out.println("Digite el Id de la categoria");
+        compu.setIdCategoria(leer.nextInt());
+        System.out.println("Digite el nombre del articulo");
+        compu.setNombre(leer.next());
+        System.out.println("Digite la cantidad del articulo");
+        compu.setCantidad(leer.nextInt());
         System.out.println("Digite el precio");
         compu.setPrecio(leer.nextFloat());
+        System.out.println("Color");
+        compu.setColor(leer.next());
+        System.out.println("Url Imagen");
+        compu.setImagen(leer.next());
         System.out.println("Digite el Tamaño de la pantalla");
         compu.setTipopantalla(leer.next());
         System.out.println("Digite el Tipo de mouse");
@@ -51,8 +62,12 @@ public class MenuComputadores {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
         Computadores resultado = (Computadores) mancomp.consultarId(a);
-        System.out.println("Los datos consultados son " + resultado.toString());
-
+        if (resultado == null) {
+            System.out.println("No se encontro el articulo");
+        }
+        else{
+            System.out.println("Los datos consultados son " + resultado.toString());
+        }
     }
     public void menuComputador() {
         String condicion = "";

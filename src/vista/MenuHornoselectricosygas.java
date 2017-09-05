@@ -20,12 +20,23 @@ public class MenuHornoselectricosygas {
     
     public void insertarHornoselectricosygas() {
         Hornoselectricosygas heg = new Hornoselectricosygas();
+        
         System.out.println("Digite el ID del horno");
         heg.setIdArticulo(leer.nextInt());
-        System.out.println("Digite la marca del horno");
+        System.out.println("Digite el Id de la marca del horno");
         heg.setNombre(leer.next());
+        System.out.println("Digite el Id de la categoria");
+        heg.setIdCategoria(leer.nextInt());
+        System.out.println("Digite el nombre del articulo");
+        heg.setNombre(leer.next());
+        System.out.println("Digite la cantidad del articulo");
+        heg.setCantidad(leer.nextInt());
         System.out.println("Digite el precio");
         heg.setPrecio(leer.nextFloat());
+        System.out.println("Color");
+        heg.setColor(leer.next());
+        System.out.println("Url Imagen");
+        heg.setImagen(leer.next());
         System.out.println("Digite la potencia del horno");
         heg.setPotencia(leer.next());
         System.out.println("Digite el número de bandejas del horno");
@@ -49,8 +60,12 @@ public class MenuHornoselectricosygas {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
         Hornoselectricosygas resultado = (Hornoselectricosygas) manheg.consultarId(a);
-        System.out.println("Los datos consultados son " + resultado.toString());
-
+        if (resultado == null) {
+            System.out.println("No se encontro el articulo");
+        }
+        else{
+            System.out.println("Los datos consultados son " + resultado.toString());
+        }
     }
     public void menuHornoselectricosygas() {
         String condicion = "";

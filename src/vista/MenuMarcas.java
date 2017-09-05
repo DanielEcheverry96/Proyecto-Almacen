@@ -42,7 +42,12 @@ public class MenuMarcas {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
         Marca resultado = (Marca) manobj.consultarId(a);
-        System.out.println("Los datos consultados son " + resultado.toString());
+        if (resultado == null) {
+            System.out.println("No se encontro la marca");
+        }
+        else{
+            System.out.println("Los datos consultados son " + resultado.toString());
+        }
 
     }
 

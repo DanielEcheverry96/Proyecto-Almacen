@@ -19,12 +19,23 @@ public class MenuTelevisores {
 
     public void insertarTelevisores() {
         Televisores tv = new Televisores();
-        System.out.println("Digite el ID de la nevera");
+        
+        System.out.println("Digite el ID del televisor");
         tv.setIdArticulo(leer.nextInt());
-        System.out.println("Digite la marca de la nevera");
+        System.out.println("Digite el Id de la marca del televisor");
         tv.setNombre(leer.next());
+        System.out.println("Digite el Id de la categoria");
+        tv.setIdCategoria(leer.nextInt());
+        System.out.println("Digite el nombre del articulo");
+        tv.setNombre(leer.next());
+        System.out.println("Digite la cantidad del articulo");
+        tv.setCantidad(leer.nextInt());
         System.out.println("Digite el precio");
         tv.setPrecio(leer.nextFloat());
+        System.out.println("Color");
+        tv.setColor(leer.next());
+        System.out.println("Url Imagen");
+        tv.setImagen(leer.next());
         System.out.println("Digite el tipo de televisor");
         tv.setTipotelevisor(leer.next());
         System.out.println("Digite el tamaño de pantalla");
@@ -46,8 +57,12 @@ public class MenuTelevisores {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
         Televisores resultado = (Televisores) mantv.consultarId(a);
-        System.out.println("Los datos consultados son " + resultado.toString());
-
+        if (resultado == null) {
+            System.out.println("No se encontro el articulo");
+        }
+        else{
+            System.out.println("Los datos consultados son " + resultado.toString());
+        }
     }
     public void menuTelevisores() {
         String condicion = "";

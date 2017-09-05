@@ -18,13 +18,26 @@ public class MenuNeveras {
     ManejadorNeveras mannev = new ManejadorNeveras();
     
     public void insertarNeveras() {
+        
+        
         Neveras nev = new Neveras();
-        System.out.println("Digite el ID de la nevera");
+        
+        System.out.println("Digite el Id de la nevera");
         nev.setIdArticulo(leer.nextInt());
-        System.out.println("Digite la marca de la nevera");
+        System.out.println("Digite el Id de la marca de la nevera");
         nev.setNombre(leer.next());
+        System.out.println("Digite el Id de la categoria");
+        nev.setIdCategoria(leer.nextInt());
+        System.out.println("Digite el nombre del articulo");
+        nev.setNombre(leer.next());
+        System.out.println("Digite la cantidad del articulo");
+        nev.setCantidad(leer.nextInt());
         System.out.println("Digite el precio");
         nev.setPrecio(leer.nextFloat());
+        System.out.println("Color");
+        nev.setColor(leer.next());
+        System.out.println("Url Imagen");
+        nev.setImagen(leer.next());
         System.out.println("Digite la capacidad del congelador");
         nev.setCapcongelador(leer.next());
         System.out.println("Digite la capacidad del frigorífico");
@@ -48,8 +61,12 @@ public class MenuNeveras {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
         Neveras resultado = (Neveras) mannev.consultarId(a);
-        System.out.println("Los datos consultados son " + resultado.toString());
-
+        if (resultado == null) {
+            System.out.println("No se encontro el articulo");
+        }
+        else {
+            System.out.println("Los datos consultados son " + resultado.toString());
+        }
     }
     public void menuNeveras() {
         String condicion = "";
