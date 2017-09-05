@@ -80,7 +80,7 @@ public class Computadores extends Articulos {
 
     @Override
     public String toString() {
-        return "Computadores{" + "capmemoria=" + capmemoria + ", tipoteclado=" + tipoteclado + ", tipomouse=" + tipomouse + ", tipopantalla=" + tipopantalla + ", capalmacenamiento=" + capalmacenamiento + '}';
+        return "Computadores{" + "capmemoria = " + capmemoria + ", tipoteclado = " + tipoteclado + ", tipomouse = " + tipomouse + ", tipopantalla = " + tipopantalla + ", capalmacenamiento = " + capalmacenamiento + '}';
     }
 
 }

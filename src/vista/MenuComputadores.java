@@ -22,38 +22,38 @@ public class MenuComputadores {
     public void insertarComputadores() {
 
         Computadores compu = new Computadores();
-        System.out.println("digite el id");
+        System.out.println("Digite el id del computador");
         compu.setIdArticulo(leer.nextInt());
-        System.out.println("La marca");
+        System.out.println("Digite la marca del computador");
         compu.setNombre(leer.next());
-        System.out.println("Precio");
+        System.out.println("Digite el precio");
         compu.setPrecio(leer.nextFloat());
-        System.out.println("Tipo pantalla");
+        System.out.println("Digite el Tamaño de la pantalla");
         compu.setTipopantalla(leer.next());
-        System.out.println("Tipo mouse");
+        System.out.println("Digite el Tipo de mouse");
         compu.setTipomouse(leer.next());
-        System.out.println("Tipo teclado");
+        System.out.println("Digite el Tipo de teclado");
         compu.setTipoteclado(leer.next());
-        System.out.println("Capacidad memoria");
+        System.out.println("Digite la capacidad memoria");
         compu.setCapmemoria(leer.next());
-        System.out.println("Tipo pantalla");
+        System.out.println("Digite el Tipo de pantalla");
         compu.setTipopantalla(leer.next());
 
         if (mancomp.insertar(compu)) {
-            System.out.println("Compu insertado");
+            System.out.println("Computador insertado");
         } else {
-            System.out.println("Compu No insertado");
+            System.out.println("Computador No insertado");
         }
 
     }
 
-//    public void consultarUnComputador() {
-//        System.out.println("Digite el ID a buscar");
-//        int a = leer.nextInt();
-//        Computadores resultado = (Computadores) mancomp.consultarId(a);
-//        System.out.println("Los datos consultados son " + resultado.toString());
-//
-//    }
+    public void consultarUnComputador() {
+        System.out.println("Digite el ID a buscar");
+        int a = leer.nextInt();
+        Computadores resultado = (Computadores) mancomp.consultarId(a);
+        System.out.println("Los datos consultados son " + resultado.toString());
+
+    }
     public void menuComputador() {
         String condicion = "";
 
@@ -70,17 +70,17 @@ public class MenuComputadores {
                 case 1:
                     insertarComputadores();
                     break;
-//                case 2:
-//                    mancomp.consultarTodos();
-//                    break;
-//                case 3:
-//                    consultarUnComputador();
-//                    break;
+                case 2:
+                    mancomp.consultarTodos();
+                    break;
+                case 3:
+                    consultarUnComputador();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");
             }
-            System.out.println("Desea retornar al menu de Marcas S/s");
+            System.out.println("Desea retornar al menu de Computadores S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
 

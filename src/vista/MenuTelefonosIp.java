@@ -87,7 +87,7 @@ public class MenuTelefonosIp {
                     System.out.println("Opcion no permitida");
             }
             
-            System.out.println("Desea retornar al menu de Categorias electronicos para oficina S/s");
+            System.out.println("Desea retornar al menu de teléfonos IP S/s");
             condicion = menu.next();
             
         } while (condicion.equalsIgnoreCase("s"));

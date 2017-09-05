@@ -35,17 +35,6 @@ public class ManejadorCategorias implements ICRUD {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//    @Override
-//    public Object consultar(Object obj) {
-//        Categorias cat = new Categorias();
-//        if (obj instanceof Categorias) {
-//            cat = (Categorias) obj;
-//            for (Categorias cat1 : arregloCategorias) {
-//                return cat1;
-//            }
-//        }
-//        return cat;
-//    }
     @Override
     public boolean borrar(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -78,9 +67,12 @@ public class ManejadorCategorias implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
+        if (!(busquedaBinaria(id) == -1)){
         Categorias resultado = new Categorias();
-        resultado = arregloCategorias.get(busquedaBinaria(id));
-        return resultado;
+            resultado = arregloCategorias.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
 }
