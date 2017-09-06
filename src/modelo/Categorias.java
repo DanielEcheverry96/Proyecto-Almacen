@@ -37,7 +37,25 @@ public class Categorias implements Comparable<Categorias> {
     public String toString() {
         return "Categorias{" + "id=" + id + ", descripcion=" + descripcion + '}';
     }
-
+    
+        @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Categorias other = (Categorias) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public int compareTo(Categorias t) {
         return this.id - t.getId();

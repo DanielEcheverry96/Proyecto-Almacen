@@ -16,6 +16,14 @@ public class ManejadorCategorias implements ICRUD {
         arregloCategorias = new ArrayList<Categorias>();
     }
 
+   private boolean existecategoria(Categorias cate) {
+        boolean existe = false;
+        if (arregloCategorias.contains(cate)) {
+            existe = true;
+        }
+        return existe;
+    }
+      
     @Override
     public boolean insertar(Object obj) {
         boolean insertado = false;
@@ -24,7 +32,10 @@ public class ManejadorCategorias implements ICRUD {
             Categorias cat = new Categorias();
             cat = (Categorias) obj;
             arregloCategorias.add(cat);
-            insertado = true;
+            if (!existecategoria(cat)) {
+                arregloCategorias.add(cat);
+                insertado = true;
+            }
             return insertado;
         }
         return insertado;

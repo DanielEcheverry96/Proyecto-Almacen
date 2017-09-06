@@ -21,6 +21,14 @@ public class ManejadorObjetos implements ICRUD {
         arregloMarcas = new ArrayList<Marca>();
     }
 
+    private boolean existemarca(Marca mar){
+        boolean existe = false;
+        if (arregloMarcas.contains(mar)) {
+            existe = true;
+        }
+        return existe;
+    }
+    
     @Override
     public boolean insertar(Object obj) {
         boolean insertado = false;
@@ -29,7 +37,10 @@ public class ManejadorObjetos implements ICRUD {
             Marca mar = new Marca();
             mar = (Marca) obj;
             arregloMarcas.add(mar);
-            insertado = true;
+            if (!existemarca(mar)) {
+                arregloMarcas.add(mar);
+                insertado = true;
+            }
             return insertado;
         }
         return insertado;

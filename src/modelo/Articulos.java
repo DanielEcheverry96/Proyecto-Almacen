@@ -112,7 +112,26 @@ public class Articulos implements Comparable<Articulos> {
     public String toString() {
         return "Articulos{" + "idMarca=" + idMarca + ", idCategoria=" + idCategoria + ", idArticulo=" + idArticulo + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", descripcion=" + descripcion + ", color=" + color + ", imagen=" + imagen + '}';
     }
-
+    
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Articulos other = (Articulos) obj;
+        if (this.idArticulo != other.idArticulo) {
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public int compareTo(Articulos t) {
         return this.idArticulo - t.getIdArticulo();

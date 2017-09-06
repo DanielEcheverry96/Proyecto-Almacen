@@ -16,6 +16,14 @@ public class ManejadorArticulos implements ICRUD {
         arregloArticulos = new ArrayList<Articulos>();
     }
 
+      private boolean existearticulo(Articulos arti) {
+        boolean existe = false;
+        if (arregloArticulos.contains(arti)) {
+            existe = true;
+        }
+        return existe;
+    }
+      
     @Override
     public boolean insertar(Object obj) {
         boolean insertado = false;
@@ -24,7 +32,10 @@ public class ManejadorArticulos implements ICRUD {
             Articulos art = new Articulos();
             art = (Articulos) obj;
             arregloArticulos.add(art);
-            insertado = true;
+            if (!existearticulo(art)) {
+                arregloArticulos.add(art);
+                insertado = true;
+            }
             return insertado;
         }
         return insertado;
