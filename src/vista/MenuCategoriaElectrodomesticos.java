@@ -45,7 +45,7 @@ public class MenuCategoriaElectrodomesticos {
                 default:
                     System.out.println("Opcion no permitida");
             }
-            System.out.println("Desea retornar al menu categorias S/s");
+            System.out.println("Desea retornar al menu categorias electrodomesticos S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
     }

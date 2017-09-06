@@ -46,7 +46,7 @@ public class MenuCategoriaElectronicosOficina {
                 default:
                     System.out.println("Opcion no permitida");
             }
-            System.out.println("Desea retornar al menu categorias S/s");
+            System.out.println("Desea retornar al menu categorias electronicos de oficina S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
     }
