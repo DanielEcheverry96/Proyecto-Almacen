@@ -41,8 +41,15 @@ public class ManejadorHornosmicroondas implements ICRUD {
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof Hornosmicroondas) {
+            Hornosmicroondas temp = new Hornosmicroondas();
+            temp = (Hornosmicroondas) obj;
+            catedom.arreglohornosmicroondas.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
@@ -72,14 +79,22 @@ public class ManejadorHornosmicroondas implements ICRUD {
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        catedom.arreglohornosmicroondas.remove(id);
+        return true;
     }
 
     @Override
     public ArrayList consultarTodos() {
         System.out.println(CategoriaElectrodomesticos.arreglohornosmicroondas.toString());
         return CategoriaElectrodomesticos.arreglohornosmicroondas;
+    }
+
+    
+    @Override
+    public boolean borrarTodo(int id) {
+        catedom.arreglohornosmicroondas.clear();
+        return true;
     }
     
 }

@@ -42,8 +42,15 @@ public class ManejadorArticulos implements ICRUD {
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof Articulos) {
+            Articulos temp = new Articulos();
+            temp = (Articulos) obj;
+            arregloArticulos.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
 //    @Override
@@ -58,8 +65,9 @@ public class ManejadorArticulos implements ICRUD {
 //        return art;
 //    }
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        arregloArticulos.remove(id);
+        return true;
     }
 
     @Override
@@ -92,6 +100,12 @@ public class ManejadorArticulos implements ICRUD {
         Articulos resultado = new Articulos();
         resultado = arregloArticulos.get(busquedaBinaria(id));
         return resultado;
+    }
+
+    @Override
+    public boolean borrarTodo(int id) {
+        arregloArticulos.clear();
+        return true;
     }
 
 }

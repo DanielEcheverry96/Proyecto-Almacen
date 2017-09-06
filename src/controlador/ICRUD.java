@@ -15,13 +15,15 @@ public interface ICRUD {
 
     public boolean insertar(Object obj);
 
-    public boolean modificar(Object obj);
+    public boolean modificar(int id, Object obj);
 
     public int busquedaBinaria(int id);
 
     public Object consultarId(int id);
 
-    public boolean borrar(Object obj);
+    public boolean borrar(int id);
+    
+    public boolean borrarTodo (int id);
 
     public ArrayList consultarTodos();
 

@@ -42,8 +42,15 @@ public class ManejadorTelefonosIp implements ICRUD{
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof TelefonosIp) {
+            TelefonosIp temp = new TelefonosIp();
+            temp = (TelefonosIp) obj;
+            cateofi.arreglotelefonosip.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
@@ -75,14 +82,21 @@ public class ManejadorTelefonosIp implements ICRUD{
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        cateofi.arreglotelefonosip.remove(id);
+        return true;
     }
 
     @Override
     public ArrayList consultarTodos() {
        System.out.println(CategoriaElectronicosOficina.arreglotelefonosip.toString());
        return CategoriaElectronicosOficina.arreglotelefonosip;
+    }
+
+    @Override
+    public boolean borrarTodo(int id) {
+        cateofi.arreglotelefonosip.clear();
+        return true;
     }
     
 }

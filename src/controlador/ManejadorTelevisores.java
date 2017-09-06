@@ -41,8 +41,15 @@ public class ManejadorTelevisores implements ICRUD {
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof Televisores) {
+            Televisores temp = new Televisores();
+            temp = (Televisores) obj;
+            catedom.arreglotelevisores.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
@@ -72,14 +79,21 @@ public class ManejadorTelevisores implements ICRUD {
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        catedom.arreglotelevisores.remove(id);
+        return true;
     }
 
     @Override
     public ArrayList consultarTodos() {
         System.out.println(CategoriaElectrodomesticos.arreglotelevisores.toString());
         return CategoriaElectrodomesticos.arreglotelevisores;
+    }
+
+    @Override
+    public boolean borrarTodo(int id) {
+        catedom.arreglotelevisores.clear();
+        return true;
     }
     
 }

@@ -43,8 +43,15 @@ public class ManejadorImpresores implements ICRUD{
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof Impresores) {
+            Impresores temp = new Impresores();
+            temp = (Impresores) obj;
+            cateofi.arregloimpresores.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
@@ -76,14 +83,21 @@ public class ManejadorImpresores implements ICRUD{
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        cateofi.arregloimpresores.remove(id);
+        return true;
     }
 
     @Override
     public ArrayList consultarTodos() {
        System.out.println(CategoriaElectronicosOficina.arregloimpresores.toString());
        return CategoriaElectronicosOficina.arregloimpresores;
+    }
+
+    @Override
+    public boolean borrarTodo(int id) {
+        cateofi.arregloimpresores.clear();
+        return true;
     }
     
 }

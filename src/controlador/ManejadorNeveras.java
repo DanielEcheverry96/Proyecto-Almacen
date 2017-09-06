@@ -40,9 +40,15 @@ public class ManejadorNeveras implements ICRUD {
         return inserto;
     }
 
-    @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof Neveras) {
+            Neveras temp = new Neveras();
+            temp = (Neveras) obj;
+            catedom.arregloneveras.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
@@ -72,14 +78,21 @@ public class ManejadorNeveras implements ICRUD {
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        catedom.arregloneveras.remove(id);
+        return true;
     }
 
     @Override
     public ArrayList consultarTodos() {
         System.out.println(CategoriaElectrodomesticos.arregloneveras.toString());
         return CategoriaElectrodomesticos.arregloneveras;
+    }
+
+    @Override
+    public boolean borrarTodo(int id) {
+        catedom.arregloneveras.clear();
+        return true;
     }
     
 }

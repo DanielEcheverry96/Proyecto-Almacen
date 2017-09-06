@@ -41,8 +41,15 @@ public class ManejadorHornoselectricosygas implements ICRUD {
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof Hornoselectricosygas) {
+            Hornoselectricosygas temp = new Hornoselectricosygas();
+            temp = (Hornoselectricosygas) obj;
+            catedom.arreglohornoselectricosygas.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
@@ -72,8 +79,9 @@ public class ManejadorHornoselectricosygas implements ICRUD {
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        catedom.arreglohornoselectricosygas.remove(id);
+        return true;
     }
 
     @Override
@@ -82,6 +90,11 @@ public class ManejadorHornoselectricosygas implements ICRUD {
         return CategoriaElectrodomesticos.arreglohornoselectricosygas;
     }
     
-    
+    @Override
+    public boolean borrarTodo(int id) {
+        catedom.arreglohornoselectricosygas.clear();
+        return true;
+    }
+
     
 }

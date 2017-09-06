@@ -42,8 +42,15 @@ public class ManejadorTelefonosCelulares implements ICRUD {
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof TelefonosCelulares) {
+            TelefonosCelulares temp = new TelefonosCelulares();
+            temp = (TelefonosCelulares) obj;
+            cateofi.arreglotelefonoscelulares.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
@@ -74,14 +81,21 @@ public class ManejadorTelefonosCelulares implements ICRUD {
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        cateofi.arreglotelefonoscelulares.remove(id);
+        return true;
     }
 
     @Override
     public ArrayList consultarTodos() {
        System.out.println(CategoriaElectronicosOficina.arreglotelefonoscelulares.toString());
        return CategoriaElectronicosOficina.arreglotelefonoscelulares;
+    }
+
+    @Override
+    public boolean borrarTodo(int id) {
+        cateofi.arreglotelefonoscelulares.clear();
+        return true;
     }
     
 }

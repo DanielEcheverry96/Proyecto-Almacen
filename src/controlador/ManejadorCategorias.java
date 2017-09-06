@@ -42,13 +42,21 @@ public class ManejadorCategorias implements ICRUD {
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof Categorias) {
+            Categorias temp = new Categorias();
+            temp = (Categorias) obj;
+            arregloCategorias.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        arregloCategorias.remove(id);
+        return true;
     }
 
     @Override
@@ -84,6 +92,12 @@ public class ManejadorCategorias implements ICRUD {
             return resultado;
         }
         return null;
+    }
+
+    @Override
+    public boolean borrarTodo(int id) {
+        arregloCategorias.clear();
+        return true;
     }
 
 }

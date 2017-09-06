@@ -42,8 +42,15 @@ public class ManejadorComputadores implements ICRUD {
     }
 
     @Override
-    public boolean modificar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean modificar(int id, Object obj) {
+        boolean var = false;
+        if (obj instanceof Computadores) {
+            Computadores temp = new Computadores();
+            temp = (Computadores) obj;
+            cateofi.arreglocomputadores.set(id, temp);
+            var = true;
+        }
+        return var;
     }
 
     @Override
@@ -73,14 +80,21 @@ public class ManejadorComputadores implements ICRUD {
     }
 
     @Override
-    public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean borrar(int id) {
+        cateofi.arreglocomputadores.remove(id);
+        return true;
     }
 
     @Override
     public ArrayList consultarTodos() {
         System.out.println(CategoriaElectronicosOficina.arreglocomputadores.toString());
         return CategoriaElectronicosOficina.arreglocomputadores;
+    }
+
+    @Override
+    public boolean borrarTodo(int id) {
+        cateofi.arreglocomputadores.clear();
+        return true;
     }
 
 }
