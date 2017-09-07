@@ -36,7 +36,7 @@ public class MenuJuegos {
         jueg.setPrecio(leer.nextFloat());
         System.out.println("Url Imagen");
         jueg.setImagen(leer.next());
-        System.out.println("Digite el género");
+        System.out.println("Digite el género del juego");
         jueg.setGenero(leer.next());
         System.out.println("Digite la restriccíon de edad");
         jueg.setRestedad(leer.next());
