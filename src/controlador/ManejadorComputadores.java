@@ -95,7 +95,7 @@ public class ManejadorComputadores implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         cateofi.arreglocomputadores.clear();
         return true;
     }

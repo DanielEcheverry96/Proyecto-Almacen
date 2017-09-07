@@ -94,7 +94,7 @@ public class ManejadorHornoselectricosygas implements ICRUD {
     }
     
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         catedom.arreglohornoselectricosygas.clear();
         return true;
     }

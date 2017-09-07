@@ -86,6 +86,11 @@ public void consultarUnaConsola() {
                 case 3:
                     consultarUnaConsola();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    mancons.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

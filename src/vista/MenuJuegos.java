@@ -86,6 +86,11 @@ public void consultarUnJuego() {
                 case 3:
                     consultarUnJuego();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    manjueg.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

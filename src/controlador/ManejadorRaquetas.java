@@ -96,7 +96,7 @@ public class ManejadorRaquetas implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         catdep.arregloraquetas.clear();
         return true;
     }

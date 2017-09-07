@@ -88,6 +88,11 @@ public class MenuTelefonosIp {
                 case 3:
                         consultarUnTelefonoIp();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    mantelip.borrarTodo();
+                    break;
                 default:
                     System.out.println("Opcion no permitida");
             }

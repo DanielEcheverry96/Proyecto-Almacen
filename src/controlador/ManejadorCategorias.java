@@ -95,7 +95,7 @@ public class ManejadorCategorias implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         arregloCategorias.clear();
         return true;
     }

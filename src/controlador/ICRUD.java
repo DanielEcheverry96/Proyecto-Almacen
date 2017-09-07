@@ -23,7 +23,7 @@ public interface ICRUD {
 
     public boolean borrar(int id);
     
-    public boolean borrarTodo (int id);
+    public boolean borrarTodo ();
 
     public ArrayList consultarTodos();
 

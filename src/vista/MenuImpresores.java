@@ -92,6 +92,11 @@ public class MenuImpresores {
                 case 3:
                         consultarUnImpresor();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    manimp.borrarTodo();
+                    break;
                 default:
                     System.out.println("Opcion no permitida");
             }

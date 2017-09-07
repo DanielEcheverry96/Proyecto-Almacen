@@ -90,7 +90,7 @@ public class ManejadorBicicletas implements ICRUD{
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         catdep.arreglobicicletas.clear();
         return true;
     }

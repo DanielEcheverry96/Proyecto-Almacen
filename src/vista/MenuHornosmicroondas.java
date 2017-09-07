@@ -87,6 +87,11 @@ public class MenuHornosmicroondas {
                 case 3:
                     consultarUnHornomicroondas();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    manhornmic.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

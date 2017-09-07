@@ -95,7 +95,7 @@ public class ManejadorJuegos implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         catevid.arreglojuegos.clear();
         return true;
     }

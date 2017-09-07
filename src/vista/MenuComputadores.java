@@ -91,6 +91,11 @@ public class MenuComputadores {
                 case 3:
                     consultarUnComputador();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    mancomp.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

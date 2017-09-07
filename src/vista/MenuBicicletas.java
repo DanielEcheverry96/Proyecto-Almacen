@@ -85,6 +85,11 @@ public class MenuBicicletas {
                 case 3:
                     consultarUnaBicicleta();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    manbici.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

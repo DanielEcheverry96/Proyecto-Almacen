@@ -98,7 +98,7 @@ public class ManejadorImpresores implements ICRUD{
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         cateofi.arregloimpresores.clear();
         return true;
     }

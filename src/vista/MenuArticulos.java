@@ -68,6 +68,7 @@ public class MenuArticulos {
                 case 3:
                     consultarUnArticulo();
                     break;
+                
                 default:
                     System.out.println("Opción no permitida");
             }

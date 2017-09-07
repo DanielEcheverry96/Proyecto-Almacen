@@ -24,6 +24,8 @@ public class PrincipalArticulos {
         menelec.MenuElectronicosOficina();
         MenuCategoriaElectrodomesticos mendom = new MenuCategoriaElectrodomesticos();
         mendom.MenuElectrodomesticos();
+        MenuCategoriaVideojuegos menvid = new MenuCategoriaVideojuegos();
+        menvid.MenuVideojuegos();
 
     }
 }

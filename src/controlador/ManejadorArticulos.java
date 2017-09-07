@@ -106,7 +106,7 @@ public class ManejadorArticulos implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         arregloArticulos.clear();
         return true;
     }

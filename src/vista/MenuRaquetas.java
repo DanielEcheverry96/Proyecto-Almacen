@@ -90,6 +90,11 @@ public class MenuRaquetas {
                 case 3:
                     consultarUnaRaqueta();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    manraque.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

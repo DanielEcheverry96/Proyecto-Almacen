@@ -97,6 +97,11 @@ public class MenuTelefonosCelulares {
                 case 3:
                         consultarUnCelular();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    mancel.borrarTodo();
+                    break;
                 default:
                     System.out.println("Opcion no permitida");
             }

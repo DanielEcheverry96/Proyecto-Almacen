@@ -89,6 +89,11 @@ public class MenuHornoselectricosygas {
                 case 3:
                     consultarUnHornoelectricoygas();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    manheg.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

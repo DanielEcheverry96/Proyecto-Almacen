@@ -96,7 +96,7 @@ public class ManejadorTelefonosCelulares implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         cateofi.arreglotelefonoscelulares.clear();
         return true;
     }

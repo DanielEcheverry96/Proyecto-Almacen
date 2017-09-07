@@ -95,7 +95,7 @@ public class ManejadorConsolas implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         catevid.arregloconsolas.clear();
         return true;
     }

@@ -86,6 +86,11 @@ public class MenuTelevisores {
                 case 3:
                     consultarUnTelevisor();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    mantv.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

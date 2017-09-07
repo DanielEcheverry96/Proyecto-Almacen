@@ -100,7 +100,7 @@ public class ManejadorObjetos implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         arregloMarcas.clear();
         return true;
     }

@@ -97,7 +97,7 @@ public class ManejadorTelefonosIp implements ICRUD{
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         cateofi.arreglotelefonosip.clear();
         return true;
     }

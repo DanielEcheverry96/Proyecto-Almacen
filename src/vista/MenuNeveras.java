@@ -90,6 +90,11 @@ public class MenuNeveras {
                 case 3:
                     consultarUnaNevera();
                     break;
+                case 4:
+                    break;
+                case 5:
+                    mannev.borrarTodo();
+                    break;
 
                 default:
                     System.out.println("Opcion no permitida");

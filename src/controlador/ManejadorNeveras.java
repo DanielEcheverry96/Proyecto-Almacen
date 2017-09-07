@@ -93,7 +93,7 @@ public class ManejadorNeveras implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         catedom.arregloneveras.clear();
         return true;
     }

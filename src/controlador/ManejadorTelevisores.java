@@ -94,7 +94,7 @@ public class ManejadorTelevisores implements ICRUD {
     }
 
     @Override
-    public boolean borrarTodo(int id) {
+    public boolean borrarTodo() {
         catedom.arreglotelevisores.clear();
         return true;
     }
