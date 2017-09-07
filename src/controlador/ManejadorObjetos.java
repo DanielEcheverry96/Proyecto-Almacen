@@ -60,9 +60,12 @@ public class ManejadorObjetos implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        Marca resultado = new Marca();
-        resultado = arregloMarcas.get(busquedaBinaria(id));
-        return resultado;
+         if (!(busquedaBinaria(id) == -1)){
+            Marca resultado = new Marca();
+            resultado = arregloMarcas.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override

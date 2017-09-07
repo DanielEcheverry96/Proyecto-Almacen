@@ -74,9 +74,12 @@ public class ManejadorComputadores implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        Computadores resultado = new Computadores();
-        resultado = CategoriaElectronicosOficina.arreglocomputadores.get(busquedaBinaria(id));
-        return resultado;
+          if (!(busquedaBinaria(id) == -1)){
+            Computadores resultado = new Computadores();
+            resultado = cateofi.arreglocomputadores.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override

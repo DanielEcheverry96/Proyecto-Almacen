@@ -77,9 +77,12 @@ public class ManejadorImpresores implements ICRUD{
 
     @Override
     public Object consultarId(int id) {
-       Impresores resultado = new Impresores();
-       resultado = CategoriaElectronicosOficina.arregloimpresores.get(busquedaBinaria(id));
-       return resultado;
+         if (!(busquedaBinaria(id) == -1)){
+            Impresores resultado = new Impresores();
+            resultado = cateofi.arregloimpresores.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override

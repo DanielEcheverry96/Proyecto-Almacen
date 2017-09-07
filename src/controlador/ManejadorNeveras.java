@@ -72,9 +72,12 @@ public class ManejadorNeveras implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-       Neveras resultado = new Neveras();
-       resultado = CategoriaElectrodomesticos.arregloneveras.get(busquedaBinaria(id));
-       return resultado;
+         if (!(busquedaBinaria(id) == -1)){
+            Neveras resultado = new Neveras();
+            resultado = catedom.arregloneveras.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override

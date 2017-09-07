@@ -73,9 +73,12 @@ public class ManejadorTelevisores implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        Televisores resultado = new Televisores();
-       resultado = CategoriaElectrodomesticos.arreglotelevisores.get(busquedaBinaria(id));
-       return resultado;
+        if (!(busquedaBinaria(id) == -1)){
+            Televisores resultado = new Televisores();
+            resultado = catedom.arreglotelevisores.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override

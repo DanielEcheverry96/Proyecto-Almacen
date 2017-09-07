@@ -73,9 +73,12 @@ public class ManejadorHornosmicroondas implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        Hornosmicroondas resultado = new Hornosmicroondas();
-        resultado = CategoriaElectrodomesticos.arreglohornosmicroondas.get(busquedaBinaria(id));
-        return resultado;
+          if (!(busquedaBinaria(id) == -1)){
+            Hornosmicroondas resultado = new Hornosmicroondas();
+            resultado = catedom.arreglohornosmicroondas.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override

@@ -75,9 +75,12 @@ public class ManejadorTelefonosIp implements ICRUD{
 
     @Override
     public Object consultarId(int id) {
-       TelefonosIp resultado = new TelefonosIp();
-       resultado = CategoriaElectronicosOficina.arreglotelefonosip.get(busquedaBinaria(id));
-       return resultado;
+        if (!(busquedaBinaria(id) == -1)){
+            TelefonosIp resultado = new TelefonosIp();
+            resultado = cateofi.arreglotelefonosip.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
         
     }
 

@@ -75,9 +75,12 @@ public class ManejadorTelefonosCelulares implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-       TelefonosCelulares resultado = new TelefonosCelulares();
-       resultado = CategoriaElectronicosOficina.arreglotelefonoscelulares.get(busquedaBinaria(id));
-       return resultado;
+         if (!(busquedaBinaria(id) == -1)){
+            TelefonosCelulares resultado = new TelefonosCelulares();
+            resultado = cateofi.arreglotelefonoscelulares.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override

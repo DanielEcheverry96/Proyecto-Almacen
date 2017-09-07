@@ -73,9 +73,12 @@ public class ManejadorHornoselectricosygas implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        Hornoselectricosygas resultado = new Hornoselectricosygas();
-       resultado = CategoriaElectrodomesticos.arreglohornoselectricosygas.get(busquedaBinaria(id));
-       return resultado;
+         if (!(busquedaBinaria(id) == -1)){
+            Hornoselectricosygas resultado = new Hornoselectricosygas();
+            resultado = catedom.arreglohornoselectricosygas.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override

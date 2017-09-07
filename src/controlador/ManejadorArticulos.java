@@ -97,9 +97,12 @@ public class ManejadorArticulos implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        Articulos resultado = new Articulos();
-        resultado = arregloArticulos.get(busquedaBinaria(id));
-        return resultado;
+         if (!(busquedaBinaria(id) == -1)){
+            Articulos resultado = new Articulos();
+            resultado = arregloArticulos.get(busquedaBinaria(id));
+            return resultado;
+        }
+        return null;
     }
 
     @Override
