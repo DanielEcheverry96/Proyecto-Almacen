@@ -18,7 +18,7 @@ public class MenuRaquetas {
     Scanner leer = new Scanner (System.in);
     ManejadorRaquetas manraque = new ManejadorRaquetas();
     
-    public void insertarNeveras() {
+    public void insertarRaquetas() {
         
         
         Raquetas raque = new Raquetas();
@@ -56,7 +56,7 @@ public class MenuRaquetas {
 
     }
     
-        public void consultarUnaRaqueta() {
+    public void consultarUnaRaqueta() {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
         Raquetas resultado = (Raquetas) manraque.consultarId(a);
@@ -68,7 +68,7 @@ public class MenuRaquetas {
         }
     }
         
-        public void menuNeveras() {
+    public void menuRaquetas() {
         String condicion = "";
 
         do {
@@ -82,7 +82,7 @@ public class MenuRaquetas {
             int opcion = menu.nextInt();
             switch (opcion) {
                 case 1:
-                    insertarNeveras();
+                    insertarRaquetas();
                     break;
                 case 2:
                     manraque.consultarTodos();

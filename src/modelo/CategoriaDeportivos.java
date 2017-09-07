@@ -21,5 +21,5 @@ public class CategoriaDeportivos extends Categorias{
     }
     
     public static ArrayList<Raquetas> arregloraquetas = new ArrayList<Raquetas>(); 
-    
+    public static ArrayList<Bicicletas> arreglobicicletas = new ArrayList<Bicicletas>();
 }
