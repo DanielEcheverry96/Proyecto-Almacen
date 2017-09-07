@@ -79,6 +79,7 @@ public class MenuImpresores {
             System.out.println("3- Consultar por Id del impresor");
             System.out.println("4- Modificar impresor");
             System.out.println("5- Eliminar impresor");
+            System.out.println("6- Eliminar todos los impresores");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             
@@ -95,6 +96,8 @@ public class MenuImpresores {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     manimp.borrarTodo();
                     break;
                 default:

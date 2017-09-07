@@ -75,6 +75,7 @@ public class MenuHornosmicroondas {
             System.out.println("3- Consultar por Id del horno microondas");
             System.out.println("4- Modificar horno microondas");
             System.out.println("5- Eliminar horno microondas");
+            System.out.println("6- Eliminar todos los hornos microondas");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -90,6 +91,8 @@ public class MenuHornosmicroondas {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     manhornmic.borrarTodo();
                     break;
 

@@ -74,6 +74,7 @@ public class MenuTelevisores {
             System.out.println("3- Consultar por Id del televisor");
             System.out.println("4- Modificar televisor");
             System.out.println("5- Eliminar televisor");
+            System.out.println("6- Eliminar todos los televisores");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -89,6 +90,8 @@ public class MenuTelevisores {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     mantv.borrarTodo();
                     break;
 

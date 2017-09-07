@@ -84,6 +84,7 @@ public class MenuTelefonosCelulares {
             System.out.println("3- Consultar por Id del telefono celular");
             System.out.println("4- Modificar telefono celular");
             System.out.println("5- Eliminar telefono celular");
+            System.out.println("6- Eliminar todos los telefonos celulares");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             
@@ -100,10 +101,10 @@ public class MenuTelefonosCelulares {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     mancel.borrarTodo();
                     break;
-                default:
-                    System.out.println("Opcion no permitida");
             }
             
             System.out.println("Desea retornar al menu de teléfonos celulares S/s");

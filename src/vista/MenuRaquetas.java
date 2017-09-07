@@ -78,6 +78,7 @@ public class MenuRaquetas {
             System.out.println("3- Consultar por Id de la raqueta");
             System.out.println("4- Modificar raqueta");
             System.out.println("5- Eliminar raqueta");
+            System.out.println("6- Eliminar todas las raquetas");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -93,6 +94,8 @@ public class MenuRaquetas {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     manraque.borrarTodo();
                     break;
 

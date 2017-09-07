@@ -73,6 +73,7 @@ public class MenuBicicletas {
             System.out.println("3- Consultar por Id de la bicicleta");
             System.out.println("4- Modificar bicicleta");
             System.out.println("5- Eliminar bicicleta");
+            System.out.println("6- Eliminar todas las bicicletas");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -88,6 +89,8 @@ public class MenuBicicletas {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     manbici.borrarTodo();
                     break;
 

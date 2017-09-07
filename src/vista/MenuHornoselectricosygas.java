@@ -77,6 +77,7 @@ public class MenuHornoselectricosygas {
             System.out.println("3- Consultar por Id del horno");
             System.out.println("4- Modificar horno");
             System.out.println("5- Eliminar horno");
+            System.out.println("6- Eliminar todos los hornos");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -92,6 +93,8 @@ public class MenuHornoselectricosygas {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     manheg.borrarTodo();
                     break;
 

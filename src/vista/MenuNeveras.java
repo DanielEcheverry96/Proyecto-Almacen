@@ -78,6 +78,7 @@ public class MenuNeveras {
             System.out.println("3- Consultar por Id de la nevera");
             System.out.println("4- Modificar nevera");
             System.out.println("5- Eliminar nevera");
+            System.out.println("6- Eliminar todas las neveras");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -93,6 +94,8 @@ public class MenuNeveras {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     mannev.borrarTodo();
                     break;
 

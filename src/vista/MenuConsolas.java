@@ -74,6 +74,7 @@ public void consultarUnaConsola() {
             System.out.println("3- Consultar por Id de la consola");
             System.out.println("4- Modificar consola");
             System.out.println("5- Eliminar consola");
+            System.out.println("6- Eliminar todas las consolas");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -89,6 +90,8 @@ public void consultarUnaConsola() {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     mancons.borrarTodo();
                     break;
 

@@ -75,6 +75,7 @@ public class MenuTelefonosIp {
             System.out.println("3- Consultar por Id del telefono ip");
             System.out.println("4- Modificar telefono ip");
             System.out.println("5- Eliminar telefono ip");
+            System.out.println("6- Eliminar todos los telefonos ip");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             
@@ -91,6 +92,8 @@ public class MenuTelefonosIp {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     mantelip.borrarTodo();
                     break;
                 default:

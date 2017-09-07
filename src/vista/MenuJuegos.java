@@ -74,6 +74,7 @@ public void consultarUnJuego() {
             System.out.println("3- Consultar por Id del juego");
             System.out.println("4- Modificar juego");
             System.out.println("5- Eliminar juego");
+            System.out.println("6- Eliminar todos los juegos");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -89,6 +90,8 @@ public void consultarUnJuego() {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     manjueg.borrarTodo();
                     break;
 

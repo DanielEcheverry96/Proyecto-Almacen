@@ -79,6 +79,7 @@ public class MenuComputadores {
             System.out.println("3- Consultar por Id del computador");
             System.out.println("4- Modificar computador");
             System.out.println("5- Eliminar computador");
+            System.out.println("6- Eliminar todos los computadores");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
             switch (opcion) {
@@ -94,6 +95,8 @@ public class MenuComputadores {
                 case 4:
                     break;
                 case 5:
+                    break;
+                case 6:
                     mancomp.borrarTodo();
                     break;
 
