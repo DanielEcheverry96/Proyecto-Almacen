@@ -16,16 +16,16 @@ public class PrincipalArticulos {
 
           MenuCategorias categoriasmenu = new MenuCategorias();
           categoriasmenu.menuCategorias();
-//        MenuMarcas marcasmen = new MenuMarcas();
-//        marcasmen.menuMarcas();
+          MenuMarcas marcasmen = new MenuMarcas();
+          marcasmen.menuMarcas();
 //        MenuArticulos articulosmenu = new MenuArticulos();
 //        articulosmenu.menuArticulos();
-        MenuCategoriaElectronicosOficina menelec = new MenuCategoriaElectronicosOficina();
-        menelec.MenuElectronicosOficina();
-        MenuCategoriaElectrodomesticos mendom = new MenuCategoriaElectrodomesticos();
-        mendom.MenuElectrodomesticos();
-        MenuCategoriaVideojuegos menvid = new MenuCategoriaVideojuegos();
-        menvid.MenuVideojuegos();
+          MenuCategoriaElectronicosOficina menelec = new MenuCategoriaElectronicosOficina();
+          menelec.MenuElectronicosOficina();
+          MenuCategoriaElectrodomesticos mendom = new MenuCategoriaElectrodomesticos();
+          mendom.MenuElectrodomesticos();
+          MenuCategoriaVideojuegos menvid = new MenuCategoriaVideojuegos();
+          menvid.MenuVideojuegos();
 
     }
 }
