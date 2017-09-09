@@ -75,6 +75,7 @@ public void consultarUnaRemachadora() {
             System.out.println("6- Eliminar todos las remachadoras");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
+            int ideliminar;
             switch (opcion) {
                 case 1:
                     insertarRemachadoras();
@@ -88,6 +89,14 @@ public void consultarUnaRemachadora() {
                 case 4:
                     break;
                 case 5:
+                    System.out.println("Digite el ID a eliminar");
+                    ideliminar = leer.nextInt();
+                    if (manrem.borrar(ideliminar)) {
+                        System.out.println("El articulo fue eliminado");
+                    }
+                    else{
+                        System.out.println("El articulo no pudo ser borrado");
+                    }
                     break;
                 case 6:
                     manrem.borrarTodo();

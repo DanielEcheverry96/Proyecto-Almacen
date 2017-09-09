@@ -78,7 +78,7 @@ public class MenuTelefonosIp {
             System.out.println("6- Eliminar todos los telefonos ip");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
-            
+            int ideliminar;
             switch (opcion) {
                 case 1:
                         insertarTelefonosIp();
@@ -92,6 +92,14 @@ public class MenuTelefonosIp {
                 case 4:
                     break;
                 case 5:
+                    System.out.println("Digite el ID a eliminar");
+                    ideliminar = leer.nextInt();
+                    if (mantelip.borrar(ideliminar)) {
+                        System.out.println("El articulo fue eliminado");
+                    }
+                    else{
+                        System.out.println("El articulo no pudo ser borrado");
+                    }
                     break;
                 case 6:
                     mantelip.borrarTodo();

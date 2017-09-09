@@ -81,6 +81,7 @@ public class MenuRaquetas {
             System.out.println("6- Eliminar todas las raquetas");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
+            int ideliminar;
             switch (opcion) {
                 case 1:
                     insertarRaquetas();
@@ -94,6 +95,14 @@ public class MenuRaquetas {
                 case 4:
                     break;
                 case 5:
+                    System.out.println("Digite el ID a eliminar");
+                    ideliminar = leer.nextInt();
+                    if (manraque.borrar(ideliminar)) {
+                        System.out.println("El articulo fue eliminado");
+                    }
+                    else{
+                        System.out.println("El articulo no pudo ser borrado");
+                    }
                     break;
                 case 6:
                     manraque.borrarTodo();

@@ -16,10 +16,9 @@ import modelo.Marca;
 public class MenuMarcas {
 
     ManejadorObjetos manobj = new ManejadorObjetos();
-
+    Scanner leer = new Scanner(System.in);
     public void insertarMarcas() {
         String salir = "s";
-        Scanner leer = new Scanner(System.in);
         do {
             Marca mar = new Marca();
             System.out.println("Digite el Id de la Marca");
@@ -38,7 +37,6 @@ public class MenuMarcas {
     }
 
     public void consultarUnaMarca() {
-        Scanner leer = new Scanner(System.in);
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
         Marca resultado = (Marca) manobj.consultarId(a);
@@ -59,8 +57,12 @@ public class MenuMarcas {
             System.out.println("1- Insertar Marcas");
             System.out.println("2- Consultar Todas Marcas");
             System.out.println("3- Consultar Marcas por Id");
+            System.out.println("4- Modificar Marca");
+            System.out.println("5- Eliminar Marca ");
+            System.out.println("6- Eliminar todas las Marcas");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
+            int ideliminar;
             switch (opcion) {
                 case 1:
                     insertarMarcas();
@@ -70,6 +72,22 @@ public class MenuMarcas {
                     break;
                 case 3:
                     consultarUnaMarca();
+                    break;
+                case 4:
+                    manobj.modificar(opcion, manobj);
+                    break;
+                case 5:
+                    System.out.println("Digite el ID a eliminar");
+                    ideliminar = leer.nextInt();
+                    if (manobj.borrar(ideliminar)) {
+                        System.out.println("El articulo fue eliminado");
+                    }
+                    else{
+                        System.out.println("El articulo no pudo ser borrado");
+                    }
+                    break;
+                case 6:
+                    manobj.borrarTodo();
                     break;
 
                 default:

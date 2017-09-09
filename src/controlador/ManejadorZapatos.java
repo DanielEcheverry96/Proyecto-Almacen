@@ -43,7 +43,7 @@ public class ManejadorZapatos implements ICRUD{
 
     @Override
     public boolean modificar(int id, Object obj) {
-                boolean var = false;
+        boolean var = false;
         if (obj instanceof Zapatos) {
             Zapatos temp = new Zapatos();
             temp = (Zapatos) obj;

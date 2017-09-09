@@ -17,10 +17,8 @@ public class MenuZapatos {
     
     Scanner leer = new Scanner(System.in);
     ManejadorZapatos manzap = new ManejadorZapatos();
-    
+    Zapatos zap = new Zapatos();
      public void insertarZapatos(){
-        
-        Zapatos zap = new Zapatos();
         
         System.out.println("Digite el ID del zapato");
         zap.setIdArticulo(leer.nextInt());
@@ -42,7 +40,16 @@ public class MenuZapatos {
         System.out.println("0-Deporivo");
         System.out.println("1-Calle");
         System.out.println("Digite la opcion tipo de zapato");
-        zap.setTipozapato(leer.nextInt());
+        int op= leer.nextInt();
+        if (op==0) {
+            zap.setTipozapato("Deportivo");
+         }
+        else if(op==1){
+            zap.setTipozapato("Calle");
+        }
+        else{
+            System.out.println("Opcion erronea");
+        }
         System.out.println("Digite la talla numerica");
         zap.setTallanumerica(leer.nextInt());
         System.out.println("Tipo de usuario");
@@ -51,9 +58,23 @@ public class MenuZapatos {
         System.out.println("2-hombre");
         System.out.println("3-mujer");
         System.out.println("Digite la opcion tipo de usuario");
-        zap.setTipousuario(leer.nextInt());
+        op= leer.nextInt();
+        if (op==0) {
+            zap.setTipousuario("niño");
+        }
+        else if (op==1) {
+             zap.setTipousuario("niña");
+         }
+        else if (op==2) {
+             zap.setTipousuario("Hombre");
+        }
+        else if (op==3) {
+             zap.setTipousuario("Mujer");
+        }
+        else{
+            System.out.println("Opcion erronea");
+        }
         
-    
        if (manzap.insertar(zap)) {
             System.out.println("Zapato insertado");
         } else {
@@ -62,7 +83,7 @@ public class MenuZapatos {
 
     }
      
-    public void consultarUnaSierra() {
+    public void consultarUnZapato() {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
         Zapatos resultado = (Zapatos) manzap.consultarId(a);
@@ -73,20 +94,20 @@ public class MenuZapatos {
             System.out.println("Los datos consultados son " + resultado.toString());
         }
     }
-    public void menuSierras() {
+    public void menuZapatos() {
         String condicion = "";
 
         do {
             Scanner menu = new Scanner(System.in);
-            System.out.println("1- Insertar sierra");
-            System.out.println("2- Consultar todas las sierras");
-            System.out.println("3- Consultar por Id de la sierra");
-            System.out.println("4- Modificar sierra");
-            System.out.println("5- Eliminar sierra");
-            System.out.println("6- Eliminar todos las sierras");
+            System.out.println("1- Insertar zapatos");
+            System.out.println("2- Consultar todas los zapatos");
+            System.out.println("3- Consultar por Id del zapato");
+            System.out.println("4- Modificar zapato");
+            System.out.println("5- Eliminar zapato");
+            System.out.println("6- Eliminar todos los zapatos");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
-            int ideliminar;
+            int ideliminar, idmodificar;
             switch (opcion) {
                 case 1:
                     insertarZapatos();
@@ -95,15 +116,17 @@ public class MenuZapatos {
                     manzap.consultarTodos();
                     break;
                 case 3:
-                    consultarUnaSierra();
+                    consultarUnZapato();
                     break;
                 case 4:
-                    
+                    System.out.println("Digite el ID a modificar");//Falta completar esta opcion
+                    idmodificar = leer.nextInt();
+                    manzap.modificar(idmodificar, zap);
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
-                    if (mansie.borrar(ideliminar)) {
+                    if (manzap.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }
                     else{
@@ -111,13 +134,13 @@ public class MenuZapatos {
                     }
                     break;
                 case 6:
-                    mansie.borrarTodo();
+                    manzap.borrarTodo();
                     break;
 
                 default:
                     System.out.println("Opcion no permitida");
             }
-            System.out.println("Desea retornar al menu de Sierras S/s");
+            System.out.println("Desea retornar al menu de Zapatos S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
 

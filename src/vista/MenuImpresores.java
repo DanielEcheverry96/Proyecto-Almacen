@@ -82,7 +82,7 @@ public class MenuImpresores {
             System.out.println("6- Eliminar todos los impresores");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
-            
+            int ideliminar;
             switch (opcion) {
                 case 1:
                         insertarImpresores();
@@ -96,6 +96,14 @@ public class MenuImpresores {
                 case 4:
                     break;
                 case 5:
+                    System.out.println("Digite el ID a eliminar");
+                    ideliminar = leer.nextInt();
+                    if (manimp.borrar(ideliminar)) {
+                        System.out.println("El articulo fue eliminado");
+                    }
+                    else{
+                        System.out.println("El articulo no pudo ser borrado");
+                    }
                     break;
                 case 6:
                     manimp.borrarTodo();

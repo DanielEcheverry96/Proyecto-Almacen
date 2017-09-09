@@ -81,6 +81,7 @@ public class MenuNeveras {
             System.out.println("6- Eliminar todas las neveras");
             System.out.println("Digite su opción");
             int opcion = menu.nextInt();
+            int ideliminar;
             switch (opcion) {
                 case 1:
                     insertarNeveras();
@@ -94,6 +95,14 @@ public class MenuNeveras {
                 case 4:
                     break;
                 case 5:
+                    System.out.println("Digite el ID a eliminar");
+                    ideliminar = leer.nextInt();
+                    if (mannev.borrar(ideliminar)) {
+                        System.out.println("El articulo fue eliminado");
+                    }
+                    else{
+                        System.out.println("El articulo no pudo ser borrado");
+                    }
                     break;
                 case 6:
                     mannev.borrarTodo();

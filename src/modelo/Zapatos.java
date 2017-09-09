@@ -11,18 +11,18 @@ package modelo;
  */
 public class Zapatos extends Articulos{
     
-    private int tipozapato;
+    private String tipozapato;
     private int tallanumerica;
-    private int tipousuario;
+    private String tipousuario;
 
-    public Zapatos(int tipozapato, int tallanumerica, int tipousuario, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
+    public Zapatos(String tipozapato, int tallanumerica, String tipousuario, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
         super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
         this.tipozapato = tipozapato;
         this.tallanumerica = tallanumerica;
         this.tipousuario = tipousuario;
     }
 
-    public Zapatos(int tipozapato, int tallanumerica, int tipousuario) {
+    public Zapatos(String tipozapato, int tallanumerica, String tipousuario) {
         this.tipozapato = tipozapato;
         this.tallanumerica = tallanumerica;
         this.tipousuario = tipousuario;
@@ -31,11 +31,11 @@ public class Zapatos extends Articulos{
     public Zapatos() {
     }
 
-    public int getTipozapato() {
+    public String getTipozapato() {
         return tipozapato;
     }
 
-    public void setTipozapato(int tipozapato) {
+    public void setTipozapato(String tipozapato) {
         this.tipozapato = tipozapato;
     }
 
@@ -47,11 +47,11 @@ public class Zapatos extends Articulos{
         this.tallanumerica = tallanumerica;
     }
 
-    public int getTipousuario() {
+    public String getTipousuario() {
         return tipousuario;
     }
 
-    public void setTipousuario(int tipousuario) {
+    public void setTipousuario(String tipousuario) {
         this.tipousuario = tipousuario;
     }
 
