@@ -68,7 +68,7 @@ public class Juegos extends Articulos {
 
     @Override
     public String toString() {
-        return "Juegos{" + "genero=" + genero + ", restedad=" + restedad + ", plataforma=" + plataforma + ", numjugadores=" + numjugadores + '}';
+        return "Juegos {" + "id Televisor = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Imagen = "+imagen+ ", genero = " + genero + ", restricción edad=" + restedad + ", plataforma=" + plataforma + ", número jugadores=" + numjugadores + '}';
     }
     
     

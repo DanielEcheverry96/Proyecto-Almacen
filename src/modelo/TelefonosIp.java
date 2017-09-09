@@ -46,7 +46,7 @@ public class TelefonosIp extends Articulos{
 
     @Override
     public String toString() {
-        return "TelefonosIp{" + "tipoprocesador=" + tipoprocesador + ", interfacered=" + interfacered + '}';
+        return "Telefonos Ip {" + "id Telefono ip = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo procesador=" + tipoprocesador + ", interface red=" + interfacered + '}';
     }
         
     

@@ -70,7 +70,7 @@ public class Consolas extends Articulos {
 
     @Override
     public String toString() {
-        return "Consolas{" + "tipo=" + tipo + ", numcontroles=" + numcontroles + ", realidadvir=" + realidadvir + ", capdiscoduro=" + capdiscoduro + '}';
+        return "Consolas {" + "id Consola = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo=" + tipo + ", número controles = " + numcontroles + ", realidad virtual = " + realidadvir + ", capacidad discoduro = " + capdiscoduro + '}';
     }
     
     

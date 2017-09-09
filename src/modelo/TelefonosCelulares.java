@@ -91,7 +91,7 @@ public class TelefonosCelulares extends Articulos {
     
     @Override
     public String toString() {
-        return "TelefonosCelulares{" + "tiprocesador=" + tiprocesador + ", tama\u00f1odepantalla=" + tamañodepantalla + ", tammemoria=" + tammemoria + ", capalmacenamiento=" + capalmacenamiento + ", tipodepantalla=" + tipodepantalla + ", interfacered=" + interfacered + '}';
+        return "Telefonos Celulares {" + "id Telefono celular = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo procesador=" + tiprocesador + ", tamaño de pantalla=" + tamañodepantalla + ", tamaño memoria=" + tammemoria + ", capacidad almacenamiento=" + capalmacenamiento + ", tipo de pantalla=" + tipodepantalla + ", interface red=" + interfacered + '}';
     }
 
 }

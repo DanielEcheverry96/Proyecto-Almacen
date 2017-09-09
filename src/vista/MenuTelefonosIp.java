@@ -22,9 +22,9 @@ public class MenuTelefonosIp {
         
         TelefonosIp telip = new TelefonosIp();
              
-        System.out.println("Digite el Id");
+        System.out.println("Digite el Id del telefono ip");
         telip.setIdArticulo(leer.nextInt());
-        System.out.println("Digite el Id de la marca");
+        System.out.println("Digite el Id de la marca del telefono ip");
         telip.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         telip.setIdCategoria(leer.nextInt());

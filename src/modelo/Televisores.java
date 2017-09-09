@@ -68,7 +68,7 @@ public class Televisores extends Articulos {
 
     @Override
     public String toString() {
-        return "Televisores{" + "tipotelevisor=" + tipotelevisor + ", tampantalla=" + tampantalla + ", tipopantalla=" + tipopantalla + ", resolucion=" + resolucion + '}';
+        return "Televisores {" + "id Televisor = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo televisor=" + tipotelevisor + ", tamaño pantalla=" + tampantalla + ", tipo pantalla=" + tipopantalla + ", resolucion=" + resolucion + '}';
     }
     
     

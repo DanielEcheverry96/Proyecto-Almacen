@@ -79,7 +79,7 @@ public class Neveras extends Articulos {
 
     @Override
     public String toString() {
-        return "Neveras{" + "capcongelador=" + capcongelador + ", capfrigorifero=" + capfrigorifero + ", material=" + material + ", tama\u00f1o=" + tamaño + ", sistema=" + sistema + '}';
+        return "Neveras {" + "id Nevera = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad congelador = " + capcongelador + ", capacidad frigorifero = " + capfrigorifero + ", material = " + material + ", tamaño=" + tamaño + ", sistema = " + sistema + '}';
     }
     
     

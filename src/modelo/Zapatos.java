@@ -57,7 +57,7 @@ public class Zapatos extends Articulos{
 
     @Override
     public String toString() {
-        return "Zapatos{" + "tipozapato=" + tipozapato + ", tallanumerica=" + tallanumerica + ", tipousuario=" + tipousuario + '}';
+        return "Zapatos{" + "id Zapato = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo zapato=" + tipozapato + ", talla numerica=" + tallanumerica + ", tipo usuario=" + tipousuario + '}';
     }
     
     

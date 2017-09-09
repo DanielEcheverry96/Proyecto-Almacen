@@ -22,9 +22,9 @@ class MenuSierras {
         
         Sierras sie = new Sierras();
         
-        System.out.println("Digite el ID de la remachadora");
+        System.out.println("Digite el ID de la sierra");
         sie.setIdArticulo(leer.nextInt());
-        System.out.println("Digite el Id de la marca de la remachadora");
+        System.out.println("Digite el Id de la marca de la sierra");
         sie.setNombre(leer.next());
         System.out.println("Digite el Id de la categoria");
         sie.setIdCategoria(leer.nextInt());

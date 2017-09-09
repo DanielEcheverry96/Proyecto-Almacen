@@ -22,9 +22,9 @@ public class MenuTelefonosCelulares {
         
         TelefonosCelulares telcel = new TelefonosCelulares();
         
-        System.out.println("Digite el Id");
+        System.out.println("Digite el Id del telefono celular");
         telcel.setIdArticulo(leer.nextInt());
-        System.out.println("Digite el Id de la marca");
+        System.out.println("Digite el Id de la marca del telefono celular");
         telcel.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         telcel.setIdCategoria(leer.nextInt());
@@ -32,7 +32,7 @@ public class MenuTelefonosCelulares {
         telcel.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
         telcel.setCantidad(leer.nextInt());
-        System.out.println("Precio");
+        System.out.println("digite el precio");
         telcel.setPrecio(leer.nextFloat());
         System.out.println("Color");
         telcel.setColor(leer.next());

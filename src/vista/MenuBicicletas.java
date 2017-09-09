@@ -22,9 +22,9 @@ public class MenuBicicletas {
 
             Bicicletas bici = new Bicicletas();
         
-        System.out.println("Digite el ID del Juego");
+        System.out.println("Digite el ID de la bicicleta");
         bici.setIdArticulo(leer.nextInt());
-        System.out.println("Digite el Id de la marca del juego");
+        System.out.println("Digite el Id de la marca de la bicicleta");
         bici.setNombre(leer.next());
         System.out.println("Digite el Id de la categoria");
         bici.setIdCategoria(leer.nextInt());
@@ -34,6 +34,8 @@ public class MenuBicicletas {
         bici.setCantidad(leer.nextInt());
         System.out.println("Digite el precio");
         bici.setPrecio(leer.nextFloat());
+        System.out.println("Color");
+        bici.setColor(leer.next());
         System.out.println("Url Imagen");
         bici.setImagen(leer.next());
         System.out.println("Digite el tamaño de la rueda");
