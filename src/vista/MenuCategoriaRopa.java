@@ -15,6 +15,7 @@ public class MenuCategoriaRopa {
     
         
     MenuZapatos menzap = new MenuZapatos();
+    MenuVestidosCalle menvesc = new MenuVestidosCalle();
 
     
     Scanner menu = new Scanner(System.in);
