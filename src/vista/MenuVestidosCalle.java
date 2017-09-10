@@ -153,7 +153,7 @@ public class MenuVestidosCalle {
                 case 4:
                      VestidosCalle vesmod = new VestidosCalle();
                     
-                    System.out.println("Digite el Id a modificar");
+                    System.out.println("Digite la posicion del Id a modificar");
                     int a = leer.nextInt();
                     
                     System.out.println("Digite el nuevo ID del vestido");
@@ -252,7 +252,7 @@ public class MenuVestidosCalle {
                     }
                     break;
                 case 5:
-                    System.out.println("Digite el ID a eliminar");
+                    System.out.println("Digite la posicion del ID a eliminar");
                     ideliminar = leer.nextInt();
                     if (manvesca.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");

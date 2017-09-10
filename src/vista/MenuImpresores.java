@@ -96,7 +96,7 @@ public class MenuImpresores {
                 case 4:
                     Impresores impmod = new Impresores();
                     
-                    System.out.println("Digite el Id a modificar");
+                    System.out.println("Digite la posicion del Id a modificar");
                     int a = leer.nextInt();
                     
                     System.out.println("Digite el nuevo ID del impresor");
@@ -133,7 +133,7 @@ public class MenuImpresores {
                     
                     break;
                 case 5:
-                    System.out.println("Digite el ID a eliminar");
+                    System.out.println("Digite la posicion del ID a eliminar");
                     ideliminar = leer.nextInt();
                     if (manimp.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");

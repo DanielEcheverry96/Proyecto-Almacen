@@ -31,6 +31,7 @@ public class PrincipalArticulos {
 
         do {
             Scanner menu = new Scanner(System.in);
+            System.out.printf("%25s","TIENDA VIRTUAL\n");
             System.out.println("1- Marcas");
             System.out.println("2- Categoria Electronicos oficina");
             System.out.println("3- Categoria Electronicos para el hogar");

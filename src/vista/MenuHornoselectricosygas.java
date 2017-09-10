@@ -94,7 +94,7 @@ public class MenuHornoselectricosygas {
                 case 4:
                        Hornoselectricosygas horegasmod = new Hornoselectricosygas();
                     
-                    System.out.println("Digite el Id a modificar");
+                    System.out.println("Digite la posicion del Id a modificar");
                     int a = leer.nextInt();
                     
                     System.out.println("Digite el nuevo ID del horno");
@@ -132,7 +132,7 @@ public class MenuHornoselectricosygas {
                     }
                     break;
                 case 5:
-                    System.out.println("Digite el ID a eliminar");
+                    System.out.println("Digite la posicion del ID a eliminar");
                     ideliminar = leer.nextInt();
                     if (manheg.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");

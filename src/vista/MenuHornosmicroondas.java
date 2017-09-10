@@ -92,7 +92,7 @@ public class MenuHornosmicroondas {
                 case 4:
                     Hornosmicroondas hormimod = new Hornosmicroondas();
                     
-                    System.out.println("Digite el Id a modificar");
+                    System.out.println("Digite la posicion del Id a modificar");
                     int a = leer.nextInt();
                     
                     System.out.println("Digite el nuevo ID del horno microonda");
@@ -129,7 +129,7 @@ public class MenuHornosmicroondas {
                     
                     break;
                 case 5:
-                    System.out.println("Digite el ID a eliminar");
+                    System.out.println("Digite la posicion del ID a eliminar");
                     ideliminar = leer.nextInt();
                     if (manhornmic.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");

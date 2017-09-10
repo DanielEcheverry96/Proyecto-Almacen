@@ -91,7 +91,7 @@ public void consultarUnJuego() {
                 case 4:
                     Juegos juemod = new Juegos();
                     
-                    System.out.println("Digite el Id a modificar");
+                    System.out.println("Digite la posicion del Id a modificar");
                     int a = leer.nextInt();
                     
                     System.out.println("Digite el nuevo ID del juego");
@@ -128,7 +128,7 @@ public void consultarUnJuego() {
                     
                     break;
                 case 5:
-                    System.out.println("Digite el ID a eliminar");
+                    System.out.println("Digite la posicion del ID a eliminar");
                     ideliminar = leer.nextInt();
                     if (manjueg.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
