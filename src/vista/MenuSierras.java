@@ -25,7 +25,7 @@ class MenuSierras {
         System.out.println("Digite el ID de la sierra");
         sie.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la sierra");
-        sie.setNombre(leer.next());
+        sie.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         sie.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

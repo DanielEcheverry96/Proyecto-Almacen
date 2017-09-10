@@ -24,7 +24,7 @@ public class MenuPijamas {
         System.out.println("Digite el ID de la pijama");
         pijam.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la pijama");
-        pijam.setNombre(leer.next());
+        pijam.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         pijam.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

@@ -25,7 +25,7 @@ public class MenuBicicletas {
         System.out.println("Digite el ID de la bicicleta");
         bici.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la bicicleta");
-        bici.setNombre(leer.next());
+        bici.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         bici.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

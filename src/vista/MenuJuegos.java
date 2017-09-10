@@ -25,7 +25,7 @@ public class MenuJuegos {
         System.out.println("Digite el ID del Juego");
         jueg.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del juego");
-        jueg.setNombre(leer.next());
+        jueg.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         jueg.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

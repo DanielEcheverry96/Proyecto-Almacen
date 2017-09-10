@@ -26,7 +26,7 @@ public class MenuRaquetas {
         System.out.println("Digite el Id de la raqueta");
         raque.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la raqueta");
-        raque.setNombre(leer.next());
+        raque.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         raque.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

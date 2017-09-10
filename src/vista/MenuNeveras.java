@@ -25,7 +25,7 @@ public class MenuNeveras {
         System.out.println("Digite el Id de la nevera");
         nev.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la nevera");
-        nev.setNombre(leer.next());
+        nev.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         nev.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

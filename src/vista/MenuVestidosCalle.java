@@ -23,7 +23,7 @@ public class MenuVestidosCalle {
         System.out.println("Digite el ID del vestido");
         vesca.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del vestido");
-        vesca.setNombre(leer.next());
+        vesca.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         vesca.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

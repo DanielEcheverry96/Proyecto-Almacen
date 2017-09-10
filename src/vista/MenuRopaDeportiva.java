@@ -24,7 +24,7 @@ public class MenuRopaDeportiva {
         System.out.println("Digite el ID de la ropa deportiva");
         ropdep.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la ropa deportiva");
-        ropdep.setNombre(leer.next());
+        ropdep.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         ropdep.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

@@ -22,9 +22,9 @@ public class MenuImpresores {
         
         Impresores impre = new Impresores();
              
-        System.out.println("Digite el Id");
+        System.out.println("Digite el Id del impresor");
         impre.setIdArticulo(leer.nextInt());
-        System.out.println("Digite el Id de la marca");
+        System.out.println("Digite el Id de la marca del impresor");
         impre.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         impre.setIdCategoria(leer.nextInt());
@@ -32,7 +32,7 @@ public class MenuImpresores {
         impre.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
         impre.setCantidad(leer.nextInt());
-        System.out.println("Precio");
+        System.out.println("digite el precio");
         impre.setPrecio(leer.nextFloat());
         System.out.println("Color");
         impre.setColor(leer.next());

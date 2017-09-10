@@ -26,7 +26,7 @@ public class MenuComputadores {
         System.out.println("Digite el ID del computador");
         compu.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del computador");
-        compu.setNombre(leer.next());
+        compu.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         compu.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

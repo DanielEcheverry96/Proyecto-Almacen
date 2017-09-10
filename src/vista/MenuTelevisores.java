@@ -23,7 +23,7 @@ public class MenuTelevisores {
         System.out.println("Digite el ID del televisor");
         tv.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del televisor");
-        tv.setNombre(leer.next());
+        tv.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         tv.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

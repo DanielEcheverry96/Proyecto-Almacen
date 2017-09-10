@@ -24,7 +24,7 @@ public class MenuHornosmicroondas {
         System.out.println("Digite el Id del horno microondas");
         hornmic.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del hornomicroondas");
-        hornmic.setNombre(leer.next());
+        hornmic.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         hornmic.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

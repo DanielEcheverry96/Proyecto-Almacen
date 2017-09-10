@@ -23,7 +23,7 @@ public class MenuZapatos {
         System.out.println("Digite el ID del zapato");
         zap.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del zapato");
-        zap.setNombre(leer.next());
+        zap.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         zap.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

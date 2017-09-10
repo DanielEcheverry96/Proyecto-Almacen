@@ -24,7 +24,7 @@ public class MenuHornoselectricosygas {
         System.out.println("Digite el ID del horno");
         heg.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del horno");
-        heg.setNombre(leer.next());
+        heg.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         heg.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");

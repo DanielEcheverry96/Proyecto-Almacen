@@ -25,7 +25,7 @@ public class MenuMartillos {
         System.out.println("Digite el ID del martillos");
         mar.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del martillo");
-        mar.setNombre(leer.next());
+        mar.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         mar.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
@@ -46,6 +46,8 @@ public class MenuMartillos {
         mar.setMatcabezal(leer.next());
         System.out.println("Digite el peso del martillo");
         mar.setPeso(leer.nextInt());
+        System.out.println("Digite el tamaño del martillo");
+        mar.setTamaño(leer.next());
     
        if (manmart.insertar(mar)) {
             System.out.println("Martillo insertado");

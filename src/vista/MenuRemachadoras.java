@@ -24,7 +24,7 @@ public class MenuRemachadoras {
         System.out.println("Digite el ID de la remachadora");
         rem.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la remachadora");
-        rem.setNombre(leer.next());
+        rem.setIdMarca(leer.nextInt());
         System.out.println("Digite el Id de la categoria");
         rem.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
