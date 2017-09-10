@@ -94,6 +94,43 @@ public class MenuImpresores {
                         consultarUnImpresor();
                     break;
                 case 4:
+                    Impresores impmod = new Impresores();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del impresor");
+                    impmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del impresor");
+                    impmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    impmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    impmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    impmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    impmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    impmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    impmod.setImagen(leer.next());
+                    System.out.println("Tipo de impresor");
+                    impmod.setTipo(leer.next());
+                    System.out.println("Interface de red");
+                    impmod.setInterfacered(leer.next());
+                    System.out.println("Paginas por minuto");
+                    impmod.setPaginasminuto(leer.nextInt());
+                    System.out.println("Resolucion");
+                    impmod.setResolucion(leer.next());
+                    
+                    if (manimp.modificar(a, impmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

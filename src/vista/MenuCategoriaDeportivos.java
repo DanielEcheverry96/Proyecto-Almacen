@@ -22,7 +22,7 @@ public class MenuCategoriaDeportivos {
     Scanner menu = new Scanner(System.in);
     String condicion = "";
 
-    public void MenuRaquetas() {
+    public void MenuDeportivos() {
         do {
 
             System.out.println("1- Raquetas");

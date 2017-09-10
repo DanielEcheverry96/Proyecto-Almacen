@@ -89,6 +89,43 @@ public void consultarUnJuego() {
                     consultarUnJuego();
                     break;
                 case 4:
+                    Juegos juemod = new Juegos();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del juego");
+                    juemod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del juego");
+                    juemod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    juemod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    juemod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    juemod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    juemod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    juemod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    juemod.setImagen(leer.next());
+                    System.out.println("Digite el género del juego");
+                    juemod.setGenero(leer.next());
+                    System.out.println("Digite la restriccíon de edad");
+                    juemod.setRestedad(leer.next());
+                    System.out.println("Digite la plataforma del juego");
+                    juemod.setPlataforma(leer.next());
+                    System.out.println("Digite el número de jugadores");
+                    juemod.setNumjugadores(leer.nextInt());
+                    
+                    if (manjueg.modificar(a, juemod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

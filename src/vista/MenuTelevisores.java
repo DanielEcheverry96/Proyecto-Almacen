@@ -89,6 +89,43 @@ public class MenuTelevisores {
                     consultarUnTelevisor();
                     break;
                 case 4:
+                    Televisores tvmod = new Televisores();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del televisor");
+                    tvmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del televisor");
+                    tvmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    tvmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    tvmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    tvmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    tvmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    tvmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    tvmod.setImagen(leer.next());
+                    System.out.println("Digite el tipo de televisor");
+                    tvmod.setTipotelevisor(leer.next());
+                    System.out.println("Digite el tamaño de pantalla");
+                    tvmod.setTampantalla(leer.nextInt());
+                    System.out.println("Digite el tipo de pantalla");
+                    tvmod.setTipopantalla(leer.next());
+                    System.out.println("Digite la resolucion del televisor");
+                    tvmod.setResolucion(leer.next());
+                    
+                    if (mantv.modificar(a, tvmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

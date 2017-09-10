@@ -15,10 +15,9 @@ import modelo.Marca;
  */
 public class ManejadorObjetos implements ICRUD {
 
-    ArrayList<Marca> arregloMarcas;
-
+    public static ArrayList<Marca> arregloMarcas = new ArrayList<Marca>();
     public ManejadorObjetos() {
-        arregloMarcas = new ArrayList<Marca>();
+        
     }
 
     private boolean existemarca(Marca mar){
@@ -31,19 +30,17 @@ public class ManejadorObjetos implements ICRUD {
     
     @Override
     public boolean insertar(Object obj) {
-        boolean insertado = false;
+        boolean inserto = false;
         if (obj instanceof Marca) {
-            //adicionar datos al arreglo
             Marca mar = new Marca();
-            mar = (Marca) obj;
-            arregloMarcas.add(mar);
+            mar = (Marca)obj;
             if (!existemarca(mar)) {
                 arregloMarcas.add(mar);
-                insertado = true;
+                inserto = true;
             }
-            return insertado;
+            return inserto;
         }
-        return insertado;
+        return inserto; 
     }
 
     @Override

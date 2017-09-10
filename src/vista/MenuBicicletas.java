@@ -21,7 +21,7 @@ public class MenuBicicletas {
     public void insertarBicicletas() {
 
             Bicicletas bici = new Bicicletas();
-        
+            
         System.out.println("Digite el ID de la bicicleta");
         bici.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la bicicleta");
@@ -90,6 +90,42 @@ public class MenuBicicletas {
                     consultarUnaBicicleta();
                     break;
                 case 4:
+                    Bicicletas bicimod = new Bicicletas();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID de la bicicleta");
+                    bicimod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca de la bicicleta");
+                    bicimod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    bicimod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    bicimod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    bicimod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    bicimod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    bicimod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    bicimod.setImagen(leer.next());
+                    System.out.println("Digite el nuevo tamaño de la rueda");
+                    bicimod.setTamaniorueda(leer.nextInt());
+                    System.out.println("Digite el nuevo material de la montura");
+                    bicimod.setMaterial(leer.next());
+                    System.out.println("Digite el nuevo tipo de bicicleta");
+                    bicimod.setTipo(leer.next());
+                    
+                    if (manbici.modificar(a, bicimod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

@@ -90,6 +90,43 @@ public void consultarUnMartillo() {
                     consultarUnMartillo();
                     break;
                 case 4:
+                    Martillos martimod = new Martillos();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del martillo");
+                    martimod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del martillo");
+                    martimod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    martimod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    martimod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    martimod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    martimod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    martimod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    martimod.setImagen(leer.next());
+                    System.out.println("Digite el tipo de martillo");
+                    martimod.setTipo(leer.next());
+                    System.out.println("Digite el material del mango del martillo");
+                    martimod.setMatmango(leer.next());
+                    System.out.println("Digite el material del cabezal");
+                    martimod.setMatcabezal(leer.next());
+                    System.out.println("Digite el peso del martillo");
+                    martimod.setPeso(leer.nextInt());
+                    
+                    if (manmart.modificar(a, martimod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

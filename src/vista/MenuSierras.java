@@ -93,6 +93,45 @@ class MenuSierras {
                     consultarUnaSierra();
                     break;
                 case 4:
+                    Sierras siemod = new Sierras();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID de la bicicleta");
+                    siemod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca de la bicicleta");
+                    siemod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    siemod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    siemod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    siemod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    siemod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    siemod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    siemod.setImagen(leer.next());
+                    System.out.println("Digite el tipo de sierra");
+                    siemod.setTipo(leer.next());
+                    System.out.println("Digite la potencia de la sierra");
+                    siemod.setPotencia(leer.nextInt());
+                    System.out.println("Digite la velocidad de la sierra");
+                    siemod.setVelocidad(leer.nextInt());
+                    System.out.println("Digite el peso de la sierra");
+                    siemod.setPeso(leer.nextInt());
+                    System.out.println("Digite el diametro del disco de la sierra");
+                    siemod.setDiametrodisco(leer.nextFloat());
+                    
+                    if (mansie.modificar(a, siemod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

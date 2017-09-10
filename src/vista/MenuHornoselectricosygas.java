@@ -92,6 +92,44 @@ public class MenuHornoselectricosygas {
                     consultarUnHornoelectricoygas();
                     break;
                 case 4:
+                       Hornoselectricosygas horegasmod = new Hornoselectricosygas();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del horno");
+                    horegasmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del horno");
+                    horegasmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    horegasmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    horegasmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    horegasmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    horegasmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    horegasmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    horegasmod.setImagen(leer.next());
+                    System.out.println("Digite la potencia del horno");
+                    horegasmod.setPotencia(leer.next());
+                    System.out.println("Digite el número de bandejas del horno");
+                    horegasmod.setNumbandejas(leer.nextInt());
+                    System.out.println("Digite el gratinador del horno");
+                    horegasmod.setGratinador(leer.next());
+                    System.out.println("Digite el tipo de control del horno");
+                    horegasmod.setTipocontrol(leer.next());
+                    System.out.println("Digite la temperatura maxima del horno");
+                    horegasmod.setTemperaturamax(leer.nextInt());
+                    
+                    if (manheg.modificar(a, horegasmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

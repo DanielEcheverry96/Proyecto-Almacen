@@ -90,6 +90,39 @@ public class MenuTelefonosIp {
                         consultarUnTelefonoIp();
                     break;
                 case 4:
+                    TelefonosIp telipmod = new TelefonosIp();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del telefono Ip");
+                    telipmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del telefono Ip");
+                    telipmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    telipmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    telipmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    telipmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    telipmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    telipmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    telipmod.setImagen(leer.next());
+                    System.out.println("Tipo de procesador");
+                    telipmod.setTipoprocesador(leer.next());
+                    System.out.println("Interface de red");
+                    telipmod.setInterfacered(leer.next());
+                    
+                    if (mantelip.modificar(a, telipmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

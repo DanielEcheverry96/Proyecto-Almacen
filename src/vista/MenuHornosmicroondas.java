@@ -23,7 +23,7 @@ public class MenuHornosmicroondas {
         
         System.out.println("Digite el Id del horno microondas");
         hornmic.setIdArticulo(leer.nextInt());
-        System.out.println("Digite el Id de la marca del horno microondas");
+        System.out.println("Digite el Id de la marca del hornomicroondas");
         hornmic.setNombre(leer.next());
         System.out.println("Digite el Id de la categoria");
         hornmic.setIdCategoria(leer.nextInt());
@@ -90,6 +90,43 @@ public class MenuHornosmicroondas {
                     consultarUnHornomicroondas();
                     break;
                 case 4:
+                    Hornosmicroondas hormimod = new Hornosmicroondas();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del horno microonda");
+                    hormimod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del horno microonda");
+                    hormimod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    hormimod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    hormimod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    hormimod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    hormimod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    hormimod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    hormimod.setImagen(leer.next());
+                    System.out.println("Digite la capacidad del horno microondas");
+                    hormimod.setCapacidad(leer.next());
+                    System.out.println("Digite el compartimiento del horno microondas");
+                    hormimod.setCompartimiento(leer.next());
+                    System.out.println("Digite la potencia del horno microondas");
+                    hormimod.setPotencia(leer.next());
+                    System.out.println("Digite el voltaje del horno microondas");
+                    hormimod.setVoltaje(leer.next());
+                    
+                    if (manhornmic.modificar(a, hormimod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

@@ -93,6 +93,43 @@ public class MenuRaquetas {
                     consultarUnaRaqueta();
                     break;
                 case 4:
+                    Raquetas raqmod = new Raquetas();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID de la raqueta");
+                    raqmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca de la raqueta");
+                    raqmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    raqmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    raqmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    raqmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    raqmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    raqmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    raqmod.setImagen(leer.next());
+                    System.out.println("Tipo de marco"); 
+                    raqmod.setTipomarco(leer.next());
+                    System.out.println("Longitud");
+                    raqmod.setLongitud(leer.nextInt());
+                    System.out.println("Ancho");
+                    raqmod.setAncho(leer.nextFloat());
+                    System.out.println("Peso");
+                    raqmod.setPeso(leer.nextFloat());
+                    
+                    if (manraque.modificar(a, raqmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

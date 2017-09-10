@@ -87,6 +87,41 @@ public void consultarUnaRemachadora() {
                     consultarUnaRemachadora();
                     break;
                 case 4:
+                    Remachadoras remmod = new Remachadoras();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID de la remachadora");
+                    remmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca de la remachadora");
+                    remmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    remmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    remmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    remmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    remmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    remmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    remmod.setImagen(leer.next());
+                    System.out.println("Digite la potencia de la remachadora");
+                    remmod.setPotencia(leer.next());
+                    System.out.println("Digite el tipo de remache");
+                    remmod.setTiporemache(leer.next());
+                    System.out.println("Digite el calibre del remache");
+                    remmod.setCalibre(leer.nextDouble());
+                    
+                    if (manrem.modificar(a, remmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

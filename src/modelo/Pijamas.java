@@ -9,17 +9,17 @@ package modelo;
  *
  * @author danie
  */
-public class VestidosCalle extends Trajes{
+public class Pijamas extends Trajes{
 
-    public VestidosCalle(String tipo, String talla, String tipousuario, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
+    public Pijamas(String tipo, String talla, String tipousuario, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
         super(tipo, talla, tipousuario, idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
     }
 
-    public VestidosCalle(String tipo, String talla, String tipousuario) {
+    public Pijamas(String tipo, String talla, String tipousuario) {
         super(tipo, talla, tipousuario);
     }
 
-    public VestidosCalle() {
+    public Pijamas() {
     }
 
     public String getTipo() {
@@ -48,7 +48,7 @@ public class VestidosCalle extends Trajes{
 
     @Override
     public String toString() {
-        return "VestidosCalle{" + "id Vestido = " + idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+ imagen + ", Tipo= " +getTipo() + ", Talla= " + getTalla() + ", Tipo usuario=" + getTipousuario() + '}';
+        return "Pijamas{" + "id Pijama = " + idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+ imagen +  ", Tipo= " +getTipo() + ", Talla= " + getTalla() + ", Tipo usuario=" + getTipousuario() + '}';
     }
     
     

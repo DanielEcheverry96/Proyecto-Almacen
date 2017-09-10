@@ -74,7 +74,23 @@ public class MenuMarcas {
                     consultarUnaMarca();
                     break;
                 case 4:
-                    manobj.modificar(opcion, manobj);
+                    Marca marmod = new Marca();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo Id de la Marca");
+                    marmod.setId(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre de la Marca");
+                    marmod.setDescripcion(leer.next());
+                    
+                    if (manobj.modificar(a, marmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

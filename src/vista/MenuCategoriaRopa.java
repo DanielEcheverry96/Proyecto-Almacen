@@ -16,6 +16,8 @@ public class MenuCategoriaRopa {
         
     MenuZapatos menzap = new MenuZapatos();
     MenuVestidosCalle menvesc = new MenuVestidosCalle();
+    MenuPijamas menpijam = new MenuPijamas();
+    MenuRopaDeportiva menropdep = new MenuRopaDeportiva();
 
     
     Scanner menu = new Scanner(System.in);
@@ -37,10 +39,10 @@ public class MenuCategoriaRopa {
                     menvesc.menuVestidosCalle();
                     break;
                 case 3:
-                    menpij.menuPijamas();
+                    menpijam.menuPijamas();
                     break;
                 case 4:
-                    menrodep.menuRopaDeportiva();
+                    menropdep.menuRopaDeportiva();
                     break;
 
                 default:

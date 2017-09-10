@@ -5,37 +5,38 @@
  */
 package vista;
 
-import controlador.ManejadorVestidosCalle;
+import controlador.ManejadorRopaDeportiva;
 import java.util.Scanner;
-import modelo.VestidosCalle;
+import modelo.RopaDeportiva;
 
 /**
  *
  * @author danie
  */
-public class MenuVestidosCalle {
+public class MenuRopaDeportiva {
     
     Scanner leer = new Scanner(System.in);
-    ManejadorVestidosCalle manvesca = new ManejadorVestidosCalle();
-    VestidosCalle vesca = new VestidosCalle();
-     public void insertarVestidosCalle(){
+    ManejadorRopaDeportiva manropdep = new ManejadorRopaDeportiva();
+    RopaDeportiva ropdep = new RopaDeportiva();
+    
+     public void insertarRopaDeportiva(){
         
-        System.out.println("Digite el ID del vestido");
-        vesca.setIdArticulo(leer.nextInt());
-        System.out.println("Digite el Id de la marca del vestido");
-        vesca.setNombre(leer.next());
+        System.out.println("Digite el ID de la ropa deportiva");
+        ropdep.setIdArticulo(leer.nextInt());
+        System.out.println("Digite el Id de la marca de la ropa deportiva");
+        ropdep.setNombre(leer.next());
         System.out.println("Digite el Id de la categoria");
-        vesca.setIdCategoria(leer.nextInt());
+        ropdep.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
-        vesca.setNombre(leer.next());
+        ropdep.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
-        vesca.setCantidad(leer.nextInt());
+        ropdep.setCantidad(leer.nextInt());
         System.out.println("Digite el precio");
-        vesca.setPrecio(leer.nextFloat());
+        ropdep.setPrecio(leer.nextFloat());
         System.out.println("Color");
-        vesca.setColor(leer.next());
+        ropdep.setColor(leer.next());
         System.out.println("Url Imagen");
-        vesca.setImagen(leer.next());
+        ropdep.setImagen(leer.next());
         System.out.println("Tipo: ");
         System.out.println("0- Pantalon");
         System.out.println("1- Camiseta");
@@ -43,13 +44,13 @@ public class MenuVestidosCalle {
         System.out.println("Digite la opcion tipo de vestido");
         int op= leer.nextInt();
         if (op==0) {
-            vesca.setTipo("Pantalon");
+            ropdep.setTipo("Pantalon");
          }
         else if(op==1){
-            vesca.setTipo("Camiseta");
+            ropdep.setTipo("Camiseta");
         }
         else if(op==2){
-            vesca.setTipo("Ropa interior");
+            ropdep.setTipo("Ropa interior");
         }
         else{
             System.out.println("Opcion erronea");
@@ -64,22 +65,22 @@ public class MenuVestidosCalle {
         System.out.println("Digite la opcion talla");
         op= leer.nextInt();
         if (op==0) {
-            vesca.setTalla("S");
+            ropdep.setTalla("S");
          }
         else if(op==1){
-            vesca.setTalla("M");
+            ropdep.setTalla("M");
         }
         else if(op==2){
-            vesca.setTalla("L");
+            ropdep.setTalla("L");
         }
         else if(op==3){
-            vesca.setTalla("XL");
+            ropdep.setTalla("XL");
         }
         else if(op==4){
-            vesca.setTalla("XXL");
+            ropdep.setTalla("XXL");
         }
         else if(op==5){
-            vesca.setTalla("XXXL");
+            ropdep.setTalla("XXXL");
         }
         else{
             System.out.println("Opcion erronea");
@@ -92,33 +93,33 @@ public class MenuVestidosCalle {
         System.out.println("Digite la opcion tipo de usuario");
         op= leer.nextInt();
         if (op==0) {
-            vesca.setTipousuario("niño");
+            ropdep.setTipousuario("niño");
         }
         else if (op==1) {
-             vesca.setTipousuario("niña");
+             ropdep.setTipousuario("niña");
          }
         else if (op==2) {
-             vesca.setTipousuario("Hombre");
+             ropdep.setTipousuario("Hombre");
         }
         else if (op==3) {
-             vesca.setTipousuario("Mujer");
+             ropdep.setTipousuario("Mujer");
         }
         else{
             System.out.println("Opcion erronea");
         }
         
-       if (manvesca.insertar(vesca)) {
-            System.out.println("Vestido insertado");
+       if (manropdep.insertar(ropdep)) {
+            System.out.println("Ropa deportiva insertado");
         } else {
-            System.out.println("Vestido No insertado");
+            System.out.println("Ropa deportiva No insertado");
         }
 
     }
      
-    public void consultarUnVestidoCalle() {
+    public void consultarUnaRopaDeportiva() {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
-        VestidosCalle resultado = (VestidosCalle) manvesca.consultarId(a);
+        RopaDeportiva resultado = (RopaDeportiva) manropdep.consultarId(a);
         if (resultado == null) {
             System.out.println("No se encontro el articulo");
         }
@@ -126,7 +127,7 @@ public class MenuVestidosCalle {
             System.out.println("Los datos consultados son " + resultado.toString());
         }
     }
-    public void menuVestidosCalle() {
+    public void menuRopaDeportiva() {
         String condicion = "";
 
         do {
@@ -142,36 +143,36 @@ public class MenuVestidosCalle {
             int ideliminar, idmodificar;
             switch (opcion) {
                 case 1:
-                    insertarVestidosCalle();
+                    insertarRopaDeportiva();
                     break;
                 case 2:
-                    manvesca.consultarTodos();
+                    manropdep.consultarTodos();
                     break;
                 case 3:
-                    consultarUnVestidoCalle();
+                    consultarUnaRopaDeportiva();
                     break;
                 case 4:
-                     VestidosCalle vesmod = new VestidosCalle();
+                    RopaDeportiva ropdepmod = new RopaDeportiva();
                     
                     System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
-                    System.out.println("Digite el nuevo ID del vestido");
-                    vesmod.setIdArticulo(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la marca del vestido");
-                    vesmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo ID de la pijama");
+                    ropdepmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca de la pijama");
+                    ropdepmod.setNombre(leer.next());
                     System.out.println("Digite el nuevo Id de la categoria");
-                    vesmod.setIdCategoria(leer.nextInt());
+                    ropdepmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
-                    vesmod.setNombre(leer.next());
+                    ropdepmod.setNombre(leer.next());
                     System.out.println("Digite la nuevo cantidad del articulo");
-                    vesmod.setCantidad(leer.nextInt());
+                    ropdepmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
-                    vesmod.setPrecio(leer.nextFloat());
+                    ropdepmod.setPrecio(leer.nextFloat());
                     System.out.println("nuevo Color");
-                    vesmod.setColor(leer.next());
+                    ropdepmod.setColor(leer.next());
                     System.out.println("nueva Url Imagen");
-                    vesmod.setImagen(leer.next());
+                    ropdepmod.setImagen(leer.next());
                     System.out.println("Tipo: ");
                     System.out.println("0- Pantalon");
                     System.out.println("1- Camiseta");
@@ -179,13 +180,13 @@ public class MenuVestidosCalle {
                     System.out.println("Digite la opcion tipo de vestido");
                     int op= leer.nextInt();
                     if (op==0) {
-                        vesmod.setTipo("Pantalon");
+                        ropdepmod.setTipo("Pantalon");
                     }
                     else if(op==1){
-                        vesmod.setTipo("Camiseta");
+                        ropdepmod.setTipo("Camiseta");
                     }
                     else if(op==2){
-                        vesmod.setTipo("Ropa interior");
+                        ropdepmod.setTipo("Ropa interior");
                     }
                     else{
                     System.out.println("Opcion erronea");
@@ -200,22 +201,22 @@ public class MenuVestidosCalle {
                     System.out.println("Digite la opcion talla");
                     op= leer.nextInt();
                     if (op==0) {
-                        vesmod.setTalla("S");
+                        ropdepmod.setTalla("S");
                     }
                     else if(op==1){
-                        vesmod.setTalla("M");
+                        ropdepmod.setTalla("M");
                     }
                     else if(op==2){
-                        vesmod.setTalla("L");
+                        ropdepmod.setTalla("L");
                     }
                     else if(op==3){
-                        vesmod.setTalla("XL");
+                        ropdepmod.setTalla("XL");
                     }
                     else if(op==4){
-                        vesmod.setTalla("XXL");
+                        ropdepmod.setTalla("XXL");
                     }
                     else if(op==5){
-                        vesmod.setTalla("XXXL");
+                        ropdepmod.setTalla("XXXL");
                     }
                     else{
                     System.out.println("Opcion erronea");
@@ -228,33 +229,33 @@ public class MenuVestidosCalle {
                     System.out.println("Digite la opcion tipo de usuario");
                     op= leer.nextInt();
                     if (op==0) {
-                        vesmod.setTipousuario("niño");
+                        ropdepmod.setTipousuario("niño");
                     }
                     else if (op==1) {
-                        vesmod.setTipousuario("niña");
+                        ropdepmod.setTipousuario("niña");
                     }
                     else if (op==2) {
-                        vesmod.setTipousuario("Hombre");
+                        ropdepmod.setTipousuario("Hombre");
                     }
                     else if (op==3) {
-                        vesmod.setTipousuario("Mujer");
+                        ropdepmod.setTipousuario("Mujer");
                     }
                     else{
                         System.out.println("Opcion erronea");
                     }
 
                     
-                    if (manvesca.modificar(a, vesmod)) {
+                    if (manropdep.modificar(a, ropdepmod)) {
                         System.out.println("Modificación correcta");
                     }
                     else{
                         System.out.println("Error al modificar");
                     }
-                    break;
+                    
                 case 5:
                     System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
-                    if (manvesca.borrar(ideliminar)) {
+                    if (manropdep.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }
                     else{
@@ -262,13 +263,13 @@ public class MenuVestidosCalle {
                     }
                     break;
                 case 6:
-                    manvesca.borrarTodo();
+                    manropdep.borrarTodo();
                     break;
 
                 default:
                     System.out.println("Opcion no permitida");
             }
-            System.out.println("Desea retornar al menu de Vestidos de calle S/s");
+            System.out.println("Desea retornar al menu de Ropa deportiva S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
 

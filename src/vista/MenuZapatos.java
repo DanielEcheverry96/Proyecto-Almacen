@@ -119,9 +119,73 @@ public class MenuZapatos {
                     consultarUnZapato();
                     break;
                 case 4:
-                    System.out.println("Digite el ID a modificar");//Falta completar esta opcion
-                    idmodificar = leer.nextInt();
-                    manzap.modificar(idmodificar, zap);
+                    Zapatos zapmod = new Zapatos();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del zapato");
+                    zapmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del zapato");
+                    zapmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    zapmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    zapmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    zapmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    zapmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    zapmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    zapmod.setImagen(leer.next());
+                    System.out.println("Tipo de zapato");
+                    System.out.println("0-Deporivo");
+                    System.out.println("1-Calle");
+                    System.out.println("Digite la opcion tipo de zapato");
+                    int op= leer.nextInt();
+                    if (op==0) {
+                        zapmod.setTipozapato("Deportivo");
+                     }
+                    else if(op==1){
+                        zapmod.setTipozapato("Calle");
+                    }
+                    else{
+                        System.out.println("Opcion erronea");
+                    }
+                    System.out.println("Digite la talla numerica");
+                    zapmod.setTallanumerica(leer.nextInt());
+                    System.out.println("Tipo de usuario");
+                    System.out.println("0-niño");
+                    System.out.println("1-niña");
+                    System.out.println("2-hombre");
+                    System.out.println("3-mujer");
+                    System.out.println("Digite la opcion tipo de usuario");
+                    op= leer.nextInt();
+                    if (op==0) {
+                        zapmod.setTipousuario("niño");
+                    }
+                    else if (op==1) {
+                         zapmod.setTipousuario("niña");
+                     }
+                    else if (op==2) {
+                         zapmod.setTipousuario("Hombre");
+                    }
+                    else if (op==3) {
+                         zapmod.setTipousuario("Mujer");
+                    }
+                    else{
+                        System.out.println("Opcion erronea");
+                    }
+                    
+                    if (manzap.modificar(a, zapmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

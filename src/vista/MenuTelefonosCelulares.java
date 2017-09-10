@@ -99,6 +99,47 @@ public class MenuTelefonosCelulares {
                         consultarUnCelular();
                     break;
                 case 4:
+                    TelefonosCelulares telcelpmod = new TelefonosCelulares();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del telefono celular");
+                    telcelpmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del telefono celular");
+                    telcelpmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    telcelpmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    telcelpmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    telcelpmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    telcelpmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    telcelpmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    telcelpmod.setImagen(leer.next());
+                    System.out.println("Tipo de procesador");
+                    telcelpmod.setTiprocesador(leer.next());
+                    System.out.println("Tamaño de pantalla");
+                    telcelpmod.setTamañodepantalla(leer.nextInt());
+                    System.out.println("Tamaño de memoria");
+                    telcelpmod.setTammemoria(leer.nextInt());
+                    System.out.println("Capacidad de almacenamiento");
+                    telcelpmod.setCapalmacenamiento(leer.nextInt());
+                    System.out.println("Tipo de pantalla");
+                    telcelpmod.setTipodepantalla(leer.next());
+                    System.out.println("Interface de red");
+                    telcelpmod.setInterfacered(leer.next());
+                    
+                    if (mancel.modificar(a, telcelpmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

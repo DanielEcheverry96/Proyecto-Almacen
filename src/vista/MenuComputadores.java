@@ -94,6 +94,44 @@ public class MenuComputadores {
                     consultarUnComputador();
                     break;
                 case 4:
+                     Computadores compmod = new Computadores();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID del computador");
+                    compmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca del computador");
+                    compmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    compmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    compmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    compmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    compmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    compmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    compmod.setImagen(leer.next());
+                    System.out.println("Digite el Tamaño de la pantalla");
+                    compmod.setTipopantalla(leer.next());
+                    System.out.println("Digite el Tipo de mouse");
+                    compmod.setTipomouse(leer.next());
+                    System.out.println("Digite el Tipo de teclado");
+                    compmod.setTipoteclado(leer.next());
+                    System.out.println("Digite la capacidad memoria");
+                    compmod.setCapmemoria(leer.next());
+                    System.out.println("Digite el Tipo de pantalla");
+                    compmod.setTipopantalla(leer.next());
+                    
+                    if (mancomp.modificar(a, compmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

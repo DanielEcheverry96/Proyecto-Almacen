@@ -93,6 +93,45 @@ public class MenuNeveras {
                     consultarUnaNevera();
                     break;
                 case 4:
+                    Neveras nevmod = new Neveras();
+                    
+                    System.out.println("Digite el Id a modificar");
+                    int a = leer.nextInt();
+                    
+                    System.out.println("Digite el nuevo ID de la nevera");
+                    nevmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca de la nevera");
+                    nevmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo Id de la categoria");
+                    nevmod.setIdCategoria(leer.nextInt());
+                    System.out.println("Digite el nuevo nombre del articulo");
+                    nevmod.setNombre(leer.next());
+                    System.out.println("Digite la nuevo cantidad del articulo");
+                    nevmod.setCantidad(leer.nextInt());
+                    System.out.println("Digite el nuevo precio");
+                    nevmod.setPrecio(leer.nextFloat());
+                    System.out.println("nuevo Color");
+                    nevmod.setColor(leer.next());
+                    System.out.println("nueva Url Imagen");
+                    nevmod.setImagen(leer.next());
+                    System.out.println("Digite la capacidad del congelador");
+                    nevmod.setCapcongelador(leer.next());
+                    System.out.println("Digite la capacidad del frigorífico");
+                    nevmod.setCapfrigorifero(leer.next());
+                    System.out.println("Digite el mateial de la nevera");
+                    nevmod.setMaterial(leer.next());
+                    System.out.println("Digite el tamaño de la nevera (m)");
+                    nevmod.setTamaño((int) leer.nextFloat());
+                    System.out.println("Digite el sistema de la nevera");
+                    nevmod.setSistema(leer.next());
+                    
+                    if (mannev.modificar(a, nevmod)) {
+                        System.out.println("Modificación correcta");
+                    }
+                    else{
+                        System.out.println("Error al modificar");
+                    }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");

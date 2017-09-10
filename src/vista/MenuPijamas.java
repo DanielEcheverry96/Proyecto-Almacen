@@ -5,37 +5,38 @@
  */
 package vista;
 
-import controlador.ManejadorVestidosCalle;
+import controlador.ManejadorPijamas;
 import java.util.Scanner;
-import modelo.VestidosCalle;
+import modelo.Pijamas;
 
 /**
  *
  * @author danie
  */
-public class MenuVestidosCalle {
+public class MenuPijamas {
     
     Scanner leer = new Scanner(System.in);
-    ManejadorVestidosCalle manvesca = new ManejadorVestidosCalle();
-    VestidosCalle vesca = new VestidosCalle();
-     public void insertarVestidosCalle(){
+    ManejadorPijamas manpijam = new ManejadorPijamas();
+    Pijamas pijam = new Pijamas();
+    
+     public void insertarPijamas(){
         
-        System.out.println("Digite el ID del vestido");
-        vesca.setIdArticulo(leer.nextInt());
-        System.out.println("Digite el Id de la marca del vestido");
-        vesca.setNombre(leer.next());
+        System.out.println("Digite el ID de la pijama");
+        pijam.setIdArticulo(leer.nextInt());
+        System.out.println("Digite el Id de la marca de la pijama");
+        pijam.setNombre(leer.next());
         System.out.println("Digite el Id de la categoria");
-        vesca.setIdCategoria(leer.nextInt());
+        pijam.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
-        vesca.setNombre(leer.next());
+        pijam.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
-        vesca.setCantidad(leer.nextInt());
+        pijam.setCantidad(leer.nextInt());
         System.out.println("Digite el precio");
-        vesca.setPrecio(leer.nextFloat());
+        pijam.setPrecio(leer.nextFloat());
         System.out.println("Color");
-        vesca.setColor(leer.next());
+        pijam.setColor(leer.next());
         System.out.println("Url Imagen");
-        vesca.setImagen(leer.next());
+        pijam.setImagen(leer.next());
         System.out.println("Tipo: ");
         System.out.println("0- Pantalon");
         System.out.println("1- Camiseta");
@@ -43,13 +44,13 @@ public class MenuVestidosCalle {
         System.out.println("Digite la opcion tipo de vestido");
         int op= leer.nextInt();
         if (op==0) {
-            vesca.setTipo("Pantalon");
+            pijam.setTipo("Pantalon");
          }
         else if(op==1){
-            vesca.setTipo("Camiseta");
+            pijam.setTipo("Camiseta");
         }
         else if(op==2){
-            vesca.setTipo("Ropa interior");
+            pijam.setTipo("Ropa interior");
         }
         else{
             System.out.println("Opcion erronea");
@@ -64,22 +65,22 @@ public class MenuVestidosCalle {
         System.out.println("Digite la opcion talla");
         op= leer.nextInt();
         if (op==0) {
-            vesca.setTalla("S");
+            pijam.setTalla("S");
          }
         else if(op==1){
-            vesca.setTalla("M");
+            pijam.setTalla("M");
         }
         else if(op==2){
-            vesca.setTalla("L");
+            pijam.setTalla("L");
         }
         else if(op==3){
-            vesca.setTalla("XL");
+            pijam.setTalla("XL");
         }
         else if(op==4){
-            vesca.setTalla("XXL");
+            pijam.setTalla("XXL");
         }
         else if(op==5){
-            vesca.setTalla("XXXL");
+            pijam.setTalla("XXXL");
         }
         else{
             System.out.println("Opcion erronea");
@@ -92,33 +93,33 @@ public class MenuVestidosCalle {
         System.out.println("Digite la opcion tipo de usuario");
         op= leer.nextInt();
         if (op==0) {
-            vesca.setTipousuario("niño");
+            pijam.setTipousuario("niño");
         }
         else if (op==1) {
-             vesca.setTipousuario("niña");
+             pijam.setTipousuario("niña");
          }
         else if (op==2) {
-             vesca.setTipousuario("Hombre");
+             pijam.setTipousuario("Hombre");
         }
         else if (op==3) {
-             vesca.setTipousuario("Mujer");
+             pijam.setTipousuario("Mujer");
         }
         else{
             System.out.println("Opcion erronea");
         }
         
-       if (manvesca.insertar(vesca)) {
-            System.out.println("Vestido insertado");
+       if (manpijam.insertar(pijam)) {
+            System.out.println("Pijama insertado");
         } else {
-            System.out.println("Vestido No insertado");
+            System.out.println("Pijama No insertado");
         }
 
     }
      
-    public void consultarUnVestidoCalle() {
+    public void consultarUnaPijama() {
         System.out.println("Digite el ID a buscar");
         int a = leer.nextInt();
-        VestidosCalle resultado = (VestidosCalle) manvesca.consultarId(a);
+        Pijamas resultado = (Pijamas) manpijam.consultarId(a);
         if (resultado == null) {
             System.out.println("No se encontro el articulo");
         }
@@ -126,7 +127,7 @@ public class MenuVestidosCalle {
             System.out.println("Los datos consultados son " + resultado.toString());
         }
     }
-    public void menuVestidosCalle() {
+    public void menuPijamas() {
         String condicion = "";
 
         do {
@@ -142,36 +143,36 @@ public class MenuVestidosCalle {
             int ideliminar, idmodificar;
             switch (opcion) {
                 case 1:
-                    insertarVestidosCalle();
+                    insertarPijamas();
                     break;
                 case 2:
-                    manvesca.consultarTodos();
+                    manpijam.consultarTodos();
                     break;
                 case 3:
-                    consultarUnVestidoCalle();
+                    consultarUnaPijama();
                     break;
                 case 4:
-                     VestidosCalle vesmod = new VestidosCalle();
+                    Pijamas pijmod = new Pijamas();
                     
                     System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
-                    System.out.println("Digite el nuevo ID del vestido");
-                    vesmod.setIdArticulo(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la marca del vestido");
-                    vesmod.setNombre(leer.next());
+                    System.out.println("Digite el nuevo ID de la pijama");
+                    pijmod.setIdArticulo(leer.nextInt());
+                    System.out.println("Digite el nuevo Id de la marca de la pijama");
+                    pijmod.setNombre(leer.next());
                     System.out.println("Digite el nuevo Id de la categoria");
-                    vesmod.setIdCategoria(leer.nextInt());
+                    pijmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
-                    vesmod.setNombre(leer.next());
+                    pijmod.setNombre(leer.next());
                     System.out.println("Digite la nuevo cantidad del articulo");
-                    vesmod.setCantidad(leer.nextInt());
+                    pijmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
-                    vesmod.setPrecio(leer.nextFloat());
+                    pijmod.setPrecio(leer.nextFloat());
                     System.out.println("nuevo Color");
-                    vesmod.setColor(leer.next());
+                    pijmod.setColor(leer.next());
                     System.out.println("nueva Url Imagen");
-                    vesmod.setImagen(leer.next());
+                    pijmod.setImagen(leer.next());
                     System.out.println("Tipo: ");
                     System.out.println("0- Pantalon");
                     System.out.println("1- Camiseta");
@@ -179,13 +180,13 @@ public class MenuVestidosCalle {
                     System.out.println("Digite la opcion tipo de vestido");
                     int op= leer.nextInt();
                     if (op==0) {
-                        vesmod.setTipo("Pantalon");
+                        pijmod.setTipo("Pantalon");
                     }
                     else if(op==1){
-                        vesmod.setTipo("Camiseta");
+                        pijmod.setTipo("Camiseta");
                     }
                     else if(op==2){
-                        vesmod.setTipo("Ropa interior");
+                        pijmod.setTipo("Ropa interior");
                     }
                     else{
                     System.out.println("Opcion erronea");
@@ -200,22 +201,22 @@ public class MenuVestidosCalle {
                     System.out.println("Digite la opcion talla");
                     op= leer.nextInt();
                     if (op==0) {
-                        vesmod.setTalla("S");
+                        pijmod.setTalla("S");
                     }
                     else if(op==1){
-                        vesmod.setTalla("M");
+                        pijmod.setTalla("M");
                     }
                     else if(op==2){
-                        vesmod.setTalla("L");
+                        pijmod.setTalla("L");
                     }
                     else if(op==3){
-                        vesmod.setTalla("XL");
+                        pijmod.setTalla("XL");
                     }
                     else if(op==4){
-                        vesmod.setTalla("XXL");
+                        pijmod.setTalla("XXL");
                     }
                     else if(op==5){
-                        vesmod.setTalla("XXXL");
+                        pijmod.setTalla("XXXL");
                     }
                     else{
                     System.out.println("Opcion erronea");
@@ -228,33 +229,34 @@ public class MenuVestidosCalle {
                     System.out.println("Digite la opcion tipo de usuario");
                     op= leer.nextInt();
                     if (op==0) {
-                        vesmod.setTipousuario("niño");
+                        pijmod.setTipousuario("niño");
                     }
                     else if (op==1) {
-                        vesmod.setTipousuario("niña");
+                        pijmod.setTipousuario("niña");
                     }
                     else if (op==2) {
-                        vesmod.setTipousuario("Hombre");
+                        pijmod.setTipousuario("Hombre");
                     }
                     else if (op==3) {
-                        vesmod.setTipousuario("Mujer");
+                        pijmod.setTipousuario("Mujer");
                     }
                     else{
                         System.out.println("Opcion erronea");
                     }
 
                     
-                    if (manvesca.modificar(a, vesmod)) {
+                    if (manpijam.modificar(a, pijmod)) {
                         System.out.println("Modificación correcta");
                     }
                     else{
                         System.out.println("Error al modificar");
                     }
+                    
                     break;
                 case 5:
                     System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
-                    if (manvesca.borrar(ideliminar)) {
+                    if (manpijam.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }
                     else{
@@ -262,13 +264,13 @@ public class MenuVestidosCalle {
                     }
                     break;
                 case 6:
-                    manvesca.borrarTodo();
+                    manpijam.borrarTodo();
                     break;
 
                 default:
                     System.out.println("Opcion no permitida");
             }
-            System.out.println("Desea retornar al menu de Vestidos de calle S/s");
+            System.out.println("Desea retornar al menu de Pijamas S/s");
             condicion = menu.next();
         } while (condicion.equalsIgnoreCase("s"));
 

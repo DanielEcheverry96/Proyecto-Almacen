@@ -22,4 +22,6 @@ public class CategoriaRopa extends Categorias{
     
     public static ArrayList<Zapatos> arreglozapatos = new ArrayList<Zapatos>();
     public static ArrayList<VestidosCalle> arreglovestidoscalle = new ArrayList<VestidosCalle>();
+    public static ArrayList<Pijamas> arreglopijamas = new ArrayList<Pijamas>();
+    public static ArrayList<RopaDeportiva> arregloropadeportiva = new ArrayList<RopaDeportiva>();
 }
