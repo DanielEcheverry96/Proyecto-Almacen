@@ -157,9 +157,9 @@ public class MenuRopaDeportiva {
                     System.out.println("Digite la posicion del Id a modificar");
                     int a = leer.nextInt();
                     
-                    System.out.println("Digite el nuevo ID de la pijama");
+                    System.out.println("Digite el nuevo ID de la ropa deportiva");
                     ropdepmod.setIdArticulo(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la marca de la pijama");
+                    System.out.println("Digite el nuevo Id de la marca de la ropa deportiva");
                     ropdepmod.setNombre(leer.next());
                     System.out.println("Digite el nuevo Id de la categoria");
                     ropdepmod.setIdCategoria(leer.nextInt());

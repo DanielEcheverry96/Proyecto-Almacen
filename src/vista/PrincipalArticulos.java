@@ -35,7 +35,7 @@ public class PrincipalArticulos {
             System.out.println("1- Marcas");
             System.out.println("2- Categoria Electronicos oficina");
             System.out.println("3- Categoria Electronicos para el hogar");
-            System.out.println("4- Categoria articulos Deportivos");
+            System.out.println("4- Categoria Articulos Deportivos");
             System.out.println("5- Categoria Ropa ");
             System.out.println("6- Categoria Herramientas");
             System.out.println("7- Categoria Videojuegos");

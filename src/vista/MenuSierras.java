@@ -98,9 +98,9 @@ class MenuSierras {
                     System.out.println("Digite la posicion del Id a modificar");
                     int a = leer.nextInt();
                     
-                    System.out.println("Digite el nuevo ID de la bicicleta");
+                    System.out.println("Digite el nuevo ID de la sierra");
                     siemod.setIdArticulo(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la marca de la bicicleta");
+                    System.out.println("Digite el nuevo Id de la marca de la sierra");
                     siemod.setNombre(leer.next());
                     System.out.println("Digite el nuevo Id de la categoria");
                     siemod.setIdCategoria(leer.nextInt());

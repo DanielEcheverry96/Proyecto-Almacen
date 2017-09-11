@@ -22,7 +22,7 @@ public class MenuMartillos {
         
         Martillos mar = new Martillos();
         
-        System.out.println("Digite el ID del martillos");
+        System.out.println("Digite el ID del martillo");
         mar.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del martillo");
         mar.setIdMarca(leer.nextInt());

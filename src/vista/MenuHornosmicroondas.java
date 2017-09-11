@@ -95,9 +95,9 @@ public class MenuHornosmicroondas {
                     System.out.println("Digite la posicion del Id a modificar");
                     int a = leer.nextInt();
                     
-                    System.out.println("Digite el nuevo ID del horno microonda");
+                    System.out.println("Digite el nuevo ID del horno microondas");
                     hormimod.setIdArticulo(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la marca del horno microonda");
+                    System.out.println("Digite el nuevo Id de la marca del horno microondas");
                     hormimod.setNombre(leer.next());
                     System.out.println("Digite el nuevo Id de la categoria");
                     hormimod.setIdCategoria(leer.nextInt());

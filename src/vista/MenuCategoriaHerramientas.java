@@ -26,7 +26,7 @@ public class MenuCategoriaHerramientas {
 
             System.out.println("1- Martillos");
             System.out.println("2- Remachadoras");
-            System.out.println("2- Sierras");
+            System.out.println("3- Sierras");
             int opcion = menu.nextInt();
             switch (opcion) {
                 case 1:
