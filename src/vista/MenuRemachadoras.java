@@ -100,7 +100,7 @@ public void consultarUnaRemachadora() {
                     remmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     remmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     remmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     remmod.setPrecio(leer.nextFloat());

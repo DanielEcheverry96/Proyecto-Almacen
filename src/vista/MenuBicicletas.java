@@ -103,7 +103,7 @@ public class MenuBicicletas {
                     bicimod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     bicimod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     bicimod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     bicimod.setPrecio(leer.nextFloat());

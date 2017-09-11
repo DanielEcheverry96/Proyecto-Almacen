@@ -106,7 +106,7 @@ public class MenuRaquetas {
                     raqmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     raqmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     raqmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     raqmod.setPrecio(leer.nextFloat());

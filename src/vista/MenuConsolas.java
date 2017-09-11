@@ -102,7 +102,7 @@ public void consultarUnaConsola() {
                     consmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     consmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     consmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     consmod.setPrecio(leer.nextFloat());

@@ -103,7 +103,7 @@ public class MenuHornosmicroondas {
                     hormimod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     hormimod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     hormimod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     hormimod.setPrecio(leer.nextFloat());

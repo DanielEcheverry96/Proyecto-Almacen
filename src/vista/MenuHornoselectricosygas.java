@@ -105,7 +105,7 @@ public class MenuHornoselectricosygas {
                     horegasmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     horegasmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     horegasmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     horegasmod.setPrecio(leer.nextFloat());

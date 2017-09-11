@@ -107,7 +107,7 @@ public class MenuComputadores {
                     compmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     compmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     compmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     compmod.setPrecio(leer.nextFloat());

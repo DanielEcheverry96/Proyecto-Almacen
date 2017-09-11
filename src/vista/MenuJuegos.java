@@ -102,7 +102,7 @@ public void consultarUnJuego() {
                     juemod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     juemod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     juemod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     juemod.setPrecio(leer.nextFloat());

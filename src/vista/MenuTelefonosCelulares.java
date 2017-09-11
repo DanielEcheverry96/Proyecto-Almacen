@@ -112,7 +112,7 @@ public class MenuTelefonosCelulares {
                     telcelpmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     telcelpmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     telcelpmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     telcelpmod.setPrecio(leer.nextFloat());

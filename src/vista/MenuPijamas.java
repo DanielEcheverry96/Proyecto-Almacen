@@ -165,7 +165,7 @@ public class MenuPijamas {
                     pijmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     pijmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     pijmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     pijmod.setPrecio(leer.nextFloat());

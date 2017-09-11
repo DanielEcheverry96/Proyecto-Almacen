@@ -102,7 +102,7 @@ public class MenuTelevisores {
                     tvmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     tvmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     tvmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     tvmod.setPrecio(leer.nextFloat());

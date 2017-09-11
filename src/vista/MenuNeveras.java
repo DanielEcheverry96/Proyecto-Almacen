@@ -106,7 +106,7 @@ public class MenuNeveras {
                     nevmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     nevmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     nevmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     nevmod.setPrecio(leer.nextFloat());

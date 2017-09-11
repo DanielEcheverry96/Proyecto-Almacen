@@ -107,7 +107,7 @@ public class MenuImpresores {
                     impmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     impmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     impmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     impmod.setPrecio(leer.nextFloat());

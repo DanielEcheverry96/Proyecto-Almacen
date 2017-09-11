@@ -48,7 +48,7 @@ public class Pijamas extends Trajes{
 
     @Override
     public String toString() {
-        return "Pijamas{" + "id Pijama = " + idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+ imagen +  ", Tipo= " +getTipo() + ", Talla= " + getTalla() + ", Tipo usuario=" + getTipousuario() + '}';
+        return "Pijamas{" + "id Pijama = " + idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+ imagen +  ", Tipo = " +getTipo() + ", Talla = " + getTalla() + ", Tipo usuario = " + getTipousuario() + '}';
     }
     
     

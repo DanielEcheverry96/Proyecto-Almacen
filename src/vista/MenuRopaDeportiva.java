@@ -165,7 +165,7 @@ public class MenuRopaDeportiva {
                     ropdepmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     ropdepmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     ropdepmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     ropdepmod.setPrecio(leer.nextFloat());

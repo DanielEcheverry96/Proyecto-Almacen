@@ -106,7 +106,7 @@ class MenuSierras {
                     siemod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     siemod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     siemod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     siemod.setPrecio(leer.nextFloat());

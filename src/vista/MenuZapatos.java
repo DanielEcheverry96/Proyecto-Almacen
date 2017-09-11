@@ -132,7 +132,7 @@ public class MenuZapatos {
                     zapmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     zapmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     zapmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     zapmod.setPrecio(leer.nextFloat());

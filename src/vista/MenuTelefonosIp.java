@@ -103,7 +103,7 @@ public class MenuTelefonosIp {
                     telipmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     telipmod.setNombre(leer.next());
-                    System.out.println("Digite la nuevo cantidad del articulo");
+                    System.out.println("Digite la nueva cantidad del articulo");
                     telipmod.setCantidad(leer.nextInt());
                     System.out.println("Digite el nuevo precio");
                     telipmod.setPrecio(leer.nextFloat());
