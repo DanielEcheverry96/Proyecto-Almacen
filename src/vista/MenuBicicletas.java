@@ -92,13 +92,15 @@ public class MenuBicicletas {
                 case 4:
                     Bicicletas bicimod = new Bicicletas();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
-                    System.out.println("Digite el nuevo ID de la bicicleta");
+                    int posicion = manbici.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
+                                            System.out.println("Digite el nuevo ID de la bicicleta");
                     bicimod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la bicicleta");
-                    bicimod.setNombre(leer.next());
+                    bicimod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     bicimod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -118,8 +120,9 @@ public class MenuBicicletas {
                     System.out.println("Digite el nuevo tipo de bicicleta");
                     bicimod.setTipo(leer.next());
                     
-                    if (manbici.modificar(a, bicimod)) {
+                    if (manbici.modificar(posicion, bicimod)) {
                         System.out.println("Modificación correcta");
+                    }
                     }
                     else{
                         System.out.println("Error al modificar");
@@ -128,8 +131,9 @@ public class MenuBicicletas {
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (manbici.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }
