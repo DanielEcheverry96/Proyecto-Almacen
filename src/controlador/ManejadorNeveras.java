@@ -40,12 +40,12 @@ public class ManejadorNeveras implements ICRUD {
         return inserto;
     }
 
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Neveras) {
             Neveras temp = new Neveras();
             temp = (Neveras) obj;
-            catedom.arregloneveras.set(id, temp);
+            catedom.arregloneveras.set(posicion, temp);
             var = true;
         }
         return var;
@@ -82,8 +82,14 @@ public class ManejadorNeveras implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        catedom.arregloneveras.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            catedom.arregloneveras.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

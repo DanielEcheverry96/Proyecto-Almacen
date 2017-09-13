@@ -154,13 +154,15 @@ public class MenuRopaDeportiva {
                 case 4:
                     RopaDeportiva ropdepmod = new RopaDeportiva();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = manropdep.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID de la ropa deportiva");
                     ropdepmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la ropa deportiva");
-                    ropdepmod.setNombre(leer.next());
+                    ropdepmod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     ropdepmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -248,13 +250,15 @@ public class MenuRopaDeportiva {
                     if (manropdep.modificar(a, ropdepmod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (manropdep.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

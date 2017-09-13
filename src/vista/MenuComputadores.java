@@ -96,13 +96,15 @@ public class MenuComputadores {
                 case 4:
                      Computadores compmod = new Computadores();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = mancomp.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID del computador");
                     compmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del computador");
-                    compmod.setNombre(leer.next());
+                    compmod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     compmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -129,13 +131,15 @@ public class MenuComputadores {
                     if (mancomp.modificar(a, compmod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (mancomp.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

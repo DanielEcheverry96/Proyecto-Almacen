@@ -94,13 +94,15 @@ public void consultarUnMartillo() {
                 case 4:
                     Martillos martimod = new Martillos();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = manmart.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID del martillo");
                     martimod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del martillo");
-                    martimod.setNombre(leer.next());
+                    martimod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     martimod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -125,14 +127,16 @@ public void consultarUnMartillo() {
                     if (manmart.modificar(a, martimod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (manmart.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

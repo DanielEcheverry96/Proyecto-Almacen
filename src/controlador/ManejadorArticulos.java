@@ -42,12 +42,12 @@ public class ManejadorArticulos implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Articulos) {
             Articulos temp = new Articulos();
             temp = (Articulos) obj;
-            arregloArticulos.set(id, temp);
+            arregloArticulos.set(posicion, temp);
             var = true;
         }
         return var;
@@ -66,8 +66,14 @@ public class ManejadorArticulos implements ICRUD {
 //    }
     @Override
     public boolean borrar(int id) {
-        arregloArticulos.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            arregloArticulos.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

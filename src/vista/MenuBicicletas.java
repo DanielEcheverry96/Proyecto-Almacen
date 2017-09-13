@@ -8,6 +8,7 @@ package vista;
 import controlador.ManejadorBicicletas;
 import java.util.Scanner;
 import modelo.Bicicletas;
+import modelo.CategoriaDeportivos;
 
 /**
  *
@@ -84,6 +85,7 @@ public class MenuBicicletas {
                     insertarBicicletas();
                     break;
                 case 2:
+                    manbici.sort(CategoriaDeportivos.arreglobicicletas, 0, CategoriaDeportivos.arreglobicicletas.size() - 1);
                     manbici.consultarTodos();
                     break;
                 case 3:
@@ -97,7 +99,7 @@ public class MenuBicicletas {
                     
                     int posicion = manbici.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                                            System.out.println("Digite el nuevo ID de la bicicleta");
+                    System.out.println("Digite el nuevo ID de la bicicleta");
                     bicimod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la bicicleta");
                     bicimod.setIdMarca(leer.nextInt());

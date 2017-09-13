@@ -95,13 +95,15 @@ class MenuSierras {
                 case 4:
                     Sierras siemod = new Sierras();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = mansie.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID de la sierra");
                     siemod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la sierra");
-                    siemod.setNombre(leer.next());
+                    siemod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     siemod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -128,14 +130,16 @@ class MenuSierras {
                     if (mansie.modificar(a, siemod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (mansie.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

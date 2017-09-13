@@ -41,12 +41,12 @@ public class ManejadorVestidosCalle implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof VestidosCalle) {
             VestidosCalle temp = new VestidosCalle();
             temp = (VestidosCalle) obj;
-            catrop.arreglovestidoscalle.set(id, temp);
+            catrop.arreglovestidoscalle.set(posicion, temp);
             var = true;
         }
         return var;
@@ -83,8 +83,14 @@ public class ManejadorVestidosCalle implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        catrop.arreglovestidoscalle.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            catrop.arreglovestidoscalle.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

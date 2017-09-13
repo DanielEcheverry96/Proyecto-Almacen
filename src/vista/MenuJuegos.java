@@ -91,13 +91,15 @@ public void consultarUnJuego() {
                 case 4:
                     Juegos juemod = new Juegos();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = manjueg.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID del juego");
                     juemod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del juego");
-                    juemod.setNombre(leer.next());
+                    juemod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     juemod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -122,14 +124,16 @@ public void consultarUnJuego() {
                     if (manjueg.modificar(a, juemod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (manjueg.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

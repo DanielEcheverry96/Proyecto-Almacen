@@ -42,12 +42,12 @@ public class ManejadorSierras implements ICRUD{
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
          boolean var = false;
         if (obj instanceof Sierras) {
             Sierras temp = new Sierras();
             temp = (Sierras) obj;
-            cateher.arreglosierras.set(id, temp);
+            cateher.arreglosierras.set(posicion, temp);
             var = true;
         }
         return var;
@@ -84,8 +84,14 @@ public class ManejadorSierras implements ICRUD{
 
     @Override
     public boolean borrar(int id) {
-        cateher.arreglosierras.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            cateher.arreglosierras.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

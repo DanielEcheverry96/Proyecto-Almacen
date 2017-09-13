@@ -42,12 +42,12 @@ public class ManejadorRaquetas implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
        boolean var = false;
         if (obj instanceof Raquetas) {
             Raquetas temp = new Raquetas();
             temp = (Raquetas) obj;
-            catdep.arregloraquetas.set(id, temp);
+            catdep.arregloraquetas.set(posicion, temp);
             var = true;
         }
         return var;
@@ -85,8 +85,12 @@ public class ManejadorRaquetas implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        catdep.arregloraquetas.remove(id);
-        return true;
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            catdep.arregloraquetas.remove(id);
+            return true;
+        }
+        return false;
     }
 
     @Override

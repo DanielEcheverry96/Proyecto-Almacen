@@ -44,12 +44,12 @@ public class ManejadorObjetos implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Marca) {
             Marca temp = new Marca();
             temp = (Marca) obj;
-            arregloMarcas.set(id, temp);
+            arregloMarcas.set(posicion, temp);
             var = true;
         }
         return var;
@@ -86,8 +86,14 @@ public class ManejadorObjetos implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        arregloMarcas.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            arregloMarcas.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

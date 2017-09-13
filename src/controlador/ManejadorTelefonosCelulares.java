@@ -42,12 +42,12 @@ public class ManejadorTelefonosCelulares implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof TelefonosCelulares) {
             TelefonosCelulares temp = new TelefonosCelulares();
             temp = (TelefonosCelulares) obj;
-            cateofi.arreglotelefonoscelulares.set(id, temp);
+            cateofi.arreglotelefonoscelulares.set(posicion, temp);
             var = true;
         }
         return var;
@@ -85,8 +85,14 @@ public class ManejadorTelefonosCelulares implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        cateofi.arreglotelefonoscelulares.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            cateofi.arreglotelefonoscelulares.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

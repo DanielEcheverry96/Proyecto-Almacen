@@ -42,12 +42,12 @@ public class ManejadorMartillos implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Martillos) {
             Martillos temp = new Martillos();
             temp = (Martillos) obj;
-            cateher.arreglomartillos.set(id, temp);
+            cateher.arreglomartillos.set(posicion, temp);
             var = true;
         }
         return var;
@@ -84,8 +84,14 @@ public class ManejadorMartillos implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        cateher.arreglomartillos.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            cateher.arreglomartillos.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

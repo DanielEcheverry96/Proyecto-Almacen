@@ -41,12 +41,12 @@ public class ManejadorHornoselectricosygas implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Hornoselectricosygas) {
             Hornoselectricosygas temp = new Hornoselectricosygas();
             temp = (Hornoselectricosygas) obj;
-            catedom.arreglohornoselectricosygas.set(id, temp);
+            catedom.arreglohornoselectricosygas.set(posicion, temp);
             var = true;
         }
         return var;
@@ -83,8 +83,14 @@ public class ManejadorHornoselectricosygas implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        catedom.arreglohornoselectricosygas.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            catedom.arreglohornoselectricosygas.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

@@ -41,12 +41,12 @@ public class ManejadorTelevisores implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Televisores) {
             Televisores temp = new Televisores();
             temp = (Televisores) obj;
-            catedom.arreglotelevisores.set(id, temp);
+            catedom.arreglotelevisores.set(posicion, temp);
             var = true;
         }
         return var;
@@ -83,8 +83,14 @@ public class ManejadorTelevisores implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        catedom.arreglotelevisores.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            catedom.arreglotelevisores.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

@@ -42,12 +42,12 @@ public class ManejadorJuegos implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Juegos) {
             Juegos temp = new Juegos();
             temp = (Juegos) obj;
-            catevid.arreglojuegos.set(id, temp);
+            catevid.arreglojuegos.set(posicion, temp);
             var = true;
         }
         return var;
@@ -84,8 +84,14 @@ public class ManejadorJuegos implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        catevid.arreglojuegos.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            catevid.arreglojuegos.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

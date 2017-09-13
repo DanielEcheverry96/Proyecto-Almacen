@@ -91,13 +91,15 @@ public class MenuTelevisores {
                 case 4:
                     Televisores tvmod = new Televisores();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = mantv.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID del televisor");
                     tvmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del televisor");
-                    tvmod.setNombre(leer.next());
+                    tvmod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     tvmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -122,14 +124,16 @@ public class MenuTelevisores {
                     if (mantv.modificar(a, tvmod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (mantv.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

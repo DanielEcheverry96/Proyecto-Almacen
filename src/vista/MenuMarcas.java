@@ -76,9 +76,11 @@ public class MenuMarcas {
                 case 4:
                     Marca marmod = new Marca();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = manobj.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo Id de la Marca");
                     marmod.setId(leer.nextInt());
                     System.out.println("Digite el nuevo nombre de la Marca");
@@ -87,14 +89,16 @@ public class MenuMarcas {
                     if (manobj.modificar(a, marmod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (manobj.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

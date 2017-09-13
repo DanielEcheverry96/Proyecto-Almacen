@@ -42,12 +42,12 @@ public class ManejadorConsolas implements ICRUD {
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Consolas) {
             Consolas temp = new Consolas();
             temp = (Consolas) obj;
-            catevid.arregloconsolas.set(id, temp);
+            catevid.arregloconsolas.set(posicion, temp);
             var = true;
         }
         return var;
@@ -84,8 +84,14 @@ public class ManejadorConsolas implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        catevid.arregloconsolas.remove(id);
-        return true;
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            catevid.arregloconsolas.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override

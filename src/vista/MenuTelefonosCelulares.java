@@ -101,13 +101,15 @@ public class MenuTelefonosCelulares {
                 case 4:
                     TelefonosCelulares telcelpmod = new TelefonosCelulares();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = mancel.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID del telefono celular");
                     telcelpmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del telefono celular");
-                    telcelpmod.setNombre(leer.next());
+                    telcelpmod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     telcelpmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -136,14 +138,16 @@ public class MenuTelefonosCelulares {
                     if (mancel.modificar(a, telcelpmod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (mancel.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

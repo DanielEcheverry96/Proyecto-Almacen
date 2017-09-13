@@ -95,13 +95,15 @@ public class MenuRaquetas {
                 case 4:
                     Raquetas raqmod = new Raquetas();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = manraque.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID de la raqueta");
                     raqmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la raqueta");
-                    raqmod.setNombre(leer.next());
+                    raqmod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     raqmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -126,14 +128,16 @@ public class MenuRaquetas {
                     if (manraque.modificar(a, raqmod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (manraque.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

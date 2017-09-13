@@ -92,13 +92,15 @@ public class MenuHornosmicroondas {
                 case 4:
                     Hornosmicroondas hormimod = new Hornosmicroondas();
                     
-                    System.out.println("Digite la posicion del Id a modificar");
+                    System.out.println("Digite el Id a modificar");
                     int a = leer.nextInt();
                     
+                    int posicion = manhornmic.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
                     System.out.println("Digite el nuevo ID del horno microondas");
                     hormimod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del horno microondas");
-                    hormimod.setNombre(leer.next());
+                    hormimod.setIdMarca(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la categoria");
                     hormimod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
@@ -123,14 +125,16 @@ public class MenuHornosmicroondas {
                     if (manhornmic.modificar(a, hormimod)) {
                         System.out.println("Modificación correcta");
                     }
+                    }
                     else{
                         System.out.println("Error al modificar");
                     }
                     
                     break;
                 case 5:
-                    System.out.println("Digite la posicion del ID a eliminar");
+                    System.out.println("Digite el ID a eliminar");
                     ideliminar = leer.nextInt();
+                    
                     if (manhornmic.borrar(ideliminar)) {
                         System.out.println("El articulo fue eliminado");
                     }

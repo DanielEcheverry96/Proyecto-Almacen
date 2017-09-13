@@ -6,7 +6,9 @@
 package controlador;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import modelo.Articulos;
 import modelo.Bicicletas;
 import modelo.CategoriaDeportivos;
 
@@ -107,4 +109,46 @@ public class ManejadorBicicletas implements ICRUD{
        return CategoriaDeportivos.arreglobicicletas;
     }
     
+    public static int partition(ArrayList<Bicicletas> arreglo, int low, int high)
+    {
+        Bicicletas pivot = arreglo.get(high);
+        int i = (low-1); // index of smaller element
+        for (int j=low; j<high; j++)
+        {
+            // If current element is smaller than or
+            // equal to pivot
+            if (arreglo.get(j).getPrecio() <= pivot.getPrecio())
+            {
+                i++;
+                Collections.swap(arreglo, i, j);
+                // swap arr[i] and arr[j]
+               
+            }
+        }
+ 
+        // swap arr[i+1] and arr[high] (or pivot)
+         Collections.swap(arreglo, i, high);
+ 
+        return i+1;
+    }
+ 
+ 
+    /* The main function that implements QuickSort()
+      arr[] --> Array to be sorted,
+      low  --> Starting index,
+      high  --> Ending index */
+    public static void sort(ArrayList<Bicicletas> arreglo, int low, int high)
+    {
+        if (low < high)
+        {
+            /* pi is partitioning index, arr[pi] is
+              now at right place */
+            int pi = partition(arreglo, low, high);
+ 
+            // Recursively sort elements before
+            // partition and after partition
+            sort(arreglo, low, pi-1);
+            sort(arreglo, pi+1, high);
+        }
+    }
 }

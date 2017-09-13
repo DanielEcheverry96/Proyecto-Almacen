@@ -42,12 +42,12 @@ public class ManejadorPijamas implements ICRUD{
     }
 
     @Override
-    public boolean modificar(int id, Object obj) {
+    public boolean modificar(int posicion, Object obj) {
         boolean var = false;
         if (obj instanceof Pijamas) {
             Pijamas temp = new Pijamas();
             temp = (Pijamas) obj;
-            catrop.arreglopijamas.set(id, temp);
+            catrop.arreglopijamas.set(posicion, temp);
             var = true;
         }
         return var;
@@ -85,9 +85,14 @@ public class ManejadorPijamas implements ICRUD{
 
     @Override
     public boolean borrar(int id) {
-        catrop.arreglopijamas.remove(id);
-        return true;
-
+        
+        int posicion = busquedaBinaria(id);
+        if (!(posicion==-1)) {
+            catrop.arreglopijamas.remove(posicion);
+            return true;
+        }
+        
+        return false;
     }
 
     @Override
