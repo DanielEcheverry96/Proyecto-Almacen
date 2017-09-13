@@ -26,8 +26,6 @@ public class MenuTelefonosCelulares {
         telcel.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del telefono celular");
         telcel.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        telcel.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         telcel.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -106,12 +104,8 @@ public class MenuTelefonosCelulares {
                     
                     int posicion = mancel.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del telefono celular");
-                    telcelpmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del telefono celular");
                     telcelpmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    telcelpmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     telcelpmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -135,7 +129,7 @@ public class MenuTelefonosCelulares {
                     System.out.println("Interface de red");
                     telcelpmod.setInterfacered(leer.next());
                     
-                    if (mancel.modificar(a, telcelpmod)) {
+                    if (mancel.modificar(posicion, telcelpmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

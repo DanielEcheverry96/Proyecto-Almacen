@@ -24,8 +24,6 @@ public class MenuVestidosCalle {
         vesca.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del vestido");
         vesca.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        vesca.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         vesca.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -158,12 +156,8 @@ public class MenuVestidosCalle {
                     
                     int posicion = manvesca.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del vestido");
-                    vesmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del vestido");
                     vesmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    vesmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     vesmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -246,7 +240,7 @@ public class MenuVestidosCalle {
                     }
 
                     
-                    if (manvesca.modificar(a, vesmod)) {
+                    if (manvesca.modificar(posicion, vesmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

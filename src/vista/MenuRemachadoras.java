@@ -25,8 +25,6 @@ public class MenuRemachadoras {
         rem.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la remachadora");
         rem.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        rem.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         rem.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -94,12 +92,8 @@ public void consultarUnaRemachadora() {
                     
                     int posicion = manrem.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID de la remachadora");
-                    remmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la remachadora");
                     remmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    remmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     remmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -117,7 +111,7 @@ public void consultarUnaRemachadora() {
                     System.out.println("Digite el calibre del remache");
                     remmod.setCalibre(leer.nextDouble());
                     
-                    if (manrem.modificar(a, remmod)) {
+                    if (manrem.modificar(posicion, remmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

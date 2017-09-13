@@ -24,8 +24,6 @@ public class MenuTelevisores {
         tv.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del televisor");
         tv.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        tv.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         tv.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -96,12 +94,8 @@ public class MenuTelevisores {
                     
                     int posicion = mantv.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del televisor");
-                    tvmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del televisor");
                     tvmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    tvmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     tvmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -121,7 +115,7 @@ public class MenuTelevisores {
                     System.out.println("Digite la resolucion del televisor");
                     tvmod.setResolucion(leer.next());
                     
-                    if (mantv.modificar(a, tvmod)) {
+                    if (mantv.modificar(posicion, tvmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

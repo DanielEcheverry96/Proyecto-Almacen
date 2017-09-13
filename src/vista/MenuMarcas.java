@@ -86,7 +86,7 @@ public class MenuMarcas {
                     System.out.println("Digite el nuevo nombre de la Marca");
                     marmod.setDescripcion(leer.next());
                     
-                    if (manobj.modificar(a, marmod)) {
+                    if (manobj.modificar(posicion, marmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

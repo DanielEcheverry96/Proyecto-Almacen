@@ -26,8 +26,6 @@ public class MenuMartillos {
         mar.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del martillo");
         mar.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        mar.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         mar.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -99,12 +97,8 @@ public void consultarUnMartillo() {
                     
                     int posicion = manmart.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del martillo");
-                    martimod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del martillo");
                     martimod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    martimod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     martimod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -121,10 +115,12 @@ public void consultarUnMartillo() {
                     martimod.setMatmango(leer.next());
                     System.out.println("Digite el material del cabezal");
                     martimod.setMatcabezal(leer.next());
+                    System.out.println("Digite el tamaño del martillo");
+                    martimod.setTamaño(leer.next());
                     System.out.println("Digite el peso del martillo");
                     martimod.setPeso(leer.nextInt());
                     
-                    if (manmart.modificar(a, martimod)) {
+                    if (manmart.modificar(posicion, martimod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

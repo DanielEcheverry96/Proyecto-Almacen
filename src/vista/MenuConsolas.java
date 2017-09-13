@@ -25,8 +25,6 @@ public class MenuConsolas {
         cons.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la consola");
         cons.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        cons.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         cons.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -96,12 +94,8 @@ public void consultarUnaConsola() {
                     
                     int posicion = mancons.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID de la consola");
-                    consmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la consola");
                     consmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    consmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     consmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -121,7 +115,7 @@ public void consultarUnaConsola() {
                     System.out.println("Digite la capacidad del disco duro de la consola");
                     consmod.setCapdiscoduro(leer.next());
                     
-                    if (mancons.modificar(a, consmod)) {
+                    if (mancons.modificar(posicion, consmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

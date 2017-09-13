@@ -26,8 +26,6 @@ class MenuSierras {
         sie.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la sierra");
         sie.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        sie.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         sie.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -100,12 +98,8 @@ class MenuSierras {
                     
                     int posicion = mansie.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID de la sierra");
-                    siemod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la sierra");
                     siemod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    siemod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     siemod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -127,7 +121,7 @@ class MenuSierras {
                     System.out.println("Digite el diametro del disco de la sierra");
                     siemod.setDiametrodisco(leer.nextFloat());
                     
-                    if (mansie.modificar(a, siemod)) {
+                    if (mansie.modificar(posicion, siemod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

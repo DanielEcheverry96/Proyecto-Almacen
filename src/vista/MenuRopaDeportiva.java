@@ -25,8 +25,6 @@ public class MenuRopaDeportiva {
         ropdep.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la ropa deportiva");
         ropdep.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        ropdep.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         ropdep.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -159,12 +157,8 @@ public class MenuRopaDeportiva {
                     
                     int posicion = manropdep.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID de la ropa deportiva");
-                    ropdepmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la ropa deportiva");
                     ropdepmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    ropdepmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     ropdepmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -247,7 +241,7 @@ public class MenuRopaDeportiva {
                     }
 
                     
-                    if (manropdep.modificar(a, ropdepmod)) {
+                    if (manropdep.modificar(posicion, ropdepmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

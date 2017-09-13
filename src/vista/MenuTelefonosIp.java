@@ -26,8 +26,6 @@ public class MenuTelefonosIp {
         telip.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del telefono ip");
         telip.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        telip.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         telip.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -97,12 +95,8 @@ public class MenuTelefonosIp {
                     
                     int posicion = mantelip.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del telefono Ip");
-                    telipmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del telefono Ip");
                     telipmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    telipmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     telipmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -118,7 +112,7 @@ public class MenuTelefonosIp {
                     System.out.println("Interface de red");
                     telipmod.setInterfacered(leer.next());
                     
-                    if (mantelip.modificar(a, telipmod)) {
+                    if (mantelip.modificar(posicion, telipmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

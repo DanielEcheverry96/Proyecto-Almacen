@@ -26,8 +26,6 @@ public class MenuImpresores {
         impre.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del impresor");
         impre.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        impre.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         impre.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -101,12 +99,8 @@ public class MenuImpresores {
                     
                     int posicion = manimp.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del impresor");
-                    impmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del impresor");
                     impmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    impmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     impmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -126,7 +120,7 @@ public class MenuImpresores {
                     System.out.println("Resolucion");
                     impmod.setResolucion(leer.next());
                     
-                    if (manimp.modificar(a, impmod)) {
+                    if (manimp.modificar(posicion, impmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

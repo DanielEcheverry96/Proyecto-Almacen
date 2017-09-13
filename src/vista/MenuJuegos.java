@@ -26,8 +26,6 @@ public class MenuJuegos {
         jueg.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del juego");
         jueg.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        jueg.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         jueg.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -96,12 +94,8 @@ public void consultarUnJuego() {
                     
                     int posicion = manjueg.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del juego");
-                    juemod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del juego");
                     juemod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    juemod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     juemod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -121,7 +115,7 @@ public void consultarUnJuego() {
                     System.out.println("Digite el número de jugadores");
                     juemod.setNumjugadores(leer.nextInt());
                     
-                    if (manjueg.modificar(a, juemod)) {
+                    if (manjueg.modificar(posicion, juemod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

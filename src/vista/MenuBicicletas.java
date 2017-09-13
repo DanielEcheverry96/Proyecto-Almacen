@@ -27,8 +27,6 @@ public class MenuBicicletas {
         bici.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la bicicleta");
         bici.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        bici.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         bici.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -99,12 +97,9 @@ public class MenuBicicletas {
                     
                     int posicion = manbici.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID de la bicicleta");
-                    bicimod.setIdArticulo(leer.nextInt());
+                        
                     System.out.println("Digite el nuevo Id de la marca de la bicicleta");
                     bicimod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    bicimod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     bicimod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");

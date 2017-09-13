@@ -24,8 +24,6 @@ public class MenuZapatos {
         zap.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del zapato");
         zap.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        zap.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         zap.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -126,12 +124,8 @@ public class MenuZapatos {
                     
                     int posicion = manzap.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del zapato");
-                    zapmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del zapato");
                     zapmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    zapmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     zapmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -181,7 +175,7 @@ public class MenuZapatos {
                         System.out.println("Opcion erronea");
                     }
                     
-                    if (manzap.modificar(a, zapmod)) {
+                    if (manzap.modificar(posicion, zapmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

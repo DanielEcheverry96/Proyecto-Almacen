@@ -27,8 +27,6 @@ public class MenuRaquetas {
         raque.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la raqueta");
         raque.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        raque.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         raque.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -100,12 +98,8 @@ public class MenuRaquetas {
                     
                     int posicion = manraque.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID de la raqueta");
-                    raqmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la raqueta");
                     raqmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    raqmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     raqmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -125,7 +119,7 @@ public class MenuRaquetas {
                     System.out.println("Peso");
                     raqmod.setPeso(leer.nextFloat());
                     
-                    if (manraque.modificar(a, raqmod)) {
+                    if (manraque.modificar(posicion, raqmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

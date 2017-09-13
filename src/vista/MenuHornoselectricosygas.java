@@ -25,8 +25,6 @@ public class MenuHornoselectricosygas {
         heg.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del horno");
         heg.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        heg.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         heg.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -99,12 +97,8 @@ public class MenuHornoselectricosygas {
                     
                     int posicion = manheg.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del horno");
-                    horegasmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del horno");
                     horegasmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    horegasmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     horegasmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -126,7 +120,7 @@ public class MenuHornoselectricosygas {
                     System.out.println("Digite la temperatura maxima del horno");
                     horegasmod.setTemperaturamax(leer.nextInt());
                     
-                    if (manheg.modificar(a, horegasmod)) {
+                    if (manheg.modificar(posicion, horegasmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

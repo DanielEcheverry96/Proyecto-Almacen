@@ -25,8 +25,6 @@ public class MenuHornosmicroondas {
         hornmic.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del hornomicroondas");
         hornmic.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        hornmic.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         hornmic.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -97,12 +95,8 @@ public class MenuHornosmicroondas {
                     
                     int posicion = manhornmic.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del horno microondas");
-                    hormimod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del horno microondas");
                     hormimod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    hormimod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     hormimod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -122,7 +116,7 @@ public class MenuHornosmicroondas {
                     System.out.println("Digite el voltaje del horno microondas");
                     hormimod.setVoltaje(leer.next());
                     
-                    if (manhornmic.modificar(a, hormimod)) {
+                    if (manhornmic.modificar(posicion, hormimod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

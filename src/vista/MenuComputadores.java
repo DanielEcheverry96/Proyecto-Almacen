@@ -27,8 +27,6 @@ public class MenuComputadores {
         compu.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del computador");
         compu.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        compu.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         compu.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -101,12 +99,8 @@ public class MenuComputadores {
                     
                     int posicion = mancomp.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID del computador");
-                    compmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca del computador");
                     compmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    compmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     compmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -128,7 +122,7 @@ public class MenuComputadores {
                     System.out.println("Digite el Tipo de pantalla");
                     compmod.setTipopantalla(leer.next());
                     
-                    if (mancomp.modificar(a, compmod)) {
+                    if (mancomp.modificar(posicion, compmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }

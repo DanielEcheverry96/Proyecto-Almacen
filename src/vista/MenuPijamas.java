@@ -25,8 +25,6 @@ public class MenuPijamas {
         pijam.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la pijama");
         pijam.setIdMarca(leer.nextInt());
-        System.out.println("Digite el Id de la categoria");
-        pijam.setIdCategoria(leer.nextInt());
         System.out.println("Digite el nombre del articulo");
         pijam.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");
@@ -159,12 +157,8 @@ public class MenuPijamas {
                     
                     int posicion = manpijam.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo ID de la pijama");
-                    pijmod.setIdArticulo(leer.nextInt());
                     System.out.println("Digite el nuevo Id de la marca de la pijama");
                     pijmod.setIdMarca(leer.nextInt());
-                    System.out.println("Digite el nuevo Id de la categoria");
-                    pijmod.setIdCategoria(leer.nextInt());
                     System.out.println("Digite el nuevo nombre del articulo");
                     pijmod.setNombre(leer.next());
                     System.out.println("Digite la nueva cantidad del articulo");
@@ -247,7 +241,7 @@ public class MenuPijamas {
                     }
 
                     
-                    if (manpijam.modificar(a, pijmod)) {
+                    if (manpijam.modificar(posicion, pijmod)) {
                         System.out.println("Modificación correcta");
                     }
                     }
