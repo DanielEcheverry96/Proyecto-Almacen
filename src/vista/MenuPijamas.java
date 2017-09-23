@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorPijamas;
 import java.util.Scanner;
 import modelo.Pijamas;
@@ -18,13 +19,15 @@ public class MenuPijamas {
     Scanner leer = new Scanner(System.in);
     ManejadorPijamas manpijam = new ManejadorPijamas();
     Pijamas pijam = new Pijamas();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
      public void insertarPijamas(){
         
         System.out.println("Digite el ID de la pijama");
         pijam.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la pijama");
-        pijam.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        pijam.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         pijam.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorSierras;
 import java.util.Scanner;
 import modelo.Sierras;
@@ -17,6 +18,7 @@ class MenuSierras {
     
     Scanner leer = new Scanner(System.in);
     ManejadorSierras mansie = new ManejadorSierras();
+     ManejadorObjetos manobj = new ManejadorObjetos();
     
      public void insertarSierra(){
         
@@ -25,7 +27,8 @@ class MenuSierras {
         System.out.println("Digite el ID de la sierra");
         sie.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la sierra");
-        sie.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        sie.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         sie.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

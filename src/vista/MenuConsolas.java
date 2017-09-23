@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ManejadorConsolas;
+import controlador.ManejadorObjetos;
 import java.util.Scanner;
 import modelo.Consolas;
 
@@ -16,6 +17,7 @@ import modelo.Consolas;
 public class MenuConsolas {
     Scanner leer = new Scanner(System.in);
     ManejadorConsolas mancons = new ManejadorConsolas();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     public void insertarConsolas(){
         
@@ -24,7 +26,8 @@ public class MenuConsolas {
         System.out.println("Digite el ID de la consola");
         cons.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la consola");
-        cons.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        cons.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         cons.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

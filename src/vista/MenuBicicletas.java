@@ -6,9 +6,11 @@
 package vista;
 
 import controlador.ManejadorBicicletas;
+import controlador.ManejadorObjetos;
 import java.util.Scanner;
 import modelo.Bicicletas;
 import modelo.CategoriaDeportivos;
+import modelo.Marca;
 
 /**
  *
@@ -18,15 +20,19 @@ public class MenuBicicletas {
     
     Scanner leer = new Scanner (System.in);
     ManejadorBicicletas manbici = new ManejadorBicicletas();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     public void insertarBicicletas() {
 
             Bicicletas bici = new Bicicletas();
+            Marca mar = new Marca();
             
         System.out.println("Digite el ID de la bicicleta");
         bici.setIdArticulo(leer.nextInt());
+        manobj.consultarTodos();
         System.out.println("Digite el Id de la marca de la bicicleta");
-        bici.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        bici.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         bici.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

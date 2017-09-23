@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorTelefonosCelulares;
 import java.util.Scanner;
 import modelo.TelefonosCelulares;
@@ -17,7 +18,8 @@ public class MenuTelefonosCelulares {
     
     Scanner leer = new Scanner(System.in);
     ManejadorTelefonosCelulares mancel = new ManejadorTelefonosCelulares();
-    
+    ManejadorObjetos manobj = new ManejadorObjetos();
+     
     public void insertarTelefonosCelulares(){
         
         TelefonosCelulares telcel = new TelefonosCelulares();
@@ -25,7 +27,8 @@ public class MenuTelefonosCelulares {
         System.out.println("Digite el Id del telefono celular");
         telcel.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del telefono celular");
-        telcel.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        telcel.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         telcel.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

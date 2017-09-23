@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorTelevisores;
 import java.util.Scanner;
 import modelo.Televisores;
@@ -16,14 +17,16 @@ import modelo.Televisores;
 public class MenuTelevisores {
     Scanner leer = new Scanner(System.in);
     ManejadorTelevisores mantv = new ManejadorTelevisores();
-
+    ManejadorObjetos manobj = new ManejadorObjetos();
+    
     public void insertarTelevisores() {
         Televisores tv = new Televisores();
         
         System.out.println("Digite el ID del televisor");
         tv.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del televisor");
-        tv.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        tv.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         tv.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

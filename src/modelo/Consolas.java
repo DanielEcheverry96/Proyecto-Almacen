@@ -16,8 +16,8 @@ public class Consolas extends Articulos {
     private String realidadvir;
     private String capdiscoduro;
 
-    public Consolas(String tipo, int numcontroles, String realidadvir, String capdiscoduro, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Consolas(String tipo, int numcontroles, String realidadvir, String capdiscoduro, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tipo = tipo;
         this.numcontroles = numcontroles;
         this.realidadvir = realidadvir;
@@ -70,7 +70,7 @@ public class Consolas extends Articulos {
 
     @Override
     public String toString() {
-        return "Consolas {" + "id Consola = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo =" + tipo + ", número controles = " + numcontroles + ", realidad virtual = " + realidadvir + ", capacidad discoduro = " + capdiscoduro + '}';
+        return "Consolas {" + "id Consola = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo =" + tipo + ", número controles = " + numcontroles + ", realidad virtual = " + realidadvir + ", capacidad discoduro = " + capdiscoduro + '}';
     }
     
     

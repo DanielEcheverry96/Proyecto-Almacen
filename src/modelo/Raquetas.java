@@ -16,8 +16,8 @@ public class Raquetas extends Articulos{
     private float ancho;
     private float peso;
 
-    public Raquetas(String tipomarco, int longitud, float ancho, float peso, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Raquetas(String tipomarco, int longitud, float ancho, float peso, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tipomarco = tipomarco;
         this.longitud = longitud;
         this.ancho = ancho;
@@ -68,7 +68,7 @@ public class Raquetas extends Articulos{
 
     @Override
     public String toString() {
-        return "Raquetas {" + "id Raqueta = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo marco = " + tipomarco + ", longitud = " + longitud + ", ancho = " + ancho + ", peso = " + peso + '}';
+        return "Raquetas {" + "id Raqueta = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo marco = " + tipomarco + ", longitud = " + longitud + ", ancho = " + ancho + ", peso = " + peso + '}';
     }
     
     

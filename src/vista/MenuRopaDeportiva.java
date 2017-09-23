@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorRopaDeportiva;
 import java.util.Scanner;
 import modelo.RopaDeportiva;
@@ -18,13 +19,15 @@ public class MenuRopaDeportiva {
     Scanner leer = new Scanner(System.in);
     ManejadorRopaDeportiva manropdep = new ManejadorRopaDeportiva();
     RopaDeportiva ropdep = new RopaDeportiva();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
      public void insertarRopaDeportiva(){
         
         System.out.println("Digite el ID de la ropa deportiva");
         ropdep.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la ropa deportiva");
-        ropdep.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        ropdep.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         ropdep.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

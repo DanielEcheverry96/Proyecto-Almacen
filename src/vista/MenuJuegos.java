@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ManejadorJuegos;
+import controlador.ManejadorObjetos;
 import java.util.Scanner;
 import modelo.Juegos;
 
@@ -17,6 +18,7 @@ public class MenuJuegos {
     
     Scanner leer = new Scanner(System.in);
     ManejadorJuegos manjueg = new ManejadorJuegos();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     public void insertarJuegos() {
 
@@ -25,7 +27,8 @@ public class MenuJuegos {
         System.out.println("Digite el ID del Juego");
         jueg.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del juego");
-        jueg.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        jueg.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         jueg.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

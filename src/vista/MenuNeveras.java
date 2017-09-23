@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ManejadorNeveras;
+import controlador.ManejadorObjetos;
 import java.util.Scanner;
 import modelo.Neveras;
 
@@ -16,6 +17,7 @@ import modelo.Neveras;
 public class MenuNeveras {
     Scanner leer = new Scanner (System.in);
     ManejadorNeveras mannev = new ManejadorNeveras();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     public void insertarNeveras() {
         
@@ -25,7 +27,8 @@ public class MenuNeveras {
         System.out.println("Digite el Id de la nevera");
         nev.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la nevera");
-        nev.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        nev.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         nev.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

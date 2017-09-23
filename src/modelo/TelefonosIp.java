@@ -14,8 +14,8 @@ public class TelefonosIp extends Articulos{
     private String tipoprocesador;
     private String interfacered;
 
-    public TelefonosIp(String tipoprocesador, String interfacered, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public TelefonosIp(String tipoprocesador, String interfacered, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tipoprocesador = tipoprocesador;
         this.interfacered = interfacered;
     }
@@ -46,7 +46,7 @@ public class TelefonosIp extends Articulos{
 
     @Override
     public String toString() {
-        return "Telefonos Ip {" + "id Telefono ip = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo procesador = " + tipoprocesador + ", interface red = " + interfacered + '}';
+        return "Telefonos Ip {" + "id Telefono ip = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo procesador = " + tipoprocesador + ", interface red = " + interfacered + '}';
     }
         
     

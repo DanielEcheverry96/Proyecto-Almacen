@@ -15,8 +15,8 @@ public class Bicicletas extends Articulos {
     private String material;
     private String tipo;
 
-    public Bicicletas(int tamaniorueda, String material, String tipo, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Bicicletas(int tamaniorueda, String material, String tipo, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tamaniorueda = tamaniorueda;
         this.material = material;
         this.tipo = tipo;
@@ -57,7 +57,7 @@ public class Bicicletas extends Articulos {
 
     @Override
     public String toString() {
-        return "Bicicletas {" + "id Bicicleta = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tamaño rueda = " + tamaniorueda + ", material = " + material + ", tipo = " + tipo + '}';
+        return "Bicicletas {" + "id Bicicleta = "+ idArticulo +", marca = " + mar + ", id Marca = " + idMarca + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tamaño rueda = " + tamaniorueda + ", material = " + material + ", tipo = " + tipo + '}';
     }
     
     

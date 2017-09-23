@@ -20,10 +20,10 @@ public class Articulos implements Comparable<Articulos> {
     protected String descripcion;
     protected String color;
     protected String imagen;
+    protected Marca mar;
 
-    public Articulos(int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
+    public Articulos(int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
         this.idMarca = idMarca;
-        this.idCategoria = idCategoria;
         this.idArticulo = idArticulo;
         this.nombre = nombre;
         this.cantidad = cantidad;
@@ -31,6 +31,7 @@ public class Articulos implements Comparable<Articulos> {
         this.descripcion = descripcion;
         this.color = color;
         this.imagen = imagen;
+        this.mar = mar;
     }
 
     public Articulos() {
@@ -108,9 +109,18 @@ public class Articulos implements Comparable<Articulos> {
         this.imagen = imagen;
     }
 
+    public Marca getMar() {
+        return mar;
+    }
+
+    public void setMar(Marca mar) {
+        this.mar = mar;
+    }
+    
+    
     @Override
     public String toString() {
-        return "Articulos {" + "id Marca = " + idMarca + ", id Categoria = " + idCategoria + ", id Articulo = " + idArticulo + ", nombre = " + nombre + ", cantidad = " + cantidad + ", precio = " + precio + ", descripcion = " + descripcion + ", color = " + color + ", imagen = " + imagen + '}';
+        return "Articulos {" + "id Marca = " + idMarca + ", id Categoria = " + idCategoria + ", id Articulo = " + idArticulo + ", nombre = " + nombre + ", cantidad = " + cantidad + ", precio = " + precio + ", descripcion = " + descripcion + ", color = " + color + ", imagen = " + imagen + ", marca = "+ mar + '}';
     }
     
     

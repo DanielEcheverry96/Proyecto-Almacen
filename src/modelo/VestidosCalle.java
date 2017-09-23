@@ -11,8 +11,8 @@ package modelo;
  */
 public class VestidosCalle extends Trajes{
 
-    public VestidosCalle(String tipo, String talla, String tipousuario, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(tipo, talla, tipousuario, idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public VestidosCalle(String tipo, String talla, String tipousuario, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(tipo, talla, tipousuario, idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
     }
 
     public VestidosCalle(String tipo, String talla, String tipousuario) {
@@ -48,7 +48,7 @@ public class VestidosCalle extends Trajes{
 
     @Override
     public String toString() {
-        return "Vestidos Calle {" + "id Vestido = " + idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+ imagen + ", Tipo = " +getTipo() + ", Talla = " + getTalla() + ", Tipo usuario = " + getTipousuario() + '}';
+        return "Vestidos Calle {" + "id Vestido = " + idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+ imagen + ", Tipo = " +getTipo() + ", Talla = " + getTalla() + ", Tipo usuario = " + getTipousuario() + '}';
     }
     
     

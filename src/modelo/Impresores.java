@@ -16,8 +16,8 @@ public class Impresores extends Articulos{
     private int paginasminuto;
     private String resolucion;
 
-    public Impresores(String tipo, String interfacered, int paginasminuto, String resolucion, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Impresores(String tipo, String interfacered, int paginasminuto, String resolucion, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tipo = tipo;
         this.interfacered = interfacered;
         this.paginasminuto = paginasminuto;
@@ -68,7 +68,7 @@ public class Impresores extends Articulos{
 
     @Override
     public String toString() {
-        return "Impresores {" + "id Impresor = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo = " + tipo + ", interface red = " + interfacered + ", paginas x minuto = " + paginasminuto + ", resolucion = " + resolucion + '}';
+        return "Impresores {" + "id Impresor = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo = " + tipo + ", interface red = " + interfacered + ", paginas x minuto = " + paginasminuto + ", resolucion = " + resolucion + '}';
     }
     
     

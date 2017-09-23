@@ -17,8 +17,8 @@ public class Martillos extends Articulos {
     private String tamaño;
     private String tipo;
 
-    public Martillos(String matmango, String matcabezal, int peso, String tamaño, String tipo, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Martillos(String matmango, String matcabezal, int peso, String tamaño, String tipo, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.matmango = matmango;
         this.matcabezal = matcabezal;
         this.peso = peso;
@@ -79,7 +79,7 @@ public class Martillos extends Articulos {
 
     @Override
     public String toString() {
-        return "Martillos {" + "id Martillo = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", material mango = " + matmango + ", material cabezal = " + matcabezal + ", peso = " + peso + ", tamaño = " + tamaño + ", tipo = " + tipo + '}';
+        return "Martillos {" + "id Martillo = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", material mango = " + matmango + ", material cabezal = " + matcabezal + ", peso = " + peso + ", tamaño = " + tamaño + ", tipo = " + tipo + '}';
     }
     
     

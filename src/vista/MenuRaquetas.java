@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorRaquetas;
 import java.util.Scanner;
 import modelo.Raquetas;
@@ -17,6 +18,7 @@ public class MenuRaquetas {
     
     Scanner leer = new Scanner (System.in);
     ManejadorRaquetas manraque = new ManejadorRaquetas();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     public void insertarRaquetas() {
         
@@ -26,7 +28,8 @@ public class MenuRaquetas {
         System.out.println("Digite el Id de la raqueta");
         raque.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la raqueta");
-        raque.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        raque.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         raque.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

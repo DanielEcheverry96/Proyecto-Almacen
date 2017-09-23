@@ -16,8 +16,8 @@ public class Televisores extends Articulos {
     private String tipopantalla;
     private String resolucion;
 
-    public Televisores(String tipotelevisor, int tampantalla, String tipopantalla, String resolucion, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Televisores(String tipotelevisor, int tampantalla, String tipopantalla, String resolucion, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tipotelevisor = tipotelevisor;
         this.tampantalla = tampantalla;
         this.tipopantalla = tipopantalla;
@@ -68,7 +68,7 @@ public class Televisores extends Articulos {
 
     @Override
     public String toString() {
-        return "Televisores {" + "id Televisor = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo televisor = " + tipotelevisor + ", tamaño pantalla = " + tampantalla + ", tipo pantalla = " + tipopantalla + ", resolucion = " + resolucion + '}';
+        return "Televisores {" + "id Televisor = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo televisor = " + tipotelevisor + ", tamaño pantalla = " + tampantalla + ", tipo pantalla = " + tipopantalla + ", resolucion = " + resolucion + '}';
     }
     
     

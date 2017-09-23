@@ -17,8 +17,8 @@ public class Neveras extends Articulos {
     private float tamaño;
     private String sistema;
 
-    public Neveras(String capcongelador, String capfrigorifero, String material, int tamaño, String sistema, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Neveras(String capcongelador, String capfrigorifero, String material, int tamaño, String sistema, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.capcongelador = capcongelador;
         this.capfrigorifero = capfrigorifero;
         this.material = material;
@@ -79,7 +79,7 @@ public class Neveras extends Articulos {
 
     @Override
     public String toString() {
-        return "Neveras {" + "id Nevera = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad congelador = " + capcongelador + ", capacidad frigorifico = " + capfrigorifero + ", material = " + material + ", tamaño = " + tamaño + ", sistema = " + sistema + '}';
+        return "Neveras {" + "id Nevera = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad congelador = " + capcongelador + ", capacidad frigorifico = " + capfrigorifero + ", material = " + material + ", tamaño = " + tamaño + ", sistema = " + sistema + '}';
     }
     
     

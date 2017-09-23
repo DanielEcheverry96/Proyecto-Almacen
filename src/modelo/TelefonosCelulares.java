@@ -18,8 +18,8 @@ public class TelefonosCelulares extends Articulos {
     private String tipodepantalla;
     private String interfacered;
 
-    public TelefonosCelulares(String tiprocesador, int tamañodepantalla, int tammemoria, int capalmacenamiento, String tipodepantalla, String interfacered, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public TelefonosCelulares(String tiprocesador, int tamañodepantalla, int tammemoria, int capalmacenamiento, String tipodepantalla, String interfacered, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tiprocesador = tiprocesador;
         this.tamañodepantalla = tamañodepantalla;
         this.tammemoria = tammemoria;
@@ -91,7 +91,7 @@ public class TelefonosCelulares extends Articulos {
     
     @Override
     public String toString() {
-        return "Telefonos Celulares {" + "id Telefono celular = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo procesador = " + tiprocesador + ", tamaño de pantalla = " + tamañodepantalla + ", tamaño memoria = " + tammemoria + ", capacidad almacenamiento = " + capalmacenamiento + ", tipo de pantalla = " + tipodepantalla + ", interface red = " + interfacered + '}';
+        return "Telefonos Celulares {" + "id Telefono celular = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo procesador = " + tiprocesador + ", tamaño de pantalla = " + tamañodepantalla + ", tamaño memoria = " + tammemoria + ", capacidad almacenamiento = " + capalmacenamiento + ", tipo de pantalla = " + tipodepantalla + ", interface red = " + interfacered + '}';
     }
 
 }

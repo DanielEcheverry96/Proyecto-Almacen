@@ -17,8 +17,8 @@ public class Hornoselectricosygas extends Articulos {
     private String tipocontrol;
     private int temperaturamax;
 
-    public Hornoselectricosygas(String potencia, int numbandejas, String gratinador, String tipocontrol, int temperaturamax, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Hornoselectricosygas(String potencia, int numbandejas, String gratinador, String tipocontrol, int temperaturamax, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.potencia = potencia;
         this.numbandejas = numbandejas;
         this.gratinador = gratinador;
@@ -79,7 +79,7 @@ public class Hornoselectricosygas extends Articulos {
 
     @Override
     public String toString() {
-        return "Hornos electricos y gas {" + "id Horno = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", potencia = " + potencia + ", número bandejas = " + numbandejas + ", gratinador = " + gratinador + ", tipo control = " + tipocontrol + ", temperatura max = " + temperaturamax + '}';
+        return "Hornos electricos y gas {" + "id Horno = "+ idArticulo + ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", potencia = " + potencia + ", número bandejas = " + numbandejas + ", gratinador = " + gratinador + ", tipo control = " + tipocontrol + ", temperatura max = " + temperaturamax + '}';
     }
     
     

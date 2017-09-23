@@ -15,8 +15,8 @@ public class Zapatos extends Articulos{
     private int tallanumerica;
     private String tipousuario;
 
-    public Zapatos(String tipozapato, int tallanumerica, String tipousuario, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Zapatos(String tipozapato, int tallanumerica, String tipousuario, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tipozapato = tipozapato;
         this.tallanumerica = tallanumerica;
         this.tipousuario = tipousuario;
@@ -57,7 +57,7 @@ public class Zapatos extends Articulos{
 
     @Override
     public String toString() {
-        return "Zapatos {" + "id Zapato = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo zapato = " + tipozapato + ", talla numerica = " + tallanumerica + ", tipo usuario = " + tipousuario + '}';
+        return "Zapatos {" + "id Zapato = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo zapato = " + tipozapato + ", talla numerica = " + tallanumerica + ", tipo usuario = " + tipousuario + '}';
     }
     
     

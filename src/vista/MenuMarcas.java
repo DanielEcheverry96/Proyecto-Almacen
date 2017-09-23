@@ -81,8 +81,6 @@ public class MenuMarcas {
                     
                     int posicion = manobj.busquedaBinaria(a);
                     if (!(posicion==-1)) {
-                    System.out.println("Digite el nuevo Id de la Marca");
-                    marmod.setId(leer.nextInt());
                     System.out.println("Digite el nuevo nombre de la Marca");
                     marmod.setDescripcion(leer.next());
                     

@@ -17,8 +17,8 @@ public class Computadores extends Articulos {
     private String tipopantalla;
     private int capalmacenamiento;
 
-    public Computadores(String capmemoria, String tipoteclado, String tipomouse, String tipopantalla, int capalmacenamiento, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Computadores(String capmemoria, String tipoteclado, String tipomouse, String tipopantalla, int capalmacenamiento, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.capmemoria = capmemoria;
         this.tipoteclado = tipoteclado;
         this.tipomouse = tipomouse;
@@ -80,7 +80,7 @@ public class Computadores extends Articulos {
 
     @Override
     public String toString() {
-        return "Computadores {" + "id Computador = "+ idArticulo + ", id Marca = "+ idMarca + ", id Categoria = "+ idCategoria +", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad memoria = " + capmemoria + ", tipo teclado = " + tipoteclado + ", tipo mouse = " + tipomouse + ", tipo pantalla = " + tipopantalla + '}';
+        return "Computadores {" + "id Computador = "+ idArticulo +", marca = " + mar + ", id Marca = "+ idMarca + ", id Categoria = "+ idCategoria +", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad memoria = " + capmemoria + ", tipo teclado = " + tipoteclado + ", tipo mouse = " + tipomouse + ", tipo pantalla = " + tipopantalla + '}';
     }
 
 }

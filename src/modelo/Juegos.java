@@ -16,8 +16,8 @@ public class Juegos extends Articulos {
     private String plataforma;
     private int numjugadores;
 
-    public Juegos(String genero, String restedad, String plataforma, int numjugadores, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Juegos(String genero, String restedad, String plataforma, int numjugadores, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.genero = genero;
         this.restedad = restedad;
         this.plataforma = plataforma;
@@ -68,7 +68,7 @@ public class Juegos extends Articulos {
 
     @Override
     public String toString() {
-        return "Juegos {" + "id Juego = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Imagen = "+imagen+ ", genero = " + genero + ", restricción edad = " + restedad + ", plataforma = " + plataforma + ", número jugadores = " + numjugadores + '}';
+        return "Juegos {" + "id Juego = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Imagen = "+imagen+ ", genero = " + genero + ", restricción edad = " + restedad + ", plataforma = " + plataforma + ", número jugadores = " + numjugadores + '}';
     }
     
     

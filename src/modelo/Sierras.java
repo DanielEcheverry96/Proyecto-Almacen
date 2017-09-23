@@ -16,8 +16,8 @@ public class Sierras extends Articulos{
     private float peso;
     private float diametrodisco;
 
-    public Sierras(String tipo, int potencia, int velocidad, float peso, float diametrodisco, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Sierras(String tipo, int potencia, int velocidad, float peso, float diametrodisco, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tipo = tipo;
         this.potencia = potencia;
         this.velocidad = velocidad;
@@ -78,7 +78,7 @@ public class Sierras extends Articulos{
 
     @Override
     public String toString() {
-        return "Sierras {" + "id Sierra = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo = " + tipo + ", potencia = " + potencia + ", velocidad = " + velocidad + ", peso = " + peso + ", diametro disco = " + diametrodisco + '}';
+        return "Sierras {" + "id Sierra = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo = " + tipo + ", potencia = " + potencia + ", velocidad = " + velocidad + ", peso = " + peso + ", diametro disco = " + diametrodisco + '}';
     }
     
     

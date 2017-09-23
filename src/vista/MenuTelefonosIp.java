@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorTelefonosIp;
 import java.util.Scanner;
 import modelo.TelefonosIp;
@@ -17,6 +18,7 @@ public class MenuTelefonosIp {
     
     Scanner leer = new Scanner(System.in);
     ManejadorTelefonosIp mantelip = new ManejadorTelefonosIp();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     public void insertarTelefonosIp(){
         
@@ -25,7 +27,8 @@ public class MenuTelefonosIp {
         System.out.println("Digite el Id del telefono ip");
         telip.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del telefono ip");
-        telip.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        telip.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         telip.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

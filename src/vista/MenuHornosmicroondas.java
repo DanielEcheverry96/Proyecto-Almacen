@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ManejadorHornosmicroondas;
+import controlador.ManejadorObjetos;
 import java.util.Scanner;
 import modelo.Hornosmicroondas;
 
@@ -16,7 +17,8 @@ import modelo.Hornosmicroondas;
 public class MenuHornosmicroondas {
     Scanner leer = new Scanner(System.in);
     ManejadorHornosmicroondas manhornmic = new ManejadorHornosmicroondas();
-
+    ManejadorObjetos manobj = new ManejadorObjetos();
+    
     public void insertarHornosmicroondas() {
         
         Hornosmicroondas hornmic = new Hornosmicroondas();
@@ -24,7 +26,8 @@ public class MenuHornosmicroondas {
         System.out.println("Digite el Id del horno microondas");
         hornmic.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del hornomicroondas");
-        hornmic.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        hornmic.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         hornmic.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

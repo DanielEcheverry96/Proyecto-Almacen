@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorVestidosCalle;
 import java.util.Scanner;
 import modelo.VestidosCalle;
@@ -18,12 +19,15 @@ public class MenuVestidosCalle {
     Scanner leer = new Scanner(System.in);
     ManejadorVestidosCalle manvesca = new ManejadorVestidosCalle();
     VestidosCalle vesca = new VestidosCalle();
+    ManejadorObjetos manobj = new ManejadorObjetos();
+    
      public void insertarVestidosCalle(){
         
         System.out.println("Digite el ID del vestido");
         vesca.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del vestido");
-        vesca.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        vesca.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         vesca.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

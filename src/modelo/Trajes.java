@@ -14,8 +14,8 @@ public class Trajes extends Articulos{
     protected String talla;
     protected String tipousuario;
 
-    public Trajes(String tipo, String talla, String tipousuario, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Trajes(String tipo, String talla, String tipousuario, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.tipo = tipo;
         this.talla = talla;
         this.tipousuario = tipousuario;
@@ -56,7 +56,7 @@ public class Trajes extends Articulos{
 
     @Override
     public String toString() {
-        return "Trajes{" + "tipo=" + tipo + ", talla=" + talla + ", tipousuario=" + tipousuario + '}';
+        return "Trajes{" + ", marca = " + mar + "tipo=" + tipo + ", talla=" + talla + ", tipousuario=" + tipousuario + '}';
     }
     
     

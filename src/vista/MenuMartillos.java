@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ManejadorMartillos;
+import controlador.ManejadorObjetos;
 import java.util.Scanner;
 import modelo.Martillos;
 
@@ -17,6 +18,7 @@ import modelo.Martillos;
 public class MenuMartillos {
     Scanner leer = new Scanner(System.in);
     ManejadorMartillos manmart = new ManejadorMartillos();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     public void insertarMartillos(){
         
@@ -25,7 +27,8 @@ public class MenuMartillos {
         System.out.println("Digite el ID del martillo");
         mar.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del martillo");
-        mar.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        mar.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         mar.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

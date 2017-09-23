@@ -5,6 +5,7 @@
  */
 package vista;
 
+import controlador.ManejadorObjetos;
 import controlador.ManejadorRemachadoras;
 import java.util.Scanner;
 import modelo.Remachadoras;
@@ -16,6 +17,7 @@ import modelo.Remachadoras;
 public class MenuRemachadoras {
     Scanner leer = new Scanner(System.in);
     ManejadorRemachadoras manrem = new ManejadorRemachadoras();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     public void insertarRemachadoras(){
         
@@ -24,7 +26,8 @@ public class MenuRemachadoras {
         System.out.println("Digite el ID de la remachadora");
         rem.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca de la remachadora");
-        rem.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        rem.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         rem.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

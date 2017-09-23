@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ManejadorHornoselectricosygas;
+import controlador.ManejadorObjetos;
 import java.util.Scanner;
 import modelo.Hornoselectricosygas;
 
@@ -16,6 +17,7 @@ import modelo.Hornoselectricosygas;
 public class MenuHornoselectricosygas {
     Scanner leer = new Scanner (System.in);
     ManejadorHornoselectricosygas manheg = new ManejadorHornoselectricosygas();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
     
     public void insertarHornoselectricosygas() {
@@ -24,7 +26,8 @@ public class MenuHornoselectricosygas {
         System.out.println("Digite el ID del horno");
         heg.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del horno");
-        heg.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        heg.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         heg.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

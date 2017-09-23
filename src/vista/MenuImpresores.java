@@ -6,6 +6,7 @@
 package vista;
 
 import controlador.ManejadorImpresores;
+import controlador.ManejadorObjetos;
 import java.util.Scanner;
 import modelo.Impresores;
 
@@ -17,6 +18,7 @@ public class MenuImpresores {
     
     Scanner leer = new Scanner(System.in);
     ManejadorImpresores manimp = new ManejadorImpresores();
+    ManejadorObjetos manobj = new ManejadorObjetos();
     
       public void insertarImpresores(){
         
@@ -25,7 +27,8 @@ public class MenuImpresores {
         System.out.println("Digite el Id del impresor");
         impre.setIdArticulo(leer.nextInt());
         System.out.println("Digite el Id de la marca del impresor");
-        impre.setIdMarca(leer.nextInt());
+        int id= leer.nextInt();
+        impre.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
         System.out.println("Digite el nombre del articulo");
         impre.setNombre(leer.next());
         System.out.println("Digite la cantidad del articulo");

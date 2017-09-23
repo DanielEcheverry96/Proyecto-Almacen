@@ -16,8 +16,8 @@ public class Hornosmicroondas extends Articulos {
     private String potencia;
     private String voltaje;
 
-    public Hornosmicroondas(String capacidad, String compartimiento, String potencia, String voltaje, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Hornosmicroondas(String capacidad, String compartimiento, String potencia, String voltaje, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.capacidad = capacidad;
         this.compartimiento = compartimiento;
         this.potencia = potencia;
@@ -69,7 +69,7 @@ public class Hornosmicroondas extends Articulos {
 
     @Override
     public String toString() {
-        return "Hornos microondas {" + "id Horno Microondas = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad = " + capacidad + ", compartimiento = " + compartimiento + ", potencia = " + potencia + ", voltaje = " + voltaje + '}';
+        return "Hornos microondas {" + "id Horno Microondas = "+ idArticulo + ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad = " + capacidad + ", compartimiento = " + compartimiento + ", potencia = " + potencia + ", voltaje = " + voltaje + '}';
     }
     
     

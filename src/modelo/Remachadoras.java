@@ -15,8 +15,8 @@ public class Remachadoras extends Articulos {
     private String tiporemache;
     private double calibre;
 
-    public Remachadoras(String potencia, String tiporemache, double calibre, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Remachadoras(String potencia, String tiporemache, double calibre, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
         this.potencia = potencia;
         this.tiporemache = tiporemache;
         this.calibre = calibre;
@@ -57,7 +57,7 @@ public class Remachadoras extends Articulos {
 
     @Override
     public String toString() {
-        return "Remachadoras {" + "id Remachadora = "+ idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", potencia = " + potencia + ", tipo remache = " + tiporemache + ", calibre = " + calibre + '}';
+        return "Remachadoras {" + "id Remachadora = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", potencia = " + potencia + ", tipo remache = " + tiporemache + ", calibre = " + calibre + '}';
     }
     
     

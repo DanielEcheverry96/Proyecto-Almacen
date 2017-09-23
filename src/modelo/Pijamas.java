@@ -11,8 +11,8 @@ package modelo;
  */
 public class Pijamas extends Trajes{
 
-    public Pijamas(String tipo, String talla, String tipousuario, int idMarca, int idCategoria, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen) {
-        super(tipo, talla, tipousuario, idMarca, idCategoria, idArticulo, nombre, cantidad, precio, descripcion, color, imagen);
+    public Pijamas(String tipo, String talla, String tipousuario, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar) {
+        super(tipo, talla, tipousuario, idMarca, idArticulo, nombre, cantidad, precio, descripcion, color, imagen, mar);
     }
 
     public Pijamas(String tipo, String talla, String tipousuario) {
@@ -48,7 +48,7 @@ public class Pijamas extends Trajes{
 
     @Override
     public String toString() {
-        return "Pijamas{" + "id Pijama = " + idArticulo+ ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+ imagen +  ", Tipo = " +getTipo() + ", Talla = " + getTalla() + ", Tipo usuario = " + getTipousuario() + '}';
+        return "Pijamas{" + "id Pijama = " + idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+ imagen +  ", Tipo = " +getTipo() + ", Talla = " + getTalla() + ", Tipo usuario = " + getTipousuario() + '}';
     }
     
     
