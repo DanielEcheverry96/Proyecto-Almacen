@@ -25,6 +25,7 @@ public class MenuConsolas {
         
         System.out.println("Digite el ID de la consola");
         cons.setIdArticulo(leer.nextInt());
+        manobj.consultarTodos();
         System.out.println("Digite el Id de la marca de la consola");
         int id= leer.nextInt();
         cons.setMar(manobj.arregloMarcas.get(manobj.busquedaBinaria(id)));
