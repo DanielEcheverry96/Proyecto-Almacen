@@ -56,7 +56,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Component id="jTextFieldTamañoPantalla" min="-2" pref="56" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="55" max="32767" attributes="0"/>
                                   </Group>
                                   <Component id="jTextFieldCantidad" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jTextFieldPrecio" alignment="0" max="32767" attributes="0"/>
@@ -64,7 +64,7 @@
                                   <Component id="jTextFieldUrl" alignment="1" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabelMarca" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelId" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -74,40 +74,48 @@
                               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jTextFieldNombre" max="32767" attributes="0"/>
                                   <Component id="jTextFieldId" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jComboBoxMarca" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxMarca" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabelTipMouse" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelTipTeclado" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelTipPantalla" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="43" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldTipoPantalla" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelTipMouse" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelTipTeclado" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabelTipPantalla" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextFieldTipoMouse" min="-2" pref="74" max="-2" attributes="0"/>
-                                          <Component id="jTextFieldTipoTeclado" min="-2" pref="73" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="43" max="32767" attributes="0"/>
+                                          <Component id="jTextFieldTipoPantalla" min="-2" pref="73" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jTextFieldTipoMouse" min="-2" pref="74" max="-2" attributes="0"/>
+                                              <Component id="jTextFieldTipoTeclado" min="-2" pref="73" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
                                   </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabelCapMemoria" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldCapacidadMemoria" min="-2" pref="74" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabelCapMemoria" min="-2" max="-2" attributes="0"/>
+                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="jTextFieldCapacidadMemoria" min="-2" pref="74" max="-2" attributes="0"/>
+                              <Component id="jTextFieldCapacidadAlmacenamiento" min="-2" pref="93" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="75" max="32767" attributes="0"/>
+                      <EmptySpace pref="48" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Component id="jButtonConsultarTodo" min="-2" max="-2" attributes="0"/>
@@ -129,28 +137,42 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelTipMouse" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldId" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTipoMouse" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelTipTeclado" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonInsertar" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
-                  <Component id="jTextFieldTipoTeclado" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace pref="14" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jLabelMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jComboBoxMarca" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jLabelCapMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jTextFieldCapacidadMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelTipMouse" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTipoMouse" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelTipTeclado" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonInsertar" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Component id="jTextFieldTipoTeclado" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="14" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelCapMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldCapacidadMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonModificar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelId" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jComboBoxMarca" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -180,6 +202,8 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabelColor" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTextFieldColor" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldCapacidadAlmacenamiento" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -308,6 +332,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Insertar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonInsertarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButtonModificar">
       <Properties>
@@ -336,6 +363,13 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Borrar Todos"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Capacidad Almacenamiento"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="jTextFieldCapacidadAlmacenamiento">
     </Component>
   </SubComponents>
 </Form>
