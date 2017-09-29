@@ -124,7 +124,7 @@ public class MenuMarcaInter extends javax.swing.JFrame {
             }
         });
 
-        jButton4.setText("Consultar uno");
+        jButton4.setText("Consultar Uno");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
