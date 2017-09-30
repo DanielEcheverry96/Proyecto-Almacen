@@ -76,7 +76,6 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jLabelPrecio = new javax.swing.JLabel();
         jLabelColor = new javax.swing.JLabel();
         jLabelUrl = new javax.swing.JLabel();
-        jLabelTamPantalla = new javax.swing.JLabel();
         jLabelTipMouse = new javax.swing.JLabel();
         jLabelTipTeclado = new javax.swing.JLabel();
         jLabelCapMemoria = new javax.swing.JLabel();
@@ -87,7 +86,6 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jTextFieldPrecio = new javax.swing.JTextField();
         jTextFieldColor = new javax.swing.JTextField();
         jTextFieldUrl = new javax.swing.JTextField();
-        jTextFieldTamañoPantalla = new javax.swing.JTextField();
         jTextFieldTipoMouse = new javax.swing.JTextField();
         jTextFieldTipoTeclado = new javax.swing.JTextField();
         jTextFieldCapacidadMemoria = new javax.swing.JTextField();
@@ -96,8 +94,8 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jButtonConsultarUno = new javax.swing.JButton();
         jButtonConsultarTodo = new javax.swing.JButton();
         jButtonBorrarUno = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
+        jButtonBorrarTodos = new javax.swing.JButton();
+        jLabelCapacidadAlmacenamiento = new javax.swing.JLabel();
         jTextFieldCapacidadAlmacenamiento = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -137,9 +135,6 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jLabelUrl.setText("Url");
         getContentPane().add(jLabelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 223, -1, -1));
 
-        jLabelTamPantalla.setText("Tamaño pantalla");
-        getContentPane().add(jLabelTamPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 254, -1, -1));
-
         jLabelTipMouse.setText("Tipo Mouse");
         getContentPane().add(jLabelTipMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 34, -1, -1));
 
@@ -163,7 +158,6 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         getContentPane().add(jTextFieldPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 164, 111, -1));
         getContentPane().add(jTextFieldColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 192, 111, -1));
         getContentPane().add(jTextFieldUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 220, 111, -1));
-        getContentPane().add(jTextFieldTamañoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 248, 56, -1));
         getContentPane().add(jTextFieldTipoMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 29, 74, -1));
         getContentPane().add(jTextFieldTipoTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 59, 73, -1));
         getContentPane().add(jTextFieldCapacidadMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 98, 74, -1));
@@ -186,11 +180,11 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jButtonBorrarUno.setText("Borrar Uno");
         getContentPane().add(jButtonBorrarUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 208, -1, -1));
 
-        jButton6.setText("Borrar Todos");
-        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 249, -1, -1));
+        jButtonBorrarTodos.setText("Borrar Todos");
+        getContentPane().add(jButtonBorrarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 249, -1, -1));
 
-        jLabel3.setText("Capacidad Almacenamiento");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 195, -1, -1));
+        jLabelCapacidadAlmacenamiento.setText("Capacidad Almacenamiento");
+        getContentPane().add(jLabelCapacidadAlmacenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 195, -1, -1));
         getContentPane().add(jTextFieldCapacidadAlmacenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 192, 93, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -231,7 +225,41 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCantidadActionPerformed
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
-        // TODO add your handling code here:
+       Computadores comp = new Computadores();
+       comp.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+       comp.setNombre(jTextFieldNombre.getText());
+       comp.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+       comp.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+       comp.setColor(jTextFieldColor.getText());
+       comp.setMar(mar);
+       comp.setCapmemoria(jTextFieldCapacidadMemoria.getText());
+       comp.setTipoteclado(jTextFieldTipoTeclado.getText());
+       comp.setTipomouse(jTextFieldTipoMouse.getText());
+       comp.setTipopantalla(jTextFieldTipoPantalla.getText());
+       comp.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
+       
+       
+        
+        if (mancop.insertar(comp)) {
+            jLabelMensaje.setText("Computador Insertado");
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 1);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldCantidad.getText()), indiceFila, 2);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 3);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldMarca.getText(), indiceFila, 5);
+            jTable1.setValueAt(jTextFieldCapacidadMemoria.getText(), indiceFila, 6);
+            jTable1.setValueAt(jTextFieldTipoTeclado.getText(), indiceFila, 7);
+            jTable1.setValueAt(jTextFieldTipoMouse.getText(), indiceFila, 8);
+            jTable1.setValueAt(jTextFieldTipoPantalla.getText(), indiceFila, 9);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()), indiceFila, 10);
+            indiceFila++;
+            mancop.consultarTodos();
+        }
+        else
+            jLabelMensaje.setText("Computador no insertado");
+        
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
    
@@ -271,7 +299,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButtonBorrarTodos;
     private javax.swing.JButton jButtonBorrarUno;
     private javax.swing.JButton jButtonConsultarTodo;
     private javax.swing.JButton jButtonConsultarUno;
@@ -280,16 +308,15 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelCapMemoria;
+    private javax.swing.JLabel jLabelCapacidadAlmacenamiento;
     private javax.swing.JLabel jLabelColor;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelMarca;
     private javax.swing.JLabel jLabelMensaje;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelPrecio;
-    private javax.swing.JLabel jLabelTamPantalla;
     private javax.swing.JLabel jLabelTipMouse;
     private javax.swing.JLabel jLabelTipPantalla;
     private javax.swing.JLabel jLabelTipTeclado;
@@ -304,7 +331,6 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldId;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldPrecio;
-    private javax.swing.JTextField jTextFieldTamañoPantalla;
     private javax.swing.JTextField jTextFieldTipoMouse;
     private javax.swing.JTextField jTextFieldTipoPantalla;
     private javax.swing.JTextField jTextFieldTipoTeclado;
