@@ -5,21 +5,57 @@
  */
 package vistaGUI;
 
+import controlador.ManejadorObjetos;
+import javax.swing.table.DefaultTableModel;
 import modelo.Computadores;
+import controlador.ManejadorComputadores;
+import modelo.CategoriaElectronicosOficina;
+import modelo.Marca;
 
 /**
  *
  * @author Daniel
  */
 public class MenuComputadorInter extends javax.swing.JFrame {
-
+    ManejadorObjetos manObjetos;
+    CategoriaElectronicosOficina mancate;
+    ManejadorComputadores mancop;
+    Integer idMarcaTemporal = null;
+    DefaultTableModel model;
+    int indiceFila = 0;
+    String[] dato = new String[10];
     /**
      * Creates new form MenuComputadorInter
      */
+    //String capmemoria, String tipoteclado, String tipomouse, String tipopantalla, int capalmacenamiento, int idMarca, int idArticulo, String nombre, int cantidad, float precio, String descripcion, String color, String imagen, Marca mar
     public MenuComputadorInter() {
         initComponents();
+        manObjetos = new ManejadorObjetos();
+        mancate = new CategoriaElectronicosOficina();
+        mancop = new ManejadorComputadores();
+        model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Color");
+        model.addColumn("Marca");
+        model.addColumn("Capacidad memoria");
+        model.addColumn("Tipo teclado");
+        model.addColumn("Tipo mouse");
+        model.addColumn("Tipo pantalla");
+        model.addColumn("Capacidad almacenamiento");
+        jTable1.setModel(model);
+        model.insertRow(indiceFila, dato);
+        inicializarComboBox();
     }
-
+    
+        public void inicializarComboBox(){
+        for(int i=0;i<manObjetos.arregloMarcas.size();i++){
+           jComboBoxMarca.addItem(manObjetos.arregloMarcas.get(i).toString());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -56,7 +92,6 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jTextFieldTipoTeclado = new javax.swing.JTextField();
         jTextFieldCapacidadMemoria = new javax.swing.JTextField();
         jTextFieldTipoPantalla = new javax.swing.JTextField();
-        jButtonInsertar = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonConsultarUno = new javax.swing.JButton();
         jButtonConsultarTodo = new javax.swing.JButton();
@@ -64,57 +99,81 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jTextFieldCapacidadAlmacenamiento = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabelMensaje = new javax.swing.JLabel();
+        jButtonInsertar = new javax.swing.JButton();
 
         jLabel1.setText("jLabel1");
 
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabelTitulo.setText("Computador");
+        getContentPane().add(jLabelTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(169, 11, -1, -1));
 
         jLabelId.setText("Id");
+        getContentPane().add(jLabelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 34, -1, -1));
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        getContentPane().add(jComboBoxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 100, 73, -1));
 
         jLabelMarca.setText("Marca");
+        getContentPane().add(jLabelMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 103, -1, -1));
 
         jLabelNombre.setText("Nombre");
+        getContentPane().add(jLabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 58, -1, -1));
 
         jLabelCantidad.setText("Cantidad");
+        getContentPane().add(jLabelCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 141, -1, -1));
 
         jLabelPrecio.setText("Precio");
+        getContentPane().add(jLabelPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 167, -1, -1));
 
         jLabelColor.setText("Color");
+        getContentPane().add(jLabelColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 195, -1, -1));
 
         jLabelUrl.setText("Url");
+        getContentPane().add(jLabelUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 223, -1, -1));
 
         jLabelTamPantalla.setText("Tamaño pantalla");
+        getContentPane().add(jLabelTamPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 254, -1, -1));
 
         jLabelTipMouse.setText("Tipo Mouse");
+        getContentPane().add(jLabelTipMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 34, -1, -1));
 
         jLabelTipTeclado.setText("Tipo Teclado");
+        getContentPane().add(jLabelTipTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 62, -1, -1));
 
         jLabelCapMemoria.setText("Capacidad Memoria");
+        getContentPane().add(jLabelCapMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 101, -1, -1));
 
         jLabelTipPantalla.setText("Tipo Pantalla");
+        getContentPane().add(jLabelTipPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 141, -1, -1));
+        getContentPane().add(jTextFieldId, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 31, 88, -1));
+        getContentPane().add(jTextFieldNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 55, 88, -1));
 
         jTextFieldCantidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldCantidadActionPerformed(evt);
             }
         });
-
-        jButtonInsertar.setText("Insertar");
-        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonInsertarActionPerformed(evt);
-            }
-        });
+        getContentPane().add(jTextFieldCantidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 138, 111, -1));
+        getContentPane().add(jTextFieldPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 164, 111, -1));
+        getContentPane().add(jTextFieldColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 192, 111, -1));
+        getContentPane().add(jTextFieldUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 220, 111, -1));
+        getContentPane().add(jTextFieldTamañoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 248, 56, -1));
+        getContentPane().add(jTextFieldTipoMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 29, 74, -1));
+        getContentPane().add(jTextFieldTipoTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 59, 73, -1));
+        getContentPane().add(jTextFieldCapacidadMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 98, 74, -1));
+        getContentPane().add(jTextFieldTipoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 138, 73, -1));
 
         jButtonModificar.setText("Modificar");
+        getContentPane().add(jButtonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 97, -1, -1));
 
         jButtonConsultarUno.setText("Consultar Uno");
+        getContentPane().add(jButtonConsultarUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 134, -1, -1));
 
         jButtonConsultarTodo.setText("Consultar Todo");
         jButtonConsultarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -122,159 +181,43 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                 jButtonConsultarTodoActionPerformed(evt);
             }
         });
+        getContentPane().add(jButtonConsultarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 171, -1, -1));
 
         jButtonBorrarUno.setText("Borrar Uno");
+        getContentPane().add(jButtonBorrarUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 208, -1, -1));
 
         jButton6.setText("Borrar Todos");
+        getContentPane().add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 249, -1, -1));
 
         jLabel3.setText("Capacidad Almacenamiento");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 195, -1, -1));
+        getContentPane().add(jTextFieldCapacidadAlmacenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 192, 93, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
-                        .addComponent(jLabelTitulo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelTamPantalla)
-                                    .addComponent(jLabelUrl)
-                                    .addComponent(jLabelColor)
-                                    .addComponent(jLabelPrecio)
-                                    .addComponent(jLabelCantidad))
-                                .addGap(20, 20, 20)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jTextFieldTamañoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 55, Short.MAX_VALUE))
-                                    .addComponent(jTextFieldCantidad)
-                                    .addComponent(jTextFieldPrecio)
-                                    .addComponent(jTextFieldColor)
-                                    .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelMarca)
-                                    .addComponent(jLabelId)
-                                    .addComponent(jLabelNombre))
-                                .addGap(62, 62, 62)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldNombre)
-                                    .addComponent(jTextFieldId, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabelTipMouse)
-                                        .addComponent(jLabelTipTeclado)
-                                        .addComponent(jLabelTipPantalla))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldTipoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(42, 42, 42)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jTextFieldTipoMouse, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTextFieldTipoTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGap(0, 0, Short.MAX_VALUE))))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabelCapMemoria)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextFieldCapacidadMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextFieldCapacidadAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jButtonConsultarTodo)
-                                .addComponent(jButtonConsultarUno)
-                                .addComponent(jButtonBorrarUno)
-                                .addComponent(jButton6))
-                            .addComponent(jButtonInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonModificar))))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTipMouse)
-                            .addComponent(jTextFieldTipoMouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTipTeclado)
-                            .addComponent(jButtonInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldTipoTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCapMemoria)
-                            .addComponent(jTextFieldCapacidadMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonModificar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelId)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(4, 4, 4)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelMarca)
-                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarUno)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarTodo)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonBorrarUno)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCantidad)
-                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelTipPantalla)
-                            .addComponent(jTextFieldTipoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(6, 6, 6)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPrecio)
-                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelColor)
-                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)
-                            .addComponent(jTextFieldCapacidadAlmacenamiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelUrl)
-                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelTamPantalla)
-                            .addComponent(jTextFieldTamañoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(145, 145, 145))
-        );
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 299, -1, 91));
+
+        jLabelMensaje.setText("Estado");
+        getContentPane().add(jLabelMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 420, -1, -1));
+
+        jButtonInsertar.setText("Insertar");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButtonInsertar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -288,19 +231,10 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldCantidadActionPerformed
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
-        Computadores comp = new Computadores( jTextFieldCapacidadMemoria.getText(),jTextFieldTipoTeclado.getText(), jTextFieldTipoMouse.getText(), jTextFieldTipoPantalla.getText(), Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()), 0,Integer.parseInt(jTextFieldId.getText()) ,jTextFieldNombre.getText() , Integer.parseInt(jTextFieldCantidad.getText()), Float.parseFloat(jTextFieldPrecio.getText()), "0", jTextFieldColor.getText(), jTextFieldUrl.getText(), mar);
-        
-        if (manobj.insertar(mar)) {
-            jMensaje.setText("Marca Insertada");
-            model.insertRow(indiceFila, dato);
-            jTable2.setValueAt(jTextFieldId.getText(), indiceFila, 0);
-            jTable2.setValueAt(jTextFieldMarca.getText(), indiceFila, 1);
-            indiceFila++;
-            manobj.consultarTodos();
-        }
-        else
-            jMensaje.setText("Marca no insertada");    }//GEN-LAST:event_jButtonInsertarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
 
+   
     /**
      * @param args the command line arguments
      */
@@ -352,6 +286,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelColor;
     private javax.swing.JLabel jLabelId;
     private javax.swing.JLabel jLabelMarca;
+    private javax.swing.JLabel jLabelMensaje;
     private javax.swing.JLabel jLabelNombre;
     private javax.swing.JLabel jLabelPrecio;
     private javax.swing.JLabel jLabelTamPantalla;
@@ -360,6 +295,8 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTipTeclado;
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelUrl;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldCantidad;
     private javax.swing.JTextField jTextFieldCapacidadAlmacenamiento;
     private javax.swing.JTextField jTextFieldCapacidadMemoria;
