@@ -231,7 +231,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
        comp.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
        comp.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
        comp.setColor(jTextFieldColor.getText());
-       comp.setMar(mar);
+       comp.setIdMarca(0);
        comp.setCapmemoria(jTextFieldCapacidadMemoria.getText());
        comp.setTipoteclado(jTextFieldTipoTeclado.getText());
        comp.setTipomouse(jTextFieldTipoMouse.getText());
@@ -248,7 +248,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             jTable1.setValueAt(Integer.parseInt(jTextFieldCantidad.getText()), indiceFila, 2);
             jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 3);
             jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 4);
-            jTable1.setValueAt(jTextFieldMarca.getText(), indiceFila, 5);
+            jTable1.setValueAt(0, indiceFila, 5);
             jTable1.setValueAt(jTextFieldCapacidadMemoria.getText(), indiceFila, 6);
             jTable1.setValueAt(jTextFieldTipoTeclado.getText(), indiceFila, 7);
             jTable1.setValueAt(jTextFieldTipoMouse.getText(), indiceFila, 8);

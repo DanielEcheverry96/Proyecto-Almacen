@@ -344,19 +344,18 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
 
         indiceFila = 0;
 
-        for (int i = 0; i < CategoriaDeportivos.arregloraquetas.size(); i++) {
+        for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getIdArticulo(), indiceFila, 0);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getMar().getId(), indiceFila, 1);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getMar().getDescripcion(), indiceFila, 2);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getNombre(), indiceFila, 3);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getCantidad(), indiceFila, 4);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getPrecio(), indiceFila, 5);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getColor(), indiceFila, 6);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getTipomarco(), indiceFila, 7);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getLongitud(), indiceFila, 8);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getAncho(), indiceFila, 9);
-            jTable1.setValueAt(CategoriaDeportivos.arregloraquetas.get(i).getPeso(), indiceFila, 10);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getId(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getNombre(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getCantidad(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getPrecio(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getColor(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTipo(), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
@@ -445,7 +444,7 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
             int posicion = manraq.busquedaBinaria(a);
                     if (!(posicion==-1)) {
                     if (manraq.modificar(posicion, raqmod)) {
-                        JOptionPane.showMessageDialog(this, "Marca modificada exitosamente");
+                        JOptionPane.showMessageDialog(this, "Raqueta modificada exitosamente");
                         indiceFila--;
                     }
                     }

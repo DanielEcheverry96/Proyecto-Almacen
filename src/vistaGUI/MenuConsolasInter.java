@@ -104,6 +104,11 @@ public class MenuConsolasInter extends javax.swing.JFrame {
         jButtonBorrarTodos.setText("Borrar Todos");
 
         jButtonInsertar.setText("Insertar");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -263,6 +268,10 @@ public class MenuConsolasInter extends javax.swing.JFrame {
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
+
+    private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     /**
      * @param args the command line arguments

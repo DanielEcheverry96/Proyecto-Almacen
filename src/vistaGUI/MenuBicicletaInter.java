@@ -5,7 +5,14 @@
  */
 
 package vistaGUI;
+import controlador.ManejadorBicicletas;
+import controlador.ManejadorObjetos;
+import java.awt.event.ItemEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import modelo.Bicicletas;
+import modelo.CategoriaDeportivos;
+import modelo.Marca;
 /**
  *
  * @author Daniel
@@ -13,10 +20,38 @@ import modelo.Bicicletas;
 public class MenuBicicletaInter extends javax.swing.JFrame {
 
     /** Creates new form MenuBicicletaInter */
+    ManejadorObjetos manobj;
+    ManejadorBicicletas manbici;
+    Integer idMarcaTemporal = null;
+    String nombreMarcaTemporal = "";
+    DefaultTableModel model;
+    int indiceFila = 0;
+    String[] dato = new String[10];
     public MenuBicicletaInter() {
         initComponents();
+        manobj = new ManejadorObjetos();
+        manbici = new ManejadorBicicletas();
+        model = new DefaultTableModel();
+        model.addColumn("Id");       
+        model.addColumn("Id Marca");       
+        model.addColumn("Nombre Marca");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Color");
+        model.addColumn("Tamaño Rueda");
+        model.addColumn("Material Montura");
+        model.addColumn("Tipo Bicicleta");
+        jTable1.setModel(model);
+        model.insertRow(indiceFila, dato);
+        inicializarComboBox();
     }
 
+        public void inicializarComboBox(){
+        for(int i=0;i<manobj.arregloMarcas.size();i++){
+           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).toString());
+        }
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -57,8 +92,6 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jLabelMensaje = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         jLabelTitulo.setText("Bicicletas");
 
         jLabelId.setText("ID");
@@ -81,11 +114,30 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
         jLabelTipobicicleta.setText("Tipo bicicleta");
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMarcaItemStateChanged(evt);
+            }
+        });
+        jComboBoxMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcaActionPerformed(evt);
+            }
+        });
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarUno.setText("Consultar Uno");
+        jButtonConsultarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarTodo.setText("Consultar Todo");
         jButtonConsultarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -95,10 +147,25 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         });
 
         jButtonBorrarUno.setText("Borrar Uno");
+        jButtonBorrarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonBorrarTodos.setText("Borrar Todos");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
 
         jButtonInsertar.setText("Insertar");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -164,11 +231,11 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(243, 243, 243)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(329, 329, 329)
-                        .addComponent(jLabelTitulo)))
+                        .addComponent(jLabelTitulo))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(152, 152, 152)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -235,52 +302,216 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                                     .addComponent(jTextFieldTipobicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
+                        .addGap(29, 29, 29)
                         .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29))))
+                        .addGap(30, 30, 30))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        // TODO add your handling code here:
+               manbici.consultarTodos();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaDeportivos.arregloraquetas.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getId(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getNombre(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getCantidad(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getPrecio(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getColor(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 9);
+            indiceFila++;
+        }
+        
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
+
+    private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+       Bicicletas bici = new Bicicletas();
+       Marca mar = new Marca();
+       bici.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+       mar.setId(idMarcaTemporal);
+       mar.setDescripcion(nombreMarcaTemporal);
+       bici.setMar(mar);
+       bici.setNombre(jTextFieldNombre.getText());
+       bici.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+       bici.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+       bici.setColor(jTextFieldColor.getText());
+       bici.setTamaniorueda(Integer.parseInt(jTextFieldTamañorueda.getText()));
+       bici.setMaterial(jTextFieldMaterialmontura.getText());
+       bici.setTipo(jTextFieldTipobicicleta.getText());
+       
+        if (manbici.insertar(bici)) {
+            jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
+            jTable1.setValueAt(idMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 2);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 3);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 4);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 5);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 6);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldTamañorueda.getText()), indiceFila, 7);
+            jTable1.setValueAt(jTextFieldMaterialmontura.getText(), indiceFila, 8);
+            jTable1.setValueAt(jTextFieldTipobicicleta.getText(), indiceFila, 9);
+            indiceFila++;
+            manbici.consultarTodos();
+        }
+        else{
+            jLabelMensaje.setText("Error al insertar");
+            //JOptionPane.showMessageDialog(this, "Error al insertar");
+        }
+       
+        
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        
+            int filaSeleccionada = jTable1.getSelectedRow();
+            System.out.println(filaSeleccionada);
+        
+            if (filaSeleccionada >= 0) {
+            
+            Bicicletas bicimod = new Bicicletas();
+            int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            int idMarcaMod = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 1).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 2).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
+            jTextFieldTamañorueda.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            jTextFieldMaterialmontura.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
+            jTextFieldTipobicicleta.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            
+            Marca marmod = new Marca();
+            bicimod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+            marmod.setId(idMarcaMod);
+            marmod.setDescripcion(nombreMarcaMod);
+            bicimod.setMar(marmod);
+            bicimod.setNombre(jTextFieldNombre.getText());
+            bicimod.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+            bicimod.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+            bicimod.setColor(jTextFieldColor.getText());
+            bicimod.setTamaniorueda(Integer.parseInt(jTextFieldTamañorueda.getText()));
+            bicimod.setMaterial(jTextFieldMaterialmontura.getText());
+            bicimod.setTipo(jTextFieldTipobicicleta.getText());
+            
+            //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+            int posicion = manbici.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
+                    if (manbici.modificar(posicion, bicimod)) {
+                        JOptionPane.showMessageDialog(this, "Bicicleta modificada exitosamente");
+                        indiceFila--;
+                    }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Error al modificar");
+                    }
+        }
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
+        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            
+        Bicicletas resultado = (Bicicletas) manbici.consultarId(idBuscado);
+        if (resultado == null) {
+            JOptionPane.showMessageDialog(this, "Bicicleta no encontrada");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "La bicicleta encontrada es:\n" + resultado.toString());
+        }
+    }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
+
+    private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            model.removeRow(filaSeleccionada);
+            if (manbici.borrar(idEliminar)) {
+                    JOptionPane.showMessageDialog(this, "Bicicleta borrada exitosamente");    
+                    }
+            else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+        }
+        
+    }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
+
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+       if (manbici.borrarTodo()) {
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            indiceFila = 0;
+            JOptionPane.showMessageDialog(this, "Todos las bicicletas se borraron exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar todo");
+        }
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
+
+    private void jComboBoxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMarcaActionPerformed
+
+    private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
+            if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (jComboBoxMarca.getItemCount() > 0) {
+                idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
+                nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
+            }
+        }
+        
+    }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuBicicletaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuBicicletaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuBicicletaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuBicicletaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuBicicletaInter().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuBicicletaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuBicicletaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuBicicletaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuBicicletaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuBicicletaInter().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrarTodos;
