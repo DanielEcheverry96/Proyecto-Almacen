@@ -5,6 +5,15 @@
  */
 package vistaGUI;
 
+import controlador.ManejadorObjetos;
+import controlador.ManejadorTelefonosCelulares;
+import java.awt.event.ItemEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.CategoriaElectronicosOficina;
+import modelo.Marca;
+import modelo.TelefonosCelulares;
+
 /**
  *
  * @author danie
@@ -14,8 +23,39 @@ public class MenuCelularesInter extends javax.swing.JFrame {
     /**
      * Creates new form MenuCelularesInter
      */
+    ManejadorObjetos manobj;
+    ManejadorTelefonosCelulares mancel;
+    Integer idMarcaTemporal = null;
+    String nombreMarcaTemporal = "";
+    DefaultTableModel model;
+    int indiceFila = 0;
+    String[] dato = new String[12];
     public MenuCelularesInter() {
         initComponents();
+        manobj = new ManejadorObjetos();
+        mancel = new ManejadorTelefonosCelulares();
+        model = new DefaultTableModel();
+        model.addColumn("Id");              
+        model.addColumn("Nombre Marca");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Color");
+        model.addColumn("Tipo Procesador");
+        model.addColumn("Tamaño Pantalla");
+        model.addColumn("Tamaño Memoria");
+        model.addColumn("Capacidad Almacenamiento");
+        model.addColumn("Tipo Pantalla");
+        model.addColumn("Interface Red");
+        jTable1.setModel(model);
+        model.insertRow(indiceFila, dato);
+        inicializarComboBox();
+    }
+
+        public void inicializarComboBox(){
+        for(int i=0;i<manobj.arregloMarcas.size();i++){
+           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        }
     }
 
     /**
@@ -73,6 +113,11 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         jLabelColor.setText("Color");
 
         jButtonBorrarUno.setText("Borrar Uno");
+        jButtonBorrarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarUnoActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,8 +143,18 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         jLabelTitulo.setText("Celulares");
 
         jButtonBorrarTodos.setText("Borrar Todos");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarUno.setText("Consultar Uno");
+        jButtonConsultarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarUnoActionPerformed(evt);
+            }
+        });
 
         jLabelId.setText("ID");
 
@@ -113,10 +168,29 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         });
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonInsertar.setText("Insertar");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMarcaItemStateChanged(evt);
+            }
+        });
+        jComboBoxMarca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMarcaActionPerformed(evt);
+            }
+        });
 
         jLabelCapacidadAlmacenamiento.setText("Capacidad Almacenamiento");
 
@@ -287,47 +361,230 @@ public class MenuCelularesInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        // TODO add your handling code here:
+      mancel.consultarTodos();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectronicosOficina.arreglotelefonoscelulares.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getTiprocesador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getTamañodepantalla(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getTammemoria(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getCapalmacenamiento(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getTipodepantalla(), indiceFila, 10);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonoscelulares.get(i).getInterfacered(), indiceFila, 11);
+            indiceFila++;
+        }
+        
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
     private void jTextFieldTipoProcesadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTipoProcesadorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldTipoProcesadorActionPerformed
 
+    private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+       TelefonosCelulares cel = new TelefonosCelulares();
+       Marca mar = new Marca();
+       cel.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+       mar.setId(idMarcaTemporal);
+       mar.setDescripcion(nombreMarcaTemporal);
+       cel.setMar(mar);
+       cel.setNombre(jTextFieldNombre.getText());
+       cel.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+       cel.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+       cel.setColor(jTextFieldColor.getText());
+       cel.setTiprocesador(jTextFieldTipoProcesador.getText());
+       cel.setTamañodepantalla(Integer.parseInt(jTextFieldTamañoPantalla.getText()));
+       cel.setTammemoria(Integer.parseInt(jTextFieldTamañoMemoria.getText()));
+       cel.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
+       cel.setTipodepantalla(jTextFieldTipoPantalla.getText());
+       cel.setInterfacered(jTextFieldInterfaceRed.getText());
+       
+        if (mancel.insertar(cel)) {
+            jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
+            jTable1.setValueAt((jTextFieldTipoProcesador.getText()), indiceFila, 6);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldTamañoPantalla.getText()), indiceFila, 7);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldTamañoMemoria.getText()), indiceFila, 8);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()), indiceFila, 9);
+            jTable1.setValueAt(jTextFieldTipoPantalla.getText(), indiceFila, 10);
+            jTable1.setValueAt(jTextFieldInterfaceRed.getText(), indiceFila, 11);
+            indiceFila++;
+            mancel.consultarTodos();
+        }
+        else{
+            jLabelMensaje.setText("Error al insertar");
+            //JOptionPane.showMessageDialog(this, "Error al insertar");
+        }
+       
+
+        
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        
+            int filaSeleccionada = jTable1.getSelectedRow();
+            System.out.println(filaSeleccionada);
+        
+            if (filaSeleccionada >= 0) {
+            
+            TelefonosCelulares celmod = new TelefonosCelulares();
+            int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            jTextFieldTipoProcesador.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
+            jTextFieldTamañoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            jTextFieldTamañoMemoria.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
+            jTextFieldCapacidadAlmacenamiento.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            jTextFieldTipoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
+            jTextFieldInterfaceRed.setText(jTable1.getValueAt(filaSeleccionada, 11).toString());
+            
+            Marca marmod = new Marca();
+            celmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+            marmod.setId(a);
+            marmod.setDescripcion(nombreMarcaMod);
+            celmod.setMar(marmod);
+            celmod.setNombre(jTextFieldNombre.getText());
+            celmod.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+            celmod.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+            celmod.setColor(jTextFieldColor.getText());
+            celmod.setTiprocesador(jTextFieldTipoProcesador.getText());
+            celmod.setTamañodepantalla(Integer.parseInt(jTextFieldTamañoPantalla.getText()));
+            celmod.setTammemoria(Integer.parseInt(jTextFieldTamañoMemoria.getText()));
+            celmod.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
+            celmod.setTipodepantalla(jTextFieldTipoPantalla.getText());
+            celmod.setInterfacered(jTextFieldInterfaceRed.getText());
+            
+            //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+            int posicion = mancel.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
+                    if (mancel.modificar(posicion, celmod)) {
+                        JOptionPane.showMessageDialog(this, "Telefono Celular modificado exitosamente");
+                        indiceFila--;
+                    }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Error al modificar");
+                    }
+        }
+        
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
+     
+        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            
+        TelefonosCelulares resultado = (TelefonosCelulares) mancel.consultarId(idBuscado);
+        if (resultado == null) {
+            JOptionPane.showMessageDialog(this, "Telefono Celular no encontrada");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "El Telefono Celular encontrado es:\n" + resultado.toString());
+        }
+        
+    }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
+
+    private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
+
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            model.removeRow(filaSeleccionada);
+            if (mancel.borrar(idEliminar)) {
+                    JOptionPane.showMessageDialog(this, "Celular borrado exitosamente");    
+                    }
+            else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+        }
+        
+    }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
+
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+
+        if (mancel.borrarTodo()) {
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            indiceFila = 0;
+            JOptionPane.showMessageDialog(this, "Todos los Telefonos Celulares se borraron exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar todo");
+        }
+        
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
+
+    private void jComboBoxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcaActionPerformed
+            
+    }//GEN-LAST:event_jComboBoxMarcaActionPerformed
+
+    private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (jComboBoxMarca.getItemCount() > 0) {
+                idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
+                nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
+            }
+        }
+        
+    }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuCelularesInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuCelularesInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuCelularesInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuCelularesInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuCelularesInter().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuCelularesInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuCelularesInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuCelularesInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuCelularesInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuCelularesInter().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrarTodos;

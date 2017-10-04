@@ -26,14 +26,13 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
     int indiceFila = 0;
-    String[] dato = new String[10];
+    String[] dato = new String[9];
     public MenuBicicletaInter() {
         initComponents();
         manobj = new ManejadorObjetos();
         manbici = new ManejadorBicicletas();
         model = new DefaultTableModel();
-        model.addColumn("Id");       
-        model.addColumn("Id Marca");       
+        model.addColumn("Id");              
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
@@ -49,7 +48,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
         public void inicializarComboBox(){
         for(int i=0;i<manobj.arregloMarcas.size();i++){
-           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).toString());
+           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
         }
     }
     /** This method is called from within the constructor to
@@ -311,7 +310,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-               manbici.consultarTodos();
+        manbici.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -322,15 +321,14 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         for (int i = 0; i < CategoriaDeportivos.arregloraquetas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getId(), indiceFila, 1);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 2);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getNombre(), indiceFila, 3);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getCantidad(), indiceFila, 4);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getPrecio(), indiceFila, 5);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getColor(), indiceFila, 6);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 7);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 8);
-            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 8);
             indiceFila++;
         }
         
@@ -356,15 +354,14 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
-            jTable1.setValueAt(idMarcaTemporal, indiceFila, 1);
-            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 2);
-            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 3);
-            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 4);
-            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 5);
-            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 6);
-            jTable1.setValueAt(Integer.parseInt(jTextFieldTamañorueda.getText()), indiceFila, 7);
-            jTable1.setValueAt(jTextFieldMaterialmontura.getText(), indiceFila, 8);
-            jTable1.setValueAt(jTextFieldTipobicicleta.getText(), indiceFila, 9);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldTamañorueda.getText()), indiceFila, 6);
+            jTable1.setValueAt(jTextFieldMaterialmontura.getText(), indiceFila, 7);
+            jTable1.setValueAt(jTextFieldTipobicicleta.getText(), indiceFila, 8);
             indiceFila++;
             manbici.consultarTodos();
         }
@@ -386,19 +383,18 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             Bicicletas bicimod = new Bicicletas();
             int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
-            int idMarcaMod = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 1).toString());
-            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 2).toString();
-            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
-            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
-            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
-            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
-            jTextFieldTamañorueda.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
-            jTextFieldMaterialmontura.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
-            jTextFieldTipobicicleta.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            jTextFieldTamañorueda.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
+            jTextFieldMaterialmontura.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            jTextFieldTipobicicleta.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             
             Marca marmod = new Marca();
             bicimod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
-            marmod.setId(idMarcaMod);
+            marmod.setId(a);
             marmod.setDescripcion(nombreMarcaMod);
             bicimod.setMar(marmod);
             bicimod.setNombre(jTextFieldNombre.getText());
