@@ -454,7 +454,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                 model.removeRow(0);
             }
             indiceFila = 0;
-            JOptionPane.showMessageDialog(this, "Todos las bicicletas se borraron exitosamente");
+            JOptionPane.showMessageDialog(this, "Todas las bicicletas se borraron exitosamente");
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar todo");
         }
