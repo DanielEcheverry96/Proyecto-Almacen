@@ -9,6 +9,8 @@ import controlador.ManejadorObjetos;
 import javax.swing.table.DefaultTableModel;
 import modelo.Computadores;
 import controlador.ManejadorComputadores;
+import java.awt.event.ItemEvent;
+import javax.swing.JOptionPane;
 import modelo.CategoriaElectronicosOficina;
 import modelo.Marca;
 
@@ -21,6 +23,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     CategoriaElectronicosOficina mancate;
     ManejadorComputadores mancop;
     Integer idMarcaTemporal = null;
+    String nombreMarcaTemporal = " ";
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[10];
@@ -52,7 +55,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     
         public void inicializarComboBox(){
         for(int i=0;i<manObjetos.arregloMarcas.size();i++){
-           jComboBoxMarca.addItem(manObjetos.arregloMarcas.get(i).toString());
+           jComboBoxMarca.addItem(manObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
     
@@ -115,6 +118,11 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jLabelId.setText("Id");
         getContentPane().add(jLabelId, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 34, -1, -1));
 
+        jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMarcaItemStateChanged(evt);
+            }
+        });
         getContentPane().add(jComboBoxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(115, 100, 73, -1));
 
         jLabelMarca.setText("Marca");
@@ -158,15 +166,25 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         getContentPane().add(jTextFieldPrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 164, 111, -1));
         getContentPane().add(jTextFieldColor, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 192, 111, -1));
         getContentPane().add(jTextFieldUrl, new org.netbeans.lib.awtextra.AbsoluteConstraints(123, 220, 111, -1));
-        getContentPane().add(jTextFieldTipoMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 29, 74, -1));
-        getContentPane().add(jTextFieldTipoTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 59, 73, -1));
-        getContentPane().add(jTextFieldCapacidadMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(363, 98, 74, -1));
-        getContentPane().add(jTextFieldTipoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(364, 138, 73, -1));
+        getContentPane().add(jTextFieldTipoMouse, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 30, 74, -1));
+        getContentPane().add(jTextFieldTipoTeclado, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 60, 73, -1));
+        getContentPane().add(jTextFieldCapacidadMemoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 100, 74, -1));
+        getContentPane().add(jTextFieldTipoPantalla, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 140, 73, -1));
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 97, -1, -1));
 
         jButtonConsultarUno.setText("Consultar Uno");
+        jButtonConsultarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarUnoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonConsultarUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 134, -1, -1));
 
         jButtonConsultarTodo.setText("Consultar Todo");
@@ -178,14 +196,24 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         getContentPane().add(jButtonConsultarTodo, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 171, -1, -1));
 
         jButtonBorrarUno.setText("Borrar Uno");
+        jButtonBorrarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarUnoActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonBorrarUno, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 208, -1, -1));
 
         jButtonBorrarTodos.setText("Borrar Todos");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButtonBorrarTodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(542, 249, -1, -1));
 
         jLabelCapacidadAlmacenamiento.setText("Capacidad Almacenamiento");
         getContentPane().add(jLabelCapacidadAlmacenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 195, -1, -1));
-        getContentPane().add(jTextFieldCapacidadAlmacenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(401, 192, 93, -1));
+        getContentPane().add(jTextFieldCapacidadAlmacenamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 93, -1));
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -200,7 +228,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 299, -1, 91));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 630, 91));
 
         jLabelMensaje.setText("Estado");
         getContentPane().add(jLabelMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(94, 420, -1, -1));
@@ -217,7 +245,31 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        // TODO add your handling code here:
+
+        mancop.consultarTodos();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectronicosOficina.arreglocomputadores.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getCapmemoria(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getTipoteclado(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getTipomouse(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getTipopantalla(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglocomputadores.get(i).getCapalmacenamiento(), indiceFila, 10);
+            indiceFila++;
+        }
+        
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
     private void jTextFieldCantidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCantidadActionPerformed
@@ -226,12 +278,15 @@ public class MenuComputadorInter extends javax.swing.JFrame {
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
        Computadores comp = new Computadores();
+       Marca mar = new Marca();
        comp.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+       mar.setId(idMarcaTemporal);
+       mar.setDescripcion(nombreMarcaTemporal);
+       comp.setMar(mar);
        comp.setNombre(jTextFieldNombre.getText());
        comp.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
        comp.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
        comp.setColor(jTextFieldColor.getText());
-       comp.setIdMarca(0);
        comp.setCapmemoria(jTextFieldCapacidadMemoria.getText());
        comp.setTipoteclado(jTextFieldTipoTeclado.getText());
        comp.setTipomouse(jTextFieldTipoMouse.getText());
@@ -244,11 +299,11 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Computador Insertado");
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
-            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 1);
-            jTable1.setValueAt(Integer.parseInt(jTextFieldCantidad.getText()), indiceFila, 2);
-            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 3);
-            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 4);
-            jTable1.setValueAt(0, indiceFila, 5);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldCantidad.getText()), indiceFila, 3);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
             jTable1.setValueAt(jTextFieldCapacidadMemoria.getText(), indiceFila, 6);
             jTable1.setValueAt(jTextFieldTipoTeclado.getText(), indiceFila, 7);
             jTable1.setValueAt(jTextFieldTipoMouse.getText(), indiceFila, 8);
@@ -262,41 +317,150 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+
+        int filaSeleccionada = jTable1.getSelectedRow();
+            System.out.println(filaSeleccionada);
+        
+            if (filaSeleccionada >= 0) {
+            
+            Computadores compmod = new Computadores();
+            int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            jTextFieldCapacidadMemoria.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
+            jTextFieldTipoTeclado.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            jTextFieldTipoMouse.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
+            jTextFieldTipoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            jTextFieldCapacidadAlmacenamiento.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
+            
+            Marca marmod = new Marca();
+            compmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+            marmod.setId(a);
+            marmod.setDescripcion(nombreMarcaMod);
+            compmod.setMar(marmod);
+            compmod.setNombre(jTextFieldNombre.getText());
+            compmod.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+            compmod.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+            compmod.setColor(jTextFieldColor.getText());
+            compmod.setCapmemoria(jTextFieldCapacidadMemoria.getText());
+            compmod.setTipoteclado(jTextFieldTipoTeclado.getText());
+            compmod.setTipomouse(jTextFieldTipoMouse.getText());
+            compmod.setTipopantalla(jTextFieldTipoPantalla.getText());
+            compmod.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
+            
+            //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+            int posicion = mancop.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
+                    if (mancop.modificar(posicion, compmod)) {
+                        JOptionPane.showMessageDialog(this, "Computador modificado exitosamente");
+                        indiceFila--;
+                    }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Error al modificar");
+                    }
+        }
+        
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
+
+        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            
+        Computadores resultado = (Computadores) mancop.consultarId(idBuscado);
+        if (resultado == null) {
+            JOptionPane.showMessageDialog(this, "Computador no encontrado");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "El Computador encontrado es:\n" + resultado.toString());
+        }
+        
+    }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
+
+    private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
+
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            model.removeRow(filaSeleccionada);
+            if (mancop.borrar(idEliminar)) {
+                    JOptionPane.showMessageDialog(this, "Computador borrado exitosamente");    
+                    }
+            else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+        }
+        
+
+    }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
+
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+
+        if (mancop.borrarTodo()) {
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            indiceFila = 0;
+            JOptionPane.showMessageDialog(this, "Todos los computaores se borraron exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar todo");
+        }
+        
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
+
+    private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (jComboBoxMarca.getItemCount() > 0) {
+                idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
+                nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
+            }
+        }
+        
+    }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
+
    
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuComputadorInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuComputadorInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuComputadorInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuComputadorInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuComputadorInter().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuComputadorInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuComputadorInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuComputadorInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuComputadorInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuComputadorInter().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrarTodos;

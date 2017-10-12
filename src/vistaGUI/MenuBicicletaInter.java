@@ -465,7 +465,8 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxMarcaActionPerformed
 
     private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
-            if (evt.getStateChange() == ItemEvent.SELECTED) {
+            
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
             if (jComboBoxMarca.getItemCount() > 0) {
                 idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
                 nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
