@@ -5,6 +5,15 @@
  */
 package vistaGUI;
 
+import controlador.ManejadorObjetos;
+import controlador.ManejadorRopaDeportiva;
+import java.awt.event.ItemEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.CategoriaRopa;
+import modelo.Marca;
+import modelo.RopaDeportiva;
+
 /**
  *
  * @author danie
@@ -14,8 +23,37 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
     /**
      * Creates new form MenuRopaDeportivaInter
      */
+    ManejadorObjetos manobj;
+    ManejadorRopaDeportiva manrop;
+    Integer idMarcaTemporal = null;
+    String nombreMarcaTemporal = "";
+    DefaultTableModel model;
+    int indiceFila = 0;
+    String[] dato = new String[9];
+
     public MenuRopaDeportivaInter() {
         initComponents();
+        manobj = new ManejadorObjetos();
+        manrop = new ManejadorRopaDeportiva();
+        model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Nombre Marca");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Color");
+        model.addColumn("Tipo");
+        model.addColumn("Talla");
+        model.addColumn("Usuario");
+        jTable1.setModel(model);
+        model.insertRow(indiceFila, dato);
+        inicializarComboBox();
+    }
+
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        }
     }
 
     /**
@@ -38,38 +76,28 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
         jTextFieldId = new javax.swing.JTextField();
         jButtonConsultarTodo = new javax.swing.JButton();
         jComboBoxMarca = new javax.swing.JComboBox<>();
-        jRadioButtonNiño = new javax.swing.JRadioButton();
         jButtonBorrarUno = new javax.swing.JButton();
         jTextFieldNombre = new javax.swing.JTextField();
-        jRadioButtonNiña = new javax.swing.JRadioButton();
         jButtonBorrarTodos = new javax.swing.JButton();
         jTextFieldCantidad = new javax.swing.JTextField();
-        jRadioButtonHombre = new javax.swing.JRadioButton();
         jButtonInsertar = new javax.swing.JButton();
         jTextFieldPrecio = new javax.swing.JTextField();
-        jRadioButtonMujer = new javax.swing.JRadioButton();
         jLabelUrl = new javax.swing.JLabel();
         jTextFieldUrl = new javax.swing.JTextField();
-        jRadioButtonPantalon = new javax.swing.JRadioButton();
         jLabelTipo = new javax.swing.JLabel();
         jLabelTitulo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jRadioButtonCamiseta = new javax.swing.JRadioButton();
         jLabelMensaje = new javax.swing.JLabel();
-        jRadioButtonRopaInterior = new javax.swing.JRadioButton();
         jLabelId = new javax.swing.JLabel();
         jLabelTalla = new javax.swing.JLabel();
         jLabelMarca = new javax.swing.JLabel();
-        jRadioButtonS = new javax.swing.JRadioButton();
         jLabelCantidad = new javax.swing.JLabel();
-        jRadioButtonM = new javax.swing.JRadioButton();
-        jRadioButtonL = new javax.swing.JRadioButton();
-        jRadioButtonXL = new javax.swing.JRadioButton();
-        jRadioButtonXXL = new javax.swing.JRadioButton();
         jButtonModificar = new javax.swing.JButton();
-        jRadioButtonXXXL = new javax.swing.JRadioButton();
         jLabelUsuario = new javax.swing.JLabel();
+        jComboBoxTipo = new javax.swing.JComboBox<>();
+        jComboBoxTalla = new javax.swing.JComboBox<>();
+        jComboBoxUsuario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -80,6 +108,11 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
         jLabelColor.setText("Color");
 
         jButtonConsultarUno.setText("Consultar Uno");
+        jButtonConsultarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarTodo.setText("Consultar Todo");
         jButtonConsultarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -88,36 +121,34 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        buttonGroupUsuario.add(jRadioButtonNiño);
-        jRadioButtonNiño.setText("Niño");
-        jRadioButtonNiño.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonNiñoActionPerformed(evt);
+        jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMarcaItemStateChanged(evt);
             }
         });
 
         jButtonBorrarUno.setText("Borrar Uno");
-
-        buttonGroupUsuario.add(jRadioButtonNiña);
-        jRadioButtonNiña.setText("Niña");
+        jButtonBorrarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonBorrarTodos.setText("Borrar Todos");
-
-        buttonGroupUsuario.add(jRadioButtonHombre);
-        jRadioButtonHombre.setText("Hombre");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
 
         jButtonInsertar.setText("Insertar");
-
-        buttonGroupUsuario.add(jRadioButtonMujer);
-        jRadioButtonMujer.setText("Mujer");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
 
         jLabelUrl.setText("Url");
-
-        buttonGroupTipo.add(jRadioButtonPantalon);
-        jRadioButtonPantalon.setText("Pantalon");
-        jRadioButtonPantalon.setPreferredSize(new java.awt.Dimension(67, 14));
 
         jLabelTipo.setText("Tipo");
 
@@ -136,22 +167,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        buttonGroupTipo.add(jRadioButtonCamiseta);
-        jRadioButtonCamiseta.setText("Camiseta");
-        jRadioButtonCamiseta.setPreferredSize(new java.awt.Dimension(69, 14));
-
         jLabelMensaje.setText("Estado");
-
-        buttonGroupTipo.add(jRadioButtonRopaInterior);
-        jRadioButtonRopaInterior.setText("Ropa interior");
-        jRadioButtonRopaInterior.setMaximumSize(new java.awt.Dimension(87, 14));
-        jRadioButtonRopaInterior.setMinimumSize(new java.awt.Dimension(87, 14));
-        jRadioButtonRopaInterior.setPreferredSize(new java.awt.Dimension(87, 14));
-        jRadioButtonRopaInterior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonRopaInteriorActionPerformed(evt);
-            }
-        });
 
         jLabelId.setText("ID");
 
@@ -159,258 +175,361 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
 
         jLabelMarca.setText("Marca");
 
-        buttonGroupTalla.add(jRadioButtonS);
-        jRadioButtonS.setText("S");
-
         jLabelCantidad.setText("Cantidad");
 
-        buttonGroupTalla.add(jRadioButtonM);
-        jRadioButtonM.setText("M");
-
-        buttonGroupTalla.add(jRadioButtonL);
-        jRadioButtonL.setText("L");
-
-        buttonGroupTalla.add(jRadioButtonXL);
-        jRadioButtonXL.setText("XL");
-
-        buttonGroupTalla.add(jRadioButtonXXL);
-        jRadioButtonXXL.setText("XXL");
-        jRadioButtonXXL.addActionListener(new java.awt.event.ActionListener() {
+        jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonXXLActionPerformed(evt);
+                jButtonModificarActionPerformed(evt);
             }
         });
 
-        jButtonModificar.setText("Modificar");
-
-        buttonGroupTalla.add(jRadioButtonXXXL);
-        jRadioButtonXXXL.setText("XXXL");
-
         jLabelUsuario.setText("Usuario");
+
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pantalon", "Camiseta", "Ropa interior" }));
+
+        jComboBoxTalla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S", "M", "L", "XL", "XXL", "XXXL" }));
+
+        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIño", "Niña", "Hombre", "Mujer" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(262, 262, 262)
+                .addComponent(jLabelTitulo))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabelId)
+                .addGap(77, 77, 77)
+                .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(75, 75, 75)
+                .addComponent(jLabelUrl)
+                .addGap(37, 37, 37)
+                .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(201, 201, 201)
+                .addComponent(jButtonInsertar))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelMarca)
+                    .addComponent(jLabelNombre)
+                    .addComponent(jLabelCantidad))
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelId)
-                                            .addComponent(jLabelMarca)
-                                            .addComponent(jLabelNombre)
-                                            .addComponent(jLabelCantidad)
-                                            .addComponent(jLabelPrecio))
-                                        .addGap(45, 45, 45))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabelColor)
-                                        .addGap(48, 48, 48)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldId, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldPrecio)
-                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(75, 75, 75)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelTalla)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelUsuario)
-                                                .addGap(14, 14, 14)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jRadioButtonNiña)
-                                                    .addComponent(jRadioButtonMujer)
-                                                    .addComponent(jRadioButtonNiño)
-                                                    .addComponent(jRadioButtonHombre))))
-                                        .addGap(148, 148, 148)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jButtonModificar)
-                                            .addComponent(jButtonConsultarUno)
-                                            .addComponent(jButtonConsultarTodo)
-                                            .addComponent(jButtonBorrarUno)
-                                            .addComponent(jButtonBorrarTodos)
-                                            .addComponent(jButtonInsertar)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelTipo)
-                                            .addComponent(jLabelUrl))
-                                        .addGap(30, 30, 30)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jRadioButtonRopaInterior, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jRadioButtonPantalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jRadioButtonCamiseta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jRadioButtonM)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jRadioButtonXXXL)
-                                                .addComponent(jRadioButtonL, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jRadioButtonXL, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jRadioButtonXXL, javax.swing.GroupLayout.Alignment.LEADING))
-                                            .addComponent(jRadioButtonS, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(9, 9, 9)
-                                        .addComponent(jLabelTitulo))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(262, 262, 262)
-                                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 30, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(jLabelTipo)
+                            .addComponent(jLabelTalla))
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelUsuario)
+                        .addGap(14, 14, 14)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(201, 201, 201)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonModificar)
+                    .addComponent(jButtonConsultarUno)))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabelPrecio)
+                .addGap(59, 59, 59)
+                .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(406, 406, 406)
+                .addComponent(jButtonConsultarTodo))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jLabelColor)
+                .addGap(63, 63, 63)
+                .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(406, 406, 406)
+                .addComponent(jButtonBorrarUno))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(584, 584, 584)
+                .addComponent(jButtonBorrarTodos))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(262, 262, 262)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(11, 11, 11)
                 .addComponent(jLabelTitulo)
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonInsertar)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButtonInsertar)
+                        .addGap(3, 3, 3)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelId)
+                            .addComponent(jLabelUrl))))
+                .addGap(5, 5, 5)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabelMarca)
                         .addGap(14, 14, 14)
+                        .addComponent(jLabelNombre)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabelCantidad))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabelTipo)
+                        .addGap(14, 14, 14)
+                        .addComponent(jLabelTalla))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(jComboBoxTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelUsuario)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addComponent(jButtonModificar)
                         .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarUno)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarTodo)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonBorrarUno)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBorrarTodos)
-                        .addGap(82, 82, 82))
+                        .addComponent(jButtonConsultarUno)))
+                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelId)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelUrl))
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabelPrecio))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButtonConsultarTodo))
+                .addGap(8, 8, 8)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabelColor))
+                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelMarca)
-                                    .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelNombre)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelTipo)
-                                    .addComponent(jRadioButtonPantalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonCamiseta, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonRopaInterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelCantidad)
-                                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelPrecio)
-                                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelColor)
-                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelTalla)
-                                    .addComponent(jRadioButtonS, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonXL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonXXL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonXXXL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelUsuario)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButtonNiño, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonNiña, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(3, 3, 3)
-                        .addComponent(jRadioButtonHombre, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(jRadioButtonMujer, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)))
+                        .addComponent(jButtonBorrarUno)))
+                .addGap(14, 14, 14)
+                .addComponent(jButtonBorrarTodos)
+                .addGap(82, 82, 82)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
-                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        // TODO add your handling code here:
+
+        manrop.consultarTodos();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arregloropadeportiva.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getTipo(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getTalla(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arregloropadeportiva.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
-    private void jRadioButtonRopaInteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRopaInteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonRopaInteriorActionPerformed
+    private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (jComboBoxMarca.getItemCount() > 0) {
+                idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
+                nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
+            }
+        }
+    }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
-    private void jRadioButtonXXLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonXXLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonXXLActionPerformed
+    private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+        RopaDeportiva ropdep = new RopaDeportiva();
+        Marca mar = new Marca();
+        ropdep.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        ropdep.setMar(mar);
+        ropdep.setNombre(jTextFieldNombre.getText());
+        ropdep.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        ropdep.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        ropdep.setColor(jTextFieldColor.getText());
+        ropdep.setTipo(jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex()));
+        ropdep.setTalla(jComboBoxTalla.getItemAt(jComboBoxTalla.getSelectedIndex()));
+        ropdep.setTipousuario(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()));
 
-    private void jRadioButtonNiñoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonNiñoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonNiñoActionPerformed
+        if (manrop.insertar(ropdep)) {
+            jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
+            jTable1.setValueAt(jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex()), indiceFila, 6);
+            jTable1.setValueAt(jComboBoxTalla.getItemAt(jComboBoxTalla.getSelectedIndex()), indiceFila, 7);
+            jTable1.setValueAt(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()), indiceFila, 8);
+            indiceFila++;
+            manrop.consultarTodos();
+        } else {
+            jLabelMensaje.setText("Error al insertar");
+            //JOptionPane.showMessageDialog(this, "Error al insertar");
+        }
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
+            RopaDeportiva ropdepmod = new RopaDeportiva();
+            int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            String tipo = (jTable1.getValueAt(filaSeleccionada, 6).toString());
+            String talla = (jTable1.getValueAt(filaSeleccionada, 7).toString());
+            String usuario = (jTable1.getValueAt(filaSeleccionada, 8).toString());
+
+            Marca marmod = new Marca();
+            ropdepmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+            marmod.setId(a);
+            marmod.setDescripcion(nombreMarcaMod);
+            ropdepmod.setMar(marmod);
+            ropdepmod.setNombre(jTextFieldNombre.getText());
+            ropdepmod.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+            ropdepmod.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+            ropdepmod.setColor(jTextFieldColor.getText());
+            ropdepmod.setTipo(tipo);
+            ropdepmod.setTalla(talla);
+            ropdepmod.setTipousuario(usuario);
+
+            //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+            int posicion = manrop.busquedaBinaria(a);
+            if (!(posicion == -1)) {
+                if (manrop.modificar(posicion, ropdepmod)) {
+                    JOptionPane.showMessageDialog(this, "La ropa deportiva se ha modificado exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al modificar");
+        }
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
+        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+
+        RopaDeportiva resultado = (RopaDeportiva) manrop.consultarId(idBuscado);
+        if (resultado == null) {
+            JOptionPane.showMessageDialog(this, "Ropa deportiva no encontrada");
+        } else {
+            JOptionPane.showMessageDialog(this, "La ropa deportiva encontrada es:\n" + resultado.toString());
+        }
+    }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
+
+    private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            model.removeRow(filaSeleccionada);
+            if (manrop.borrar(idEliminar)) {
+                JOptionPane.showMessageDialog(this, "Ropa deportica borrada exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+        }
+    }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
+
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+        if (manrop.borrarTodo()) {
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            indiceFila = 0;
+            JOptionPane.showMessageDialog(this, "Todos la ropa deportiva se borro exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar todo");
+        }
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuRopaDeportivaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuRopaDeportivaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuRopaDeportivaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuRopaDeportivaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuRopaDeportivaInter().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuRopaDeportivaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuRopaDeportivaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuRopaDeportivaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuRopaDeportivaInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuRopaDeportivaInter().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupTalla;
@@ -423,6 +542,9 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JComboBox<String> jComboBoxMarca;
+    private javax.swing.JComboBox<String> jComboBoxTalla;
+    private javax.swing.JComboBox<String> jComboBoxTipo;
+    private javax.swing.JComboBox<String> jComboBoxUsuario;
     private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelColor;
     private javax.swing.JLabel jLabelId;
@@ -435,19 +557,6 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelUrl;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JRadioButton jRadioButtonCamiseta;
-    private javax.swing.JRadioButton jRadioButtonHombre;
-    private javax.swing.JRadioButton jRadioButtonL;
-    private javax.swing.JRadioButton jRadioButtonM;
-    private javax.swing.JRadioButton jRadioButtonMujer;
-    private javax.swing.JRadioButton jRadioButtonNiña;
-    private javax.swing.JRadioButton jRadioButtonNiño;
-    private javax.swing.JRadioButton jRadioButtonPantalon;
-    private javax.swing.JRadioButton jRadioButtonRopaInterior;
-    private javax.swing.JRadioButton jRadioButtonS;
-    private javax.swing.JRadioButton jRadioButtonXL;
-    private javax.swing.JRadioButton jRadioButtonXXL;
-    private javax.swing.JRadioButton jRadioButtonXXXL;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldCantidad;

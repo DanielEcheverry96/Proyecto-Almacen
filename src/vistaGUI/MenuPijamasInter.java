@@ -424,15 +424,15 @@ public class MenuPijamasInter extends javax.swing.JFrame {
             int posicion = manpij.busquedaBinaria(a);
             if (!(posicion == -1)) {
                 if (manpij.modificar(posicion, pijammod)) {
-                    JOptionPane.showMessageDialog(this, "Horno microondas modificado exitosamente");
+                    JOptionPane.showMessageDialog(this, "La pijama se ha modificado exitosamente");
                     indiceFila--;
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        }else {
-                JOptionPane.showMessageDialog(this, "Error al modificar");
-            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al modificar");
+        }
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
@@ -440,7 +440,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
 
         Pijamas resultado = (Pijamas) manpij.consultarId(idBuscado);
         if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Pijama no encontrado");
+            JOptionPane.showMessageDialog(this, "Pijama no encontrada");
         } else {
             JOptionPane.showMessageDialog(this, "La pijama encontrada es:\n" + resultado.toString());
         }
