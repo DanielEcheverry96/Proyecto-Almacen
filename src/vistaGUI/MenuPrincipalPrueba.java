@@ -38,6 +38,7 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jMenuItem17 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenuItem13 = new javax.swing.JMenuItem();
@@ -51,6 +52,7 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
         jMenu8 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenuItem16 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,6 +120,14 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
             }
         });
         jMenu3.add(jMenuItem12);
+
+        jMenuItem17.setText("Telefonos Ip");
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem17);
 
         jMenu2.add(jMenu3);
 
@@ -206,6 +216,14 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
             }
         });
         jMenu8.add(jMenuItem10);
+
+        jMenuItem16.setText("Sierras");
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem16);
 
         jMenu2.add(jMenu8);
 
@@ -316,6 +334,16 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
         mninter.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+       MenuSierrasInter msieinter = new MenuSierrasInter();
+        msieinter.setVisible(true);
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
+
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+        MenuTelefonosIpInter mtipinter = new MenuTelefonosIpInter();
+        mtipinter.setVisible(true);
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -368,6 +396,8 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
+    private javax.swing.JMenuItem jMenuItem16;
+    private javax.swing.JMenuItem jMenuItem17;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
