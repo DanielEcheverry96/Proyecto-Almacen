@@ -5,6 +5,15 @@
  */
 package vistaGUI;
 
+import controlador.ManejadorJuegos;
+import controlador.ManejadorObjetos;
+import java.awt.event.ItemEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.CategoriaVideojuegos;
+import modelo.Juegos;
+import modelo.Marca;
+
 /**
  *
  * @author Daniel
@@ -14,8 +23,36 @@ public class MenuJuegosInter extends javax.swing.JFrame {
     /**
      * Creates new form MenuJuegosInter
      */
+    ManejadorObjetos manobj;
+    ManejadorJuegos manjueg;
+    Integer idMarcaTemporal = null;
+    String nombreMarcaTemporal = "";
+    DefaultTableModel model;
+    int indiceFila = 0;
+    String[] dato = new String[9];
     public MenuJuegosInter() {
         initComponents();
+        manobj = new ManejadorObjetos();
+        manjueg = new ManejadorJuegos();
+        model = new DefaultTableModel();
+        model.addColumn("Id");              
+        model.addColumn("Nombre Marca");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Género");
+        model.addColumn("Restricción edad");
+        model.addColumn("Plataforma");
+        model.addColumn("Numero Jugadores");
+        jTable1.setModel(model);
+        model.insertRow(indiceFila, dato);
+        inicializarComboBox();
+    }
+
+        public void inicializarComboBox(){
+        for(int i=0;i<manobj.arregloMarcas.size();i++){
+           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        }
     }
 
     /**
@@ -68,7 +105,11 @@ public class MenuJuegosInter extends javax.swing.JFrame {
 
         jLabelNumeroJugadores.setText("Numero Jugadores");
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMarcaItemStateChanged(evt);
+            }
+        });
 
         jLabelTitulo.setText("Juegos");
 
@@ -85,14 +126,39 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         jLabelUrl.setText("Url");
 
         jButtonBorrarUno.setText("Borrar Uno");
+        jButtonBorrarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonBorrarTodos.setText("Borrar Todos");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
 
         jButtonInsertar.setText("Insertar");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarUno.setText("Consultar Uno");
+        jButtonConsultarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarTodo.setText("Consultar Todo");
         jButtonConsultarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -245,43 +311,207 @@ public class MenuJuegosInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        // TODO add your handling code here:
+
+        manjueg.consultarTodos();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaVideojuegos.arreglojuegos.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getGenero(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getRestedad(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getPlataforma(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNumjugadores(), indiceFila, 8);
+            indiceFila++;
+        }
+        
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
+
+    private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+       Juegos jueg = new Juegos();
+       Marca mar = new Marca();
+       jueg.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+       mar.setId(idMarcaTemporal);
+       mar.setDescripcion(nombreMarcaTemporal);
+       jueg.setMar(mar);
+       jueg.setNombre(jTextFieldNombre.getText());
+       jueg.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+       jueg.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+       jueg.setGenero(jTextFieldGenero.getText());
+       jueg.setRestedad(jTextFieldRestricciondeEdad.getText());
+       jueg.setPlataforma(jTextFieldPlataforma.getText());
+       jueg.setNumjugadores(Integer.parseInt(jTextFieldNumeroJugadores.getText()));
+       
+        if (manjueg.insertar(jueg)) {
+            jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldGenero.getText(), indiceFila, 5);
+            jTable1.setValueAt(jTextFieldRestricciondeEdad.getText(), indiceFila, 6);
+            jTable1.setValueAt(jTextFieldPlataforma.getText(), indiceFila, 7);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldNumeroJugadores.getText()), indiceFila, 8);
+            indiceFila++;
+            manjueg.consultarTodos();
+        }
+        else{
+            jLabelMensaje.setText("Error al insertar");
+            //JOptionPane.showMessageDialog(this, "Error al insertar");
+        }
+        
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+
+        int filaSeleccionada = jTable1.getSelectedRow();
+            System.out.println(filaSeleccionada);
+        
+            if (filaSeleccionada >= 0) {
+            
+            Juegos juegmod = new Juegos();
+            int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldGenero.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            jTextFieldRestricciondeEdad.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
+            jTextFieldPlataforma.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            jTextFieldNumeroJugadores.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
+            
+            Marca marmod = new Marca();
+            juegmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+            marmod.setId(a);
+            marmod.setDescripcion(nombreMarcaMod);
+            juegmod.setMar(marmod);
+            juegmod.setNombre(jTextFieldNombre.getText());
+            juegmod.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+            juegmod.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+            juegmod.setGenero(jTextFieldGenero.getText());
+            juegmod.setRestedad(jTextFieldRestricciondeEdad.getText());
+            juegmod.setPlataforma(jTextFieldPlataforma.getText());
+            juegmod.setNumjugadores(Integer.parseInt(jTextFieldNumeroJugadores.getText()));
+            
+            //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+            int posicion = manjueg.busquedaBinaria(a);
+                    if (!(posicion==-1)) {
+                    if (manjueg.modificar(posicion, juegmod)) {
+                        JOptionPane.showMessageDialog(this, "Juego modificado exitosamente");
+                        indiceFila--;
+                    }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this, "Error al modificar");
+                    }
+        }
+        
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
+
+        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            
+        Juegos resultado = (Juegos) manjueg.consultarId(idBuscado);
+        if (resultado == null) {
+            JOptionPane.showMessageDialog(this, "Juego no encontrado");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "El Juego encontrado es:\n" + resultado.toString());
+        }
+        
+    }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
+
+    private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
+
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            model.removeRow(filaSeleccionada);
+            if (manjueg.borrar(idEliminar)) {
+                    JOptionPane.showMessageDialog(this, "Juego borrado exitosamente");    
+                    }
+            else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+        }
+        
+    }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
+
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+
+        if (manjueg.borrarTodo()) {
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            indiceFila = 0;
+            JOptionPane.showMessageDialog(this, "Todos los Juegos se borraron exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar todo");
+        }
+        
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
+
+    private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
+
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (jComboBoxMarca.getItemCount() > 0) {
+                idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
+                nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
+            }
+        }
+        
+    }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuJuegosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuJuegosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuJuegosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuJuegosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuJuegosInter().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuJuegosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuJuegosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuJuegosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuJuegosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuJuegosInter().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonBorrarTodos;
