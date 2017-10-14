@@ -5,6 +5,14 @@
  */
 package vistaGUI;
 
+import controlador.ManejadorObjetos;
+import controlador.ManejadorSierras;
+import java.awt.event.ItemEvent;
+import javax.swing.table.DefaultTableModel;
+import modelo.CategoriaHerramientas;
+import modelo.Marca;
+import modelo.Sierras;
+
 /**
  *
  * @author danie
@@ -14,8 +22,39 @@ public class MenuSierrasInter extends javax.swing.JFrame {
     /**
      * Creates new form MenuSierrasInter
      */
+    ManejadorObjetos manobj;
+    ManejadorSierras mansie;
+    Integer idMarcaTemporal = null;
+    String nombreMarcaTemporal = "";
+    DefaultTableModel model;
+    int indiceFila = 0;
+    String[] dato = new String[11];
+
     public MenuSierrasInter() {
         initComponents();
+        manobj = new ManejadorObjetos();
+        mansie = new ManejadorSierras();
+        model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Nombre Marca");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Color");
+        model.addColumn("Tipo");
+        model.addColumn("Potencia");
+        model.addColumn("Velocidad");
+        model.addColumn("Peso");
+        model.addColumn("Diametro Disco");
+        jTable1.setModel(model);
+        model.insertRow(indiceFila, dato);
+        inicializarComboBox();
+    }
+
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        }
     }
 
     /**
@@ -86,8 +125,17 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMarcaItemStateChanged(evt);
+            }
+        });
 
         jLabelTipo.setText("Tipo");
 
@@ -125,6 +173,11 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         });
 
         jButtonInsertar.setText("Insertar");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
 
         jLabelPeso.setText("Peso");
 
@@ -282,8 +335,128 @@ public class MenuSierrasInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTipoActionPerformed
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        // TODO add your handling code here:
+        mansie.consultarTodos();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaHerramientas.arreglosierras.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getTipo(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getPotencia(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getVelocidad(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getPeso(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaHerramientas.arreglosierras.get(i).getDiametrodisco(), indiceFila, 10);
+
+            indiceFila++;
+        }
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
+
+    private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (jComboBoxMarca.getItemCount() > 0) {
+                idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
+                nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
+            }
+        }
+    }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
+
+    private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+        Sierras sie = new Sierras();
+        Marca mar = new Marca();
+        sie.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        sie.setMar(mar);
+        sie.setNombre(jTextFieldNombre.getText());
+        sie.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        sie.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        sie.setColor(jTextFieldColor.getText());
+        sie.setTipo(jTextFieldTipo.getText());
+        sie.setPotencia(Integer.parseInt(jTextFieldPotencia.getText()));
+        sie.setVelocidad(Integer.parseInt(jTextFieldVelocidad.getText()));
+        sie.setPeso(Float.parseFloat(jTextFieldPeso.getText()));
+        sie.setDiametrodisco(Float.parseFloat(jTextFieldDiametroDisco.getText()));
+
+        if (mansie.insertar(sie)) {
+            jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
+            jTable1.setValueAt(jTextFieldTipo.getText(), indiceFila, 6);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldPotencia.getText()), indiceFila, 7);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldVelocidad.getText()), indiceFila, 8);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPeso.getText()), indiceFila, 9);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldDiametroDisco.getText()), indiceFila, 10);
+            indiceFila++;
+            mansie.consultarTodos();
+        } else {
+            jLabelMensaje.setText("Error al insertar");
+            //JOptionPane.showMessageDialog(this, "Error al insertar");
+        }
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+      int filaSeleccionada = jTable1.getSelectedRow();
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
+            Sierras siemod = new Sierras();
+            int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            jTextFieldTipo.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
+            jTextFieldPotencia.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            jTextFieldVelocidad.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
+            jTextFieldPeso.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            jTextFieldDiametroDisco.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
+
+            Marca marmod = new Marca();
+            siemod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+            marmod.setId(a);
+            marmod.setDescripcion(nombreMarcaMod);
+            siemod.setMar(marmod);
+            siemod.setNombre(jTextFieldNombre.getText());
+            siemod.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+            siemod.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+            siemod.setColor(jTextFieldColor.getText());
+            siemod.setTipo();
+            siemod.setTalla(talla);
+            siemod.setTipousuario(usuario);
+
+            //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+            int posicion = manrop.busquedaBinaria(a);
+            if (!(posicion == -1)) {
+                if (manrop.modificar(posicion, ropdepmod)) {
+                    JOptionPane.showMessageDialog(this, "La ropa deportiva se ha modificado exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al modificar");
+        }
+    }//GEN-LAST:event_jButtonModificarActionPerformed
 
     /**
      * @param args the command line arguments
