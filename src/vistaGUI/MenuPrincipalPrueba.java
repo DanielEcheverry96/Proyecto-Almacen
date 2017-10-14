@@ -37,15 +37,19 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
         jMenu3 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
+        jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -107,6 +111,14 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
         });
         jMenu3.add(jMenuItem5);
 
+        jMenuItem12.setText("Impresores");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem12);
+
         jMenu2.add(jMenu3);
 
         jMenu4.setText("Videojuegos");
@@ -118,6 +130,14 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem6);
+
+        jMenuItem13.setText("Juegos");
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem13);
 
         jMenu2.add(jMenu4);
 
@@ -138,6 +158,14 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
             }
         });
         jMenu5.add(jMenuItem8);
+
+        jMenuItem15.setText("Neveras");
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem15);
 
         jMenu2.add(jMenu5);
 
@@ -162,6 +190,14 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
         jMenu2.add(jMenu7);
 
         jMenu8.setText("Herramientas");
+
+        jMenuItem14.setText("Martillos");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem14);
 
         jMenuItem10.setText("Remachadoras");
         jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
@@ -258,6 +294,28 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
         mropinter.setVisible(true);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+        MenuImpresoresInter mimpinter = new MenuImpresoresInter();
+        mimpinter.setVisible(true);
+
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+        MenuJuegosInter mjinter = new MenuJuegosInter();
+        mjinter.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        MenuMartillosInter mminter = new MenuMartillosInter();
+        mminter.setVisible(true);
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+        MenuNeverasInter mninter = new MenuNeverasInter();
+        mninter.setVisible(true);
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,6 +364,10 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem12;
+    private javax.swing.JMenuItem jMenuItem13;
+    private javax.swing.JMenuItem jMenuItem14;
+    private javax.swing.JMenuItem jMenuItem15;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
