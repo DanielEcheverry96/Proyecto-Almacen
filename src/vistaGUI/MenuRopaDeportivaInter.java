@@ -475,7 +475,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
             if (manrop.borrar(idEliminar)) {
-                JOptionPane.showMessageDialog(this, "Ropa deportica borrada exitosamente");
+                JOptionPane.showMessageDialog(this, "Ropa deportiva borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
             }

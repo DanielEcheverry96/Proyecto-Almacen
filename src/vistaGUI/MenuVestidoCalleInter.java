@@ -5,6 +5,15 @@
  */
 package vistaGUI;
 
+import controlador.ManejadorObjetos;
+import controlador.ManejadorVestidosCalle;
+import java.awt.event.ItemEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.CategoriaRopa;
+import modelo.Marca;
+import modelo.VestidosCalle;
+
 /**
  *
  * @author danie
@@ -14,8 +23,37 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
     /**
      * Creates new form MenuVestidoCalleInter
      */
+    ManejadorObjetos manobj;
+    ManejadorVestidosCalle manves;
+    Integer idMarcaTemporal = null;
+    String nombreMarcaTemporal = "";
+    DefaultTableModel model;
+    int indiceFila = 0;
+    String[] dato = new String[9];
+
     public MenuVestidoCalleInter() {
         initComponents();
+        manobj = new ManejadorObjetos();
+        manves = new ManejadorVestidosCalle();
+        model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Nombre Marca");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Color");
+        model.addColumn("Tipo");
+        model.addColumn("Talla");
+        model.addColumn("Usuario");
+        jTable1.setModel(model);
+        model.insertRow(indiceFila, dato);
+        inicializarComboBox();
+    }
+
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        }
     }
 
     /**
@@ -44,22 +82,9 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         jTextFieldPrecio = new javax.swing.JTextField();
         jLabelUrl = new javax.swing.JLabel();
         jTextFieldUrl = new javax.swing.JTextField();
-        jRadioButtonPantalon = new javax.swing.JRadioButton();
         jLabelTipo = new javax.swing.JLabel();
-        jRadioButtonCamiseta = new javax.swing.JRadioButton();
-        jRadioButtonRopaInterior = new javax.swing.JRadioButton();
         jLabelTalla = new javax.swing.JLabel();
-        jRadioButtonS = new javax.swing.JRadioButton();
-        jRadioButtonM = new javax.swing.JRadioButton();
-        jRadioButtonL = new javax.swing.JRadioButton();
-        jRadioButtonXL = new javax.swing.JRadioButton();
-        jRadioButtonXXL = new javax.swing.JRadioButton();
-        jRadioButtonXXXL = new javax.swing.JRadioButton();
         jLabelUsuario = new javax.swing.JLabel();
-        jRadioButtonNiño = new javax.swing.JRadioButton();
-        jRadioButtonNiña = new javax.swing.JRadioButton();
-        jRadioButtonHombre = new javax.swing.JRadioButton();
-        jRadioButtonMujer = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabelMensaje = new javax.swing.JLabel();
@@ -70,6 +95,9 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         jButtonBorrarTodos = new javax.swing.JButton();
         jButtonInsertar = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
+        jComboBoxTipo = new javax.swing.JComboBox<>();
+        jComboBoxTalla = new javax.swing.JComboBox<>();
+        jComboBoxUsuario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,69 +113,19 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
 
         jLabelColor.setText("Color");
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMarcaItemStateChanged(evt);
+            }
+        });
 
         jLabelUrl.setText("Url");
 
-        buttonGroupTipo.add(jRadioButtonPantalon);
-        jRadioButtonPantalon.setText("Pantalon");
-        jRadioButtonPantalon.setPreferredSize(new java.awt.Dimension(67, 14));
-
         jLabelTipo.setText("Tipo");
-
-        buttonGroupTipo.add(jRadioButtonCamiseta);
-        jRadioButtonCamiseta.setText("Camiseta");
-        jRadioButtonCamiseta.setPreferredSize(new java.awt.Dimension(69, 14));
-
-        buttonGroupTipo.add(jRadioButtonRopaInterior);
-        jRadioButtonRopaInterior.setText("Ropa interior");
-        jRadioButtonRopaInterior.setMaximumSize(new java.awt.Dimension(87, 14));
-        jRadioButtonRopaInterior.setMinimumSize(new java.awt.Dimension(87, 14));
-        jRadioButtonRopaInterior.setPreferredSize(new java.awt.Dimension(87, 14));
-        jRadioButtonRopaInterior.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonRopaInteriorActionPerformed(evt);
-            }
-        });
 
         jLabelTalla.setText("Talla");
 
-        buttonGroupTalla.add(jRadioButtonS);
-        jRadioButtonS.setText("S");
-
-        buttonGroupTalla.add(jRadioButtonM);
-        jRadioButtonM.setText("M");
-
-        buttonGroupTalla.add(jRadioButtonL);
-        jRadioButtonL.setText("L");
-
-        buttonGroupTalla.add(jRadioButtonXL);
-        jRadioButtonXL.setText("XL");
-
-        buttonGroupTalla.add(jRadioButtonXXL);
-        jRadioButtonXXL.setText("XXL");
-        jRadioButtonXXL.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonXXLActionPerformed(evt);
-            }
-        });
-
-        buttonGroupTalla.add(jRadioButtonXXXL);
-        jRadioButtonXXXL.setText("XXXL");
-
         jLabelUsuario.setText("Usuario");
-
-        buttonGroupUsuario.add(jRadioButtonNiño);
-        jRadioButtonNiño.setText("Niño");
-
-        buttonGroupUsuario.add(jRadioButtonNiña);
-        jRadioButtonNiña.setText("Niña");
-
-        buttonGroupUsuario.add(jRadioButtonHombre);
-        jRadioButtonHombre.setText("Hombre");
-
-        buttonGroupUsuario.add(jRadioButtonMujer);
-        jRadioButtonMujer.setText("Mujer");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -165,8 +143,18 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         jLabelMensaje.setText("Estado");
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarUno.setText("Consultar Uno");
+        jButtonConsultarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarTodo.setText("Consultar Todo");
         jButtonConsultarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -176,12 +164,33 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         });
 
         jButtonBorrarUno.setText("Borrar Uno");
+        jButtonBorrarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonBorrarTodos.setText("Borrar Todos");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
 
         jButtonInsertar.setText("Insertar");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
 
         jLabelTitulo.setText("Vestidos de Calle");
+
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pantalon", "Camiseta", "Ropa interior" }));
+
+        jComboBoxTalla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S", "M", "L", "XL", "XXL", "XXXL" }));
+
+        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIño", "Niña", "Hombre", "Mujer" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,17 +219,26 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                     .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addComponent(jLabelTipo)
+                    .addComponent(jLabelUrl)
+                    .addComponent(jLabelTalla)
+                    .addComponent(jLabelUsuario))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTalla)
+                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTitulo)
+                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelUsuario)
                                 .addGap(14, 14, 14)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButtonNiña)
-                                    .addComponent(jRadioButtonMujer)
-                                    .addComponent(jRadioButtonNiño)
-                                    .addComponent(jRadioButtonHombre))))
+                                .addComponent(jComboBoxTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonModificar)
@@ -229,26 +247,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                             .addComponent(jButtonBorrarUno)
                             .addComponent(jButtonBorrarTodos)
                             .addComponent(jButtonInsertar))
-                        .addGap(44, 44, 44))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTipo)
-                            .addComponent(jLabelUrl))
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButtonRopaInterior, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButtonPantalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRadioButtonCamiseta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelTitulo)
-                            .addComponent(jRadioButtonM)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jRadioButtonXXXL)
-                                .addComponent(jRadioButtonL, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButtonXL, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jRadioButtonXXL, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jRadioButtonS, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(155, 155, 155))))
+                        .addGap(44, 44, 44))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(262, 262, 262)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -293,17 +292,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelNombre)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelTipo)
-                                    .addComponent(jRadioButtonPantalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonCamiseta, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonRopaInterior, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelCantidad)
@@ -317,32 +306,18 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                                     .addComponent(jLabelColor)
                                     .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(16, 16, 16)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelTalla)
-                                    .addComponent(jRadioButtonS, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButtonM, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonXL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonXXL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonXXXL, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(16, 16, 16)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelUsuario)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButtonNiño, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jRadioButtonNiña, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(3, 3, 3)
-                        .addComponent(jRadioButtonHombre, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(jRadioButtonMujer, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)))
+                                    .addComponent(jLabelTipo)
+                                    .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jComboBoxTalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelTalla))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelUsuario)
+                                    .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -352,52 +327,194 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jRadioButtonRopaInteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonRopaInteriorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonRopaInteriorActionPerformed
-
-    private void jRadioButtonXXLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonXXLActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonXXLActionPerformed
-
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        // TODO add your handling code here:
+        manves.consultarTodos();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglovestidoscalle.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipo(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTalla(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
+
+    private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (jComboBoxMarca.getItemCount() > 0) {
+                idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
+                nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
+            }
+        }
+    }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
+
+    private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
+        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+
+        VestidosCalle resultado = (VestidosCalle) manves.consultarId(idBuscado);
+        if (resultado == null) {
+            JOptionPane.showMessageDialog(this, "Vestido de calle no encontrado");
+        } else {
+            JOptionPane.showMessageDialog(this, "El vestido de calle encontrado es:\n" + resultado.toString());
+        }
+    }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
+
+    private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+        VestidosCalle vescal = new VestidosCalle();
+        Marca mar = new Marca();
+        vescal.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        vescal.setMar(mar);
+        vescal.setNombre(jTextFieldNombre.getText());
+        vescal.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        vescal.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        vescal.setColor(jTextFieldColor.getText());
+        vescal.setTipo(jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex()));
+        vescal.setTalla(jComboBoxTalla.getItemAt(jComboBoxTalla.getSelectedIndex()));
+        vescal.setTipousuario(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()));
+
+        if (manves.insertar(vescal)) {
+            jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
+            jTable1.setValueAt(jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex()), indiceFila, 6);
+            jTable1.setValueAt(jComboBoxTalla.getItemAt(jComboBoxTalla.getSelectedIndex()), indiceFila, 7);
+            jTable1.setValueAt(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()), indiceFila, 8);
+            indiceFila++;
+            manves.consultarTodos();
+        } else {
+            jLabelMensaje.setText("Error al insertar");
+            //JOptionPane.showMessageDialog(this, "Error al insertar");
+        }
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
+            VestidosCalle vescalmod = new VestidosCalle();
+            int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            String tipo = (jTable1.getValueAt(filaSeleccionada, 6).toString());
+            String talla = (jTable1.getValueAt(filaSeleccionada, 7).toString());
+            String usuario = (jTable1.getValueAt(filaSeleccionada, 8).toString());
+
+            Marca marmod = new Marca();
+            vescalmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+            marmod.setId(a);
+            marmod.setDescripcion(nombreMarcaMod);
+            vescalmod.setMar(marmod);
+            vescalmod.setNombre(jTextFieldNombre.getText());
+            vescalmod.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+            vescalmod.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+            vescalmod.setColor(jTextFieldColor.getText());
+            vescalmod.setTipo(tipo);
+            vescalmod.setTalla(talla);
+            vescalmod.setTipousuario(usuario);
+
+            //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+            int posicion = manves.busquedaBinaria(a);
+            if (!(posicion == -1)) {
+                if (manves.modificar(posicion, vescalmod)) {
+                    JOptionPane.showMessageDialog(this, "El vestido de calle se ha modificado exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al modificar");
+        }
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            model.removeRow(filaSeleccionada);
+            if (manves.borrar(idEliminar)) {
+                JOptionPane.showMessageDialog(this, "Vestido de calle borrado exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+        }
+    }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
+
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+        if (manves.borrarTodo()) {
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            indiceFila = 0;
+            JOptionPane.showMessageDialog(this, "Todos los vestidos de calle se borraron exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar todo");
+        }
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuVestidoCalleInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuVestidoCalleInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuVestidoCalleInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuVestidoCalleInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuVestidoCalleInter().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuVestidoCalleInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuVestidoCalleInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuVestidoCalleInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuVestidoCalleInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuVestidoCalleInter().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupTalla;
@@ -410,6 +527,9 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JComboBox<String> jComboBoxMarca;
+    private javax.swing.JComboBox<String> jComboBoxTalla;
+    private javax.swing.JComboBox<String> jComboBoxTipo;
+    private javax.swing.JComboBox<String> jComboBoxUsuario;
     private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelColor;
     private javax.swing.JLabel jLabelId;
@@ -422,19 +542,6 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelUrl;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JRadioButton jRadioButtonCamiseta;
-    private javax.swing.JRadioButton jRadioButtonHombre;
-    private javax.swing.JRadioButton jRadioButtonL;
-    private javax.swing.JRadioButton jRadioButtonM;
-    private javax.swing.JRadioButton jRadioButtonMujer;
-    private javax.swing.JRadioButton jRadioButtonNiña;
-    private javax.swing.JRadioButton jRadioButtonNiño;
-    private javax.swing.JRadioButton jRadioButtonPantalon;
-    private javax.swing.JRadioButton jRadioButtonRopaInterior;
-    private javax.swing.JRadioButton jRadioButtonS;
-    private javax.swing.JRadioButton jRadioButtonXL;
-    private javax.swing.JRadioButton jRadioButtonXXL;
-    private javax.swing.JRadioButton jRadioButtonXXXL;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldCantidad;

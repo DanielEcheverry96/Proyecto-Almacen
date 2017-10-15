@@ -5,6 +5,15 @@
  */
 package vistaGUI;
 
+import controlador.ManejadorObjetos;
+import controlador.ManejadorZapatos;
+import java.awt.event.ItemEvent;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import modelo.CategoriaRopa;
+import modelo.Marca;
+import modelo.Zapatos;
+
 /**
  *
  * @author danie
@@ -14,8 +23,37 @@ public class MenuZapatosInter extends javax.swing.JFrame {
     /**
      * Creates new form MenuZapatosInter
      */
+    ManejadorObjetos manobj;
+    ManejadorZapatos manzap;
+    Integer idMarcaTemporal = null;
+    String nombreMarcaTemporal = "";
+    DefaultTableModel model;
+    int indiceFila = 0;
+    String[] dato = new String[9];
+
     public MenuZapatosInter() {
         initComponents();
+        manobj = new ManejadorObjetos();
+        manzap = new ManejadorZapatos();
+        model = new DefaultTableModel();
+        model.addColumn("Id");
+        model.addColumn("Nombre Marca");
+        model.addColumn("Nombre");
+        model.addColumn("Cantidad");
+        model.addColumn("Precio");
+        model.addColumn("Color");
+        model.addColumn("Tipo");
+        model.addColumn("Talla");
+        model.addColumn("Usuario");
+        jTable1.setModel(model);
+        model.insertRow(indiceFila, dato);
+        inicializarComboBox();
+    }
+
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        }
     }
 
     /**
@@ -56,13 +94,9 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         jTextFieldNombre = new javax.swing.JTextField();
         jLabelMensaje = new javax.swing.JLabel();
         jLabelCantidad = new javax.swing.JLabel();
-        jRadioButtonPantalon = new javax.swing.JRadioButton();
-        jRadioButtonCamiseta = new javax.swing.JRadioButton();
         jLabelUsuario = new javax.swing.JLabel();
-        jRadioButtonNiño = new javax.swing.JRadioButton();
-        jRadioButtonNiña = new javax.swing.JRadioButton();
-        jRadioButtonHombre = new javax.swing.JRadioButton();
-        jRadioButtonMujer = new javax.swing.JRadioButton();
+        jComboBoxTipo = new javax.swing.JComboBox<>();
+        jComboBoxUsuario = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -70,13 +104,27 @@ public class MenuZapatosInter extends javax.swing.JFrame {
 
         jLabelMarca.setText("Marca");
 
-        jComboBoxMarca.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jComboBoxMarcaItemStateChanged(evt);
+            }
+        });
 
         jButtonBorrarTodos.setText("Borrar Todos");
+        jButtonBorrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarTodosActionPerformed(evt);
+            }
+        });
 
         jLabelTallaNumerica.setText("Talla Numerica");
 
         jButtonConsultarUno.setText("Consultar Uno");
+        jButtonConsultarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonConsultarUnoActionPerformed(evt);
+            }
+        });
 
         jLabelColor.setText("Color");
 
@@ -87,6 +135,11 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         jLabelUrl.setText("Url");
 
         jButtonBorrarUno.setText("Borrar Uno");
+        jButtonBorrarUno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBorrarUnoActionPerformed(evt);
+            }
+        });
 
         jButtonConsultarTodo.setText("Consultar Todo");
         jButtonConsultarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -98,8 +151,18 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         jLabelPrecio.setText("Precio");
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonInsertar.setText("Insertar");
+        jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonInsertarActionPerformed(evt);
+            }
+        });
 
         jLabelTitulo.setText("Zapatos");
 
@@ -120,32 +183,11 @@ public class MenuZapatosInter extends javax.swing.JFrame {
 
         jLabelCantidad.setText("Cantidad");
 
-        buttonGroupTipo.add(jRadioButtonPantalon);
-        jRadioButtonPantalon.setText("Deportivo");
-        jRadioButtonPantalon.setPreferredSize(new java.awt.Dimension(67, 14));
-        jRadioButtonPantalon.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButtonPantalonActionPerformed(evt);
-            }
-        });
-
-        buttonGroupTipo.add(jRadioButtonCamiseta);
-        jRadioButtonCamiseta.setText("Calle");
-        jRadioButtonCamiseta.setPreferredSize(new java.awt.Dimension(69, 14));
-
         jLabelUsuario.setText("Usuario");
 
-        buttonGroupUsuario.add(jRadioButtonNiño);
-        jRadioButtonNiño.setText("Niño");
+        jComboBoxTipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Deportivo", "Calle" }));
 
-        buttonGroupUsuario.add(jRadioButtonNiña);
-        jRadioButtonNiña.setText("Niña");
-
-        buttonGroupUsuario.add(jRadioButtonHombre);
-        jRadioButtonHombre.setText("Hombre");
-
-        buttonGroupUsuario.add(jRadioButtonMujer);
-        jRadioButtonMujer.setText("Mujer");
+        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIño", "Niña", "Hombre", "Mujer" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,25 +221,16 @@ public class MenuZapatosInter extends javax.swing.JFrame {
                             .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelUrl)
-                                    .addComponent(jLabelTipoTelevisor)
-                                    .addComponent(jLabelTallaNumerica))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTextFieldTallaNumerica)
-                                    .addComponent(jRadioButtonCamiseta, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
-                                    .addComponent(jRadioButtonPantalon, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabelUsuario)
-                                .addGap(51, 51, 51)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRadioButtonNiña)
-                                    .addComponent(jRadioButtonNiño)
-                                    .addComponent(jRadioButtonHombre)
-                                    .addComponent(jRadioButtonMujer))))
+                            .addComponent(jLabelUrl)
+                            .addComponent(jLabelTipoTelevisor)
+                            .addComponent(jLabelTallaNumerica)
+                            .addComponent(jLabelUsuario))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldTallaNumerica, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonModificar)
@@ -263,26 +296,18 @@ public class MenuZapatosInter extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelUrl))
-                        .addGap(11, 11, 11)
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelTipoTelevisor)
-                            .addComponent(jRadioButtonPantalon, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addComponent(jRadioButtonCamiseta, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11)
+                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelTallaNumerica)
                             .addComponent(jTextFieldTallaNumerica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelUsuario)
-                            .addComponent(jRadioButtonNiño, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(3, 3, 3)
-                        .addComponent(jRadioButtonNiña, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jRadioButtonHombre, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(3, 3, 3)
-                        .addComponent(jRadioButtonMujer, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -294,47 +319,193 @@ public class MenuZapatosInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        // TODO add your handling code here:
+        manzap.consultarTodos();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglozapatos.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipozapato(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTallanumerica(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
-    private void jRadioButtonPantalonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonPantalonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButtonPantalonActionPerformed
+    private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
+        if (evt.getStateChange() == ItemEvent.SELECTED) {
+            if (jComboBoxMarca.getItemCount() > 0) {
+                idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
+                nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
+            }
+        }
+    }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
+
+    private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+        Zapatos zap = new Zapatos();
+        Marca mar = new Marca();
+        zap.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        zap.setMar(mar);
+        zap.setNombre(jTextFieldNombre.getText());
+        zap.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        zap.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        zap.setColor(jTextFieldColor.getText());
+        zap.setTipozapato(jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex()));
+        zap.setTallanumerica(Integer.parseInt(jTextFieldTallaNumerica.getText()));
+        zap.setTipousuario(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()));
+
+        if (manzap.insertar(zap)) {
+            jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
+            jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
+            jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
+            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
+            jTable1.setValueAt(jComboBoxTipo.getItemAt(jComboBoxTipo.getSelectedIndex()), indiceFila, 6);
+            jTable1.setValueAt(Integer.parseInt(jTextFieldTallaNumerica.getText()), indiceFila, 7);
+            jTable1.setValueAt(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()), indiceFila, 8);
+            indiceFila++;
+            manzap.consultarTodos();
+        } else {
+            jLabelMensaje.setText("Error al insertar");
+            //JOptionPane.showMessageDialog(this, "Error al insertar");
+        }
+    }//GEN-LAST:event_jButtonInsertarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
+            Zapatos zapmod = new Zapatos();
+            int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            String nombreMarcaMod = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            jTextFieldNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
+            jTextFieldCantidad.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
+            jTextFieldPrecio.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
+            jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
+            String tipo = (jTable1.getValueAt(filaSeleccionada, 6).toString());
+            jTextFieldTallaNumerica.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            String usuario = (jTable1.getValueAt(filaSeleccionada, 8).toString());
+
+            Marca marmod = new Marca();
+            zapmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+            marmod.setId(a);
+            marmod.setDescripcion(nombreMarcaMod);
+            zapmod.setMar(marmod);
+            zapmod.setNombre(jTextFieldNombre.getText());
+            zapmod.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+            zapmod.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+            zapmod.setColor(jTextFieldColor.getText());
+            zapmod.setTipozapato(tipo);
+            zapmod.setTallanumerica(Integer.parseInt(jTextFieldTallaNumerica.getText()));
+            zapmod.setTipousuario(usuario);
+
+            //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+            int posicion = manzap.busquedaBinaria(a);
+            if (!(posicion == -1)) {
+                if (manzap.modificar(posicion, zapmod)) {
+                    JOptionPane.showMessageDialog(this, "El zapato se ha modificado exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al modificar");
+        }
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
+        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+
+        Zapatos resultado = (Zapatos) manzap.consultarId(idBuscado);
+        if (resultado == null) {
+            JOptionPane.showMessageDialog(this, "Zapato no encontrado");
+        } else {
+            JOptionPane.showMessageDialog(this, "El zapato encontrado es:\n" + resultado.toString());
+        }
+    }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
+
+    private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            model.removeRow(filaSeleccionada);
+            if (manzap.borrar(idEliminar)) {
+                JOptionPane.showMessageDialog(this, "Zapato borrado exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar");
+        }
+    }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
+
+    private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
+        if (manzap.borrarTodo()) {
+            while (model.getRowCount() > 0) {
+                model.removeRow(0);
+            }
+            indiceFila = 0;
+            JOptionPane.showMessageDialog(this, "Todos los zapatos se borraron exitosamente");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al borrar todo");
+        }
+    }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuZapatosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuZapatosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuZapatosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuZapatosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuZapatosInter().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(MenuZapatosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(MenuZapatosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(MenuZapatosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(MenuZapatosInter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MenuZapatosInter().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroupTipo;
@@ -346,6 +517,8 @@ public class MenuZapatosInter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JButton jButtonModificar;
     private javax.swing.JComboBox<String> jComboBoxMarca;
+    private javax.swing.JComboBox<String> jComboBoxTipo;
+    private javax.swing.JComboBox<String> jComboBoxUsuario;
     private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelColor;
     private javax.swing.JLabel jLabelId;
@@ -358,12 +531,6 @@ public class MenuZapatosInter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTitulo;
     private javax.swing.JLabel jLabelUrl;
     private javax.swing.JLabel jLabelUsuario;
-    private javax.swing.JRadioButton jRadioButtonCamiseta;
-    private javax.swing.JRadioButton jRadioButtonHombre;
-    private javax.swing.JRadioButton jRadioButtonMujer;
-    private javax.swing.JRadioButton jRadioButtonNiña;
-    private javax.swing.JRadioButton jRadioButtonNiño;
-    private javax.swing.JRadioButton jRadioButtonPantalon;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldCantidad;
