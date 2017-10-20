@@ -15,7 +15,7 @@ import modelo.Juegos;
  * @author Daniel
  */
 public class ManejadorJuegos implements ICRUD {
-    
+
     CategoriaVideojuegos catevid = new CategoriaVideojuegos();
 
     private boolean existejuego(Juegos jueg) {
@@ -74,8 +74,8 @@ public class ManejadorJuegos implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        if (!(busquedaBinaria(id) == -1)){
-        Juegos resultado = new Juegos();
+        if (!(busquedaBinaria(id) == -1)) {
+            Juegos resultado = new Juegos();
             resultado = catevid.arreglojuegos.get(busquedaBinaria(id));
             return resultado;
         }
@@ -84,13 +84,13 @@ public class ManejadorJuegos implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        
+
         int posicion = busquedaBinaria(id);
-        if (!(posicion==-1)) {
+        if (!(posicion == -1)) {
             catevid.arreglojuegos.remove(posicion);
             return true;
         }
-        
+
         return false;
     }
 
@@ -105,7 +105,76 @@ public class ManejadorJuegos implements ICRUD {
         catevid.arreglojuegos.clear();
         return true;
     }
-    
-    
-    
+
+    private static void mezcla(ArrayList<Juegos> array, Juegos temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getNombre().compareTo(array.get(der).getNombre()) < 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
+            }
+        }
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
+        }
+    }
+
+    private static void ordenarM(ArrayList<Juegos> array, Juegos temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarM(array, temp, izq, centro);
+            ordenarM(array, temp, centro + 1, der);
+            mezcla(array, temp, izq, centro, centro + 1, der);
+        }
+    }
+
+    public void ordenarMezcla() {
+        Juegos temp[] = new Juegos[CategoriaVideojuegos.arreglojuegos.size()];
+        ordenarM(CategoriaVideojuegos.arreglojuegos, temp, 0, CategoriaVideojuegos.arreglojuegos.size() - 1);
+    }
+
+    public static void intercambio(ArrayList<Juegos> array, int a, int b) {
+        Juegos temp;
+        temp = array.get(a);
+        array.set(a, array.get(b));
+        array.set(b, temp);
+    }
+
+    public static int pivote(ArrayList<Juegos> array, int prim, int ult, int piv) {
+        float p = array.get(piv).getPrecio();
+        int j = prim;
+        int i;
+        intercambio(array, piv, ult);
+        for (i = prim; i < ult; i++) {
+            if (array.get(i).getPrecio() <= p) {
+                intercambio(array, i, j);
+                j++;
+            }
+        }
+        intercambio(array, j, ult);
+        return j;
+    }
+
+    public static void quicksortt(ArrayList<Juegos> array, int inicio, int fin) {
+        int medio;
+        if (inicio < fin) {
+            medio = pivote(array, inicio, fin, fin);
+            quicksortt(array, inicio, medio - 1);
+            quicksortt(array, medio + 1, fin);
+        }
+    }
+
+    public void quicksort() {
+        quicksortt(CategoriaVideojuegos.arreglojuegos, 0, CategoriaVideojuegos.arreglojuegos.size() - 1);
+    }
+
 }

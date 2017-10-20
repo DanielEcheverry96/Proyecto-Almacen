@@ -16,24 +16,24 @@ import modelo.CategoriaDeportivos;
  *
  * @author danie
  */
-public class ManejadorBicicletas implements ICRUD{
-    
+public class ManejadorBicicletas implements ICRUD {
+
     CategoriaDeportivos catdep = new CategoriaDeportivos();
-    
-         private boolean existeBicicletas(Bicicletas bici){
+
+    private boolean existeBicicletas(Bicicletas bici) {
         boolean existe = false;
         if (catdep.arreglobicicletas.contains(bici)) {
             existe = true;
         }
         return existe;
     }
-         
+
     @Override
     public boolean insertar(Object obj) {
         boolean inserto = false;
         if (obj instanceof Bicicletas) {
             Bicicletas bici = new Bicicletas();
-            bici = (Bicicletas)obj;
+            bici = (Bicicletas) obj;
             if (!existeBicicletas(bici)) {
                 catdep.arreglobicicletas.add(bici);
                 inserto = true;
@@ -49,9 +49,9 @@ public class ManejadorBicicletas implements ICRUD{
         if (obj instanceof Bicicletas) {
             Bicicletas temp = new Bicicletas();
             temp = (Bicicletas) obj;
-                catdep.arreglobicicletas.set(posicion, temp);
-                var=true;
-            }
+            catdep.arreglobicicletas.set(posicion, temp);
+            var = true;
+        }
         return var;
     }
 
@@ -64,11 +64,9 @@ public class ManejadorBicicletas implements ICRUD{
             centro = (sup + inf) / 2;
             if (CategoriaDeportivos.arreglobicicletas.get(centro).getIdArticulo() == id) {
                 return (centro);
-            }
-            else if (id<CategoriaDeportivos.arreglobicicletas.get(centro).getIdArticulo()) {
+            } else if (id < CategoriaDeportivos.arreglobicicletas.get(centro).getIdArticulo()) {
                 sup = centro - 1;
-            }
-            else {
+            } else {
                 inf = centro + 1;
             }
         }
@@ -77,7 +75,7 @@ public class ManejadorBicicletas implements ICRUD{
 
     @Override
     public Object consultarId(int id) {
-         if (!(busquedaBinaria(id) == -1)){
+        if (!(busquedaBinaria(id) == -1)) {
             Bicicletas resultado = new Bicicletas();
             resultado = catdep.arreglobicicletas.get(busquedaBinaria(id));
             return resultado;
@@ -87,13 +85,13 @@ public class ManejadorBicicletas implements ICRUD{
 
     @Override
     public boolean borrar(int id) {
-        
+
         int posicion = busquedaBinaria(id);
-        if (!(posicion==-1)) {
+        if (!(posicion == -1)) {
             catdep.arreglobicicletas.remove(posicion);
             return true;
         }
-        
+
         return false;
     }
 
@@ -105,50 +103,79 @@ public class ManejadorBicicletas implements ICRUD{
 
     @Override
     public ArrayList consultarTodos() {
-       System.out.println(CategoriaDeportivos.arreglobicicletas.toString());
-       return CategoriaDeportivos.arreglobicicletas;
+        System.out.println(CategoriaDeportivos.arreglobicicletas.toString());
+        return CategoriaDeportivos.arreglobicicletas;
     }
-    
-    public static int partition(ArrayList<Bicicletas> arreglo, int low, int high)
-    {
-        Bicicletas pivot = arreglo.get(high);
-        int i = (low-1); // index of smaller element
-        for (int j=low; j<high; j++)
-        {
-            // If current element is smaller than or
-            // equal to pivot
-            if (arreglo.get(j).getPrecio() <= pivot.getPrecio())
-            {
-                i++;
-                Collections.swap(arreglo, i, j);
-                // swap arr[i] and arr[j]
-               
+
+    private static void mezcla(ArrayList<Bicicletas> array, Bicicletas temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getNombre().compareTo(array.get(der).getNombre()) < 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
             }
         }
- 
-        // swap arr[i+1] and arr[high] (or pivot)
-         Collections.swap(arreglo, i, high);
- 
-        return i+1;
-    }
- 
- 
-    /* The main function that implements QuickSort()
-      arr[] --> Array to be sorted,
-      low  --> Starting index,
-      high  --> Ending index */
-    public static void sort(ArrayList<Bicicletas> arreglo, int low, int high)
-    {
-        if (low < high)
-        {
-            /* pi is partitioning index, arr[pi] is
-              now at right place */
-            int pi = partition(arreglo, low, high);
- 
-            // Recursively sort elements before
-            // partition and after partition
-            sort(arreglo, low, pi-1);
-            sort(arreglo, pi+1, high);
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
         }
     }
+
+    private static void ordenarM(ArrayList<Bicicletas> array, Bicicletas temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarM(array, temp, izq, centro);
+            ordenarM(array, temp, centro + 1, der);
+            mezcla(array, temp, izq, centro, centro + 1, der);
+        }
+    }
+
+    public void ordenarMezcla() {
+        Bicicletas temp[] = new Bicicletas[CategoriaDeportivos.arreglobicicletas.size()];
+        ordenarM(CategoriaDeportivos.arreglobicicletas, temp, 0, CategoriaDeportivos.arreglobicicletas.size() - 1);
+    }
+
+    public static void intercambio(ArrayList<Bicicletas> array, int a, int b) {
+        Bicicletas temp;
+        temp = array.get(a);
+        array.set(a, array.get(b));
+        array.set(b, temp);
+    }
+
+    public static int pivote(ArrayList<Bicicletas> array, int prim, int ult, int piv) {
+        float p = array.get(piv).getPrecio();
+        int j = prim;
+        int i;
+        intercambio(array, piv, ult);
+        for (i = prim; i < ult; i++) {
+            if (array.get(i).getPrecio() <= p) {
+                intercambio(array, i, j);
+                j++;
+            }
+        }
+        intercambio(array, j, ult);
+        return j;
+    }
+
+    public static void quicksortt(ArrayList<Bicicletas> array, int inicio, int fin) {
+        int medio;
+        if (inicio < fin) {
+            medio = pivote(array, inicio, fin, fin);
+            quicksortt(array, inicio, medio - 1);
+            quicksortt(array, medio + 1, fin);
+        }
+    }
+
+    public void quicksort() {
+        quicksortt(CategoriaDeportivos.arreglobicicletas, 0, CategoriaDeportivos.arreglobicicletas.size() - 1);
+    }
+
 }

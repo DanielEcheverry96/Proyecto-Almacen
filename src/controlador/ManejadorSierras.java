@@ -14,10 +14,10 @@ import modelo.Sierras;
  *
  * @author Daniel
  */
-public class ManejadorSierras implements ICRUD{
-    
+public class ManejadorSierras implements ICRUD {
+
     CategoriaHerramientas cateher = new CategoriaHerramientas();
-    
+
     private boolean existesierra(Sierras sie) {
         boolean existe = false;
         if (cateher.arreglosierras.contains(sie)) {
@@ -25,7 +25,7 @@ public class ManejadorSierras implements ICRUD{
         }
         return existe;
     }
-     
+
     @Override
     public boolean insertar(Object obj) {
         boolean inserto = false;
@@ -43,7 +43,7 @@ public class ManejadorSierras implements ICRUD{
 
     @Override
     public boolean modificar(int posicion, Object obj) {
-         boolean var = false;
+        boolean var = false;
         if (obj instanceof Sierras) {
             Sierras temp = new Sierras();
             temp = (Sierras) obj;
@@ -74,8 +74,8 @@ public class ManejadorSierras implements ICRUD{
 
     @Override
     public Object consultarId(int id) {
-        if (!(busquedaBinaria(id) == -1)){
-        Sierras resultado = new Sierras();
+        if (!(busquedaBinaria(id) == -1)) {
+            Sierras resultado = new Sierras();
             resultado = cateher.arreglosierras.get(busquedaBinaria(id));
             return resultado;
         }
@@ -84,19 +84,19 @@ public class ManejadorSierras implements ICRUD{
 
     @Override
     public boolean borrar(int id) {
-        
+
         int posicion = busquedaBinaria(id);
-        if (!(posicion==-1)) {
+        if (!(posicion == -1)) {
             cateher.arreglosierras.remove(posicion);
             return true;
         }
-        
+
         return false;
     }
 
     @Override
     public boolean borrarTodo() {
-         cateher.arreglosierras.clear();
+        cateher.arreglosierras.clear();
         return true;
     }
 
@@ -105,5 +105,75 @@ public class ManejadorSierras implements ICRUD{
         System.out.println(CategoriaHerramientas.arreglosierras.toString());
         return CategoriaHerramientas.arreglosierras;
     }
-    
+
+    private static void mezcla(ArrayList<Sierras> array, Sierras temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getNombre().compareTo(array.get(der).getNombre()) < 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
+            }
+        }
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
+        }
+    }
+
+    private static void ordenarM(ArrayList<Sierras> array, Sierras temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarM(array, temp, izq, centro);
+            ordenarM(array, temp, centro + 1, der);
+            mezcla(array, temp, izq, centro, centro + 1, der);
+        }
+    }
+
+    public void ordenarMezcla() {
+        Sierras temp[] = new Sierras[CategoriaHerramientas.arreglosierras.size()];
+        ordenarM(CategoriaHerramientas.arreglosierras, temp, 0, CategoriaHerramientas.arreglosierras.size() - 1);
+    }
+
+    public static void intercambio(ArrayList<Sierras> array, int a, int b) {
+        Sierras temp;
+        temp = array.get(a);
+        array.set(a, array.get(b));
+        array.set(b, temp);
+    }
+
+    public static int pivote(ArrayList<Sierras> array, int prim, int ult, int piv) {
+        float p = array.get(piv).getPrecio();
+        int j = prim;
+        int i;
+        intercambio(array, piv, ult);
+        for (i = prim; i < ult; i++) {
+            if (array.get(i).getPrecio() <= p) {
+                intercambio(array, i, j);
+                j++;
+            }
+        }
+        intercambio(array, j, ult);
+        return j;
+    }
+
+    public static void quicksortt(ArrayList<Sierras> array, int inicio, int fin) {
+        int medio;
+        if (inicio < fin) {
+            medio = pivote(array, inicio, fin, fin);
+            quicksortt(array, inicio, medio - 1);
+            quicksortt(array, medio + 1, fin);
+        }
+    }
+
+    public void quicksort() {
+        quicksortt(CategoriaHerramientas.arreglosierras, 0, CategoriaHerramientas.arreglosierras.size() - 1);
+    }
 }

@@ -89,7 +89,7 @@ public class MenuBicicletas {
                     insertarBicicletas();
                     break;
                 case 2:
-                    manbici.sort(CategoriaDeportivos.arreglobicicletas, 0, CategoriaDeportivos.arreglobicicletas.size() - 1);
+                    //manbici.sort(CategoriaDeportivos.arreglobicicletas, 0, CategoriaDeportivos.arreglobicicletas.size() - 1);
                     manbici.consultarTodos();
                     break;
                 case 3:

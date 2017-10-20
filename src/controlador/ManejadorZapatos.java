@@ -14,10 +14,10 @@ import modelo.Zapatos;
  *
  * @author Daniel
  */
-public class ManejadorZapatos implements ICRUD{
-    
+public class ManejadorZapatos implements ICRUD {
+
     CategoriaRopa catrop = new CategoriaRopa();
-    
+
     private boolean existezapatos(Zapatos zap) {
         boolean existe = false;
         if (catrop.arreglozapatos.contains(zap)) {
@@ -25,10 +25,10 @@ public class ManejadorZapatos implements ICRUD{
         }
         return existe;
     }
-    
+
     @Override
     public boolean insertar(Object obj) {
-         boolean inserto = false;
+        boolean inserto = false;
         if (obj instanceof Zapatos) {
             Zapatos zap = new Zapatos();
             zap = (Zapatos) obj;
@@ -74,8 +74,8 @@ public class ManejadorZapatos implements ICRUD{
 
     @Override
     public Object consultarId(int id) {
-         if (!(busquedaBinaria(id) == -1)){
-        Zapatos resultado = new Zapatos();
+        if (!(busquedaBinaria(id) == -1)) {
+            Zapatos resultado = new Zapatos();
             resultado = catrop.arreglozapatos.get(busquedaBinaria(id));
             return resultado;
         }
@@ -84,26 +84,96 @@ public class ManejadorZapatos implements ICRUD{
 
     @Override
     public boolean borrar(int id) {
-        
+
         int posicion = busquedaBinaria(id);
-        if (!(posicion==-1)) {
+        if (!(posicion == -1)) {
             catrop.arreglozapatos.remove(posicion);
             return true;
         }
-        
+
         return false;
     }
 
     @Override
     public boolean borrarTodo() {
-         catrop.arreglozapatos.clear();
+        catrop.arreglozapatos.clear();
         return true;
     }
 
     @Override
     public ArrayList consultarTodos() {
-       System.out.println(CategoriaRopa.arreglozapatos.toString());
-        return CategoriaRopa.arreglozapatos; 
+        System.out.println(CategoriaRopa.arreglozapatos.toString());
+        return CategoriaRopa.arreglozapatos;
     }
-    
+
+    private static void mezcla(ArrayList<Zapatos> array, Zapatos temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getNombre().compareTo(array.get(der).getNombre()) < 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
+            }
+        }
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
+        }
+    }
+
+    private static void ordenarM(ArrayList<Zapatos> array, Zapatos temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarM(array, temp, izq, centro);
+            ordenarM(array, temp, centro + 1, der);
+            mezcla(array, temp, izq, centro, centro + 1, der);
+        }
+    }
+
+    public void ordenarMezcla() {
+        Zapatos temp[] = new Zapatos[CategoriaRopa.arreglozapatos.size()];
+        ordenarM(CategoriaRopa.arreglozapatos, temp, 0, CategoriaRopa.arreglozapatos.size() - 1);
+    }
+
+    public static void intercambio(ArrayList<Zapatos> array, int a, int b) {
+        Zapatos temp;
+        temp = array.get(a);
+        array.set(a, array.get(b));
+        array.set(b, temp);
+    }
+
+    public static int pivote(ArrayList<Zapatos> array, int prim, int ult, int piv) {
+        float p = array.get(piv).getPrecio();
+        int j = prim;
+        int i;
+        intercambio(array, piv, ult);
+        for (i = prim; i < ult; i++) {
+            if (array.get(i).getPrecio() <= p) {
+                intercambio(array, i, j);
+                j++;
+            }
+        }
+        intercambio(array, j, ult);
+        return j;
+    }
+
+    public static void quicksortt(ArrayList<Zapatos> array, int inicio, int fin) {
+        int medio;
+        if (inicio < fin) {
+            medio = pivote(array, inicio, fin, fin);
+            quicksortt(array, inicio, medio - 1);
+            quicksortt(array, medio + 1, fin);
+        }
+    }
+
+    public void quicksort() {
+        quicksortt(CategoriaRopa.arreglozapatos, 0, CategoriaRopa.arreglozapatos.size() - 1);
+    }
 }

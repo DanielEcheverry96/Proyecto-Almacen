@@ -17,21 +17,21 @@ import modelo.Raquetas;
 public class ManejadorRaquetas implements ICRUD {
 
     CategoriaDeportivos catdep = new CategoriaDeportivos();
-    
-     private boolean existeRaquetas(Raquetas raque){
+
+    private boolean existeRaquetas(Raquetas raque) {
         boolean existe = false;
         if (catdep.arregloraquetas.contains(raque)) {
             existe = true;
         }
         return existe;
     }
-     
+
     @Override
     public boolean insertar(Object obj) {
         boolean inserto = false;
         if (obj instanceof Raquetas) {
             Raquetas raque = new Raquetas();
-            raque = (Raquetas)obj;
+            raque = (Raquetas) obj;
             if (!existeRaquetas(raque)) {
                 catdep.arregloraquetas.add(raque);
                 inserto = true;
@@ -43,7 +43,7 @@ public class ManejadorRaquetas implements ICRUD {
 
     @Override
     public boolean modificar(int posicion, Object obj) {
-       boolean var = false;
+        boolean var = false;
         if (obj instanceof Raquetas) {
             Raquetas temp = new Raquetas();
             temp = (Raquetas) obj;
@@ -56,17 +56,15 @@ public class ManejadorRaquetas implements ICRUD {
     @Override
     public int busquedaBinaria(int id) {
         Collections.sort(CategoriaDeportivos.arregloraquetas);
-       int n = CategoriaDeportivos.arregloraquetas.size();
-       int centro, inf = 0, sup = n - 1;
+        int n = CategoriaDeportivos.arregloraquetas.size();
+        int centro, inf = 0, sup = n - 1;
         while (inf <= sup) {
             centro = (sup + inf) / 2;
             if (CategoriaDeportivos.arregloraquetas.get(centro).getIdArticulo() == id) {
                 return (centro);
-            }
-            else if (id<CategoriaDeportivos.arregloraquetas.get(centro).getIdArticulo()) {
+            } else if (id < CategoriaDeportivos.arregloraquetas.get(centro).getIdArticulo()) {
                 sup = centro - 1;
-            }
-            else {
+            } else {
                 inf = centro + 1;
             }
         }
@@ -75,7 +73,7 @@ public class ManejadorRaquetas implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        if (!(busquedaBinaria(id) == -1)){
+        if (!(busquedaBinaria(id) == -1)) {
             Raquetas resultado = new Raquetas();
             resultado = catdep.arregloraquetas.get(busquedaBinaria(id));
             return resultado;
@@ -86,7 +84,7 @@ public class ManejadorRaquetas implements ICRUD {
     @Override
     public boolean borrar(int id) {
         int posicion = busquedaBinaria(id);
-        if (!(posicion==-1)) {
+        if (!(posicion == -1)) {
             catdep.arregloraquetas.remove(id);
             return true;
         }
@@ -95,8 +93,8 @@ public class ManejadorRaquetas implements ICRUD {
 
     @Override
     public ArrayList consultarTodos() {
-       System.out.println(CategoriaDeportivos.arregloraquetas.toString());
-       return CategoriaDeportivos.arregloraquetas;
+        System.out.println(CategoriaDeportivos.arregloraquetas.toString());
+        return CategoriaDeportivos.arregloraquetas;
     }
 
     @Override
@@ -104,5 +102,76 @@ public class ManejadorRaquetas implements ICRUD {
         catdep.arregloraquetas.clear();
         return true;
     }
-    
+
+    private static void mezcla(ArrayList<Raquetas> array, Raquetas temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getNombre().compareTo(array.get(der).getNombre()) < 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
+            }
+        }
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
+        }
+    }
+
+    private static void ordenarM(ArrayList<Raquetas> array, Raquetas temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarM(array, temp, izq, centro);
+            ordenarM(array, temp, centro + 1, der);
+            mezcla(array, temp, izq, centro, centro + 1, der);
+        }
+    }
+
+    public void ordenarMezcla() {
+        Raquetas temp[] = new Raquetas[CategoriaDeportivos.arregloraquetas.size()];
+        ordenarM(CategoriaDeportivos.arregloraquetas, temp, 0, CategoriaDeportivos.arregloraquetas.size() - 1);
+    }
+
+    public static void intercambio(ArrayList<Raquetas> array, int a, int b) {
+        Raquetas temp;
+        temp = array.get(a);
+        array.set(a, array.get(b));
+        array.set(b, temp);
+    }
+
+    public static int pivote(ArrayList<Raquetas> array, int prim, int ult, int piv) {
+        float p = array.get(piv).getPrecio();
+        int j = prim;
+        int i;
+        intercambio(array, piv, ult);
+        for (i = prim; i < ult; i++) {
+            if (array.get(i).getPrecio() <= p) {
+                intercambio(array, i, j);
+                j++;
+            }
+        }
+        intercambio(array, j, ult);
+        return j;
+    }
+
+    public static void quicksortt(ArrayList<Raquetas> array, int inicio, int fin) {
+        int medio;
+        if (inicio < fin) {
+            medio = pivote(array, inicio, fin, fin);
+            quicksortt(array, inicio, medio - 1);
+            quicksortt(array, medio + 1, fin);
+        }
+    }
+
+    public void quicksort() {
+        quicksortt(CategoriaDeportivos.arregloraquetas, 0, CategoriaDeportivos.arregloraquetas.size() - 1);
+    }
+
 }
