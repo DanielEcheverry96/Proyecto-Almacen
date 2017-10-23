@@ -126,7 +126,7 @@ public class ManejadorSierras implements ICRUD {
             array.set(fder, temp[fder]);
         }
     }
-    
+
     private static void mezclaDesc(ArrayList<Sierras> array, Sierras temp[], int izq, int fizq, int der, int fder) {
         int postemp = izq, numele, i;
         numele = fder - izq + 1;
@@ -147,6 +147,7 @@ public class ManejadorSierras implements ICRUD {
             array.set(fder, temp[fder]);
         }
     }
+
     private static void ordenarM(ArrayList<Sierras> array, Sierras temp[], int izq, int der) {
         int centro;
         if (izq < der) {
@@ -156,7 +157,7 @@ public class ManejadorSierras implements ICRUD {
             mezcla(array, temp, izq, centro, centro + 1, der);
         }
     }
-    
+
     private static void ordenarMDesc(ArrayList<Sierras> array, Sierras temp[], int izq, int der) {
         int centro;
         if (izq < der) {
@@ -166,16 +167,17 @@ public class ManejadorSierras implements ICRUD {
             mezclaDesc(array, temp, izq, centro, centro + 1, der);
         }
     }
-    
+
     public void ordenarMezcla() {
         Sierras temp[] = new Sierras[CategoriaHerramientas.arreglosierras.size()];
         ordenarM(CategoriaHerramientas.arreglosierras, temp, 0, CategoriaHerramientas.arreglosierras.size() - 1);
     }
-    
-     public void ordenarMezclaDesc() {
+
+    public void ordenarMezclaDesc() {
         Sierras temp[] = new Sierras[CategoriaHerramientas.arreglosierras.size()];
         ordenarMDesc(CategoriaHerramientas.arreglosierras, temp, 0, CategoriaHerramientas.arreglosierras.size() - 1);
     }
+
     public static void intercambio(ArrayList<Sierras> array, int a, int b) {
         Sierras temp;
         temp = array.get(a);
@@ -197,7 +199,7 @@ public class ManejadorSierras implements ICRUD {
         intercambio(array, j, ult);
         return j;
     }
-    
+
     public static int pivoteDesc(ArrayList<Sierras> array, int prim, int ult, int piv) {
         float p = array.get(piv).getPrecio();
         int j = prim;
@@ -212,6 +214,7 @@ public class ManejadorSierras implements ICRUD {
         intercambio(array, j, ult);
         return j;
     }
+
     public static void quicksortt(ArrayList<Sierras> array, int inicio, int fin) {
         int medio;
         if (inicio < fin) {
@@ -220,7 +223,7 @@ public class ManejadorSierras implements ICRUD {
             quicksortt(array, medio + 1, fin);
         }
     }
-    
+
     public static void quicksorttDesc(ArrayList<Sierras> array, int inicio, int fin) {
         int medio;
         if (inicio < fin) {
@@ -229,12 +232,17 @@ public class ManejadorSierras implements ICRUD {
             quicksorttDesc(array, medio + 1, fin);
         }
     }
+
     public void quicksort() {
         quicksortt(CategoriaHerramientas.arreglosierras, 0, CategoriaHerramientas.arreglosierras.size() - 1);
     }
-    
+
     public void quicksortDesc() {
         quicksorttDesc(CategoriaHerramientas.arreglosierras, 0, CategoriaHerramientas.arreglosierras.size() - 1);
     }
 
+    public void sort() {
+        Collections.sort(CategoriaHerramientas.arreglosierras);
+
+    }
 }

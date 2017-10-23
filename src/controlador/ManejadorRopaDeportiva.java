@@ -240,4 +240,9 @@ public class ManejadorRopaDeportiva implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(CategoriaRopa.arregloropadeportiva, 0, CategoriaRopa.arregloropadeportiva.size() - 1);
     }
+
+    public void sort() {
+        Collections.sort(CategoriaRopa.arregloropadeportiva);
+
+    }
 }

@@ -240,4 +240,9 @@ public class ManejadorTelefonosIp implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(cateofi.arreglotelefonosip, 0, cateofi.arreglotelefonosip.size() - 1);
     }
+
+    public void sort() {
+        Collections.sort(cateofi.arreglotelefonosip);
+
+    }
 }

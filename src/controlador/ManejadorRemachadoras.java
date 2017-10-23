@@ -241,4 +241,9 @@ public class ManejadorRemachadoras implements ICRUD {
         quicksorttDesc(CategoriaHerramientas.arregloremachadoras, 0, CategoriaHerramientas.arregloremachadoras.size() - 1);
     }
 
+    public void sort() {
+        Collections.sort(CategoriaHerramientas.arregloremachadoras);
+
+    }
+
 }

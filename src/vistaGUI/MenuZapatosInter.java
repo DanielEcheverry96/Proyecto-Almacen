@@ -97,8 +97,13 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         jLabelUsuario = new javax.swing.JLabel();
         jComboBoxTipo = new javax.swing.JComboBox<>();
         jComboBoxUsuario = new javax.swing.JComboBox<>();
+        jButtonOrdenarNombreAsc = new javax.swing.JButton();
+        jButtonOrdenarPrecioAsc = new javax.swing.JButton();
+        jButtonOrdenarNombreDesc = new javax.swing.JButton();
+        jButtonOrdenarPrecioDesc = new javax.swing.JButton();
+        jButtonOrdenarID = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Zapatos\n");
 
         jLabelNombre.setText("Nombre");
 
@@ -189,17 +194,53 @@ public class MenuZapatosInter extends javax.swing.JFrame {
 
         jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIño", "Niña", "Hombre", "Mujer" }));
 
+        jButtonOrdenarNombreAsc.setText("Ordenar Nombre Ascendente");
+        jButtonOrdenarNombreAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioAsc.setText("Ordenar Precio Ascendente");
+        jButtonOrdenarPrecioAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarNombreDesc.setText("Ordenar Nombre Descendente");
+        jButtonOrdenarNombreDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreDescActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioDesc.setText("Ordenar Precio Descendente");
+        jButtonOrdenarPrecioDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioDescActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarID.setText("Ordenar ID");
+        jButtonOrdenarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(268, 268, 268)
+                .addComponent(jLabelTitulo)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,59 +268,43 @@ public class MenuZapatosInter extends javax.swing.JFrame {
                             .addComponent(jLabelUsuario))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldTallaNumerica, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE)
+                            .addComponent(jTextFieldTallaNumerica)
                             .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jComboBoxUsuario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonModificar)
-                            .addComponent(jButtonConsultarUno)
-                            .addComponent(jButtonConsultarTodo)
-                            .addComponent(jButtonBorrarUno)
-                            .addComponent(jButtonBorrarTodos)
-                            .addComponent(jButtonInsertar))
-                        .addGap(9, 9, 9))
+                            .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonOrdenarID)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonModificar)
+                    .addComponent(jButtonConsultarUno)
+                    .addComponent(jButtonConsultarTodo)
+                    .addComponent(jButtonBorrarUno)
+                    .addComponent(jButtonBorrarTodos)
+                    .addComponent(jButtonInsertar))
+                .addContainerGap())
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
-                .addGap(268, 268, 268)
-                .addComponent(jLabelTitulo)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(242, 242, 242)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelId)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelMarca)
-                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCantidad)
-                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPrecio)
-                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelColor)
-                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonInsertar)
                         .addGap(14, 14, 14)
@@ -291,24 +316,65 @@ public class MenuZapatosInter extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(jButtonBorrarUno)
                         .addGap(14, 14, 14)
-                        .addComponent(jButtonBorrarTodos))
+                        .addComponent(jButtonBorrarTodos)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelUrl))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTipoTelevisor)
-                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTallaNumerica)
-                            .addComponent(jTextFieldTallaNumerica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelUsuario)
-                            .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelId)
+                                    .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelMarca)
+                                    .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelNombre)
+                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelCantidad)
+                                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelPrecio)
+                                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelColor)
+                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabelUrl))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelTipoTelevisor)
+                                    .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelTallaNumerica)
+                                    .addComponent(jTextFieldTallaNumerica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelUsuario)
+                                    .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonOrdenarNombreAsc)
+                                    .addComponent(jButtonOrdenarPrecioAsc))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonOrdenarNombreDesc)
+                                    .addComponent(jButtonOrdenarPrecioDesc)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonOrdenarID)
+                                .addGap(16, 16, 16)))
+                        .addGap(33, 33, 33)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -472,6 +538,129 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
+    private void jButtonOrdenarNombreAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreAscActionPerformed
+        manzap.ordenarMezcla();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglozapatos.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipozapato(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTallanumerica(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
+
+    private void jButtonOrdenarPrecioAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioAscActionPerformed
+        manzap.quicksort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglozapatos.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipozapato(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTallanumerica(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
+
+    private void jButtonOrdenarNombreDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreDescActionPerformed
+        manzap.ordenarMezclaDesc();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglozapatos.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipozapato(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTallanumerica(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
+
+    private void jButtonOrdenarPrecioDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioDescActionPerformed
+        manzap.quicksortDesc();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglozapatos.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipozapato(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTallanumerica(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed
+
+    private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed
+        manzap.sort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglozapatos.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipozapato(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTallanumerica(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglozapatos.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -516,6 +705,11 @@ public class MenuZapatosInter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConsultarUno;
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonOrdenarID;
+    private javax.swing.JButton jButtonOrdenarNombreAsc;
+    private javax.swing.JButton jButtonOrdenarNombreDesc;
+    private javax.swing.JButton jButtonOrdenarPrecioAsc;
+    private javax.swing.JButton jButtonOrdenarPrecioDesc;
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JComboBox<String> jComboBoxTipo;
     private javax.swing.JComboBox<String> jComboBoxUsuario;

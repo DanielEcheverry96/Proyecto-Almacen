@@ -78,6 +78,8 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        setTitle("Marcas\n");
+
         jTitulo.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jTitulo.setForeground(new java.awt.Color(0, 0, 204));
         jTitulo.setText("Marcas");

@@ -58,6 +58,7 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
         jMenuItem16 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tienda Virtual");
 
         jMenu1.setText("Manejo datos aplicacion");
 

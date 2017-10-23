@@ -241,4 +241,8 @@ public class ManejadorTelevisores implements ICRUD {
         quicksorttDesc(CategoriaElectrodomesticos.arreglotelevisores, 0, CategoriaElectrodomesticos.arreglotelevisores.size() - 1);
     }
 
+    public void sort() {
+        Collections.sort(CategoriaElectrodomesticos.arreglotelevisores);
+
+    }
 }

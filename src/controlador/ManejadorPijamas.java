@@ -242,4 +242,8 @@ public class ManejadorPijamas implements ICRUD {
         quicksorttDesc(CategoriaRopa.arreglopijamas, 0, CategoriaRopa.arreglopijamas.size() - 1);
     }
 
+    public void sort() {
+        Collections.sort(CategoriaRopa.arreglopijamas);
+
+    }
 }

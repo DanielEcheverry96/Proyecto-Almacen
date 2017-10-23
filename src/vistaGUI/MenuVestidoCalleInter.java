@@ -98,8 +98,13 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         jComboBoxTipo = new javax.swing.JComboBox<>();
         jComboBoxTalla = new javax.swing.JComboBox<>();
         jComboBoxUsuario = new javax.swing.JComboBox<>();
+        jButtonOrdenarNombreAsc = new javax.swing.JButton();
+        jButtonOrdenarPrecioAsc = new javax.swing.JButton();
+        jButtonOrdenarNombreDesc = new javax.swing.JButton();
+        jButtonOrdenarPrecioDesc = new javax.swing.JButton();
+        jButtonOrdenarID = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Vestidos de Calle");
 
         jLabelId.setText("ID");
 
@@ -192,10 +197,46 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
 
         jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIño", "Niña", "Hombre", "Mujer" }));
 
+        jButtonOrdenarNombreAsc.setText("Ordenar Nombre Ascendente");
+        jButtonOrdenarNombreAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioAsc.setText("Ordenar Precio Ascendente");
+        jButtonOrdenarPrecioAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarNombreDesc.setText("Ordenar Nombre Descendente");
+        jButtonOrdenarNombreDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreDescActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioDesc.setText("Ordenar Precio Descendente");
+        jButtonOrdenarPrecioDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioDescActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarID.setText("Ordenar ID");
+        jButtonOrdenarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,26 +260,21 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                     .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelTipo)
-                    .addComponent(jLabelUrl)
-                    .addComponent(jLabelTalla)
-                    .addComponent(jLabelUsuario))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelTitulo)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelTipo)
+                            .addComponent(jLabelUrl)
+                            .addComponent(jLabelTalla)
+                            .addComponent(jLabelUsuario))
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelTitulo)
-                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jComboBoxTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonModificar)
@@ -247,15 +283,23 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                             .addComponent(jButtonBorrarUno)
                             .addComponent(jButtonBorrarTodos)
                             .addComponent(jButtonInsertar))
-                        .addGap(44, 44, 44))))
+                        .addGap(22, 22, 22))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(262, 262, 262)
-                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(213, 281, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40)
+                .addComponent(jButtonOrdenarID)
+                .addContainerGap(142, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +307,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTitulo)
                 .addGap(10, 10, 10)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonInsertar)
                         .addGap(14, 14, 14)
@@ -274,9 +318,8 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                         .addComponent(jButtonConsultarTodo)
                         .addGap(14, 14, 14)
                         .addComponent(jButtonBorrarUno)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBorrarTodos)
-                        .addGap(82, 82, 82))
+                        .addGap(14, 14, 14)
+                        .addComponent(jButtonBorrarTodos))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelId)
@@ -316,12 +359,26 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelUsuario)
-                                    .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)))
+                                    .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreAsc)
+                            .addComponent(jButtonOrdenarPrecioAsc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreDesc)
+                            .addComponent(jButtonOrdenarPrecioDesc)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonOrdenarID)
+                        .addGap(16, 16, 16)))
+                .addGap(45, 45, 45)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(37, 37, 37)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addGap(39, 39, 39))
         );
 
         pack();
@@ -481,6 +538,129 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
+    private void jButtonOrdenarNombreAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreAscActionPerformed
+        manves.ordenarMezcla();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglovestidoscalle.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipo(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTalla(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
+
+    private void jButtonOrdenarPrecioAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioAscActionPerformed
+        manves.quicksort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglovestidoscalle.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipo(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTalla(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
+
+    private void jButtonOrdenarNombreDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreDescActionPerformed
+        manves.ordenarMezclaDesc();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglovestidoscalle.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipo(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTalla(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
+
+    private void jButtonOrdenarPrecioDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioDescActionPerformed
+        manves.quicksortDesc();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglovestidoscalle.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipo(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTalla(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed
+
+    private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed
+        manves.sort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaRopa.arreglovestidoscalle.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipo(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTalla(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaRopa.arreglovestidoscalle.get(i).getTipousuario(), indiceFila, 8);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -526,6 +706,11 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConsultarUno;
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonOrdenarID;
+    private javax.swing.JButton jButtonOrdenarNombreAsc;
+    private javax.swing.JButton jButtonOrdenarNombreDesc;
+    private javax.swing.JButton jButtonOrdenarPrecioAsc;
+    private javax.swing.JButton jButtonOrdenarPrecioDesc;
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JComboBox<String> jComboBoxTalla;
     private javax.swing.JComboBox<String> jComboBoxTipo;

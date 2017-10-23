@@ -237,5 +237,9 @@ public class ManejadorRaquetas implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(CategoriaDeportivos.arregloraquetas, 0, CategoriaDeportivos.arregloraquetas.size() - 1);
     }
+    
+    public void sort() {
+        Collections.sort(CategoriaDeportivos.arregloraquetas);
 
+    }
 }

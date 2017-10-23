@@ -92,8 +92,13 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
         jButtonModificar = new javax.swing.JButton();
         jButtonInsertar = new javax.swing.JButton();
         jLabelTitulo = new javax.swing.JLabel();
+        jButtonOrdenarNombreAsc = new javax.swing.JButton();
+        jButtonOrdenarPrecioAsc = new javax.swing.JButton();
+        jButtonOrdenarNombreDesc = new javax.swing.JButton();
+        jButtonOrdenarPrecioDesc = new javax.swing.JButton();
+        jButtonOrdenarID = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Telefonos Ip");
 
         jLabelMarca.setText("Marca");
 
@@ -184,21 +189,49 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
 
         jLabelTitulo.setText("Telefono Ip");
 
+        jButtonOrdenarNombreAsc.setText("Ordenar Nombre Ascendente");
+        jButtonOrdenarNombreAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioAsc.setText("Ordenar Precio Ascendente");
+        jButtonOrdenarPrecioAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarNombreDesc.setText("Ordenar Nombre Descendente");
+        jButtonOrdenarNombreDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreDescActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioDesc.setText("Ordenar Precio Descendente");
+        jButtonOrdenarPrecioDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioDescActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarID.setText("Ordenar ID");
+        jButtonOrdenarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(242, 242, 242)
-                .addComponent(jLabelTitulo)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,52 +260,42 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextFieldUrl, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
                             .addComponent(jTextFieldTipoProcesador)
-                            .addComponent(jTextFieldInterfaceRed))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonModificar)
-                            .addComponent(jButtonConsultarUno)
-                            .addComponent(jButtonConsultarTodo)
-                            .addComponent(jButtonBorrarUno)
-                            .addComponent(jButtonBorrarTodos)
-                            .addComponent(jButtonInsertar))
-                        .addGap(9, 9, 9))
+                            .addComponent(jTextFieldInterfaceRed)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(232, 232, 232)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(21, 21, 21)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonOrdenarID)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonModificar)
+                    .addComponent(jButtonConsultarUno)
+                    .addComponent(jButtonConsultarTodo)
+                    .addComponent(jButtonBorrarUno)
+                    .addComponent(jButtonBorrarTodos)
+                    .addComponent(jButtonInsertar))
+                .addGap(9, 9, 9))
+            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(242, 242, 242)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTitulo)
+                    .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTitulo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelId)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelMarca)
-                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCantidad)
-                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPrecio)
-                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelColor)
-                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -296,10 +319,48 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(jButtonConsultarTodo)
                         .addGap(14, 14, 14)
-                        .addComponent(jButtonBorrarUno)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBorrarTodos)))
-                .addGap(18, 18, 18)
+                        .addComponent(jButtonBorrarUno))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelId)
+                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelMarca)
+                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelNombre)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelCantidad)
+                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelPrecio)
+                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelColor)
+                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(14, 14, 14)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonBorrarTodos)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonOrdenarNombreAsc)
+                                .addComponent(jButtonOrdenarPrecioAsc))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jButtonOrdenarNombreDesc)
+                                .addComponent(jButtonOrdenarPrecioDesc)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonOrdenarID)
+                            .addGap(16, 16, 16))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -372,7 +433,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
             jTable1.setValueAt(jTextFieldTipoProcesador.getText(), indiceFila, 6);
             jTable1.setValueAt(jTextFieldInterfaceRed.getText(), indiceFila, 7);
-  
+
             indiceFila++;
             mantelip.consultarTodos();
         } else {
@@ -409,7 +470,6 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             telipmod.setColor(jTextFieldColor.getText());
             telipmod.setTipoprocesador(jTextFieldTipoProcesador.getText());
             telipmod.setInterfacered(jTextFieldInterfaceRed.getText());
-           
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = mantelip.busquedaBinaria(a);
@@ -453,7 +513,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-       if (mantelip.borrarTodo()) {
+        if (mantelip.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }
@@ -463,6 +523,124 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Error al borrar todo");
         }
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
+
+    private void jButtonOrdenarNombreAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreAscActionPerformed
+        mantelip.ordenarMezcla();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectronicosOficina.arreglotelefonosip.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getTipoprocesador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getInterfacered(), indiceFila, 7);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
+
+    private void jButtonOrdenarPrecioAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioAscActionPerformed
+        mantelip.quicksort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectronicosOficina.arreglotelefonosip.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getTipoprocesador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getInterfacered(), indiceFila, 7);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
+
+    private void jButtonOrdenarNombreDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreDescActionPerformed
+        mantelip.ordenarMezclaDesc();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectronicosOficina.arreglotelefonosip.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getTipoprocesador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getInterfacered(), indiceFila, 7);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
+
+    private void jButtonOrdenarPrecioDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioDescActionPerformed
+        mantelip.quicksortDesc();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectronicosOficina.arreglotelefonosip.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getTipoprocesador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getInterfacered(), indiceFila, 7);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed
+
+    private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed
+        mantelip.sort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectronicosOficina.arreglotelefonosip.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getTipoprocesador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectronicosOficina.arreglotelefonosip.get(i).getInterfacered(), indiceFila, 7);
+
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -506,6 +684,11 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConsultarUno;
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonOrdenarID;
+    private javax.swing.JButton jButtonOrdenarNombreAsc;
+    private javax.swing.JButton jButtonOrdenarNombreDesc;
+    private javax.swing.JButton jButtonOrdenarPrecioAsc;
+    private javax.swing.JButton jButtonOrdenarPrecioDesc;
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelColor;

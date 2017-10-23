@@ -232,4 +232,9 @@ public class ManejadorVestidosCalle implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(CategoriaRopa.arreglovestidoscalle, 0, CategoriaRopa.arreglovestidoscalle.size() - 1);
     }
+    
+    public void sort() {
+        Collections.sort(CategoriaRopa.arreglovestidoscalle);
+
+    }
 }

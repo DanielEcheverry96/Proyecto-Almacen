@@ -240,4 +240,9 @@ public class ManejadorZapatos implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(CategoriaRopa.arreglozapatos, 0, CategoriaRopa.arreglozapatos.size() - 1);
     }
+
+    public void sort() {
+        Collections.sort(CategoriaRopa.arreglozapatos);
+
+    }
 }
