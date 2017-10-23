@@ -245,5 +245,10 @@ public class ManejadorMartillos implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(CategoriaHerramientas.arreglomartillos, 0, CategoriaHerramientas.arreglomartillos.size() - 1);
     }
+    
+    public void sort(){
+            Collections.sort(CategoriaHerramientas.arreglomartillos);
+
+        }
 
 }

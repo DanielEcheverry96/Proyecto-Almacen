@@ -240,5 +240,10 @@ public class ManejadorImpresores implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(CategoriaElectronicosOficina.arregloimpresores, 0, CategoriaElectronicosOficina.arregloimpresores.size() - 1);
     }
+    
+    public void sort(){
+            Collections.sort(CategoriaElectronicosOficina.arregloimpresores);
+
+        }
 
 }

@@ -237,4 +237,9 @@ public class ManejadorNeveras implements ICRUD {
     public void quicksortDesc() {
         quicksortt(CategoriaElectrodomesticos.arregloneveras, 0, CategoriaElectrodomesticos.arregloneveras.size() - 1);
     }
+    
+    public void sort(){
+            Collections.sort(CategoriaElectrodomesticos.arregloneveras);
+
+        }
 }

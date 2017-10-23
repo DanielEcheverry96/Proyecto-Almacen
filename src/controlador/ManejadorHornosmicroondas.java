@@ -238,6 +238,11 @@ public class ManejadorHornosmicroondas implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(CategoriaElectrodomesticos.arreglohornosmicroondas, 0, CategoriaElectrodomesticos.arreglohornosmicroondas.size() - 1);
     }
+    
+    public void sort(){
+            Collections.sort(CategoriaElectrodomesticos.arreglohornosmicroondas);
+
+        }
 
 
 }

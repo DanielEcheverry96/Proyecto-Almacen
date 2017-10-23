@@ -98,8 +98,11 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabelMensaje = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButtonOrdenarID = new javax.swing.JButton();
+        jButtonOrdenarNombreAsc = new javax.swing.JButton();
+        jButtonOrdenarPrecioAsc = new javax.swing.JButton();
+        jButtonOrdenarNombreDesc = new javax.swing.JButton();
+        jButtonOrdenarPrecioDesc = new javax.swing.JButton();
 
         jLabelCantidad.setText("Cantidad");
 
@@ -188,10 +191,62 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
 
         jLabelMensaje.setText("Estado");
 
+        jButtonOrdenarID.setText("Ordenar ID");
+        jButtonOrdenarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarIDActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarNombreAsc.setText("Ordenar Nombre Ascendente");
+        jButtonOrdenarNombreAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioAsc.setText("Ordenar Precio Ascendente");
+        jButtonOrdenarPrecioAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarNombreDesc.setText("Ordenar Nombre Descendente");
+        jButtonOrdenarNombreDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreDescActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioDesc.setText("Ordenar Precio Descendente");
+        jButtonOrdenarPrecioDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioDescActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonOrdenarNombreAsc)
+                            .addComponent(jButtonOrdenarNombreDesc))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonOrdenarPrecioDesc)
+                            .addComponent(jButtonOrdenarPrecioAsc))
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonOrdenarID)))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,48 +256,39 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 536, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabelId)
-                                                    .addComponent(jLabelMarca)
-                                                    .addComponent(jLabelNombre)
-                                                    .addComponent(jLabelCantidad)
-                                                    .addComponent(jLabelPrecio))
-                                                .addGap(45, 45, 45))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelColor)
-                                                .addGap(48, 48, 48)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldId, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldPrecio)
-                                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(73, 73, 73)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabelUrl)
-                                            .addComponent(jLabelCapacidad)
-                                            .addComponent(jLabelCompartimiento)
-                                            .addComponent(jLabelPotencia)
-                                            .addComponent(jLabelVoltaje))
-                                        .addGap(40, 40, 40)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(jTextFieldPotencia, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldCompartimiento, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldCapacidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jTextFieldVoltaje, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.LEADING)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(233, 233, 233)
-                                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabelId)
+                                    .addComponent(jLabelMarca)
+                                    .addComponent(jLabelNombre)
+                                    .addComponent(jLabelCantidad)
+                                    .addComponent(jLabelPrecio))
+                                .addGap(45, 45, 45))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelColor)
+                                .addGap(48, 48, 48)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldId, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldPrecio)
+                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(73, 73, 73)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelUrl)
+                            .addComponent(jLabelCapacidad)
+                            .addComponent(jLabelCompartimiento)
+                            .addComponent(jLabelPotencia)
+                            .addComponent(jLabelVoltaje))
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldPotencia, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCompartimiento, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldCapacidad, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldVoltaje, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonModificar)
                             .addComponent(jButtonConsultarUno)
@@ -250,7 +296,8 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
                             .addComponent(jButtonBorrarUno)
                             .addComponent(jButtonBorrarTodos)
                             .addComponent(jButtonInsertar))
-                        .addGap(57, 57, 57))))
+                        .addGap(57, 57, 57))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 704, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,13 +361,25 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
                             .addComponent(jLabelColor)
                             .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
+                .addComponent(jButtonBorrarTodos)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButtonBorrarTodos))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreAsc)
+                            .addComponent(jButtonOrdenarPrecioAsc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreDesc)
+                            .addComponent(jButtonOrdenarPrecioDesc)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonOrdenarID)
+                        .addGap(16, 16, 16)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -496,6 +555,129 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
+    private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed
+        manhornmic.sort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arreglohornosmicroondas.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCapacidad(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCompartimiento(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPotencia(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getVoltaje(), indiceFila, 9);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
+
+    private void jButtonOrdenarNombreAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreAscActionPerformed
+        manhornmic.ordenarMezcla();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arreglohornosmicroondas.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCapacidad(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCompartimiento(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPotencia(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getVoltaje(), indiceFila, 9);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
+
+    private void jButtonOrdenarPrecioAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioAscActionPerformed
+        manhornmic.quicksort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arreglohornosmicroondas.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCapacidad(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCompartimiento(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPotencia(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getVoltaje(), indiceFila, 9);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
+
+    private void jButtonOrdenarNombreDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreDescActionPerformed
+        manhornmic.ordenarMezclaDesc();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arreglohornosmicroondas.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCapacidad(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCompartimiento(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPotencia(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getVoltaje(), indiceFila, 9);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
+
+    private void jButtonOrdenarPrecioDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioDescActionPerformed
+        manhornmic.quicksortDesc();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arreglohornosmicroondas.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCapacidad(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getCompartimiento(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getPotencia(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornosmicroondas.get(i).getVoltaje(), indiceFila, 9);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -539,6 +721,11 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConsultarUno;
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonOrdenarID;
+    private javax.swing.JButton jButtonOrdenarNombreAsc;
+    private javax.swing.JButton jButtonOrdenarNombreDesc;
+    private javax.swing.JButton jButtonOrdenarPrecioAsc;
+    private javax.swing.JButton jButtonOrdenarPrecioDesc;
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelCapacidad;

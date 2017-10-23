@@ -247,4 +247,9 @@ public void quicksortDesc()
 {
    quicksorttDesc(CategoriaElectrodomesticos.arreglohornoselectricosygas, 0, CategoriaElectrodomesticos.arreglohornoselectricosygas.size()-1);
 }
+
+public void sort(){
+            Collections.sort(CategoriaElectrodomesticos.arreglohornoselectricosygas);
+
+        }
 }

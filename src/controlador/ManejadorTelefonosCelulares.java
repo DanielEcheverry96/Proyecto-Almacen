@@ -239,4 +239,9 @@ public class ManejadorTelefonosCelulares implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(cateofi.arreglotelefonoscelulares, 0, cateofi.arreglotelefonoscelulares.size() - 1);
     }
+    
+    public void sort(){
+            Collections.sort(CategoriaElectronicosOficina.arreglotelefonoscelulares);
+
+        }
 }

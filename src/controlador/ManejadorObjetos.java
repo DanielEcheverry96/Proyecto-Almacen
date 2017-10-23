@@ -7,6 +7,7 @@ package controlador;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import modelo.Categorias;
 import modelo.Marca;
 
 /**
@@ -107,5 +108,91 @@ public class ManejadorObjetos implements ICRUD {
         arregloMarcas.clear();
         return true;
     }
+    
+    private static void mezcla(ArrayList<Marca> array, Marca temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getDescripcion().compareTo(array.get(der).getDescripcion()) < 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
+            }
+        }
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
+        }
+    }
+    
+     private static void mezclaDesc(ArrayList<Marca> array, Marca temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getDescripcion().compareTo(array.get(der).getDescripcion()) > 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
+            }
+        }
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
+        }
+    }
+
+
+    private static void ordenarM(ArrayList<Marca> array, Marca temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarM(array, temp, izq, centro);
+            ordenarM(array, temp, centro + 1, der);
+            mezcla(array, temp, izq, centro, centro + 1, der);
+        }
+    }
+
+        private static void ordenarMDesc(ArrayList<Marca> array, Marca temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarMDesc(array, temp, izq, centro);
+            ordenarMDesc(array, temp, centro + 1, der);
+            mezclaDesc(array, temp, izq, centro, centro + 1, der);
+        }
+    }
+    public void ordenarMezcla() {
+        Marca temp[] = new Marca[arregloMarcas.size()];
+        ordenarM(arregloMarcas, temp, 0, arregloMarcas.size() - 1);
+    }
+    
+     public void ordenarMezclaDesc() {
+        Marca temp[] = new Marca[arregloMarcas.size()];
+        ordenarMDesc(arregloMarcas, temp, 0, arregloMarcas.size() - 1);
+    }
+
+
+    public static void intercambio(ArrayList<Marca> array, int a, int b) {
+        Marca temp;
+        temp = array.get(a);
+        array.set(a, array.get(b));
+        array.set(b, temp);
+    }
+
+        
+        public void sort(){
+            Collections.sort(arregloMarcas);
+
+        }
 
 }

@@ -100,8 +100,11 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabelMensaje = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jButtonOrdenarID = new javax.swing.JButton();
+        jButtonOrdenarNombreAsc = new javax.swing.JButton();
+        jButtonOrdenarPrecioAsc = new javax.swing.JButton();
+        jButtonOrdenarNombreDesc = new javax.swing.JButton();
+        jButtonOrdenarPrecioDesc = new javax.swing.JButton();
 
         jLabelCapacidadFrigorifico.setText("Capacidad Frigorifico");
 
@@ -198,6 +201,41 @@ public class MenuNeverasInter extends javax.swing.JFrame {
 
         jLabelMensaje.setText("Estado");
 
+        jButtonOrdenarID.setText("Ordenar ID");
+        jButtonOrdenarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarIDActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarNombreAsc.setText("Ordenar Nombre Ascendente");
+        jButtonOrdenarNombreAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioAsc.setText("Ordenar Precio Ascendente");
+        jButtonOrdenarPrecioAsc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioAscActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarNombreDesc.setText("Ordenar Nombre Descendente");
+        jButtonOrdenarNombreDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarNombreDescActionPerformed(evt);
+            }
+        });
+
+        jButtonOrdenarPrecioDesc.setText("Ordenar Precio Descendente");
+        jButtonOrdenarPrecioDesc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonOrdenarPrecioDescActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -254,11 +292,24 @@ public class MenuNeverasInter extends javax.swing.JFrame {
                             .addComponent(jButtonBorrarTodos)
                             .addComponent(jButtonInsertar))
                         .addGap(18, 18, 18))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 700, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(233, 233, 233)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(261, 261, 261)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonOrdenarNombreAsc)
+                            .addComponent(jButtonOrdenarNombreDesc))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonOrdenarPrecioDesc)
+                            .addComponent(jButtonOrdenarPrecioAsc))
+                        .addGap(40, 40, 40)
+                        .addComponent(jButtonOrdenarID)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,11 +378,24 @@ public class MenuNeverasInter extends javax.swing.JFrame {
                         .addComponent(jButtonBorrarUno)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBorrarTodos)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreAsc)
+                            .addComponent(jButtonOrdenarPrecioAsc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreDesc)
+                            .addComponent(jButtonOrdenarPrecioDesc)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonOrdenarID)
+                        .addGap(16, 16, 16)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -521,6 +585,134 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
+    private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed
+        mannev.sort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arregloneveras.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapcongelador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapfrigorifero(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMaterial(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getTamaño(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getSistema(), indiceFila, 10);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
+
+    private void jButtonOrdenarNombreAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreAscActionPerformed
+        mannev.ordenarMezcla();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arregloneveras.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapcongelador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapfrigorifero(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMaterial(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getTamaño(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getSistema(), indiceFila, 10);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
+
+    private void jButtonOrdenarPrecioAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioAscActionPerformed
+        mannev.quicksort();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arregloneveras.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapcongelador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapfrigorifero(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMaterial(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getTamaño(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getSistema(), indiceFila, 10);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
+
+    private void jButtonOrdenarNombreDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarNombreDescActionPerformed
+        mannev.ordenarMezclaDesc();
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arregloneveras.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapcongelador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapfrigorifero(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMaterial(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getTamaño(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getSistema(), indiceFila, 10);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
+
+    private void jButtonOrdenarPrecioDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioDescActionPerformed
+        mannev.quicksortDesc();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
+        indiceFila = 0;
+
+        for (int i = 0; i < CategoriaElectrodomesticos.arregloneveras.size(); i++) {
+            model.insertRow(indiceFila, dato);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getIdArticulo(), indiceFila, 0);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMar().getDescripcion(), indiceFila, 1);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getNombre(), indiceFila, 2);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCantidad(), indiceFila, 3);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getPrecio(), indiceFila, 4);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getColor(), indiceFila, 5);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapcongelador(), indiceFila, 6);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getCapfrigorifero(), indiceFila, 7);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getMaterial(), indiceFila, 8);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getTamaño(), indiceFila, 9);
+            jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getSistema(), indiceFila, 10);
+            indiceFila++;
+        }
+    }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -563,6 +755,11 @@ public class MenuNeverasInter extends javax.swing.JFrame {
     private javax.swing.JButton jButtonConsultarUno;
     private javax.swing.JButton jButtonInsertar;
     private javax.swing.JButton jButtonModificar;
+    private javax.swing.JButton jButtonOrdenarID;
+    private javax.swing.JButton jButtonOrdenarNombreAsc;
+    private javax.swing.JButton jButtonOrdenarNombreDesc;
+    private javax.swing.JButton jButtonOrdenarPrecioAsc;
+    private javax.swing.JButton jButtonOrdenarPrecioDesc;
     private javax.swing.JComboBox<String> jComboBoxMarca;
     private javax.swing.JLabel jLabelCantidad;
     private javax.swing.JLabel jLabelCapacidadCongelador;

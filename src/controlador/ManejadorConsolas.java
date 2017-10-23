@@ -239,4 +239,9 @@ public class ManejadorConsolas implements ICRUD {
       public void quicksortDesc() {
         quicksorttDesc(CategoriaVideojuegos.arregloconsolas, 0, CategoriaVideojuegos.arregloconsolas.size() - 1);
     }
+      
+      public void sort(){
+            Collections.sort(CategoriaVideojuegos.arregloconsolas);
+
+        }
 }
