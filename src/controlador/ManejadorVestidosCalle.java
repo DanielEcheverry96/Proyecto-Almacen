@@ -126,7 +126,26 @@ public class ManejadorVestidosCalle implements ICRUD {
             array.set(fder, temp[fder]);
         }
     }
-
+    private static void mezclaDesc(ArrayList<VestidosCalle> array, VestidosCalle temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getNombre().compareTo(array.get(der).getNombre()) > 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
+            }
+        }
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
+        }
+    }
     private static void ordenarM(ArrayList<VestidosCalle> array, VestidosCalle temp[], int izq, int der) {
         int centro;
         if (izq < der) {
@@ -136,12 +155,23 @@ public class ManejadorVestidosCalle implements ICRUD {
             mezcla(array, temp, izq, centro, centro + 1, der);
         }
     }
-
+    private static void ordenarMDesc(ArrayList<VestidosCalle> array, VestidosCalle temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarMDesc(array, temp, izq, centro);
+            ordenarMDesc(array, temp, centro + 1, der);
+            mezclaDesc(array, temp, izq, centro, centro + 1, der);
+        }
+    }
     public void ordenarMezcla() {
         VestidosCalle temp[] = new VestidosCalle[CategoriaRopa.arreglovestidoscalle.size()];
         ordenarM(CategoriaRopa.arreglovestidoscalle, temp, 0, CategoriaRopa.arreglovestidoscalle.size() - 1);
     }
-
+    public void ordenarMezclaDesc() {
+        VestidosCalle temp[] = new VestidosCalle[CategoriaRopa.arreglovestidoscalle.size()];
+        ordenarMDesc(CategoriaRopa.arreglovestidoscalle, temp, 0, CategoriaRopa.arreglovestidoscalle.size() - 1);
+    }
     public static void intercambio(ArrayList<VestidosCalle> array, int a, int b) {
         VestidosCalle temp;
         temp = array.get(a);
@@ -163,7 +193,21 @@ public class ManejadorVestidosCalle implements ICRUD {
         intercambio(array, j, ult);
         return j;
     }
-
+    
+    public static int pivoteDesc(ArrayList<VestidosCalle> array, int prim, int ult, int piv) {
+        float p = array.get(piv).getPrecio();
+        int j = prim;
+        int i;
+        intercambio(array, piv, ult);
+        for (i = prim; i < ult; i++) {
+            if (array.get(i).getPrecio() > p) {
+                intercambio(array, i, j);
+                j++;
+            }
+        }
+        intercambio(array, j, ult);
+        return j;
+    }
     public static void quicksortt(ArrayList<VestidosCalle> array, int inicio, int fin) {
         int medio;
         if (inicio < fin) {
@@ -172,8 +216,20 @@ public class ManejadorVestidosCalle implements ICRUD {
             quicksortt(array, medio + 1, fin);
         }
     }
-
+    
+    public static void quicksorttDesc(ArrayList<VestidosCalle> array, int inicio, int fin) {
+        int medio;
+        if (inicio < fin) {
+            medio = pivoteDesc(array, inicio, fin, fin);
+            quicksorttDesc(array, inicio, medio - 1);
+            quicksorttDesc(array, medio + 1, fin);
+        }
+    }
     public void quicksort() {
         quicksortt(CategoriaRopa.arreglovestidoscalle, 0, CategoriaRopa.arreglovestidoscalle.size() - 1);
+    }
+    
+    public void quicksortDesc() {
+        quicksorttDesc(CategoriaRopa.arreglovestidoscalle, 0, CategoriaRopa.arreglovestidoscalle.size() - 1);
     }
 }
