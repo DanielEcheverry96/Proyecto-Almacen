@@ -241,5 +241,10 @@ public class ManejadorBicicletas implements ICRUD {
         public void quicksortDesc() {
         quicksorttDesc(CategoriaDeportivos.arreglobicicletas, 0, CategoriaDeportivos.arreglobicicletas.size() - 1);
     }
+        
+        public void sort(){
+            Collections.sort(CategoriaDeportivos.arreglobicicletas);
+
+        }
 
 }

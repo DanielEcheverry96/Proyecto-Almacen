@@ -243,5 +243,10 @@ public class ManejadorComputadores implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(cateofi.arreglocomputadores, 0, cateofi.arreglocomputadores.size() - 1);
     }
+    
+    public void sort(){
+        Collections.sort(CategoriaElectronicosOficina.arreglocomputadores);
+
+    }
 
 }
