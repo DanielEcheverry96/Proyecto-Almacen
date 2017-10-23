@@ -127,6 +127,27 @@ public class ManejadorImpresores implements ICRUD {
             array.set(fder, temp[fder]);
         }
     }
+    
+     private static void mezclaDesc(ArrayList<Impresores> array, Impresores temp[], int izq, int fizq, int der, int fder) {
+        int postemp = izq, numele, i;
+        numele = fder - izq + 1;
+        while (izq <= fizq && der <= fder) {
+            if (array.get(izq).getNombre().compareTo(array.get(der).getNombre()) > 0) {
+                temp[postemp++] = array.get(izq++);
+            } else {
+                temp[postemp++] = array.get(der++);
+            }
+        }
+        while (izq <= fizq) {
+            temp[postemp++] = array.get(izq++);
+        }
+        while (der <= fder) {
+            temp[postemp++] = array.get(der++);
+        }
+        for (i = 0; i < numele; i++, fder--) {
+            array.set(fder, temp[fder]);
+        }
+    }
 
     private static void ordenarM(ArrayList<Impresores> array, Impresores temp[], int izq, int der) {
         int centro;
@@ -138,9 +159,23 @@ public class ManejadorImpresores implements ICRUD {
         }
     }
 
+        private static void ordenarMDesc(ArrayList<Impresores> array, Impresores temp[], int izq, int der) {
+        int centro;
+        if (izq < der) {
+            centro = (int) (izq + der) / 2;
+            ordenarMDesc(array, temp, izq, centro);
+            ordenarMDesc(array, temp, centro + 1, der);
+            mezclaDesc(array, temp, izq, centro, centro + 1, der);
+        }
+    }
     public void ordenarMezcla() {
         Impresores temp[] = new Impresores[CategoriaElectronicosOficina.arregloimpresores.size()];
         ordenarM(CategoriaElectronicosOficina.arregloimpresores, temp, 0, CategoriaElectronicosOficina.arregloimpresores.size() - 1);
+    }
+    
+      public void ordenarMezclaDesc() {
+        Impresores temp[] = new Impresores[CategoriaElectronicosOficina.arregloimpresores.size()];
+        ordenarMDesc(CategoriaElectronicosOficina.arregloimpresores, temp, 0, CategoriaElectronicosOficina.arregloimpresores.size() - 1);
     }
 
     public static void intercambio(ArrayList<Impresores> array, int a, int b) {
@@ -165,6 +200,21 @@ public class ManejadorImpresores implements ICRUD {
         return j;
     }
 
+    public static int pivoteDesc(ArrayList<Impresores> array, int prim, int ult, int piv) {
+        float p = array.get(piv).getPrecio();
+        int j = prim;
+        int i;
+        intercambio(array, piv, ult);
+        for (i = prim; i < ult; i++) {
+            if (array.get(i).getPrecio() > p) {
+                intercambio(array, i, j);
+                j++;
+            }
+        }
+        intercambio(array, j, ult);
+        return j;
+    }
+
     public static void quicksortt(ArrayList<Impresores> array, int inicio, int fin) {
         int medio;
         if (inicio < fin) {
@@ -173,9 +223,22 @@ public class ManejadorImpresores implements ICRUD {
             quicksortt(array, medio + 1, fin);
         }
     }
+    
+        public static void quicksorttDesc(ArrayList<Impresores> array, int inicio, int fin) {
+        int medio;
+        if (inicio < fin) {
+            medio = pivoteDesc(array, inicio, fin, fin);
+            quicksorttDesc(array, inicio, medio - 1);
+            quicksorttDesc(array, medio + 1, fin);
+        }
+    }
 
     public void quicksort() {
         quicksortt(CategoriaElectronicosOficina.arregloimpresores, 0, CategoriaElectronicosOficina.arregloimpresores.size() - 1);
+    }
+
+    public void quicksortDesc() {
+        quicksorttDesc(CategoriaElectronicosOficina.arregloimpresores, 0, CategoriaElectronicosOficina.arregloimpresores.size() - 1);
     }
 
 }
