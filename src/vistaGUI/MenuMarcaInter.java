@@ -257,8 +257,17 @@ public class MenuMarcaInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
+       // Marca mar = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+        try{
+            if(!ValidaEnteros.validaEnteros(jTextFieldId.getText()))
+                throw new ValidaEnteros();
+        }
+        catch (ValidaEnteros e){
+            jMensaje.setText("El id que ingreso no es valido");
+            jTextFieldId.setText("");
+            return;
+        }
         Marca mar = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-        
         if (manobj.insertar(mar)) {
             jMensaje.setText("Marca Insertada");
             model.insertRow(indiceFila, dato);

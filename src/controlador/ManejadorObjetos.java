@@ -7,7 +7,6 @@ package controlador;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import modelo.Categorias;
 import modelo.Marca;
 
 /**
