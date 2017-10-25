@@ -440,6 +440,15 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaLongitud.validaLongitud(jTextFieldLongitud.getText())) {
+                throw new ValidaLongitud();
+            }
+            if (!ValidaAncho.validaAncho(jTextFieldAncho.getText())) {
+                throw new ValidaAncho();
+            }
+            if (!ValidaPesoR.validaPesoR(jTextFieldPeso.getText())) {
+                throw new ValidaPesoR();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -451,6 +460,18 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
         } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaLongitud e) {
+            jLabelMensaje.setText("La longitud que ingreso no es valida");
+            jTextFieldLongitud.setText("");
+            return;
+        }catch (ValidaAncho e) {
+            jLabelMensaje.setText("El ancho que ingreso no es valida");
+            jTextFieldAncho.setText("");
+            return;
+        }catch (ValidaPesoR e) {
+            jLabelMensaje.setText("El peso que ingreso no es valido");
+            jTextFieldPeso.setText("");
             return;
         }
 

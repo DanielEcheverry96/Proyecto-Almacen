@@ -431,6 +431,9 @@ public class MenuZapatosInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaTalla.validaTalla(jTextFieldTallaNumerica.getText())) {
+                throw new ValidaTalla();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -442,6 +445,10 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaTalla e) {
+            jLabelMensaje.setText("La talla numerica que ingreso no es valida");
+            jTextFieldTallaNumerica.setText("");
             return;
         }
         

@@ -445,6 +445,9 @@ public class MenuTvInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaTamañoPantalla.validaTamañoPantalla(jTextFieldTamañoPantalla.getText())) {
+                throw new ValidaTamañoPantalla();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -456,6 +459,10 @@ public class MenuTvInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaTamañoPantalla e) {
+            jLabelMensaje.setText("El tamaño de pantalla que ingreso no es valido");
+            jTextFieldTamañoPantalla.setText("");
             return;
         }
         

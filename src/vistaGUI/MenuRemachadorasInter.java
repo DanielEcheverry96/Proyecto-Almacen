@@ -434,6 +434,9 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaCalibre.validaCalibre(jTextFieldCalibre.getText())) {
+                throw new ValidaCalibre();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -445,6 +448,10 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaCalibre e) {
+            jLabelMensaje.setText("El calibre que ingreso no es valido");
+            jTextFieldCalibre.setText("");
             return;
         }
 

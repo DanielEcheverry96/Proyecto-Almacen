@@ -458,6 +458,18 @@ public class MenuSierrasInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaPotencia.validaPotencia(jTextFieldPotencia.getText())) {
+                throw new ValidaPotencia();
+            }
+            if (!ValidaVelocidad.validaVelocidad(jTextFieldVelocidad.getText())) {
+                throw new ValidaVelocidad();
+            }
+            if (!ValidaPesoR.validaPesoR(jTextFieldPeso.getText())) {
+                throw new ValidaPesoR();
+            }
+            if (!ValidaDiametroDisco.validaDiametroDisco(jTextFieldDiametroDisco.getText())) {
+                throw new ValidaDiametroDisco();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -469,6 +481,22 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaPotencia e) {
+            jLabelMensaje.setText("La potencia que ingreso no es valida");
+            jTextFieldPotencia.setText("");
+            return;
+        }catch (ValidaVelocidad e) {
+            jLabelMensaje.setText("La velocidad que ingreso no es valido");
+            jTextFieldVelocidad.setText("");
+            return;
+        }catch (ValidaPesoR e) {
+            jLabelMensaje.setText("El peso que ingreso no es valido");
+            jTextFieldPeso.setText("");
+            return;
+        }catch (ValidaDiametroDisco e) {
+            jLabelMensaje.setText("El diametro que ingreso no es valido");
+            jTextFieldDiametroDisco.setText("");
             return;
         }
         

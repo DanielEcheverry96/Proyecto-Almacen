@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *
  * @author danie
  */
-public class ValidaPesoR {
+public class ValidaPesoR extends Exception{
     public static boolean validaPesoR(String prueba){
         boolean pruebaValido = false;
         
