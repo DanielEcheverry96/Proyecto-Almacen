@@ -23,19 +23,20 @@ public class MenuConsolasInter extends javax.swing.JFrame {
     /**
      * Creates new form MenuConsolasInter
      */
-     ManejadorObjetos manobj;
+    ManejadorObjetos manobj;
     ManejadorConsolas mancons;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[10];
+
     public MenuConsolasInter() {
         initComponents();
         manobj = new ManejadorObjetos();
         mancons = new ManejadorConsolas();
         model = new DefaultTableModel();
-        model.addColumn("Id");              
+        model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
@@ -50,9 +51,9 @@ public class MenuConsolasInter extends javax.swing.JFrame {
         inicializarComboBox();
     }
 
-        public void inicializarComboBox(){
-        for(int i=0;i<manobj.arregloMarcas.size();i++){
-           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -412,20 +413,20 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaVideojuegos.arregloconsolas.get(i).getCapdiscoduro(), indiceFila, 9);
             indiceFila++;
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
 
-       Consolas cons = new Consolas();
-       
-       try {
+        Consolas cons = new Consolas();
+
+        try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
@@ -433,30 +434,30 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
         }
-       
-       Marca mar = new Marca();
-       cons.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
-       mar.setId(idMarcaTemporal);
-       mar.setDescripcion(nombreMarcaTemporal);
-       cons.setMar(mar);
-       cons.setNombre(jTextFieldNombre.getText());
-       cons.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
-       cons.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
-       cons.setColor(jTextFieldColor.getText());
-       cons.setTipo(jTextFieldTipoConsola.getText());
-       cons.setNumcontroles(Integer.parseInt(jTextFieldNumeroControles.getText()));
-       cons.setRealidadvir(jTextFieldRealidadvirtual.getText());
-       cons.setCapdiscoduro(jTextFieldCapacidadDiscoduro.getText());
-       
+
+        Marca mar = new Marca();
+        cons.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        cons.setMar(mar);
+        cons.setNombre(jTextFieldNombre.getText());
+        cons.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        cons.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        cons.setColor(jTextFieldColor.getText());
+        cons.setTipo(jTextFieldTipoConsola.getText());
+        cons.setNumcontroles(Integer.parseInt(jTextFieldNumeroControles.getText()));
+        cons.setRealidadvir(jTextFieldRealidadvirtual.getText());
+        cons.setCapdiscoduro(jTextFieldCapacidadDiscoduro.getText());
+
         if (mancons.insertar(cons)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
@@ -473,21 +474,20 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             jTable1.setValueAt(jTextFieldCapacidadDiscoduro.getText(), indiceFila, 9);
             indiceFila++;
             mancons.consultarTodos();
-        }
-        else{
+        } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
-        
+
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
         int filaSeleccionada = jTable1.getSelectedRow();
-            System.out.println(filaSeleccionada);
-        
-            if (filaSeleccionada >= 0) {
-            
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
             Consolas consmod = new Consolas();
             int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
@@ -500,7 +500,7 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             jTextFieldNumeroControles.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldRealidadvirtual.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldCapacidadDiscoduro.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
-            
+
             Marca marmod = new Marca();
             consmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -514,31 +514,29 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             consmod.setNumcontroles(Integer.parseInt(jTextFieldNumeroControles.getText()));
             consmod.setRealidadvir(jTextFieldRealidadvirtual.getText());
             consmod.setCapdiscoduro(jTextFieldCapacidadDiscoduro.getText());
-            
+
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = mancons.busquedaBinaria(a);
-                    if (!(posicion==-1)) {
-                    if (mancons.modificar(posicion, consmod)) {
-                        JOptionPane.showMessageDialog(this, "Consola modificada exitosamente");
-                        indiceFila--;
-                    }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Error al modificar");
-                    }
+            if (!(posicion == -1)) {
+                if (mancons.modificar(posicion, consmod)) {
+                    JOptionPane.showMessageDialog(this, "Consola modificada exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
         }
-        
+
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
         int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-            
+
         Consolas resultado = (Consolas) mancons.consultarId(idBuscado);
         if (resultado == null) {
             JOptionPane.showMessageDialog(this, "Consola no encontrada");
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "La Consola encontrada es:\n" + resultado.toString());
         }
 
@@ -551,15 +549,14 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
             if (mancons.borrar(idEliminar)) {
-                    JOptionPane.showMessageDialog(this, "Consola borrada exitosamente");    
-                    }
-            else {
-            JOptionPane.showMessageDialog(this, "Error al borrar");
+                JOptionPane.showMessageDialog(this, "Consola borrada exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
@@ -573,7 +570,7 @@ public class MenuConsolasInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar todo");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
@@ -584,7 +581,7 @@ public class MenuConsolasInter extends javax.swing.JFrame {
                 nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
             }
         }
-        
+
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed
