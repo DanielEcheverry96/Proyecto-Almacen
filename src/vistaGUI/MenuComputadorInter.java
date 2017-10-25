@@ -484,6 +484,9 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
+            if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+               throw new ValidaCantidad();
+           }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
@@ -491,11 +494,16 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaFlotantes e){
+        } catch (ValidaCantidad e){
+            jLabelMensaje.setText("La cantidad que ingreso no es valida");
+            jTextFieldCantidad.setText("");
+            return;
+        }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
         }
+        
         Marca mar = new Marca();
         comp.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);

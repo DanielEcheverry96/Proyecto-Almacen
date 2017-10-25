@@ -456,10 +456,13 @@ public class MenuCelularesInter extends javax.swing.JFrame {
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
        TelefonosCelulares cel = new TelefonosCelulares();
        
-       try {
+      try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
+            if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+               throw new ValidaCantidad();
+           }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
@@ -467,7 +470,11 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaFlotantes e){
+        } catch (ValidaCantidad e){
+            jLabelMensaje.setText("La cantidad que ingreso no es valida");
+            jTextFieldCantidad.setText("");
+            return;
+        }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
