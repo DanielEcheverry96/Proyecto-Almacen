@@ -529,7 +529,24 @@ public class MenuSierrasInter extends javax.swing.JFrame {
             jTextFieldVelocidad.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldPeso.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldDiametroDisco.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
-
+            
+            try {
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            }
+            
             Marca marmod = new Marca();
             siemod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);

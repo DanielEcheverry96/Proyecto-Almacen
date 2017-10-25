@@ -514,7 +514,24 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTextFieldTamañoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldTipoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldResolucion.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
-
+            
+            try {
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            }
+            
             Marca marmod = new Marca();
             tvmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);

@@ -483,7 +483,23 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
             jTextFieldTipoProcesador.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
             jTextFieldInterfaceRed.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
-
+            
+            try {
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            }
             Marca marmod = new Marca();
             telipmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
