@@ -449,9 +449,16 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
+            if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                throw new ValidaFlotantes();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
+            return;
+        } catch (ValidaFlotantes e){
+            jLabelMensaje.setText("El precio que ingreso no es valido");
+            jTextFieldPrecio.setText("");
             return;
         }
        
