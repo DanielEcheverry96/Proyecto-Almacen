@@ -30,12 +30,13 @@ public class MenuMartillosInter extends javax.swing.JFrame {
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[11];
+
     public MenuMartillosInter() {
         initComponents();
         manobj = new ManejadorObjetos();
         manmart = new ManejadorMartillos();
         model = new DefaultTableModel();
-        model.addColumn("Id");              
+        model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
@@ -51,10 +52,24 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         inicializarComboBox();
     }
 
-        public void inicializarComboBox(){
-        for(int i=0;i<manobj.arregloMarcas.size();i++){
-           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
         }
+    }
+
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldTipoMartillo.setText("");
+        jTextFieldMaterialMango.setText("");
+        jTextFieldMaterialCabezal.setText("");
+        jTextFieldPesoMartillo.setText("");
+        jTextFieldTamañoMartillo.setText("");
     }
 
     /**
@@ -433,58 +448,65 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaHerramientas.arreglomartillos.get(i).getTamaño(), indiceFila, 10);
             indiceFila++;
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
 
-       Martillos mart = new Martillos();
-       
-       try {
+        Martillos mart = new Martillos();
+
+        try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
             if (!ValidaPeso.validaPeso(jTextFieldPesoMartillo.getText())) {
                 throw new ValidaPeso();
             }
+            if (!ValidaTamRueda.validaTamRueda(jTextFieldTamañoMartillo.getText())) {
+                throw new ValidaTamRueda();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaPeso e){
+        } catch (ValidaPeso e) {
             jLabelMensaje.setText("El peso de martillo que ingreso no es valido");
             jTextFieldPesoMartillo.setText("");
             return;
+        } catch (ValidaTamRueda e) {
+            jLabelMensaje.setText("El tamaño del martillo que ingreso no es valido");
+            jTextFieldTamañoMartillo.setText("");
+            return;
         }
-       Marca mar = new Marca();
-       mart.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
-       mar.setId(idMarcaTemporal);
-       mar.setDescripcion(nombreMarcaTemporal);
-       mart.setMar(mar);
-       mart.setNombre(jTextFieldNombre.getText());
-       mart.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
-       mart.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
-       mart.setColor(jTextFieldColor.getText());
-       mart.setTipo(jTextFieldTipoMartillo.getText());
-       mart.setMatmango(jTextFieldMaterialMango.getText());
-       mart.setMatcabezal(jTextFieldMaterialCabezal.getText());
-       mart.setPeso(Integer.parseInt(jTextFieldPesoMartillo.getText()));
-       mart.setTamaño(jTextFieldTamañoMartillo.getText());
-       
+        Marca mar = new Marca();
+        mart.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        mart.setMar(mar);
+        mart.setNombre(jTextFieldNombre.getText());
+        mart.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        mart.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        mart.setColor(jTextFieldColor.getText());
+        mart.setTipo(jTextFieldTipoMartillo.getText());
+        mart.setMatmango(jTextFieldMaterialMango.getText());
+        mart.setMatcabezal(jTextFieldMaterialCabezal.getText());
+        mart.setPeso(Integer.parseInt(jTextFieldPesoMartillo.getText()));
+        mart.setTamaño(jTextFieldTamañoMartillo.getText());
+
         if (manmart.insertar(mart)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
@@ -502,20 +524,20 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             jTable1.setValueAt(jTextFieldTamañoMartillo.getText(), indiceFila, 10);
             indiceFila++;
             manmart.consultarTodos();
-        }
-        else{
+        } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
         int filaSeleccionada = jTable1.getSelectedRow();
-            System.out.println(filaSeleccionada);
-        
-            if (filaSeleccionada >= 0) {
-            
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
             Martillos martmod = new Martillos();
             int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
@@ -529,7 +551,39 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             jTextFieldMaterialCabezal.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldPesoMartillo.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldTamañoMartillo.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
-            
+
+            try {
+
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+                if (!ValidaPeso.validaPeso(jTextFieldPesoMartillo.getText())) {
+                    throw new ValidaPeso();
+                }
+                if (!ValidaTamRueda.validaTamRueda(jTextFieldTamañoMartillo.getText())) {
+                    throw new ValidaTamRueda();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaPeso e) {
+                jLabelMensaje.setText("El peso de martillo que ingreso no es valido");
+                jTextFieldPesoMartillo.setText("");
+                return;
+            } catch (ValidaTamRueda e) {
+                jLabelMensaje.setText("El tamaño del martillo que ingreso no es valido");
+                jTextFieldTamañoMartillo.setText("");
+                return;
+            }
+
             Marca marmod = new Marca();
             martmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -544,34 +598,33 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             martmod.setTipo(jTextFieldMaterialCabezal.getText());
             martmod.setTipo(jTextFieldPesoMartillo.getText());
             martmod.setTipo(jTextFieldTamañoMartillo.getText());
-            
+
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = manmart.busquedaBinaria(a);
-                    if (!(posicion==-1)) {
-                    if (manmart.modificar(posicion, martmod)) {
-                        JOptionPane.showMessageDialog(this, "Martillo modificado exitosamente");
-                        indiceFila--;
-                    }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Error al modificar");
-                    }
+            if (!(posicion == -1)) {
+                if (manmart.modificar(posicion, martmod)) {
+                    JOptionPane.showMessageDialog(this, "Martillo modificado exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
         }
-        
+
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
         int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-            
+
         Martillos resultado = (Martillos) manmart.consultarId(idBuscado);
         if (resultado == null) {
             JOptionPane.showMessageDialog(this, "Martillo no encontrado");
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "El Martillo encontrado es:\n" + resultado.toString());
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
     private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
@@ -581,15 +634,14 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
             if (manmart.borrar(idEliminar)) {
-                    JOptionPane.showMessageDialog(this, "Martillo borrado exitosamente");    
-                    }
-            else {
-            JOptionPane.showMessageDialog(this, "Error al borrar");
+                JOptionPane.showMessageDialog(this, "Martillo borrado exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
@@ -603,7 +655,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar todo");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
@@ -614,7 +666,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
                 nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
             }
         }
-        
+
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed

@@ -57,6 +57,19 @@ public class MenuConsolasInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldTipoConsola.setText("");
+        jTextFieldNumeroControles.setText("");
+        jTextFieldRealidadvirtual.setText("");
+        jTextFieldCapacidadDiscoduro.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -433,6 +446,9 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             if (!ValidaNumeroControles.validaNumeroControles(jTextFieldNumeroControles.getText())) {
                 throw new ValidaNumeroControles();
             }
+            if (!ValidaMemoria.validaMemoria(jTextFieldCapacidadDiscoduro.getText())) {
+                throw new ValidaMemoria();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -445,9 +461,13 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaNumeroControles e){
+        } catch (ValidaNumeroControles e) {
             jLabelMensaje.setText("El numero de controles que ingreso es invalido");
             jTextFieldNumeroControles.setText("");
+            return;
+        } catch (ValidaMemoria e) {
+            jLabelMensaje.setText("La capacidad de disco duro que ingreso no es valida");
+            jTextFieldCapacidadDiscoduro.setText("");
             return;
         }
 
@@ -485,7 +505,8 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
-
+        
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -508,6 +529,36 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             jTextFieldRealidadvirtual.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldCapacidadDiscoduro.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
 
+            try {
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+                if (!ValidaNumeroControles.validaNumeroControles(jTextFieldNumeroControles.getText())) {
+                    throw new ValidaNumeroControles();
+                }
+                if (!ValidaMemoria.validaMemoria(jTextFieldCapacidadDiscoduro.getText())) {
+                    throw new ValidaMemoria();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaNumeroControles e) {
+                jLabelMensaje.setText("El numero de controles que ingreso es invalido");
+                jTextFieldNumeroControles.setText("");
+                return;
+            } catch (ValidaMemoria e) {
+                jLabelMensaje.setText("La capacidad de disco duro que ingreso no es valida");
+                jTextFieldCapacidadDiscoduro.setText("");
+                return;
+            }
             Marca marmod = new Marca();
             consmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -533,7 +584,7 @@ public class MenuConsolasInter extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
-
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

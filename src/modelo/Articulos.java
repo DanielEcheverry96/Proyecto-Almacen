@@ -120,7 +120,7 @@ public class Articulos implements Comparable<Articulos> {
     
     @Override
     public String toString() {
-        return "Articulos {" + "id Marca = " + idMarca + ", id Categoria = " + idCategoria + ", id Articulo = " + idArticulo + ", nombre = " + nombre + ", cantidad = " + cantidad + ", precio = " + precio + ", descripcion = " + descripcion + ", color = " + color + ", imagen = " + imagen + ", marca = "+ mar + '}';
+        return "Articulos {" + "id Marca = " + idMarca + ", id Articulo = " + idArticulo + ", nombre = " + nombre + ", cantidad = " + cantidad + ", precio = " + precio + ", descripcion = " + descripcion + ", color = " + color + ", imagen = " + imagen + ", marca = "+ mar + '}';
     }
     
     

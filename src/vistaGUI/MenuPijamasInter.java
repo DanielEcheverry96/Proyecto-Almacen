@@ -56,6 +56,15 @@ public class MenuPijamasInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -477,6 +486,8 @@ public class MenuPijamasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
+
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -542,6 +553,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al modificar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

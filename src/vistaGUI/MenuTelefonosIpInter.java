@@ -55,6 +55,17 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldTipoProcesador.setText("");
+        jTextFieldInterfaceRed.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -409,14 +420,14 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
         TelefonosIp telip = new TelefonosIp();
-        
+
         try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
@@ -424,16 +435,16 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
         }
-        
+
         Marca mar = new Marca();
         telip.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);
@@ -465,6 +476,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -483,7 +495,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
             jTextFieldTipoProcesador.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
             jTextFieldInterfaceRed.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
-            
+
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
                     throw new ValidaCantidad();
@@ -525,6 +537,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al modificar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

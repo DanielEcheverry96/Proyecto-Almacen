@@ -58,6 +58,21 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldTipo.setText("");
+        jTextFieldPotencia.setText("");
+        jTextFieldVelocidad.setText("");
+        jTextFieldPeso.setText("");
+        jTextFieldDiametroDisco.setText("");
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -447,14 +462,14 @@ public class MenuSierrasInter extends javax.swing.JFrame {
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
         Sierras sie = new Sierras();
-        
+
         try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
@@ -474,32 +489,32 @@ public class MenuSierrasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaPotencia e) {
+        } catch (ValidaPotencia e) {
             jLabelMensaje.setText("La potencia que ingreso no es valida");
             jTextFieldPotencia.setText("");
             return;
-        }catch (ValidaVelocidad e) {
+        } catch (ValidaVelocidad e) {
             jLabelMensaje.setText("La velocidad que ingreso no es valido");
             jTextFieldVelocidad.setText("");
             return;
-        }catch (ValidaPesoR e) {
+        } catch (ValidaPesoR e) {
             jLabelMensaje.setText("El peso que ingreso no es valido");
             jTextFieldPeso.setText("");
             return;
-        }catch (ValidaDiametroDisco e) {
+        } catch (ValidaDiametroDisco e) {
             jLabelMensaje.setText("El diametro que ingreso no es valido");
             jTextFieldDiametroDisco.setText("");
             return;
         }
-        
+
         Marca mar = new Marca();
         sie.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);
@@ -536,6 +551,7 @@ public class MenuSierrasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -557,13 +573,26 @@ public class MenuSierrasInter extends javax.swing.JFrame {
             jTextFieldVelocidad.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldPeso.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldDiametroDisco.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
-            
+
             try {
+
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
                     throw new ValidaCantidad();
                 }
                 if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                     throw new ValidaFlotantes();
+                }
+                if (!ValidaPotencia.validaPotencia(jTextFieldPotencia.getText())) {
+                    throw new ValidaPotencia();
+                }
+                if (!ValidaVelocidad.validaVelocidad(jTextFieldVelocidad.getText())) {
+                    throw new ValidaVelocidad();
+                }
+                if (!ValidaPesoR.validaPesoR(jTextFieldPeso.getText())) {
+                    throw new ValidaPesoR();
+                }
+                if (!ValidaDiametroDisco.validaDiametroDisco(jTextFieldDiametroDisco.getText())) {
+                    throw new ValidaDiametroDisco();
                 }
             } catch (ValidaCantidad e) {
                 jLabelMensaje.setText("La cantidad que ingreso no es valida");
@@ -573,8 +602,24 @@ public class MenuSierrasInter extends javax.swing.JFrame {
                 jLabelMensaje.setText("El precio que ingreso no es valido");
                 jTextFieldPrecio.setText("");
                 return;
+            } catch (ValidaPotencia e) {
+                jLabelMensaje.setText("La potencia que ingreso no es valida");
+                jTextFieldPotencia.setText("");
+                return;
+            } catch (ValidaVelocidad e) {
+                jLabelMensaje.setText("La velocidad que ingreso no es valido");
+                jTextFieldVelocidad.setText("");
+                return;
+            } catch (ValidaPesoR e) {
+                jLabelMensaje.setText("El peso que ingreso no es valido");
+                jTextFieldPeso.setText("");
+                return;
+            } catch (ValidaDiametroDisco e) {
+                jLabelMensaje.setText("El diametro que ingreso no es valido");
+                jTextFieldDiametroDisco.setText("");
+                return;
             }
-            
+
             Marca marmod = new Marca();
             siemod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -603,6 +648,8 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al modificar");
         }
+
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

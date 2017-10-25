@@ -69,7 +69,7 @@ public class Hornosmicroondas extends Articulos {
 
     @Override
     public String toString() {
-        return "Hornos microondas {" + "id Horno Microondas = "+ idArticulo + ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad = " + capacidad + ", compartimiento = " + compartimiento + ", potencia = " + potencia + ", voltaje = " + voltaje + '}';
+        return "Hornos microondas {" + "id Horno Microondas = "+ idArticulo + ", marca = " + mar + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad = " + capacidad + ", compartimiento = " + compartimiento + ", potencia = " + potencia + ", voltaje = " + voltaje + '}';
     }
     
     

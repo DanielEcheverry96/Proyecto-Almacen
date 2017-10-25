@@ -57,6 +57,19 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldCapacidad.setText("");
+        jTextFieldCompartimiento.setText("");
+        jTextFieldPotencia.setText("");
+        jTextFieldVoltaje.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -415,31 +428,52 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
 
         Hornosmicroondas hornmic = new Hornosmicroondas();
-        
+
         try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
+            }
+            if (!ValidaMemoria.validaMemoria(jTextFieldCapacidad.getText())) {
+                throw new ValidaMemoria();
+            }
+            if (!ValidaPotencia.validaPotencia(jTextFieldPotencia.getText())) {
+                throw new ValidaPotencia();
+            }
+            if (!ValidaVoltage.validaVoltage(jTextFieldVoltaje.getText())) {
+                throw new ValidaVoltage();
             }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
+        } catch (ValidaMemoria e) {
+            jLabelMensaje.setText("La capacidad que ingreso no es valida");
+            jTextFieldCapacidad.setText("");
+            return;
+        } catch (ValidaPotencia e) {
+            jLabelMensaje.setText("La potencia que ingreso no es valida");
+            jTextFieldPotencia.setText("");
+            return;
+        } catch (ValidaVoltage e) {
+            jLabelMensaje.setText("El voltage que ingreso no es valido");
+            jTextFieldVoltaje.setText("");
+            return;
         }
-        
+
         Marca mar = new Marca();
         hornmic.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);
@@ -474,7 +508,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
-
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -497,6 +531,43 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
             jTextFieldPotencia.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldVoltaje.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
 
+            try {
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+                if (!ValidaMemoria.validaMemoria(jTextFieldCapacidad.getText())) {
+                    throw new ValidaMemoria();
+                }
+                if (!ValidaPotencia.validaPotencia(jTextFieldPotencia.getText())) {
+                    throw new ValidaPotencia();
+                }
+                if (!ValidaVoltage.validaVoltage(jTextFieldVoltaje.getText())) {
+                    throw new ValidaVoltage();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaMemoria e) {
+                jLabelMensaje.setText("La capacidad que ingreso no es valida");
+                jTextFieldCapacidad.setText("");
+                return;
+            } catch (ValidaPotencia e) {
+                jLabelMensaje.setText("La potencia que ingreso no es valida");
+                jTextFieldPotencia.setText("");
+                return;
+            } catch (ValidaVoltage e) {
+                jLabelMensaje.setText("El voltage que ingreso no es valido");
+                jTextFieldVoltaje.setText("");
+                return;
+            }
             Marca marmod = new Marca();
             hornmicmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -522,7 +593,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
-
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

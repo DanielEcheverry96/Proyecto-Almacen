@@ -57,7 +57,7 @@ public class Remachadoras extends Articulos {
 
     @Override
     public String toString() {
-        return "Remachadoras {" + "id Remachadora = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", potencia = " + potencia + ", tipo remache = " + tiporemache + ", calibre = " + calibre + '}';
+        return "Remachadoras {" + "id Remachadora = "+ idArticulo+ ", marca = " + mar + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", potencia = " + potencia + ", tipo remache = " + tiporemache + ", calibre = " + calibre + '}';
     }
     
     

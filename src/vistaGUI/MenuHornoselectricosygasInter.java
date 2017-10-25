@@ -23,7 +23,6 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
     /**
      * Creates new form MenuHornoselectricosygasInter
      */
-    
     ManejadorObjetos manobj;
     ManejadorHornoselectricosygas manhorneg;
     Integer idMarcaTemporal = null;
@@ -31,12 +30,13 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[11];
+
     public MenuHornoselectricosygasInter() {
         initComponents();
         manobj = new ManejadorObjetos();
         manhorneg = new ManejadorHornoselectricosygas();
         model = new DefaultTableModel();
-        model.addColumn("Id");              
+        model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
@@ -52,10 +52,24 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
         inicializarComboBox();
     }
 
-        public void inicializarComboBox(){
-        for(int i=0;i<manobj.arregloMarcas.size();i++){
-           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
         }
+    }
+
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldPotenciaHorno.setText("");
+        jTextFieldNumeroBandejas.setText("");
+        jTextFieldGratinador.setText("");
+        jTextFieldTipoControl.setText("");
+        jTextFieldTemperaturaMaxima.setText("");
     }
 
     /**
@@ -438,66 +452,73 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTemperaturamax(), indiceFila, 10);
             indiceFila++;
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
 
-       Hornoselectricosygas horno = new Hornoselectricosygas();
-       
-       try {
+        Hornoselectricosygas horno = new Hornoselectricosygas();
+
+        try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaPotencia.validaPotencia(jTextFieldPotenciaHorno.getText())) {
+                throw new ValidaPotencia();
+            }
             if (!ValidaNumeroBandejas.validaNumeroBandejas(jTextFieldNumeroBandejas.getText())) {
-               throw new ValidaNumeroBandejas();
-           }
+                throw new ValidaNumeroBandejas();
+            }
             if (!ValidaTemperatura.validaTemperatura(jTextFieldTemperaturaMaxima.getText())) {
                 throw new ValidaTemperatura();
-           }
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaNumeroBandejas e){
+        } catch (ValidaPotencia e) {
+            jLabelMensaje.setText("La potencia que ingreso no es valida");
+            jTextFieldPotenciaHorno.setText("");
+            return;
+        } catch (ValidaNumeroBandejas e) {
             jLabelMensaje.setText("El numero de bandejas que ingreso no es valido");
             jTextFieldNumeroBandejas.setText("");
             return;
-        }catch (ValidaTemperatura e){
+        } catch (ValidaTemperatura e) {
             jLabelMensaje.setText("La temperatura que ingreso no es valida");
             jTextFieldTemperaturaMaxima.setText("");
             return;
         }
-       
-       Marca mar = new Marca();
-       horno.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
-       mar.setId(idMarcaTemporal);
-       mar.setDescripcion(nombreMarcaTemporal);
-       horno.setMar(mar);
-       horno.setNombre(jTextFieldNombre.getText());
-       horno.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
-       horno.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
-       horno.setColor(jTextFieldColor.getText());
-       horno.setPotencia(jTextFieldPotenciaHorno.getText());
-       horno.setNumbandejas(Integer.parseInt(jTextFieldNumeroBandejas.getText()));
-       horno.setGratinador(jTextFieldGratinador.getText());
-       horno.setTipocontrol(jTextFieldTipoControl.getText());
-       horno.setTemperaturamax(Integer.parseInt(jTextFieldTemperaturaMaxima.getText()));
-       
+
+        Marca mar = new Marca();
+        horno.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        horno.setMar(mar);
+        horno.setNombre(jTextFieldNombre.getText());
+        horno.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        horno.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        horno.setColor(jTextFieldColor.getText());
+        horno.setPotencia(jTextFieldPotenciaHorno.getText());
+        horno.setNumbandejas(Integer.parseInt(jTextFieldNumeroBandejas.getText()));
+        horno.setGratinador(jTextFieldGratinador.getText());
+        horno.setTipocontrol(jTextFieldTipoControl.getText());
+        horno.setTemperaturamax(Integer.parseInt(jTextFieldTemperaturaMaxima.getText()));
+
         if (manhorneg.insertar(horno)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
@@ -515,21 +536,21 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTable1.setValueAt(Integer.parseInt(jTextFieldTemperaturaMaxima.getText()), indiceFila, 10);
             indiceFila++;
             manhorneg.consultarTodos();
-        }
-        else{
+        } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
         
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
         int filaSeleccionada = jTable1.getSelectedRow();
-            System.out.println(filaSeleccionada);
-        
-            if (filaSeleccionada >= 0) {
-            
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
             Hornoselectricosygas hornomod = new Hornoselectricosygas();
             int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
@@ -543,7 +564,45 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTextFieldGratinador.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldTipoControl.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldTemperaturaMaxima.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
-            
+
+            try {
+
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+                if (!ValidaPotencia.validaPotencia(jTextFieldPotenciaHorno.getText())) {
+                    throw new ValidaPotencia();
+                }
+                if (!ValidaNumeroBandejas.validaNumeroBandejas(jTextFieldNumeroBandejas.getText())) {
+                    throw new ValidaNumeroBandejas();
+                }
+                if (!ValidaTemperatura.validaTemperatura(jTextFieldTemperaturaMaxima.getText())) {
+                    throw new ValidaTemperatura();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaPotencia e) {
+                jLabelMensaje.setText("La potencia que ingreso no es valida");
+                jTextFieldPotenciaHorno.setText("");
+                return;
+            } catch (ValidaNumeroBandejas e) {
+                jLabelMensaje.setText("El numero de bandejas que ingreso no es valido");
+                jTextFieldNumeroBandejas.setText("");
+                return;
+            } catch (ValidaTemperatura e) {
+                jLabelMensaje.setText("La temperatura que ingreso no es valida");
+                jTextFieldTemperaturaMaxima.setText("");
+                return;
+            }
             Marca marmod = new Marca();
             hornomod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -558,34 +617,33 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             hornomod.setGratinador(jTextFieldGratinador.getText());
             hornomod.setTipocontrol(jTextFieldTipoControl.getText());
             hornomod.setTemperaturamax(Integer.parseInt(jTextFieldTemperaturaMaxima.getText()));
-            
+
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = manhorneg.busquedaBinaria(a);
-                    if (!(posicion==-1)) {
-                    if (manhorneg.modificar(posicion, hornomod)) {
-                        JOptionPane.showMessageDialog(this, "Horno modificado exitosamente");
-                        indiceFila--;
-                    }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Error al modificar");
-                    }
+            if (!(posicion == -1)) {
+                if (manhorneg.modificar(posicion, hornomod)) {
+                    JOptionPane.showMessageDialog(this, "Horno modificado exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
         }
         
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
         int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-            
+
         Hornoselectricosygas resultado = (Hornoselectricosygas) manhorneg.consultarId(idBuscado);
         if (resultado == null) {
             JOptionPane.showMessageDialog(this, "Horno no encontrado");
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "El Horno encontrado es:\n" + resultado.toString());
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
     private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
@@ -595,15 +653,14 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
             if (manhorneg.borrar(idEliminar)) {
-                    JOptionPane.showMessageDialog(this, "Horno borrado exitosamente");    
-                    }
-            else {
-            JOptionPane.showMessageDialog(this, "Error al borrar");
+                JOptionPane.showMessageDialog(this, "Horno borrado exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
@@ -617,7 +674,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar todo");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     private void jComboBoxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMarcaActionPerformed
@@ -632,7 +689,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
                 nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
             }
         }
-        
+
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed

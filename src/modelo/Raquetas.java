@@ -68,7 +68,7 @@ public class Raquetas extends Articulos{
 
     @Override
     public String toString() {
-        return "Raquetas {" + "id Raqueta = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo marco = " + tipomarco + ", longitud = " + longitud + ", ancho = " + ancho + ", peso = " + peso + '}';
+        return "Raquetas {" + "id Raqueta = "+ idArticulo+ ", marca = " + mar + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo marco = " + tipomarco + ", longitud = " + longitud + ", ancho = " + ancho + ", peso = " + peso + '}';
     }
     
     

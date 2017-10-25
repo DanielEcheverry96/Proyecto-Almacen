@@ -57,6 +57,19 @@ public class MenuTvInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldTipoTelevisor.setText("");
+        jTextFieldTamañoPantalla.setText("");
+        jTextFieldTipoPantalla.setText("");
+        jTextFieldResolucion.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -434,38 +447,45 @@ public class MenuTvInter extends javax.swing.JFrame {
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
         Televisores tv = new Televisores();
-        
+
         try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
             if (!ValidaTamañoPantalla.validaTamañoPantalla(jTextFieldTamañoPantalla.getText())) {
                 throw new ValidaTamañoPantalla();
             }
+            if (!ValidaResolucion.validaResolucion(jTextFieldResolucion.getText())) {
+                throw new ValidaResolucion();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaTamañoPantalla e) {
+        } catch (ValidaTamañoPantalla e) {
             jLabelMensaje.setText("El tamaño de pantalla que ingreso no es valido");
             jTextFieldTamañoPantalla.setText("");
             return;
+        } catch (ValidaResolucion e) {
+            jLabelMensaje.setText("La resolucion que ingreso no es valido");
+            jTextFieldResolucion.setText("");
+            return;
         }
-        
+
         Marca mar = new Marca();
         tv.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);
@@ -501,6 +521,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -521,13 +542,20 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTextFieldTamañoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldTipoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldResolucion.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
-            
+
             try {
+
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
                     throw new ValidaCantidad();
                 }
                 if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                     throw new ValidaFlotantes();
+                }
+                if (!ValidaTamañoPantalla.validaTamañoPantalla(jTextFieldTamañoPantalla.getText())) {
+                    throw new ValidaTamañoPantalla();
+                }
+                if (!ValidaResolucion.validaResolucion(jTextFieldResolucion.getText())) {
+                    throw new ValidaResolucion();
                 }
             } catch (ValidaCantidad e) {
                 jLabelMensaje.setText("La cantidad que ingreso no es valida");
@@ -537,8 +565,16 @@ public class MenuTvInter extends javax.swing.JFrame {
                 jLabelMensaje.setText("El precio que ingreso no es valido");
                 jTextFieldPrecio.setText("");
                 return;
+            } catch (ValidaTamañoPantalla e) {
+                jLabelMensaje.setText("El tamaño de pantalla que ingreso no es valido");
+                jTextFieldTamañoPantalla.setText("");
+                return;
+            } catch (ValidaResolucion e) {
+                jLabelMensaje.setText("La resolucion que ingreso no es valido");
+                jTextFieldResolucion.setText("");
+                return;
             }
-            
+
             Marca marmod = new Marca();
             tvmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -566,6 +602,7 @@ public class MenuTvInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al modificar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

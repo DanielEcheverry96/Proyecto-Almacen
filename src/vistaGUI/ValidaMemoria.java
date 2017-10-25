@@ -12,10 +12,11 @@ import java.util.regex.Pattern;
  *
  * @author danie
  */
-public class ValidaResolucion extends Exception{
-    public static boolean validaResolucion(String prueba){
+public class ValidaMemoria extends Exception {
+
+    public static boolean validaMemoria(String prueba) {
         boolean pruebaValido = false;
-        
+
         Pattern pat = Pattern.compile("^[0-9]+$");
         //Pattern pat = Pattern.compile("^[\\w-]+(\\.[\\w-]+)*@[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
 

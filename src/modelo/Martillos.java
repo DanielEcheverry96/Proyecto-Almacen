@@ -79,7 +79,7 @@ public class Martillos extends Articulos {
 
     @Override
     public String toString() {
-        return "Martillos {" + "id Martillo = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", material mango = " + matmango + ", material cabezal = " + matcabezal + ", peso = " + peso + ", tamaño = " + tamaño + ", tipo = " + tipo + '}';
+        return "Martillos {" + "id Martillo = "+ idArticulo+ ", marca = " + mar + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", material mango = " + matmango + ", material cabezal = " + matcabezal + ", peso = " + peso + ", tamaño = " + tamaño + ", tipo = " + tipo + '}';
     }
     
     

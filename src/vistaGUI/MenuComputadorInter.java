@@ -61,6 +61,20 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldCapacidadMemoria.setText("");
+        jTextFieldTipoTeclado.setText("");
+        jTextFieldTipoMouse.setText("");
+        jTextFieldTipoPantalla.setText("");
+        jTextFieldCapacidadAlmacenamiento.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -295,17 +309,18 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                                         .addGap(39, 39, 39)))
                                 .addGap(67, 67, 67)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldCapacidadMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldTipoTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextFieldTipoMouse, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabelCapacidadAlmacenamiento)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabelTipPantalla)
                                     .addGap(99, 99, 99)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jTextFieldCapacidadAlmacenamiento)
-                                        .addComponent(jTextFieldTipoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addComponent(jLabelCapacidadAlmacenamiento)))))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextFieldCapacidadMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextFieldCapacidadAlmacenamiento)
+                                            .addComponent(jTextFieldTipoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonConsultarTodo)
@@ -358,7 +373,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabelId, javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabelTipMouse, javax.swing.GroupLayout.Alignment.TRAILING)))))
-                        .addGap(5, 5, 5)
+                        .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
@@ -383,11 +398,11 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelTipTeclado)
                                     .addComponent(jTextFieldTipoTeclado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(5, 5, 5)
+                                .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabelCapMemoria)
                                     .addComponent(jTextFieldCapacidadMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(1, 1, 1)
@@ -420,8 +435,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                                     .addComponent(jButtonOrdenarPrecioDesc)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(13, 13, 13)
-                                .addComponent(jButtonOrdenarID)
-                                .addGap(16, 16, 16))))
+                                .addComponent(jButtonOrdenarID))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addComponent(jButtonInsertar)
@@ -485,10 +499,13 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
+            }
+            if (!ValidaMemoria.validaMemoria(jTextFieldCapacidadMemoria.getText())) {
+                throw new ValidaMemoria();
             }
             if (!ValidaCapacidadAlmacenamiento.validaCapacidadAlmacenamiento(jTextFieldCapacidadAlmacenamiento.getText())) {
                 throw new ValidaCapacidadAlmacenamiento();
@@ -497,20 +514,24 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaCapacidadAlmacenamiento e){
+        } catch (ValidaMemoria e) {
+            jLabelMensaje.setText("La capacidad de memoria que ingreso no es valida");
+            jTextFieldCapacidadMemoria.setText("");
+            return;
+        } catch (ValidaCapacidadAlmacenamiento e) {
             jLabelMensaje.setText("La capacidad de almacenamiento que ingreso no es valida");
             jTextFieldCapacidadAlmacenamiento.setText("");
             return;
         }
-        
+
         Marca mar = new Marca();
         comp.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);
@@ -545,7 +566,8 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         } else {
             jLabelMensaje.setText("Computador no insertado");
         }
-
+        
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -569,6 +591,36 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             jTextFieldTipoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldCapacidadAlmacenamiento.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
 
+            try {
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+                if (!ValidaMemoria.validaMemoria(jTextFieldCapacidadMemoria.getText())) {
+                    throw new ValidaMemoria();
+                }
+                if (!ValidaCapacidadAlmacenamiento.validaCapacidadAlmacenamiento(jTextFieldCapacidadAlmacenamiento.getText())) {
+                    throw new ValidaCapacidadAlmacenamiento();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaMemoria e) {
+                jLabelMensaje.setText("La capacidad de memoria que ingreso no es valida");
+                jTextFieldCapacidadMemoria.setText("");
+                return;
+            } catch (ValidaCapacidadAlmacenamiento e) {
+                jLabelMensaje.setText("La capacidad de almacenamiento que ingreso no es valida");
+                jTextFieldCapacidadAlmacenamiento.setText("");
+                return;
+            }
             Marca marmod = new Marca();
             compmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -595,7 +647,8 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
-
+        
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

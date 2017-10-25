@@ -57,6 +57,19 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldMarco.setText("");
+        jTextFieldLongitud.setText("");
+        jTextFieldAncho.setText("");
+        jTextFieldPeso.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -461,15 +474,15 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaLongitud e) {
+        } catch (ValidaLongitud e) {
             jLabelMensaje.setText("La longitud que ingreso no es valida");
             jTextFieldLongitud.setText("");
             return;
-        }catch (ValidaAncho e) {
+        } catch (ValidaAncho e) {
             jLabelMensaje.setText("El ancho que ingreso no es valida");
             jTextFieldAncho.setText("");
             return;
-        }catch (ValidaPesoR e) {
+        } catch (ValidaPesoR e) {
             jLabelMensaje.setText("El peso que ingreso no es valido");
             jTextFieldPeso.setText("");
             return;
@@ -510,7 +523,7 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
 
-
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -540,6 +553,15 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
                 if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                     throw new ValidaFlotantes();
                 }
+                if (!ValidaLongitud.validaLongitud(jTextFieldLongitud.getText())) {
+                    throw new ValidaLongitud();
+                }
+                if (!ValidaAncho.validaAncho(jTextFieldAncho.getText())) {
+                    throw new ValidaAncho();
+                }
+                if (!ValidaPesoR.validaPesoR(jTextFieldPeso.getText())) {
+                    throw new ValidaPesoR();
+                }
             } catch (ValidaCantidad e) {
                 jLabelMensaje.setText("La cantidad que ingreso no es valida");
                 jTextFieldCantidad.setText("");
@@ -547,6 +569,18 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
             } catch (ValidaFlotantes e) {
                 jLabelMensaje.setText("El precio que ingreso no es valido");
                 jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaLongitud e) {
+                jLabelMensaje.setText("La longitud que ingreso no es valida");
+                jTextFieldLongitud.setText("");
+                return;
+            } catch (ValidaAncho e) {
+                jLabelMensaje.setText("El ancho que ingreso no es valida");
+                jTextFieldAncho.setText("");
+                return;
+            } catch (ValidaPesoR e) {
+                jLabelMensaje.setText("El peso que ingreso no es valido");
+                jTextFieldPeso.setText("");
                 return;
             }
 
@@ -575,6 +609,7 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

@@ -30,12 +30,13 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[10];
+
     public MenuImpresoresInter() {
         initComponents();
         manobj = new ManejadorObjetos();
         manimp = new ManejadorImpresores();
         model = new DefaultTableModel();
-        model.addColumn("Id");              
+        model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
@@ -50,10 +51,23 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
         inicializarComboBox();
     }
 
-        public void inicializarComboBox(){
-        for(int i=0;i<manobj.arregloMarcas.size();i++){
-           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
         }
+    }
+
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldTipoImpresor.setText("");
+        jTextFieldInterfaceRed.setText("");
+        jTextFieldPaginasporMinuto.setText("");
+        jTextFieldResolucion.setText("");
     }
 
     /**
@@ -411,58 +425,58 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getResolucion(), indiceFila, 9);
             indiceFila++;
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
 
-       Impresores imp = new Impresores();
-       
-       try {
+        Impresores imp = new Impresores();
+
+        try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
             if (!ValidaPaginasMin.validaPaginasMin(jTextFieldPaginasporMinuto.getText())) {
-               throw new ValidaPaginasMin();
-           }
+                throw new ValidaPaginasMin();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaPaginasMin e){
+        } catch (ValidaPaginasMin e) {
             jLabelMensaje.setText("la cantidad de paginas que ingreso no es valida");
             jTextFieldPaginasporMinuto.setText("");
             return;
         }
-       
-       Marca mar = new Marca();
-       imp.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
-       mar.setId(idMarcaTemporal);
-       mar.setDescripcion(nombreMarcaTemporal);
-       imp.setMar(mar);
-       imp.setNombre(jTextFieldNombre.getText());
-       imp.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
-       imp.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
-       imp.setColor(jTextFieldColor.getText());
-       imp.setTipo(jTextFieldTipoImpresor.getText());
-       imp.setInterfacered(jTextFieldInterfaceRed.getText());
-       imp.setPaginasminuto(Integer.parseInt(jTextFieldPaginasporMinuto.getText()));
-       imp.setResolucion(jTextFieldResolucion.getText());
-       
+
+        Marca mar = new Marca();
+        imp.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        imp.setMar(mar);
+        imp.setNombre(jTextFieldNombre.getText());
+        imp.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        imp.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        imp.setColor(jTextFieldColor.getText());
+        imp.setTipo(jTextFieldTipoImpresor.getText());
+        imp.setInterfacered(jTextFieldInterfaceRed.getText());
+        imp.setPaginasminuto(Integer.parseInt(jTextFieldPaginasporMinuto.getText()));
+        imp.setResolucion(jTextFieldResolucion.getText());
+
         if (manimp.insertar(imp)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
@@ -479,21 +493,20 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTable1.setValueAt(jTextFieldResolucion.getText(), indiceFila, 9);
             indiceFila++;
             manimp.consultarTodos();
-        }
-        else{
+        } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
-        
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
         int filaSeleccionada = jTable1.getSelectedRow();
-            System.out.println(filaSeleccionada);
-        
-            if (filaSeleccionada >= 0) {
-            
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
             Impresores impmod = new Impresores();
             int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
@@ -506,7 +519,30 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTextFieldInterfaceRed.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldPaginasporMinuto.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldResolucion.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
-            
+
+            try {
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+                if (!ValidaPaginasMin.validaPaginasMin(jTextFieldPaginasporMinuto.getText())) {
+                    throw new ValidaPaginasMin();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaPaginasMin e) {
+                jLabelMensaje.setText("la cantidad de paginas que ingreso no es valida");
+                jTextFieldPaginasporMinuto.setText("");
+                return;
+            }
             Marca marmod = new Marca();
             impmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -520,34 +556,32 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             impmod.setInterfacered(jTextFieldInterfaceRed.getText());
             impmod.setPaginasminuto(Integer.parseInt(jTextFieldPaginasporMinuto.getText()));
             impmod.setResolucion(jTextFieldResolucion.getText());
-            
+
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = manimp.busquedaBinaria(a);
-                    if (!(posicion==-1)) {
-                    if (manimp.modificar(posicion, impmod)) {
-                        JOptionPane.showMessageDialog(this, "Impresor modificado exitosamente");
-                        indiceFila--;
-                    }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Error al modificar");
-                    }
+            if (!(posicion == -1)) {
+                if (manimp.modificar(posicion, impmod)) {
+                    JOptionPane.showMessageDialog(this, "Impresor modificado exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
         }
-        
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
         int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-            
+
         Impresores resultado = (Impresores) manimp.consultarId(idBuscado);
         if (resultado == null) {
             JOptionPane.showMessageDialog(this, "Impresor no encontrado");
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "El impresor encontrado es:\n" + resultado.toString());
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
     private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
@@ -557,15 +591,14 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
             if (manimp.borrar(idEliminar)) {
-                    JOptionPane.showMessageDialog(this, "Impresor borrado exitosamente");    
-                    }
-            else {
-            JOptionPane.showMessageDialog(this, "Error al borrar");
+                JOptionPane.showMessageDialog(this, "Impresor borrado exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
@@ -579,7 +612,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar todo");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
@@ -590,7 +623,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
                 nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
             }
         }
-        
+
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed

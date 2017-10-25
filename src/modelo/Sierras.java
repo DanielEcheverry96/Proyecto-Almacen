@@ -78,7 +78,7 @@ public class Sierras extends Articulos{
 
     @Override
     public String toString() {
-        return "Sierras {" + "id Sierra = "+ idArticulo+ ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo = " + tipo + ", potencia = " + potencia + ", velocidad = " + velocidad + ", peso = " + peso + ", diametro disco = " + diametrodisco + '}';
+        return "Sierras {" + "id Sierra = "+ idArticulo+ ", marca = " + mar + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tipo = " + tipo + ", potencia = " + potencia + ", velocidad = " + velocidad + ", peso = " + peso + ", diametro disco = " + diametrodisco + '}';
     }
     
     

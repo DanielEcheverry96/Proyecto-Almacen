@@ -24,18 +24,23 @@ public class MenuMarcaInter extends javax.swing.JFrame {
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[2];
-    
+
     public MenuMarcaInter() {
         initComponents();
-         manobj = new ManejadorObjetos();
-         model = new DefaultTableModel();
+        manobj = new ManejadorObjetos();
+        model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Marca");
         jTable2.setModel(model);
         model.insertRow(indiceFila, dato);
- 
+
     }
-    
+
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldMarca.setText("");
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -257,12 +262,12 @@ public class MenuMarcaInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
-       // Marca mar = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-        try{
-            if(!ValidaEnteros.validaEnteros(jTextFieldId.getText()))
+        // Marca mar = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
+        try {
+            if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
-        }
-        catch (ValidaEnteros e){
+            }
+        } catch (ValidaEnteros e) {
             jMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
@@ -275,13 +280,15 @@ public class MenuMarcaInter extends javax.swing.JFrame {
             jTable2.setValueAt(jTextFieldMarca.getText(), indiceFila, 1);
             indiceFila++;
             manobj.consultarTodos();
-        }
-        else
+        } else {
             jMensaje.setText("Marca no insertada");
+        }
+
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-     manobj.consultarTodos();
+        manobj.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -297,15 +304,14 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         }    }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-int filaSeleccionada = jTable2.getSelectedRow();
+        int filaSeleccionada = jTable2.getSelectedRow();
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable2.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
             if (manobj.borrar(idEliminar)) {
-                    JOptionPane.showMessageDialog(this, "Marca borrada exitosamente");    
-                    }
-            else {
-            JOptionPane.showMessageDialog(this, "Error al borrar");
+                JOptionPane.showMessageDialog(this, "Marca borrada exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -316,38 +322,37 @@ int filaSeleccionada = jTable2.getSelectedRow();
         int filaSeleccionada = jTable2.getSelectedRow();
         System.out.println(filaSeleccionada);
         if (filaSeleccionada >= 0) {
-            
+
             int a = Integer.parseInt(jTable2.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable2.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldMarca.setText(jTable2.getValueAt(filaSeleccionada, 1).toString());
             Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = manobj.busquedaBinaria(a);
-                    if (!(posicion==-1)) {
-                    if (manobj.modificar(posicion, marmod)) {
-                        JOptionPane.showMessageDialog(this, "Marca modificada exitosamente");
-                        indiceFila--;
-                    }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Error al modificar");
-                    }
+            if (!(posicion == -1)) {
+                if (manobj.modificar(posicion, marmod)) {
+                    JOptionPane.showMessageDialog(this, "Marca modificada exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
         }
+        limpiar();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-            
-            Marca resultado = (Marca) manobj.consultarId(idBuscado);
+
+        Marca resultado = (Marca) manobj.consultarId(idBuscado);
         if (resultado == null) {
             JOptionPane.showMessageDialog(this, "Marca no encontrada");
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "La marca encontrada es:\n" + resultado.toString());
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-if (manobj.borrarTodo()) {
+        if (manobj.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

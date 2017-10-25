@@ -56,6 +56,16 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -431,14 +441,14 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
         VestidosCalle vescal = new VestidosCalle();
-        
+
         try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
@@ -446,16 +456,16 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
         }
-        
+
         Marca mar = new Marca();
         vescal.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);
@@ -488,6 +498,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -507,7 +518,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
             String tipo = (jTable1.getValueAt(filaSeleccionada, 6).toString());
             String talla = (jTable1.getValueAt(filaSeleccionada, 7).toString());
             String usuario = (jTable1.getValueAt(filaSeleccionada, 8).toString());
-            
+
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
                     throw new ValidaCantidad();
@@ -550,6 +561,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al modificar");
         }
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed

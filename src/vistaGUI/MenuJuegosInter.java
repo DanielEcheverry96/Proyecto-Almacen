@@ -30,12 +30,13 @@ public class MenuJuegosInter extends javax.swing.JFrame {
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[9];
+
     public MenuJuegosInter() {
         initComponents();
         manobj = new ManejadorObjetos();
         manjueg = new ManejadorJuegos();
         model = new DefaultTableModel();
-        model.addColumn("Id");              
+        model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
@@ -49,10 +50,22 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         inicializarComboBox();
     }
 
-        public void inicializarComboBox(){
-        for(int i=0;i<manobj.arregloMarcas.size();i++){
-           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
         }
+    }
+
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldGenero.setText("");
+        jTextFieldRestricciondeEdad.setText("");
+        jTextFieldPlataforma.setText("");
+        jTextFieldNumeroJugadores.setText("");
     }
 
     /**
@@ -398,19 +411,19 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNumjugadores(), indiceFila, 8);
             indiceFila++;
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
-       Juegos jueg = new Juegos();
-       
-       try {
+        Juegos jueg = new Juegos();
+
+        try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
@@ -421,33 +434,33 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaNumeroJugadores e){
+        } catch (ValidaNumeroJugadores e) {
             jLabelMensaje.setText("El numero de jugadores que ingreso no es valido");
             jTextFieldNumeroJugadores.setText("");
             return;
         }
-       
-       Marca mar = new Marca();
-       jueg.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
-       mar.setId(idMarcaTemporal);
-       mar.setDescripcion(nombreMarcaTemporal);
-       jueg.setMar(mar);
-       jueg.setNombre(jTextFieldNombre.getText());
-       jueg.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
-       jueg.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
-       jueg.setGenero(jTextFieldGenero.getText());
-       jueg.setRestedad(jTextFieldRestricciondeEdad.getText());
-       jueg.setPlataforma(jTextFieldPlataforma.getText());
-       jueg.setNumjugadores(Integer.parseInt(jTextFieldNumeroJugadores.getText()));
-       
+
+        Marca mar = new Marca();
+        jueg.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        jueg.setMar(mar);
+        jueg.setNombre(jTextFieldNombre.getText());
+        jueg.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        jueg.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        jueg.setGenero(jTextFieldGenero.getText());
+        jueg.setRestedad(jTextFieldRestricciondeEdad.getText());
+        jueg.setPlataforma(jTextFieldPlataforma.getText());
+        jueg.setNumjugadores(Integer.parseInt(jTextFieldNumeroJugadores.getText()));
+
         if (manjueg.insertar(jueg)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
@@ -463,21 +476,20 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTable1.setValueAt(Integer.parseInt(jTextFieldNumeroJugadores.getText()), indiceFila, 8);
             indiceFila++;
             manjueg.consultarTodos();
-        }
-        else{
+        } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
-        
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
         int filaSeleccionada = jTable1.getSelectedRow();
-            System.out.println(filaSeleccionada);
-        
-            if (filaSeleccionada >= 0) {
-            
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
             Juegos juegmod = new Juegos();
             int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
@@ -489,7 +501,30 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTextFieldRestricciondeEdad.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
             jTextFieldPlataforma.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldNumeroJugadores.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
-            
+
+            try {
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+                if (!ValidaNumeroJugadores.validaNumeroJugadores(jTextFieldNumeroJugadores.getText())) {
+                    throw new ValidaNumeroJugadores();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaNumeroJugadores e) {
+                jLabelMensaje.setText("El numero de jugadores que ingreso no es valido");
+                jTextFieldNumeroJugadores.setText("");
+                return;
+            }
             Marca marmod = new Marca();
             juegmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -502,34 +537,32 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             juegmod.setRestedad(jTextFieldRestricciondeEdad.getText());
             juegmod.setPlataforma(jTextFieldPlataforma.getText());
             juegmod.setNumjugadores(Integer.parseInt(jTextFieldNumeroJugadores.getText()));
-            
+
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = manjueg.busquedaBinaria(a);
-                    if (!(posicion==-1)) {
-                    if (manjueg.modificar(posicion, juegmod)) {
-                        JOptionPane.showMessageDialog(this, "Juego modificado exitosamente");
-                        indiceFila--;
-                    }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Error al modificar");
-                    }
+            if (!(posicion == -1)) {
+                if (manjueg.modificar(posicion, juegmod)) {
+                    JOptionPane.showMessageDialog(this, "Juego modificado exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
         }
-        
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
         int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-            
+
         Juegos resultado = (Juegos) manjueg.consultarId(idBuscado);
         if (resultado == null) {
             JOptionPane.showMessageDialog(this, "Juego no encontrado");
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "El Juego encontrado es:\n" + resultado.toString());
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
     private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
@@ -539,15 +572,14 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
             if (manjueg.borrar(idEliminar)) {
-                    JOptionPane.showMessageDialog(this, "Juego borrado exitosamente");    
-                    }
-            else {
-            JOptionPane.showMessageDialog(this, "Error al borrar");
+                JOptionPane.showMessageDialog(this, "Juego borrado exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
@@ -561,7 +593,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar todo");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
@@ -572,7 +604,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
                 nombreMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getDescripcion();
             }
         }
-        
+
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed

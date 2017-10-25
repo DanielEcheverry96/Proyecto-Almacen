@@ -79,7 +79,7 @@ public class Hornoselectricosygas extends Articulos {
 
     @Override
     public String toString() {
-        return "Hornos electricos y gas {" + "id Horno = "+ idArticulo + ", marca = " + mar + ", id Marca = " + idMarca+ ", id Categoria = "+ idCategoria+", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", potencia = " + potencia + ", número bandejas = " + numbandejas + ", gratinador = " + gratinador + ", tipo control = " + tipocontrol + ", temperatura max = " + temperaturamax + '}';
+        return "Hornos electricos y gas {" + "id Horno = "+ idArticulo + ", marca = " + mar + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", potencia = " + potencia + ", número bandejas = " + numbandejas + ", gratinador = " + gratinador + ", tipo control = " + tipocontrol + ", temperatura max = " + temperaturamax + '}';
     }
     
     

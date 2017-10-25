@@ -80,7 +80,7 @@ public class Computadores extends Articulos {
 
     @Override
     public String toString() {
-        return "Computadores {" + "id Computador = "+ idArticulo +", marca = " + mar + ", id Marca = "+ idMarca + ", id Categoria = "+ idCategoria +", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad memoria = " + capmemoria + ", tipo teclado = " + tipoteclado + ", tipo mouse = " + tipomouse + ", tipo pantalla = " + tipopantalla + '}';
+        return "Computadores {" + "id Computador = "+ idArticulo +", marca = " + mar + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", capacidad memoria = " + capmemoria + ", tipo teclado = " + tipoteclado + ", tipo mouse = " + tipomouse + ", tipo pantalla = " + tipopantalla + '}';
     }
 
 }

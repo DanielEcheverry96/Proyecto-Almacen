@@ -56,6 +56,19 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         }
     }
 
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldPotencia.setText("");
+        jTextFieldTipoRemache.setText("");
+        jTextFieldCalibre.setText("");
+
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -434,6 +447,9 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaPotencia.validaPotencia(jTextFieldPotencia.getText())) {
+                throw new ValidaPotencia();
+            }
             if (!ValidaCalibre.validaCalibre(jTextFieldCalibre.getText())) {
                 throw new ValidaCalibre();
             }
@@ -449,7 +465,11 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaCalibre e) {
+        } catch (ValidaPotencia e) {
+            jLabelMensaje.setText("La potencia que ingreso no es valido");
+            jTextFieldPotencia.setText("");
+            return;
+        } catch (ValidaCalibre e) {
             jLabelMensaje.setText("El calibre que ingreso no es valido");
             jTextFieldCalibre.setText("");
             return;
@@ -487,6 +507,8 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
+
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
@@ -507,11 +529,18 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTextFieldTipoRemache.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldCalibre.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             try {
+
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
                     throw new ValidaCantidad();
                 }
                 if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                     throw new ValidaFlotantes();
+                }
+                if (!ValidaPotencia.validaPotencia(jTextFieldPotencia.getText())) {
+                    throw new ValidaPotencia();
+                }
+                if (!ValidaCalibre.validaCalibre(jTextFieldCalibre.getText())) {
+                    throw new ValidaCalibre();
                 }
             } catch (ValidaCantidad e) {
                 jLabelMensaje.setText("La cantidad que ingreso no es valida");
@@ -520,6 +549,14 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             } catch (ValidaFlotantes e) {
                 jLabelMensaje.setText("El precio que ingreso no es valido");
                 jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaPotencia e) {
+                jLabelMensaje.setText("La potencia que ingreso no es valido");
+                jTextFieldPotencia.setText("");
+                return;
+            } catch (ValidaCalibre e) {
+                jLabelMensaje.setText("El calibre que ingreso no es valido");
+                jTextFieldCalibre.setText("");
                 return;
             }
             Marca marmod = new Marca();
@@ -548,6 +585,8 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al modificar");
         }
+
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed

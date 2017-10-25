@@ -57,7 +57,7 @@ public class Bicicletas extends Articulos {
 
     @Override
     public String toString() {
-        return "Bicicletas {" + "id Bicicleta = "+ idArticulo +", marca = " + mar + ", id Marca = " + idMarca + ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tamaño rueda = " + tamaniorueda + ", material = " + material + ", tipo = " + tipo + '}';
+        return "Bicicletas {" + "id Bicicleta = "+ idArticulo +", marca = " + mar +  ", Nombre = "+nombre+", Cantidad = "+cantidad+", Precio = "+precio+", Color = "+color+", Imagen = "+imagen+ ", tamaño rueda = " + tamaniorueda + ", material = " + material + ", tipo = " + tipo + '}';
     }
     
     

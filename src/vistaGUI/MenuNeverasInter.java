@@ -30,12 +30,13 @@ public class MenuNeverasInter extends javax.swing.JFrame {
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[11];
+
     public MenuNeverasInter() {
         initComponents();
         manobj = new ManejadorObjetos();
         mannev = new ManejadorNeveras();
         model = new DefaultTableModel();
-        model.addColumn("Id");              
+        model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
         model.addColumn("Cantidad");
@@ -51,10 +52,25 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         inicializarComboBox();
     }
 
-        public void inicializarComboBox(){
-        for(int i=0;i<manobj.arregloMarcas.size();i++){
-           jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+    public void inicializarComboBox() {
+        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
         }
+    }
+
+    public void limpiar() {
+        jTextFieldId.setText("");
+        jTextFieldNombre.setText("");
+        jTextFieldCantidad.setText("");
+        jTextFieldPrecio.setText("");
+        jTextFieldColor.setText("");
+        jTextFieldUrl.setText("");
+        jTextFieldCapacidadCongelador.setText("");
+        jTextFieldCapacidadFrigorifico.setText("");
+        jTextFieldMaterialNevera.setText("");
+        jTextFieldTamañoNevera.setText("");
+        jTextFieldSistemaNevera.setText("");
+
     }
 
     /**
@@ -431,22 +447,28 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arregloneveras.get(i).getSistema(), indiceFila, 10);
             indiceFila++;
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarTodoActionPerformed
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
 
-       Neveras nev = new Neveras();
-       
-       try {
+        Neveras nev = new Neveras();
+
+        try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
             }
             if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
-               throw new ValidaCantidad();
-           }
+                throw new ValidaCantidad();
+            }
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
+            }
+            if (!ValidaCapacidadAlmacenamiento.validaCapacidadAlmacenamiento(jTextFieldCapacidadCongelador.getText())) {
+                throw new ValidaCapacidadAlmacenamiento();
+            }
+            if (ValidaMemoria.validaMemoria(jTextFieldCapacidadFrigorifico.getText())) {
+                throw new ValidaMemoria();
             }
             if (!ValidaTamRueda.validaTamRueda(jTextFieldTamañoNevera.getText())) {
                 throw new ValidaTamRueda();
@@ -455,35 +477,43 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
             return;
-        } catch (ValidaCantidad e){
+        } catch (ValidaCantidad e) {
             jLabelMensaje.setText("La cantidad que ingreso no es valida");
             jTextFieldCantidad.setText("");
             return;
-        }catch (ValidaFlotantes e){
+        } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
-        }catch (ValidaTamRueda e){
+        } catch (ValidaCapacidadAlmacenamiento e) {
+            jLabelMensaje.setText("La capacidad de congelador que ingreso no es valida");
+            jTextFieldCapacidadCongelador.setText("");
+            return;
+        } catch (ValidaMemoria e) {
+            jLabelMensaje.setText("La capacidad de frigorifico que ingreso no es valida");
+            jTextFieldCapacidadFrigorifico.setText("");
+            return;
+        } catch (ValidaTamRueda e) {
             jLabelMensaje.setText("El tamaño que ingreso no es valido");
             jTextFieldTamañoNevera.setText("");
             return;
         }
-       
-       Marca mar = new Marca();
-       nev.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
-       mar.setId(idMarcaTemporal);
-       mar.setDescripcion(nombreMarcaTemporal);
-       nev.setMar(mar);
-       nev.setNombre(jTextFieldNombre.getText());
-       nev.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
-       nev.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
-       nev.setColor(jTextFieldColor.getText());
-       nev.setCapcongelador(jTextFieldCapacidadCongelador.getText());
-       nev.setCapfrigorifero(jTextFieldCapacidadFrigorifico.getText());
-       nev.setMaterial(jTextFieldMaterialNevera.getText());
-       nev.setTamaño(Integer.parseInt(jTextFieldTamañoNevera.getText()));
-       nev.setSistema(jTextFieldSistemaNevera.getText());
-       
+
+        Marca mar = new Marca();
+        nev.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
+        mar.setId(idMarcaTemporal);
+        mar.setDescripcion(nombreMarcaTemporal);
+        nev.setMar(mar);
+        nev.setNombre(jTextFieldNombre.getText());
+        nev.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
+        nev.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        nev.setColor(jTextFieldColor.getText());
+        nev.setCapcongelador(jTextFieldCapacidadCongelador.getText());
+        nev.setCapfrigorifero(jTextFieldCapacidadFrigorifico.getText());
+        nev.setMaterial(jTextFieldMaterialNevera.getText());
+        nev.setTamaño(Integer.parseInt(jTextFieldTamañoNevera.getText()));
+        nev.setSistema(jTextFieldSistemaNevera.getText());
+
         if (mannev.insertar(nev)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
@@ -501,21 +531,20 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             jTable1.setValueAt(jTextFieldSistemaNevera.getText(), indiceFila, 10);
             indiceFila++;
             mannev.consultarTodos();
-        }
-        else{
+        } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
         }
-        
+        limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
 
         int filaSeleccionada = jTable1.getSelectedRow();
-            System.out.println(filaSeleccionada);
-        
-            if (filaSeleccionada >= 0) {
-            
+        System.out.println(filaSeleccionada);
+
+        if (filaSeleccionada >= 0) {
+
             Neveras nevmod = new Neveras();
             int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
@@ -529,7 +558,45 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             jTextFieldMaterialNevera.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldTamañoNevera.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldSistemaNevera.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
-            
+
+            try {
+
+                if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
+                    throw new ValidaCantidad();
+                }
+                if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
+                    throw new ValidaFlotantes();
+                }
+                if (!ValidaCapacidadAlmacenamiento.validaCapacidadAlmacenamiento(jTextFieldCapacidadCongelador.getText())) {
+                    throw new ValidaCapacidadAlmacenamiento();
+                }
+                if (ValidaMemoria.validaMemoria(jTextFieldCapacidadFrigorifico.getText())) {
+                    throw new ValidaMemoria();
+                }
+                if (!ValidaTamRueda.validaTamRueda(jTextFieldTamañoNevera.getText())) {
+                    throw new ValidaTamRueda();
+                }
+            } catch (ValidaCantidad e) {
+                jLabelMensaje.setText("La cantidad que ingreso no es valida");
+                jTextFieldCantidad.setText("");
+                return;
+            } catch (ValidaFlotantes e) {
+                jLabelMensaje.setText("El precio que ingreso no es valido");
+                jTextFieldPrecio.setText("");
+                return;
+            } catch (ValidaCapacidadAlmacenamiento e) {
+                jLabelMensaje.setText("La capacidad de congelador que ingreso no es valida");
+                jTextFieldCapacidadCongelador.setText("");
+                return;
+            } catch (ValidaMemoria e) {
+                jLabelMensaje.setText("La capacidad de frigorifico que ingreso no es valida");
+                jTextFieldCapacidadFrigorifico.setText("");
+                return;
+            } catch (ValidaTamRueda e) {
+                jLabelMensaje.setText("El tamaño que ingreso no es valido");
+                jTextFieldTamañoNevera.setText("");
+                return;
+            }
             Marca marmod = new Marca();
             nevmod.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
             marmod.setId(a);
@@ -544,34 +611,32 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             nevmod.setMaterial(jTextFieldMaterialNevera.getText());
             nevmod.setTamaño(Integer.parseInt(jTextFieldTamañoNevera.getText()));
             nevmod.setSistema(jTextFieldSistemaNevera.getText());
-            
+
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = mannev.busquedaBinaria(a);
-                    if (!(posicion==-1)) {
-                    if (mannev.modificar(posicion, nevmod)) {
-                        JOptionPane.showMessageDialog(this, "Nevera modificada exitosamente");
-                        indiceFila--;
-                    }
-                    }
-                    else{
-                        JOptionPane.showMessageDialog(this, "Error al modificar");
-                    }
+            if (!(posicion == -1)) {
+                if (mannev.modificar(posicion, nevmod)) {
+                    JOptionPane.showMessageDialog(this, "Nevera modificada exitosamente");
+                    indiceFila--;
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al modificar");
+            }
         }
-        
+        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
         int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-            
+
         Neveras resultado = (Neveras) mannev.consultarId(idBuscado);
         if (resultado == null) {
             JOptionPane.showMessageDialog(this, "Nevera no encontrada");
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(this, "La Nevera encontrada es:\n" + resultado.toString());
         }
-        
+
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
     private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
@@ -581,15 +646,14 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
             if (mannev.borrar(idEliminar)) {
-                    JOptionPane.showMessageDialog(this, "Nevera borrada exitosamente");    
-                    }
-            else {
-            JOptionPane.showMessageDialog(this, "Error al borrar");
+                JOptionPane.showMessageDialog(this, "Nevera borrada exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Error al borrar");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
@@ -603,7 +667,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Error al borrar todo");
         }
-        
+
     }//GEN-LAST:event_jButtonBorrarTodosActionPerformed
 
     private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
@@ -615,7 +679,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             }
         }
 
-        
+
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed
