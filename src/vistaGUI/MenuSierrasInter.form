@@ -123,10 +123,7 @@
                       <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                       <Component id="jButtonConsultarUno" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="jButtonConsultarTodo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextFieldPeso" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="jButtonConsultarTodo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
                       <Component id="jButtonBorrarUno" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -179,19 +176,20 @@
                           <Component id="jTextFieldPotencia" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabelVelocidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jTextFieldVelocidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelVelocidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldVelocidad" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabelPeso" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabelDiametroDisco" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="jTextFieldPeso" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Component id="jTextFieldDiametroDisco" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>

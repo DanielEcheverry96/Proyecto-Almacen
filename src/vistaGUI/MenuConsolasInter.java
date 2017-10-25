@@ -418,6 +418,17 @@ public class MenuConsolasInter extends javax.swing.JFrame {
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
 
        Consolas cons = new Consolas();
+       
+       try {
+            if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
+                throw new ValidaEnteros();
+            }
+        } catch (ValidaEnteros e) {
+            jLabelMensaje.setText("El id que ingreso no es valido");
+            jTextFieldId.setText("");
+            return;
+        }
+       
        Marca mar = new Marca();
        cons.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
        mar.setId(idMarcaTemporal);

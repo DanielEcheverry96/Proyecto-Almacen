@@ -434,6 +434,17 @@ public class MenuTvInter extends javax.swing.JFrame {
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
         Televisores tv = new Televisores();
+        
+        try {
+            if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
+                throw new ValidaEnteros();
+            }
+        } catch (ValidaEnteros e) {
+            jLabelMensaje.setText("El id que ingreso no es valido");
+            jTextFieldId.setText("");
+            return;
+        }
+        
         Marca mar = new Marca();
         tv.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);

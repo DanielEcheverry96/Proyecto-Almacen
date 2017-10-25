@@ -195,7 +195,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
 
         jComboBoxTalla.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "S", "M", "L", "XL", "XXL", "XXXL" }));
 
-        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NIño", "Niña", "Hombre", "Mujer" }));
+        jComboBoxUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Niño", "Niña", "Hombre", "Mujer" }));
 
         jButtonOrdenarNombreAsc.setText("Ordenar Nombre Ascendente");
         jButtonOrdenarNombreAsc.addActionListener(new java.awt.event.ActionListener() {
@@ -448,6 +448,17 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
         RopaDeportiva ropdep = new RopaDeportiva();
+        
+        try {
+            if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
+                throw new ValidaEnteros();
+            }
+        } catch (ValidaEnteros e) {
+            jLabelMensaje.setText("El id que ingreso no es valido");
+            jTextFieldId.setText("");
+            return;
+        }
+        
         Marca mar = new Marca();
         ropdep.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);
