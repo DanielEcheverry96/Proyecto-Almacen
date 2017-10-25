@@ -410,6 +410,10 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaTamRueda.validaTamRueda(jTextFieldTamañorueda.getText())) {
+                throw new ValidaTamRueda();
+               
+           }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -421,6 +425,10 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaTamRueda e){
+            jLabelMensaje.setText("El tamaño de la rueda que ingreso no es valido");
+            jTextFieldTamañorueda.setText("");
             return;
         }
        

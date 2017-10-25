@@ -448,6 +448,9 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaTamRueda.validaTamRueda(jTextFieldTamañoNevera.getText())) {
+                throw new ValidaTamRueda();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -459,6 +462,10 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaTamRueda e){
+            jLabelMensaje.setText("El tamaño que ingreso no es valido");
+            jTextFieldTamañoNevera.setText("");
             return;
         }
        

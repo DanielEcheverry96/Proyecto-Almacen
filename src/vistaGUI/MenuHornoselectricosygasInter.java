@@ -455,6 +455,12 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaNumeroBandejas.validaNumeroBandejas(jTextFieldNumeroBandejas.getText())) {
+               throw new ValidaNumeroBandejas();
+           }
+            if (!ValidaTemperatura.validaTemperatura(jTextFieldTemperaturaMaxima.getText())) {
+                throw new ValidaTemperatura();
+           }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -466,6 +472,14 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaNumeroBandejas e){
+            jLabelMensaje.setText("El numero de bandejas que ingreso no es valido");
+            jTextFieldNumeroBandejas.setText("");
+            return;
+        }catch (ValidaTemperatura e){
+            jLabelMensaje.setText("La temperatura que ingreso no es valida");
+            jTextFieldTemperaturaMaxima.setText("");
             return;
         }
        

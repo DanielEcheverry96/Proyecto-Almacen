@@ -450,6 +450,9 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaPeso.validaPeso(jTextFieldPesoMartillo.getText())) {
+                throw new ValidaPeso();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -462,8 +465,11 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
             return;
+        }catch (ValidaPeso e){
+            jLabelMensaje.setText("El peso de martillo que ingreso no es valido");
+            jTextFieldPesoMartillo.setText("");
+            return;
         }
-       
        Marca mar = new Marca();
        mart.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
        mar.setId(idMarcaTemporal);

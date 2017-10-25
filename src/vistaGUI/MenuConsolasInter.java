@@ -430,6 +430,9 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaNumeroControles.validaNumeroControles(jTextFieldNumeroControles.getText())) {
+                throw new ValidaNumeroControles();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -441,6 +444,10 @@ public class MenuConsolasInter extends javax.swing.JFrame {
         } catch (ValidaFlotantes e) {
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaNumeroControles e){
+            jLabelMensaje.setText("El numero de controles que ingreso es invalido");
+            jTextFieldNumeroControles.setText("");
             return;
         }
 

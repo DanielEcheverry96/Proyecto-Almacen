@@ -428,6 +428,9 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaPaginasMin.validaPaginasMin(jTextFieldPaginasporMinuto.getText())) {
+               throw new ValidaPaginasMin();
+           }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -439,6 +442,10 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaPaginasMin e){
+            jLabelMensaje.setText("la cantidad de paginas que ingreso no es valida");
+            jTextFieldPaginasporMinuto.setText("");
             return;
         }
        

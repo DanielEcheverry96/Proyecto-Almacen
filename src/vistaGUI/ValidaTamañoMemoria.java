@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *
  * @author danie
  */
-public class ValidaTamañoMemoria {
+public class ValidaTamañoMemoria extends Exception {
     public static boolean validaTamañoMemoria(String prueba){
         boolean pruebaValido = false;
         

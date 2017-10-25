@@ -490,6 +490,9 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaCapacidadAlmacenamiento.validaCapacidadAlmacenamiento(jTextFieldCapacidadAlmacenamiento.getText())) {
+                throw new ValidaCapacidadAlmacenamiento();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -501,6 +504,10 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaCapacidadAlmacenamiento e){
+            jLabelMensaje.setText("La capacidad de almacenamiento que ingreso no es valida");
+            jTextFieldCapacidadAlmacenamiento.setText("");
             return;
         }
         

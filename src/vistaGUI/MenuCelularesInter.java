@@ -466,6 +466,15 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaTamañoPantalla.validaTamañoPantalla(jTextFieldTamañoPantalla.getText())) {
+              throw new ValidaTamañoPantalla();
+          }
+            if (!ValidaTamañoMemoria.validaTamañoMemoria(jTextFieldTamañoMemoria.getText())) {
+                throw new ValidaTamañoMemoria();
+          }
+            if (!ValidaCapacidadAlmacenamiento.validaCapacidadAlmacenamiento(jTextFieldCapacidadAlmacenamiento.getText())) {
+              throw new ValidaCapacidadAlmacenamiento();
+          }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -477,6 +486,18 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaTamañoPantalla e){
+            jLabelMensaje.setText("El tamaño de pantalla que ingreso no es valido");
+            jTextFieldTamañoPantalla.setText("");
+            return;
+        }catch (ValidaTamañoMemoria e){
+            jLabelMensaje.setText("El tamaño de memoria que ingreso no es valido");
+            jTextFieldTamañoMemoria.setText("");
+            return;
+        }catch (ValidaCapacidadAlmacenamiento e){
+            jLabelMensaje.setText("La capacidad de almacenamiento que ingreso no es valida");
+            jTextFieldCapacidadAlmacenamiento.setText("");
             return;
         }
        

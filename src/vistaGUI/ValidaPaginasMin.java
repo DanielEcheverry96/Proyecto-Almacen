@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
  *
  * @author danie
  */
-public class ValidaPaginasMin {
+public class ValidaPaginasMin extends Exception {
     public static boolean validaPaginasMin(String prueba){
         boolean pruebaValido = false;
         

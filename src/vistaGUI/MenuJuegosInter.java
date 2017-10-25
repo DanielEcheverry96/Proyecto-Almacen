@@ -414,6 +414,9 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             if (!ValidaFlotantes.validaFlotantes(jTextFieldPrecio.getText())) {
                 throw new ValidaFlotantes();
             }
+            if (!ValidaNumeroJugadores.validaNumeroJugadores(jTextFieldNumeroJugadores.getText())) {
+                throw new ValidaNumeroJugadores();
+            }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
             jTextFieldId.setText("");
@@ -425,6 +428,10 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         }catch (ValidaFlotantes e){
             jLabelMensaje.setText("El precio que ingreso no es valido");
             jTextFieldPrecio.setText("");
+            return;
+        }catch (ValidaNumeroJugadores e){
+            jLabelMensaje.setText("El numero de jugadores que ingreso no es valido");
+            jTextFieldNumeroJugadores.setText("");
             return;
         }
        
