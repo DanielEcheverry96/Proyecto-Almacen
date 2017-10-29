@@ -13,8 +13,6 @@ public class MenuArticulos {
         Scanner leer = new Scanner(System.in);
         do {
             Articulos art = new Articulos();
-            System.out.println("Digite el Id de la categoria");
-            art.setIdCategoria(leer.nextInt());
             System.out.println("Digite el Id de la marca");
             art.setIdMarca(leer.nextInt());
             System.out.println("Digite el Id del articulo");

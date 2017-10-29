@@ -45,14 +45,6 @@ public class Articulos implements Comparable<Articulos> {
         this.idMarca = idMarca;
     }
 
-    public int getIdCategoria() {
-        return idCategoria;
-    }
-
-    public void setIdCategoria(int idCategoria) {
-        this.idCategoria = idCategoria;
-    }
-
     public int getIdArticulo() {
         return idArticulo;
     }
@@ -120,7 +112,7 @@ public class Articulos implements Comparable<Articulos> {
     
     @Override
     public String toString() {
-        return "Articulos {" + "id Marca = " + idMarca + ", id Articulo = " + idArticulo + ", nombre = " + nombre + ", cantidad = " + cantidad + ", precio = " + precio + ", descripcion = " + descripcion + ", color = " + color + ", imagen = " + imagen + ", marca = "+ mar + '}';
+        return "id Marca = " + idMarca + ", id Articulo = " + idArticulo + ", nombre = " + nombre + ", cantidad = " + cantidad + ", precio = " + precio + ", descripcion = " + descripcion + ", color = " + color + ", imagen = " + imagen + ", marca = "+ mar;
     }
     
     

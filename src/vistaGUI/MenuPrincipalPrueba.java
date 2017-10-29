@@ -5,6 +5,9 @@
  */
 package vistaGUI;
 
+import javax.swing.JOptionPane;
+import modelo.CategoriaElectronicosOficina;
+
 /**
  *
  * @author danie
