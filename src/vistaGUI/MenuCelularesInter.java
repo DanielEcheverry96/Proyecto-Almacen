@@ -33,6 +33,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
 
     public MenuCelularesInter() {
         initComponents();
+        this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mancel = new ManejadorTelefonosCelulares();
         model = new DefaultTableModel();
@@ -127,10 +128,13 @@ public class MenuCelularesInter extends javax.swing.JFrame {
 
         setTitle("Telefono Celular\n");
 
+        jLabelMarca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelMarca.setText("Marca");
 
+        jLabelTamañoPantalla.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTamañoPantalla.setText("Tamaño Pantalla");
 
+        jLabelColor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelColor.setText("Color");
 
         jButtonBorrarUno.setText("Borrar Uno");
@@ -153,14 +157,19 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabelCantidad.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelCantidad.setText("Cantidad");
 
+        jLabelNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelNombre.setText("Nombre");
 
+        jLabelTamañoMemoria.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTamañoMemoria.setText("Tamaño Memoria");
 
+        jLabelPrecio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelPrecio.setText("Precio");
 
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI Historic", 3, 36)); // NOI18N
         jLabelTitulo.setText("Celulares");
 
         jButtonBorrarTodos.setText("Borrar Todos");
@@ -177,8 +186,10 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             }
         });
 
+        jLabelId.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelId.setText("ID");
 
+        jLabelUrl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelUrl.setText("Url");
 
         jButtonConsultarTodo.setText("Consultar Todo");
@@ -213,12 +224,16 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             }
         });
 
+        jLabelCapacidadAlmacenamiento.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelCapacidadAlmacenamiento.setText("Capacidad Almacenamiento");
 
+        jLabelTipoProcesador.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTipoProcesador.setText("Tipo Procesador");
 
+        jLabelTipoPantalla.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTipoPantalla.setText("Tipo Pantalla");
 
+        jLabelMensaje.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelMensaje.setText("Estado");
 
         jTextFieldTipoProcesador.addActionListener(new java.awt.event.ActionListener() {
@@ -227,6 +242,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             }
         });
 
+        jLabelInterfaceRed.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelInterfaceRed.setText("Interface Red");
 
         jButtonOrdenarID.setText("Ordenar ID");
@@ -302,13 +318,13 @@ public class MenuCelularesInter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jTextFieldCapacidadAlmacenamiento, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldTamañoMemoria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                        .addComponent(jTextFieldTamañoMemoria, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextFieldTamañoPantalla, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextFieldTipoProcesador, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jTextFieldTipoPantalla))
+                        .addComponent(jTextFieldTipoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTextFieldInterfaceRed, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 59, Short.MAX_VALUE)
+                .addGap(18, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonModificar)
                     .addComponent(jButtonConsultarUno)
@@ -321,7 +337,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
+                        .addContainerGap()
                         .addComponent(jLabelTitulo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(237, 237, 237)
@@ -330,11 +346,11 @@ public class MenuCelularesInter extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)
                         .addComponent(jButtonOrdenarID)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -344,7 +360,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTitulo)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonInsertar)
@@ -413,7 +429,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelInterfaceRed)
                             .addComponent(jTextFieldInterfaceRed, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

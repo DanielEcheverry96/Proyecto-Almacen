@@ -33,6 +33,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
     public MenuBicicletaInter() {
         initComponents();
+        this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manbici = new ManejadorBicicletas();
         model = new DefaultTableModel();
@@ -115,26 +116,37 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
         setTitle("Bicicletas");
 
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI Historic", 3, 36)); // NOI18N
         jLabelTitulo.setText("Bicicletas");
 
+        jLabelId.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelId.setText("ID");
 
+        jLabelMarca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelMarca.setText("Marca");
 
+        jLabelNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelNombre.setText("Nombre");
 
+        jLabelCantidad.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelCantidad.setText("Cantidad");
 
+        jLabelPrecio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelPrecio.setText("Precio");
 
+        jLabelColor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelColor.setText("Color");
 
+        jLabelUrl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelUrl.setText("Url");
 
+        jLabelTamañorueda.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTamañorueda.setText("Tamaño rueda");
 
+        jLabelMaterialmontura.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelMaterialmontura.setText("Material montura");
 
+        jLabelTipobicicleta.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTipobicicleta.setText("Tipo bicicleta");
 
         jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
@@ -203,6 +215,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabelMensaje.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelMensaje.setText("Estado");
 
         jButtonOrdenarNombreAsc.setText("Ordenar Nombre Ascendente");
@@ -245,13 +258,8 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(329, 329, 329)
-                        .addComponent(jLabelTitulo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,13 +313,17 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                     .addComponent(jButtonInsertar))
                 .addGap(22, 22, 22))
             .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTitulo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTitulo)
-                .addGap(11, 11, 11)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonInsertar)
@@ -379,11 +391,11 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                             .addComponent(jButtonOrdenarID)
                             .addGap(16, 16, 16)))
                     .addComponent(jButtonBorrarTodos))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         pack();

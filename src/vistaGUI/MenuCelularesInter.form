@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
@@ -61,17 +61,17 @@
               </Group>
               <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                       <Component id="jTextFieldCapacidadAlmacenamiento" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jTextFieldTamañoMemoria" alignment="0" pref="80" max="32767" attributes="0"/>
+                      <Component id="jTextFieldTamañoMemoria" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldTamañoPantalla" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldTipoProcesador" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextFieldUrl" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jTextFieldTipoPantalla" alignment="1" max="32767" attributes="0"/>
+                      <Component id="jTextFieldTipoPantalla" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
                   <Component id="jTextFieldInterfaceRed" min="-2" pref="80" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" pref="59" max="32767" attributes="0"/>
+              <EmptySpace type="separate" pref="26" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jButtonModificar" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonConsultarUno" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -86,7 +86,7 @@
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="247" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -97,12 +97,12 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButtonOrdenarNombreDesc" max="32767" attributes="0"/>
-                          <Component id="jButtonOrdenarNombreAsc" max="32767" attributes="0"/>
+                          <Component id="jButtonOrdenarNombreAsc" min="-2" pref="179" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="jButtonOrdenarPrecioDesc" max="32767" attributes="0"/>
-                          <Component id="jButtonOrdenarPrecioAsc" max="32767" attributes="0"/>
+                          <Component id="jButtonOrdenarPrecioAsc" min="-2" pref="171" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
                       <Component id="jButtonOrdenarID" min="-2" max="-2" attributes="0"/>
@@ -117,7 +117,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jButtonInsertar" min="-2" max="-2" attributes="0"/>
@@ -205,7 +205,7 @@
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="42" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -236,16 +236,25 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabelMarca">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Marca"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTama&#xf1;oPantalla">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tama&#xf1;o Pantalla"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelColor">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Color"/>
       </Properties>
     </Component>
@@ -280,6 +289,9 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabelCantidad">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Cantidad"/>
       </Properties>
     </Component>
@@ -287,6 +299,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelNombre">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Nombre"/>
       </Properties>
     </Component>
@@ -294,16 +309,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTama&#xf1;oMemoria">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tama&#xf1;o Memoria"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelPrecio">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Precio"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTitulo">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Segoe UI Historic" size="36" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Celulares"/>
       </Properties>
     </Component>
@@ -325,11 +349,17 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelId">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="ID"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelUrl">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Url"/>
       </Properties>
     </Component>
@@ -377,16 +407,25 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelCapacidadAlmacenamiento">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Capacidad Almacenamiento"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTipoProcesador">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tipo Procesador"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelTipoPantalla">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Tipo Pantalla"/>
       </Properties>
     </Component>
@@ -394,6 +433,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelMensaje">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Estado"/>
       </Properties>
     </Component>
@@ -414,6 +456,9 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabelInterfaceRed">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="11" style="1"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Interface Red"/>
       </Properties>
     </Component>

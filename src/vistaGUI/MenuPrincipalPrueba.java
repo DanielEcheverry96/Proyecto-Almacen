@@ -19,6 +19,7 @@ public class MenuPrincipalPrueba extends javax.swing.JFrame {
      */
     public MenuPrincipalPrueba() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

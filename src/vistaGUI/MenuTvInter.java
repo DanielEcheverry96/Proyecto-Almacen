@@ -33,6 +33,7 @@ public class MenuTvInter extends javax.swing.JFrame {
 
     public MenuTvInter() {
         initComponents();
+        this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mantv = new ManejadorTelevisores();
         model = new DefaultTableModel();
@@ -133,8 +134,10 @@ public class MenuTvInter extends javax.swing.JFrame {
             }
         });
 
+        jLabelId.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelId.setText("ID");
 
+        jLabelUrl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelUrl.setText("Url");
 
         jButtonConsultarTodo.setText("Consultar Todo");
@@ -158,6 +161,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             }
         });
 
+        jLabelTitulo.setFont(new java.awt.Font("Segoe UI Historic", 3, 36)); // NOI18N
         jLabelTitulo.setText("Televisor");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -173,12 +177,22 @@ public class MenuTvInter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        jLabelMensaje.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelMensaje.setText("Estado");
 
+        jLabelCantidad.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelCantidad.setText("Cantidad");
 
+        jLabelNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelNombre.setText("Nombre");
 
+        jTextFieldUrl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldUrlActionPerformed(evt);
+            }
+        });
+
+        jLabelMarca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelMarca.setText("Marca");
 
         jComboBoxMarca.addItemListener(new java.awt.event.ItemListener() {
@@ -187,10 +201,13 @@ public class MenuTvInter extends javax.swing.JFrame {
             }
         });
 
+        jLabelTamañoPantalla.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTamañoPantalla.setText("Tamaño Pantalla");
 
+        jLabelColor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelColor.setText("Color");
 
+        jLabelTipoTelevisor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTipoTelevisor.setText("Tipo Televisor");
 
         jButtonBorrarUno.setText("Borrar Uno");
@@ -200,6 +217,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             }
         });
 
+        jLabelPrecio.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelPrecio.setText("Precio");
 
         jTextFieldTipoTelevisor.addActionListener(new java.awt.event.ActionListener() {
@@ -208,8 +226,10 @@ public class MenuTvInter extends javax.swing.JFrame {
             }
         });
 
+        jLabelTipoPantalla.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelTipoPantalla.setText("Tipo Pantalla");
 
+        jLabelResolucion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelResolucion.setText("Resolucion");
 
         jButtonOrdenarNombreAsc.setText("Ordenar Nombre Ascendente");
@@ -312,11 +332,11 @@ public class MenuTvInter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(268, 268, 268)
-                        .addComponent(jLabelTitulo))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(242, 242, 242)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -770,6 +790,10 @@ public class MenuTvInter extends javax.swing.JFrame {
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
+
+    private void jTextFieldUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUrlActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldUrlActionPerformed
 
     /**
      * @param args the command line arguments
