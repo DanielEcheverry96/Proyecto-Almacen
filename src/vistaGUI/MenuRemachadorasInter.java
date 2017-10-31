@@ -7,8 +7,17 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorRemachadoras;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelo.CategoriaHerramientas;
 import modelo.Marca;
@@ -30,13 +39,28 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[9];
+    JFileChooser fileChooser = new JFileChooser();
+    ImageIcon image = null;
+    File archivo = null;
+    String ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+    JLabel labelImagen = new JLabel("", new ImageIcon(ruta), JLabel.CENTER);
 
     public MenuRemachadorasInter() {
         initComponents();
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manrem = new ManejadorRemachadoras();
-        model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 9:
+                        return ImageIcon.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };;
         model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
@@ -46,9 +70,19 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         model.addColumn("Potencia");
         model.addColumn("Tipo Remache");
         model.addColumn("Calibre");
+        model.addColumn("Imagen");
         jTable1.setModel(model);
+        jTable1.getColumnModel().getColumn(0).setMinWidth(30);
+        jTable1.getColumnModel().getColumn(9).setMinWidth(150);
         model.insertRow(indiceFila, dato);
         inicializarComboBox();
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+        fileChooser.addChoosableFileFilter(imageFilter);
+        panelImagen.setPreferredSize(new Dimension(132, 132));
+        panelImagen.add(labelImagen, BorderLayout.CENTER);
+        jTable1.setRowHeight(150);
+        jTable1.setRowMargin(5);
     }
 
     public void inicializarComboBox() {
@@ -63,7 +97,6 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         jTextFieldCantidad.setText("");
         jTextFieldPrecio.setText("");
         jTextFieldColor.setText("");
-        jTextFieldUrl.setText("");
         jTextFieldPotencia.setText("");
         jTextFieldTipoRemache.setText("");
         jTextFieldCalibre.setText("");
@@ -84,7 +117,6 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         jLabelCalibre = new javax.swing.JLabel();
         jLabelPrecio = new javax.swing.JLabel();
         jButtonBorrarTodos = new javax.swing.JButton();
-        jLabelUrl = new javax.swing.JLabel();
         jButtonInsertar = new javax.swing.JButton();
         jTextFieldId = new javax.swing.JTextField();
         jLabelColor = new javax.swing.JLabel();
@@ -98,7 +130,6 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         jLabelMensaje = new javax.swing.JLabel();
         jTextFieldCantidad = new javax.swing.JTextField();
         jTextFieldPrecio = new javax.swing.JTextField();
-        jTextFieldUrl = new javax.swing.JTextField();
         jTextFieldPotencia = new javax.swing.JTextField();
         jTextFieldTipoRemache = new javax.swing.JTextField();
         jTextFieldCalibre = new javax.swing.JTextField();
@@ -114,6 +145,8 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         jButtonOrdenarNombreDesc = new javax.swing.JButton();
         jButtonOrdenarPrecioDesc = new javax.swing.JButton();
         jButtonOrdenarID = new javax.swing.JButton();
+        panelImagen = new javax.swing.JPanel();
+        botonFileChooser = new javax.swing.JButton();
 
         setTitle("Remachadoras");
 
@@ -135,9 +168,6 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
                 jButtonBorrarTodosActionPerformed(evt);
             }
         });
-
-        jLabelUrl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelUrl.setText("Url");
 
         jButtonInsertar.setText("Insertar");
         jButtonInsertar.addActionListener(new java.awt.event.ActionListener() {
@@ -255,44 +285,73 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             }
         });
 
+        panelImagen.setBackground(new java.awt.Color(204, 204, 204));
+        panelImagen.setLayout(new java.awt.BorderLayout());
+
+        botonFileChooser.setText("Examinar...");
+        botonFileChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFileChooserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelId)
-                            .addComponent(jLabelMarca)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jLabelCantidad)
-                            .addComponent(jLabelPrecio))
-                        .addGap(45, 45, 45))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabelColor)
-                        .addGap(48, 48, 48)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldId, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldPrecio)
-                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelUrl)
-                    .addComponent(jLabelPotencia)
-                    .addComponent(jLabelTipoRemache)
-                    .addComponent(jLabelCalibre))
-                .addGap(58, 58, 58)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextFieldCalibre, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTipoRemache, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldPotencia, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldUrl, javax.swing.GroupLayout.Alignment.LEADING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addComponent(jButtonOrdenarID)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelId)
+                                    .addComponent(jLabelMarca)
+                                    .addComponent(jLabelNombre)
+                                    .addComponent(jLabelCantidad)
+                                    .addComponent(jLabelPrecio))
+                                .addGap(45, 45, 45))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabelColor)
+                                .addGap(48, 48, 48)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jTextFieldId, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldPrecio)
+                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelPotencia)
+                                    .addComponent(jLabelTipoRemache)
+                                    .addComponent(jLabelCalibre))
+                                .addGap(58, 58, 58)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextFieldCalibre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldTipoRemache, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldPotencia, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonFileChooser)
+                                .addGap(67, 67, 67)))))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonModificar)
                     .addComponent(jButtonConsultarUno)
@@ -300,27 +359,16 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
                     .addComponent(jButtonBorrarUno)
                     .addComponent(jButtonBorrarTodos)
                     .addComponent(jButtonInsertar))
-                .addGap(19, 19, 19))
+                .addGap(18, 18, 18))
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(20, 20, 20)
+                        .addComponent(jLabelTitulo))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addComponent(jButtonOrdenarID))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTitulo)))
+                        .addGap(229, 229, 229)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -328,9 +376,13 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTitulo)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
+                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(botonFileChooser))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonInsertar)
                         .addGap(14, 14, 14)
                         .addComponent(jButtonModificar)
@@ -339,9 +391,10 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
                         .addGap(14, 14, 14)
                         .addComponent(jButtonConsultarTodo)
                         .addGap(14, 14, 14)
-                        .addComponent(jButtonBorrarUno))
+                        .addComponent(jButtonBorrarUno)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonBorrarTodos))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -369,10 +422,6 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
                                     .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelUrl)
-                                    .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelPotencia)
                                     .addComponent(jTextFieldPotencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(8, 8, 8)
@@ -382,28 +431,26 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelCalibre)
-                                    .addComponent(jTextFieldCalibre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(jTextFieldCalibre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonOrdenarNombreAsc)
+                                    .addComponent(jButtonOrdenarPrecioAsc))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButtonOrdenarNombreDesc)
+                                    .addComponent(jButtonOrdenarPrecioDesc)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jButtonOrdenarID)
+                                .addGap(16, 16, 16)))))
                 .addGap(18, 18, 18)
-                .addComponent(jButtonBorrarTodos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreAsc)
-                            .addComponent(jButtonOrdenarPrecioAsc))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreDesc)
-                            .addComponent(jButtonOrdenarPrecioDesc)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonOrdenarID)
-                        .addGap(16, 16, 16)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addContainerGap())
         );
 
         pack();
@@ -434,6 +481,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getPotencia(), indiceFila, 6);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getTiporemache(), indiceFila, 7);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getCalibre(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaHerramientas.arregloremachadoras.get(i).getImagen()), indiceFila, 9);
 
             indiceFila++;
         }
@@ -498,6 +546,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         rema.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
         rema.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
         rema.setColor(jTextFieldColor.getText());
+        rema.setImagen(ruta);
         rema.setPotencia(jTextFieldPotencia.getText());
         rema.setTiporemache(jTextFieldTipoRemache.getText());
         rema.setCalibre(Double.parseDouble(jTextFieldCalibre.getText()));
@@ -515,6 +564,11 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTable1.setValueAt(jTextFieldPotencia.getText(), indiceFila, 6);
             jTable1.setValueAt(jTextFieldTipoRemache.getText(), indiceFila, 7);
             jTable1.setValueAt(Double.parseDouble(jTextFieldCalibre.getText()), indiceFila, 8);
+            jTable1.setValueAt(ruta, indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(ruta), indiceFila, 9);
+            ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+            image = new ImageIcon(ruta);
+            labelImagen.setIcon(image);
             indiceFila++;
             manrem.consultarTodos();
         } else {
@@ -661,6 +715,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getPotencia(), indiceFila, 6);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getTiporemache(), indiceFila, 7);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getCalibre(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaHerramientas.arregloremachadoras.get(i).getImagen()), indiceFila, 9);
 
             indiceFila++;
         }
@@ -686,6 +741,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getPotencia(), indiceFila, 6);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getTiporemache(), indiceFila, 7);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getCalibre(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaHerramientas.arregloremachadoras.get(i).getImagen()), indiceFila, 9);
 
             indiceFila++;
         }
@@ -710,6 +766,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getPotencia(), indiceFila, 6);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getTiporemache(), indiceFila, 7);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getCalibre(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaHerramientas.arregloremachadoras.get(i).getImagen()), indiceFila, 9);
 
             indiceFila++;
         }
@@ -735,6 +792,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getPotencia(), indiceFila, 6);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getTiporemache(), indiceFila, 7);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getCalibre(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaHerramientas.arregloremachadoras.get(i).getImagen()), indiceFila, 9);
 
             indiceFila++;
         }
@@ -760,10 +818,19 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getPotencia(), indiceFila, 6);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getTiporemache(), indiceFila, 7);
             jTable1.setValueAt(CategoriaHerramientas.arregloremachadoras.get(i).getCalibre(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaHerramientas.arregloremachadoras.get(i).getImagen()), indiceFila, 9);
 
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
+
+    private void botonFileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFileChooserActionPerformed
+        fileChooser.showDialog(this, "Choose"); //
+        archivo = fileChooser.getSelectedFile();
+        ruta = archivo.getAbsolutePath();
+        image = new ImageIcon(ruta);
+        labelImagen.setIcon(image);
+    }//GEN-LAST:event_botonFileChooserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -801,6 +868,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonFileChooser;
     private javax.swing.JButton jButtonBorrarTodos;
     private javax.swing.JButton jButtonBorrarUno;
     private javax.swing.JButton jButtonConsultarTodo;
@@ -824,7 +892,6 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelPrecio;
     private javax.swing.JLabel jLabelTipoRemache;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JLabel jLabelUrl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldCalibre;
@@ -835,6 +902,6 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPotencia;
     private javax.swing.JTextField jTextFieldPrecio;
     private javax.swing.JTextField jTextFieldTipoRemache;
-    private javax.swing.JTextField jTextFieldUrl;
+    private javax.swing.JPanel panelImagen;
     // End of variables declaration//GEN-END:variables
 }

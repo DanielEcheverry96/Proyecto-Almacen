@@ -7,8 +7,17 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorTelevisores;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.event.ItemEvent;
+import java.io.File;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import modelo.CategoriaElectrodomesticos;
 import modelo.Marca;
@@ -30,13 +39,28 @@ public class MenuTvInter extends javax.swing.JFrame {
     DefaultTableModel model;
     int indiceFila = 0;
     String[] dato = new String[10];
+    JFileChooser fileChooser = new JFileChooser();
+    ImageIcon image = null;
+    File archivo = null;
+    String ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+    JLabel labelImagen = new JLabel("", new ImageIcon(ruta), JLabel.CENTER);
 
     public MenuTvInter() {
         initComponents();
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mantv = new ManejadorTelevisores();
-        model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 10:
+                        return ImageIcon.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };;
         model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
@@ -47,9 +71,19 @@ public class MenuTvInter extends javax.swing.JFrame {
         model.addColumn("Tamaño Pantalla");
         model.addColumn("Tipo Pantalla");
         model.addColumn("Resolucion");
+        model.addColumn("Imagen");
         jTable1.setModel(model);
+        jTable1.getColumnModel().getColumn(0).setMinWidth(30);
+        jTable1.getColumnModel().getColumn(10).setMinWidth(150);
         model.insertRow(indiceFila, dato);
         inicializarComboBox();
+        fileChooser.setAcceptAllFileFilterUsed(false);
+        FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
+        fileChooser.addChoosableFileFilter(imageFilter);
+        panelImagen.setPreferredSize(new Dimension(132, 132));
+        panelImagen.add(labelImagen, BorderLayout.CENTER);
+        jTable1.setRowHeight(150);
+        jTable1.setRowMargin(5);
     }
 
     public void inicializarComboBox() {
@@ -64,7 +98,6 @@ public class MenuTvInter extends javax.swing.JFrame {
         jTextFieldCantidad.setText("");
         jTextFieldPrecio.setText("");
         jTextFieldColor.setText("");
-        jTextFieldUrl.setText("");
         jTextFieldTipoTelevisor.setText("");
         jTextFieldTamañoPantalla.setText("");
         jTextFieldTipoPantalla.setText("");
@@ -83,7 +116,6 @@ public class MenuTvInter extends javax.swing.JFrame {
         jButtonBorrarTodos = new javax.swing.JButton();
         jButtonConsultarUno = new javax.swing.JButton();
         jLabelId = new javax.swing.JLabel();
-        jLabelUrl = new javax.swing.JLabel();
         jButtonConsultarTodo = new javax.swing.JButton();
         jButtonModificar = new javax.swing.JButton();
         jButtonInsertar = new javax.swing.JButton();
@@ -97,7 +129,6 @@ public class MenuTvInter extends javax.swing.JFrame {
         jTextFieldCantidad = new javax.swing.JTextField();
         jLabelNombre = new javax.swing.JLabel();
         jTextFieldPrecio = new javax.swing.JTextField();
-        jTextFieldUrl = new javax.swing.JTextField();
         jTextFieldColor = new javax.swing.JTextField();
         jTextFieldId = new javax.swing.JTextField();
         jLabelMarca = new javax.swing.JLabel();
@@ -117,6 +148,8 @@ public class MenuTvInter extends javax.swing.JFrame {
         jButtonOrdenarNombreDesc = new javax.swing.JButton();
         jButtonOrdenarPrecioDesc = new javax.swing.JButton();
         jButtonOrdenarID = new javax.swing.JButton();
+        panelImagen = new javax.swing.JPanel();
+        botonFileChooser = new javax.swing.JButton();
 
         setTitle("Televisores\n");
 
@@ -136,9 +169,6 @@ public class MenuTvInter extends javax.swing.JFrame {
 
         jLabelId.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelId.setText("ID");
-
-        jLabelUrl.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabelUrl.setText("Url");
 
         jButtonConsultarTodo.setText("Consultar Todo");
         jButtonConsultarTodo.addActionListener(new java.awt.event.ActionListener() {
@@ -185,12 +215,6 @@ public class MenuTvInter extends javax.swing.JFrame {
 
         jLabelNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelNombre.setText("Nombre");
-
-        jTextFieldUrl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldUrlActionPerformed(evt);
-            }
-        });
 
         jLabelMarca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelMarca.setText("Marca");
@@ -267,26 +291,25 @@ public class MenuTvInter extends javax.swing.JFrame {
             }
         });
 
+        panelImagen.setBackground(new java.awt.Color(204, 204, 204));
+        panelImagen.setLayout(new java.awt.BorderLayout());
+
+        botonFileChooser.setText("Examinar...");
+        botonFileChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonFileChooserActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(40, 40, 40)
-                        .addComponent(jButtonOrdenarID))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,21 +329,37 @@ public class MenuTvInter extends javax.swing.JFrame {
                             .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPrecio)
                             .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelUrl)
-                            .addComponent(jLabelTipoTelevisor)
-                            .addComponent(jLabelTamañoPantalla)
-                            .addComponent(jLabelTipoPantalla)
-                            .addComponent(jLabelResolucion))
-                        .addGap(46, 46, 46)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(100, 100, 100)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelTipoTelevisor)
+                                    .addComponent(jLabelTamañoPantalla)
+                                    .addComponent(jLabelTipoPantalla)
+                                    .addComponent(jLabelResolucion))
+                                .addGap(46, 46, 46)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTextFieldTipoTelevisor)
+                                    .addComponent(jTextFieldTamañoPantalla)
+                                    .addComponent(jTextFieldTipoPantalla)
+                                    .addComponent(jTextFieldResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(84, 84, 84)
+                                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFileChooser)
+                                .addGap(19, 19, 19))))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldUrl)
-                            .addComponent(jTextFieldTipoTelevisor)
-                            .addComponent(jTextFieldTamañoPantalla)
-                            .addComponent(jTextFieldTipoPantalla)
-                            .addComponent(jTextFieldResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(48, 48, 48)
+                        .addComponent(jButtonOrdenarID)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonModificar)
                     .addComponent(jButtonConsultarUno)
@@ -328,24 +367,89 @@ public class MenuTvInter extends javax.swing.JFrame {
                     .addComponent(jButtonBorrarUno)
                     .addComponent(jButtonBorrarTodos)
                     .addComponent(jButtonInsertar))
-                .addGap(9, 9, 9))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(242, 242, 242)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 684, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(144, 144, 144)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelTitulo)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelId)
+                                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelMarca)
+                                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelNombre)
+                                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelCantidad)
+                                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelTipoTelevisor)
+                                            .addComponent(jTextFieldTipoTelevisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelTamañoPantalla)
+                                            .addComponent(jTextFieldTamañoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelTipoPantalla)
+                                            .addComponent(jTextFieldTipoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabelResolucion))))
+                                .addGap(8, 8, 8)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelPrecio)
+                                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelColor)
+                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jButtonOrdenarNombreAsc)
+                                            .addComponent(jButtonOrdenarPrecioAsc))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jButtonOrdenarNombreDesc)
+                                            .addComponent(jButtonOrdenarPrecioDesc)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jButtonOrdenarID)
+                                        .addGap(16, 16, 16))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(14, 14, 14)
+                                .addComponent(botonFileChooser)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonInsertar)
                         .addGap(14, 14, 14)
@@ -355,71 +459,9 @@ public class MenuTvInter extends javax.swing.JFrame {
                         .addGap(15, 15, 15)
                         .addComponent(jButtonConsultarTodo)
                         .addGap(14, 14, 14)
-                        .addComponent(jButtonBorrarUno))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelUrl)
-                            .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTipoTelevisor)
-                            .addComponent(jTextFieldTipoTelevisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTamañoPantalla)
-                            .addComponent(jTextFieldTamañoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTipoPantalla)
-                            .addComponent(jTextFieldTipoPantalla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldResolucion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelResolucion)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelId)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelMarca)
-                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelNombre)
-                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCantidad)
-                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPrecio)
-                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(11, 11, 11)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelColor)
-                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(14, 14, 14)
-                .addComponent(jButtonBorrarTodos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreAsc)
-                            .addComponent(jButtonOrdenarPrecioAsc))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreDesc)
-                            .addComponent(jButtonOrdenarPrecioDesc)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonOrdenarID)
-                        .addGap(16, 16, 16)))
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonBorrarUno)
+                        .addGap(14, 14, 14)
+                        .addComponent(jButtonBorrarTodos)))
                 .addContainerGap())
         );
 
@@ -447,6 +489,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTampantalla(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTipopantalla(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglotelevisores.get(i).getImagen()), indiceFila, 10);
 
             indiceFila++;
         }
@@ -515,6 +558,7 @@ public class MenuTvInter extends javax.swing.JFrame {
         tv.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
         tv.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
         tv.setColor(jTextFieldColor.getText());
+        tv.setImagen(ruta);
         tv.setTipotelevisor(jTextFieldTipoTelevisor.getText());
         tv.setTampantalla(Integer.parseInt(jTextFieldTamañoPantalla.getText()));
         tv.setTipopantalla(jTextFieldTipoPantalla.getText());
@@ -528,12 +572,17 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
             jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
             jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
-            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldPrecio.getText(), indiceFila, 4);
             jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
             jTable1.setValueAt(jTextFieldTipoTelevisor.getText(), indiceFila, 6);
-            jTable1.setValueAt(Integer.parseInt(jTextFieldTamañoPantalla.getText()), indiceFila, 7);
+            jTable1.setValueAt(jTextFieldTamañoPantalla.getText(), indiceFila, 7);
             jTable1.setValueAt(jTextFieldTipoPantalla.getText(), indiceFila, 8);
             jTable1.setValueAt(jTextFieldResolucion.getText(), indiceFila, 9);
+            jTable1.setValueAt(ruta, indiceFila, 10);
+            jTable1.setValueAt(new ImageIcon(ruta), indiceFila, 10);
+            ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+            image = new ImageIcon(ruta);
+            labelImagen.setIcon(image);
 
             indiceFila++;
             mantv.consultarTodos();
@@ -683,6 +732,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTampantalla(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTipopantalla(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglotelevisores.get(i).getImagen()), indiceFila, 10);
 
             indiceFila++;
         }
@@ -709,6 +759,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTampantalla(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTipopantalla(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglotelevisores.get(i).getImagen()), indiceFila, 10);
 
             indiceFila++;
         }
@@ -734,6 +785,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTampantalla(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTipopantalla(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglotelevisores.get(i).getImagen()), indiceFila, 10);
 
             indiceFila++;
         }
@@ -760,6 +812,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTampantalla(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTipopantalla(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglotelevisores.get(i).getImagen()), indiceFila, 10);
 
             indiceFila++;
         }
@@ -786,14 +839,19 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTampantalla(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getTipopantalla(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglotelevisores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglotelevisores.get(i).getImagen()), indiceFila, 10);
 
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
 
-    private void jTextFieldUrlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldUrlActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldUrlActionPerformed
+    private void botonFileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonFileChooserActionPerformed
+        fileChooser.showDialog(this, "Choose"); //
+        archivo = fileChooser.getSelectedFile();
+        ruta = archivo.getAbsolutePath();
+        image = new ImageIcon(ruta);
+        labelImagen.setIcon(image);
+    }//GEN-LAST:event_botonFileChooserActionPerformed
 
     /**
      * @param args the command line arguments
@@ -831,6 +889,7 @@ public class MenuTvInter extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton botonFileChooser;
     private javax.swing.JButton jButtonBorrarTodos;
     private javax.swing.JButton jButtonBorrarUno;
     private javax.swing.JButton jButtonConsultarTodo;
@@ -855,7 +914,6 @@ public class MenuTvInter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTipoPantalla;
     private javax.swing.JLabel jLabelTipoTelevisor;
     private javax.swing.JLabel jLabelTitulo;
-    private javax.swing.JLabel jLabelUrl;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextFieldCantidad;
@@ -867,6 +925,6 @@ public class MenuTvInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTamañoPantalla;
     private javax.swing.JTextField jTextFieldTipoPantalla;
     private javax.swing.JTextField jTextFieldTipoTelevisor;
-    private javax.swing.JTextField jTextFieldUrl;
+    private javax.swing.JPanel panelImagen;
     // End of variables declaration//GEN-END:variables
 }

@@ -61,7 +61,7 @@ public class ManejadorRaquetas implements ICRUD {
         while (inf <= sup) {
             centro = (sup + inf) / 2;
             if (CategoriaDeportivos.arregloraquetas.get(centro).getIdArticulo() == id) {
-                return (centro);
+                return centro;
             } else if (id < CategoriaDeportivos.arregloraquetas.get(centro).getIdArticulo()) {
                 sup = centro - 1;
             } else {
@@ -75,7 +75,7 @@ public class ManejadorRaquetas implements ICRUD {
     public Object consultarId(int id) {
         if (!(busquedaBinaria(id) == -1)) {
             Raquetas resultado = new Raquetas();
-            resultado = catdep.arregloraquetas.get(busquedaBinaria(id));
+            resultado = CategoriaDeportivos.arregloraquetas.get(busquedaBinaria(id));
             return resultado;
         }
         return null;
@@ -85,9 +85,10 @@ public class ManejadorRaquetas implements ICRUD {
     public boolean borrar(int id) {
         int posicion = busquedaBinaria(id);
         if (!(posicion == -1)) {
-            catdep.arregloraquetas.remove(id);
+            CategoriaDeportivos.arregloraquetas.remove(posicion);
             return true;
         }
+
         return false;
     }
 
@@ -237,7 +238,7 @@ public class ManejadorRaquetas implements ICRUD {
     public void quicksortDesc() {
         quicksorttDesc(CategoriaDeportivos.arregloraquetas, 0, CategoriaDeportivos.arregloraquetas.size() - 1);
     }
-    
+
     public void sort() {
         Collections.sort(CategoriaDeportivos.arregloraquetas);
 
