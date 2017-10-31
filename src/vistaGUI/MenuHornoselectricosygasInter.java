@@ -355,8 +355,23 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
                             .addComponent(jTextFieldNumeroBandejas, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPotenciaHorno, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldTipoControl, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTemperaturaMaxima, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabelTitulo)
+                            .addComponent(jTextFieldTemperaturaMaxima, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(botonFileChooserExaminar)
+                                .addGap(21, 21, 21)))
+                        .addGap(44, 44, 44)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonModificar)
+                            .addComponent(jButtonConsultarUno)
+                            .addComponent(jButtonConsultarTodo)
+                            .addComponent(jButtonBorrarUno)
+                            .addComponent(jButtonBorrarTodos)
+                            .addComponent(jButtonInsertar)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -366,78 +381,84 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
                             .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonOrdenarID)
-                            .addComponent(botonFileChooserExaminar)))
+                        .addComponent(jButtonOrdenarID))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(233, 233, 233)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonModificar)
-                    .addComponent(jButtonConsultarUno)
-                    .addComponent(jButtonConsultarTodo)
-                    .addComponent(jButtonBorrarUno)
-                    .addComponent(jButtonBorrarTodos)
-                    .addComponent(jButtonInsertar)
-                    .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(57, 57, 57))
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 467, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(69, 69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTitulo)
-                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelPotenciaHorno)
-                                    .addComponent(jTextFieldPotenciaHorno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelNumeroBandejas)
-                                    .addComponent(jTextFieldNumeroBandejas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelGratinador)
-                                    .addComponent(jTextFieldGratinador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelTipoControl)
-                                    .addComponent(jTextFieldTipoControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelTemperaturaMaxima)
-                                    .addComponent(jTextFieldTemperaturaMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap()
+                                .addComponent(jLabelTitulo)
+                                .addGap(19, 19, 19)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelPotenciaHorno)
+                                            .addComponent(jTextFieldPotenciaHorno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelNumeroBandejas)
+                                            .addComponent(jTextFieldNumeroBandejas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelGratinador)
+                                            .addComponent(jTextFieldGratinador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelTipoControl)
+                                            .addComponent(jTextFieldTipoControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(11, 11, 11)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelTemperaturaMaxima)
+                                            .addComponent(jTextFieldTemperaturaMaxima, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelId)
+                                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelMarca)
+                                            .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelNombre)
+                                            .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelCantidad)
+                                            .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(8, 8, 8)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelPrecio)
+                                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(11, 11, 11)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jLabelColor)
+                                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelId)
-                                    .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelMarca)
-                                    .addComponent(jComboBoxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelNombre)
-                                    .addComponent(jTextFieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelCantidad)
-                                    .addComponent(jTextFieldCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelPrecio)
-                                    .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(11, 11, 11)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelColor)
-                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(68, 68, 68)
+                                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonFileChooserExaminar)))
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreAsc)
+                            .addComponent(jButtonOrdenarPrecioAsc)
+                            .addComponent(jButtonOrdenarID))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreDesc)
+                            .addComponent(jButtonOrdenarPrecioDesc)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
+                        .addGap(68, 68, 68)
                         .addComponent(jButtonInsertar)
                         .addGap(14, 14, 14)
                         .addComponent(jButtonModificar)
@@ -449,23 +470,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
                         .addComponent(jButtonBorrarUno)
                         .addGap(18, 18, 18)
                         .addComponent(jButtonBorrarTodos)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(67, 67, 67)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreAsc)
-                            .addComponent(jButtonOrdenarPrecioAsc)
-                            .addComponent(jButtonOrdenarID))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreDesc)
-                            .addComponent(jButtonOrdenarPrecioDesc)
-                            .addComponent(botonFileChooserExaminar))
-                        .addGap(30, 30, 30))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -502,6 +507,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getGratinador(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTipocontrol(), indiceFila, 9);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTemperaturamax(), indiceFila, 10);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getImagen()), indiceFila, 11);
             indiceFila++;
         }
 
@@ -565,6 +571,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
         horno.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
         horno.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
         horno.setColor(jTextFieldColor.getText());
+        horno.setImagen(ruta);
         horno.setPotencia(jTextFieldPotenciaHorno.getText());
         horno.setNumbandejas(Integer.parseInt(jTextFieldNumeroBandejas.getText()));
         horno.setGratinador(jTextFieldGratinador.getText());
@@ -771,6 +778,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getGratinador(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTipocontrol(), indiceFila, 9);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTemperaturamax(), indiceFila, 10);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getImagen()), indiceFila, 11);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
@@ -796,6 +804,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getGratinador(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTipocontrol(), indiceFila, 9);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTemperaturamax(), indiceFila, 10);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getImagen()), indiceFila, 11);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
@@ -822,6 +831,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getGratinador(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTipocontrol(), indiceFila, 9);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTemperaturamax(), indiceFila, 10);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getImagen()), indiceFila, 11);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
@@ -847,6 +857,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getGratinador(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTipocontrol(), indiceFila, 9);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTemperaturamax(), indiceFila, 10);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getImagen()), indiceFila, 11);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
@@ -873,6 +884,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getGratinador(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTipocontrol(), indiceFila, 9);
             jTable1.setValueAt(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getTemperaturamax(), indiceFila, 10);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectrodomesticos.arreglohornoselectricosygas.get(i).getImagen()), indiceFila, 11);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed

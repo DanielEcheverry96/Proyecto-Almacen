@@ -304,9 +304,12 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(245, 245, 245)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTitulo)
+                            .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -346,18 +349,19 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
                                 .addGap(22, 22, 22)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jButtonOrdenarID)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(jTextFieldPaginasporMinuto, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldInterfaceRed, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldTipoImpresor, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jTextFieldResolucion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(botonFileChooserExaminar)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(245, 245, 245)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextFieldPaginasporMinuto, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldInterfaceRed, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldTipoImpresor, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldResolucion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(34, 34, 34)
+                                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(botonFileChooserExaminar)
+                                        .addGap(20, 20, 20)))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonModificar)
                     .addComponent(jButtonConsultarUno)
                     .addComponent(jButtonConsultarTodo)
@@ -417,33 +421,34 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
                             .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(jButtonInsertar)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonModificar)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarUno)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarTodo)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonBorrarUno)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBorrarTodos)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreAsc)
-                            .addComponent(jButtonOrdenarPrecioAsc)
-                            .addComponent(jButtonOrdenarID))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreDesc)
-                            .addComponent(jButtonOrdenarPrecioDesc)
-                            .addComponent(botonFileChooserExaminar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButtonInsertar)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButtonModificar)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButtonConsultarUno)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButtonConsultarTodo)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButtonBorrarUno)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonBorrarTodos))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(botonFileChooserExaminar)))))
+                .addGap(62, 62, 62)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonOrdenarNombreAsc)
+                    .addComponent(jButtonOrdenarPrecioAsc)
+                    .addComponent(jButtonOrdenarID))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonOrdenarNombreDesc)
+                    .addComponent(jButtonOrdenarPrecioDesc))
+                .addGap(47, 47, 47)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -475,6 +480,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getInterfacered(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getPaginasminuto(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectronicosOficina.arregloimpresores.get(i).getImagen()), indiceFila, 10);
             indiceFila++;
         }
 
@@ -524,6 +530,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
         imp.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
         imp.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
         imp.setColor(jTextFieldColor.getText());
+        imp.setImagen(ruta);
         imp.setTipo(jTextFieldTipoImpresor.getText());
         imp.setInterfacered(jTextFieldInterfaceRed.getText());
         imp.setPaginasminuto(Integer.parseInt(jTextFieldPaginasporMinuto.getText()));
@@ -704,6 +711,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getInterfacered(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getPaginasminuto(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectronicosOficina.arregloimpresores.get(i).getImagen()), indiceFila, 10);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
@@ -728,6 +736,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getInterfacered(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getPaginasminuto(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectronicosOficina.arregloimpresores.get(i).getImagen()), indiceFila, 10);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
@@ -753,6 +762,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getInterfacered(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getPaginasminuto(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectronicosOficina.arregloimpresores.get(i).getImagen()), indiceFila, 10);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
@@ -777,6 +787,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getInterfacered(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getPaginasminuto(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectronicosOficina.arregloimpresores.get(i).getImagen()), indiceFila, 10);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
@@ -802,6 +813,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getInterfacered(), indiceFila, 7);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getPaginasminuto(), indiceFila, 8);
             jTable1.setValueAt(CategoriaElectronicosOficina.arregloimpresores.get(i).getResolucion(), indiceFila, 9);
+            jTable1.setValueAt(new ImageIcon(CategoriaElectronicosOficina.arregloimpresores.get(i).getImagen()), indiceFila, 10);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed

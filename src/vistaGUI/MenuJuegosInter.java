@@ -294,22 +294,23 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonOrdenarID)
-                            .addComponent(botonFileChooserExaminar)))
-                    .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(22, 22, 22)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonOrdenarID))
+                            .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelId)
@@ -324,28 +325,35 @@ public class MenuJuegosInter extends javax.swing.JFrame {
                             .addComponent(jTextFieldId, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(83, 83, 83)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelGenero)
-                            .addComponent(jLabelRestricciondeEdad)
-                            .addComponent(jLabelPlataforma)
-                            .addComponent(jLabelNumeroJugadores))
-                        .addGap(40, 40, 40)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextFieldPlataforma, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldRestricciondeEdad, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldGenero, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldNumeroJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonModificar)
-                    .addComponent(jButtonConsultarUno)
-                    .addComponent(jButtonConsultarTodo)
-                    .addComponent(jButtonBorrarUno)
-                    .addComponent(jButtonBorrarTodos)
-                    .addComponent(jButtonInsertar))
-                .addGap(62, 62, 62))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(83, 83, 83)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabelGenero)
+                                    .addComponent(jLabelRestricciondeEdad)
+                                    .addComponent(jLabelPlataforma)
+                                    .addComponent(jLabelNumeroJugadores))
+                                .addGap(40, 40, 40)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jTextFieldPlataforma, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldRestricciondeEdad, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldGenero, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldNumeroJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                                .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(botonFileChooserExaminar)
+                                .addGap(45, 45, 45)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonModificar)
+                            .addComponent(jButtonConsultarUno)
+                            .addComponent(jButtonConsultarTodo)
+                            .addComponent(jButtonBorrarUno)
+                            .addComponent(jButtonBorrarTodos)
+                            .addComponent(jButtonInsertar))
+                        .addGap(90, 90, 90))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(250, 250, 250)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -395,23 +403,8 @@ public class MenuJuegosInter extends javax.swing.JFrame {
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelPrecio)
-                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jButtonInsertar)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonModificar)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarUno)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarTodo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonBorrarUno)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButtonBorrarTodos)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(46, 46, 46)
+                            .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(74, 74, 74)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -423,12 +416,26 @@ public class MenuJuegosInter extends javax.swing.JFrame {
                                 .addGap(14, 14, 14)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jButtonOrdenarNombreDesc)
-                            .addComponent(jButtonOrdenarPrecioDesc)
-                            .addComponent(botonFileChooserExaminar)))
+                            .addComponent(jButtonOrdenarPrecioDesc)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jButtonInsertar)
+                        .addGap(8, 8, 8)
+                        .addComponent(jButtonModificar)
+                        .addGap(14, 14, 14)
+                        .addComponent(jButtonConsultarUno)
+                        .addGap(14, 14, 14)
+                        .addComponent(jButtonConsultarTodo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonBorrarUno)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonBorrarTodos))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonFileChooserExaminar)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -459,6 +466,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getRestedad(), indiceFila, 6);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getPlataforma(), indiceFila, 7);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNumjugadores(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaVideojuegos.arreglojuegos.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
 
@@ -506,6 +514,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         jueg.setNombre(jTextFieldNombre.getText());
         jueg.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
         jueg.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
+        jueg.setImagen(ruta);
         jueg.setGenero(jTextFieldGenero.getText());
         jueg.setRestedad(jTextFieldRestricciondeEdad.getText());
         jueg.setPlataforma(jTextFieldPlataforma.getText());
@@ -682,6 +691,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getRestedad(), indiceFila, 6);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getPlataforma(), indiceFila, 7);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNumjugadores(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaVideojuegos.arreglojuegos.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
@@ -705,6 +715,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getRestedad(), indiceFila, 6);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getPlataforma(), indiceFila, 7);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNumjugadores(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaVideojuegos.arreglojuegos.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
@@ -729,6 +740,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getRestedad(), indiceFila, 6);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getPlataforma(), indiceFila, 7);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNumjugadores(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaVideojuegos.arreglojuegos.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
@@ -752,6 +764,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getRestedad(), indiceFila, 6);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getPlataforma(), indiceFila, 7);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNumjugadores(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaVideojuegos.arreglojuegos.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
@@ -776,6 +789,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getRestedad(), indiceFila, 6);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getPlataforma(), indiceFila, 7);
             jTable1.setValueAt(CategoriaVideojuegos.arreglojuegos.get(i).getNumjugadores(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaVideojuegos.arreglojuegos.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed
