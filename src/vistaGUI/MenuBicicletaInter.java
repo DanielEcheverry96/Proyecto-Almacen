@@ -38,7 +38,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
     int indiceFila = 0;
-    String[] dato = new String[9];
+    String[] dato = new String[9]; 
     JFileChooser fileChooser = new JFileChooser();
     ImageIcon image = null;
     File archivo = null;
@@ -71,7 +71,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         model.addColumn("Material Montura");
         model.addColumn("Tipo Bicicleta");
         model.addColumn("Imagen");
-        
+
         jTable1.setModel(model);
         jTable1.getColumnModel().getColumn(0).setMinWidth(30);
         jTable1.getColumnModel().getColumn(9).setMinWidth(150);
@@ -84,7 +84,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         panelImagen.add(labelImagen, BorderLayout.CENTER);
         jTable1.setRowHeight(150);
         jTable1.setRowMargin(5);
-    
+
     }
 
     public void inicializarComboBox() {
@@ -300,33 +300,8 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonOrdenarID)
-                            .addComponent(botonFileChooserExaminar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTitulo))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(242, 242, 242)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1)
-                        .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelId)
@@ -341,7 +316,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                             .addComponent(jTextFieldId, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldPrecio))
-                        .addGap(83, 83, 83)
+                        .addGap(100, 100, 100)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelColor)
                             .addComponent(jLabelTamañorueda)
@@ -353,25 +328,48 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                             .addComponent(jTextFieldTamañorueda, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldColor, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextFieldTipobicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 131, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(47, 47, 47))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonModificar)
-                            .addComponent(jButtonConsultarUno)
-                            .addComponent(jButtonConsultarTodo)
-                            .addComponent(jButtonBorrarUno)
-                            .addComponent(jButtonBorrarTodos)
-                            .addComponent(jButtonInsertar)
-                            .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(67, 67, 67))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabelTitulo))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(222, 222, 222)
+                                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(48, 48, 48)
+                                .addComponent(jButtonOrdenarID)
+                                .addGap(66, 66, 66)
+                                .addComponent(botonFileChooserExaminar)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonModificar)
+                    .addComponent(jButtonConsultarUno)
+                    .addComponent(jButtonConsultarTodo)
+                    .addComponent(jButtonBorrarUno)
+                    .addComponent(jButtonBorrarTodos)
+                    .addComponent(jButtonInsertar))
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTitulo)
+                .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTitulo)
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -393,24 +391,39 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelPrecio)
                                     .addComponent(jTextFieldPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelColor)
-                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jButtonOrdenarNombreAsc)
+                                    .addComponent(jButtonOrdenarPrecioAsc))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelTamañorueda)
-                                    .addComponent(jTextFieldTamañorueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelMaterialmontura)
-                                    .addComponent(jTextFieldMaterialmontura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(8, 8, 8)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelTipobicicleta)
-                                    .addComponent(jTextFieldTipobicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jButtonOrdenarNombreDesc)
+                                    .addComponent(jButtonOrdenarPrecioDesc)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(botonFileChooserExaminar))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelColor)
+                            .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelTamañorueda)
+                            .addComponent(jTextFieldTamañorueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelMaterialmontura)
+                            .addComponent(jTextFieldMaterialmontura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(8, 8, 8)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelTipobicicleta)
+                            .addComponent(jTextFieldTipobicicleta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addComponent(jButtonOrdenarID))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButtonInsertar)
                         .addGap(14, 14, 14)
                         .addComponent(jButtonModificar)
@@ -420,26 +433,11 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                         .addComponent(jButtonConsultarTodo)
                         .addGap(14, 14, 14)
                         .addComponent(jButtonBorrarUno)
-                        .addGap(18, 18, 18)
+                        .addGap(14, 14, 14)
                         .addComponent(jButtonBorrarTodos)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreAsc)
-                            .addComponent(jButtonOrdenarPrecioAsc)
-                            .addComponent(jButtonOrdenarID))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreDesc)
-                            .addComponent(jButtonOrdenarPrecioDesc)
-                            .addComponent(botonFileChooserExaminar)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -467,6 +465,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 6);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 7);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaDeportivos.arreglobicicletas.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
 
@@ -516,6 +515,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         bici.setCantidad(Integer.parseInt(jTextFieldCantidad.getText()));
         bici.setPrecio(Float.parseFloat(jTextFieldPrecio.getText()));
         bici.setColor(jTextFieldColor.getText());
+        bici.setImagen(ruta);
         bici.setTamaniorueda(Integer.parseInt(jTextFieldTamañorueda.getText()));
         bici.setMaterial(jTextFieldMaterialmontura.getText());
         bici.setTipo(jTextFieldTipobicicleta.getText());
@@ -680,7 +680,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
         indiceFila = 0;
 
-        for (int i = 0; i < CategoriaDeportivos.arregloraquetas.size(); i++) {
+        for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 1);
@@ -691,6 +691,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 6);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 7);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaDeportivos.arreglobicicletas.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarNombreAscActionPerformed
@@ -704,7 +705,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
         indiceFila = 0;
 
-        for (int i = 0; i < CategoriaDeportivos.arregloraquetas.size(); i++) {
+        for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 1);
@@ -715,6 +716,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 6);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 7);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaDeportivos.arreglobicicletas.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarPrecioAscActionPerformed
@@ -727,7 +729,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
         indiceFila = 0;
 
-        for (int i = 0; i < CategoriaDeportivos.arregloraquetas.size(); i++) {
+        for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 1);
@@ -738,6 +740,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 6);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 7);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaDeportivos.arreglobicicletas.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarNombreDescActionPerformed
@@ -751,7 +754,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
         indiceFila = 0;
 
-        for (int i = 0; i < CategoriaDeportivos.arregloraquetas.size(); i++) {
+        for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 1);
@@ -762,6 +765,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 6);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 7);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaDeportivos.arreglobicicletas.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarPrecioDescActionPerformed
@@ -775,7 +779,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
         indiceFila = 0;
 
-        for (int i = 0; i < CategoriaDeportivos.arregloraquetas.size(); i++) {
+        for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMar().getDescripcion(), indiceFila, 1);
@@ -786,6 +790,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 6);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getMaterial(), indiceFila, 7);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getTamaniorueda(), indiceFila, 8);
+            jTable1.setValueAt(new ImageIcon(CategoriaDeportivos.arreglobicicletas.get(i).getImagen()), indiceFila, 9);
             indiceFila++;
         }
     }//GEN-LAST:event_jButtonOrdenarIDActionPerformed
