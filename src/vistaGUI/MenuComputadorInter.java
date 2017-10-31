@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.AbstractTableModel;
 import modelo.CategoriaElectronicosOficina;
 import modelo.Marca;
 
@@ -36,7 +37,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     String nombreMarcaTemporal = " ";
     DefaultTableModel model;
     int indiceFila = 0;
-    String[] dato = new String[11];
+    String[] dato = new String[10];
     JFileChooser fileChooser = new JFileChooser();
     ImageIcon image = null;
     File archivo = null;
@@ -53,7 +54,17 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         manObjetos = new ManejadorObjetos();
         mancate = new CategoriaElectronicosOficina();
         mancop = new ManejadorComputadores();
-        model = new DefaultTableModel();
+        model = new DefaultTableModel() {
+            @Override
+            public Class<?> getColumnClass(int column) {
+                switch (column) {
+                    case 11:
+                        return ImageIcon.class;
+                    default:
+                        return String.class;
+                }
+            }
+        };;
         model.addColumn("ID");
         model.addColumn("Marca");
         model.addColumn("Nombre");
@@ -65,14 +76,20 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         model.addColumn("Tipo Mouse");
         model.addColumn("Tipo Pantalla");
         model.addColumn("Capacidad Almacenamiento");
+        model.addColumn("Imagen");
+
         jTable1.setModel(model);
+        jTable1.getColumnModel().getColumn(0).setMinWidth(30);
+        jTable1.getColumnModel().getColumn(11).setMinWidth(150);
         model.insertRow(indiceFila, dato);
         inicializarComboBox();
         fileChooser.setAcceptAllFileFilterUsed(false);
         FileFilter imageFilter = new FileNameExtensionFilter("Image files", ImageIO.getReaderFileSuffixes());
-         fileChooser.addChoosableFileFilter(imageFilter);
-         panelImagen.setPreferredSize(new Dimension(132, 132));
-         panelImagen.add(labelImagen, BorderLayout.CENTER);
+        fileChooser.addChoosableFileFilter(imageFilter);
+        panelImagen.setPreferredSize(new Dimension(132, 132));
+        panelImagen.add(labelImagen, BorderLayout.CENTER);
+        jTable1.setRowHeight(150);
+        jTable1.setRowMargin(5);
     }
 
     public void inicializarComboBox() {
@@ -313,12 +330,8 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -404,6 +417,14 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(151, 151, 151)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -427,13 +448,11 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                         .addComponent(jButtonBorrarUno)
                         .addGap(15, 15, 15)
                         .addComponent(jButtonBorrarTodos)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(1, 1, 1)
-                                .addComponent(jTextFieldTipoMouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFieldTipoMouse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -507,13 +526,12 @@ public class MenuComputadorInter extends javax.swing.JFrame {
                                 .addGap(13, 13, 13)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButtonOrdenarID)
-                                    .addComponent(botonFileChooser))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                                    .addComponent(botonFileChooser))))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20))
+                .addContainerGap())
         );
 
         pack();
@@ -614,18 +632,23 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
             jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);
             jTable1.setValueAt(jTextFieldNombre.getText(), indiceFila, 2);
-            jTable1.setValueAt(Integer.parseInt(jTextFieldCantidad.getText()), indiceFila, 3);
-            jTable1.setValueAt(Float.parseFloat(jTextFieldPrecio.getText()), indiceFila, 4);
+            jTable1.setValueAt(jTextFieldCantidad.getText(), indiceFila, 3);
+            jTable1.setValueAt(jTextFieldPrecio.getText(), indiceFila, 4);
             jTable1.setValueAt(jTextFieldColor.getText(), indiceFila, 5);
             jTable1.setValueAt(jTextFieldCapacidadMemoria.getText(), indiceFila, 6);
             jTable1.setValueAt(jTextFieldTipoTeclado.getText(), indiceFila, 7);
             jTable1.setValueAt(jTextFieldTipoMouse.getText(), indiceFila, 8);
             jTable1.setValueAt(jTextFieldTipoPantalla.getText(), indiceFila, 9);
-            jTable1.setValueAt(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()), indiceFila, 10);
+            jTable1.setValueAt(jTextFieldCapacidadAlmacenamiento.getText(), indiceFila, 10);
+            jTable1.setValueAt(ruta, indiceFila, 11);
+            jTable1.setValueAt(new ImageIcon(ruta), indiceFila, 11);
             ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
             image = new ImageIcon(ruta);
             labelImagen.setIcon(image);
             indiceFila++;
+            //((AbstractTableModel) jTable1.getModel()).fireTableDataChanged();
+            //model.fireTableDataChanged();
+            //System.out.println(jTable1.getValueAt(0, 0).toString());
             mancop.consultarTodos();
         } else {
             jLabelMensaje.setText("Computador no insertado");
