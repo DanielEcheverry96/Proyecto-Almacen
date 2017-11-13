@@ -7,21 +7,19 @@ package controladorDB;
 
 import controlador.ICRUD;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import modelo.Marca;
+import modelo.Hornosmicroondas;
 
 /**
  *
  * @author danie
  */
-public class ManejadorMarcasDB implements ICRUD {
+public class ManejadorHornomicroondasDB implements ICRUD {
 
     Connection conpost;
+    int idcategoria = 4040;
 
     @Override
     public boolean insertar(Object obj) {
@@ -29,12 +27,15 @@ public class ManejadorMarcasDB implements ICRUD {
         conpost = connDB.posgresConn();
         boolean insertado = false;
         Statement stmt;
-        if (obj instanceof Marca) {
-            Marca temp = new Marca();
-            temp = (Marca) obj;
+        if (obj instanceof Hornosmicroondas) {
+            Hornosmicroondas temp = new Hornosmicroondas();
+            temp = (Hornosmicroondas) obj;
             try {
                 stmt = conpost.createStatement();
-                String sql = "insert into marca(idmarca, descripcion) values(" + temp.getId() + "," + "'" + temp.getDescripcion() + "');";
+                String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                stmt.executeUpdate(sql);
+                sql = "insert into hornomicroonda(idarticulo,capacidad_hornomicro,compartimiento_hornomicro,potencia_hornomicro,voltaje_hornomicro) values(" + temp.getIdArticulo() + "," + "'" + temp.getCapacidad() + "'" + "," + "'" + temp.getCompartimiento() + "'" + "," + "'" + temp.getPotencia() + "'" + "," + "'" + temp.getVoltaje() + "'" + ");";
                 stmt.executeUpdate(sql);
                 insertado = true;
                 conpost.close();
@@ -59,23 +60,7 @@ public class ManejadorMarcasDB implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-
-        ConexionDB connDB = new ConexionDB();
-        conpost = connDB.posgresConn();
-        Statement stmt;
-        try {
-            stmt = conpost.createStatement();
-            String sql = "select * from marca where id = " + id + ";";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                String descripcion = rs.getString("nombre");
-                System.out.println("ID marca = " + id);
-                System.out.println("Nombre marca = " + descripcion);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ManejadorMarcasDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -90,23 +75,7 @@ public class ManejadorMarcasDB implements ICRUD {
 
     @Override
     public ArrayList consultarTodos() {
-        ConexionDB connDB = new ConexionDB();
-        conpost = connDB.posgresConn();
-        Statement stmt;
-        try {
-            stmt = conpost.createStatement();
-            String sql = "select * from marca order by idmarca";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                int id = rs.getInt("idmarca");
-                String descripcion = rs.getString("nombre");
-                System.out.println("ID marca = " + id);
-                System.out.println("Nombre marca = " + descripcion);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ManejadorMarcasDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

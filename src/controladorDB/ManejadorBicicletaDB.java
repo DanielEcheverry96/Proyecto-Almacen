@@ -33,7 +33,7 @@ public class ManejadorBicicletaDB implements ICRUD {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into bicicleta(idarticulo,tamaño_rueda,material_bici,tipo_bici) values(" + temp.getIdArticulo() + "," + temp.getTamaniorueda() + "," + "'" + temp.getMaterial() + "'" + "," + "'" + temp.getTipo() + "'" + ");";
                 stmt.executeUpdate(sql);

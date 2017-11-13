@@ -7,21 +7,19 @@ package controladorDB;
 
 import controlador.ICRUD;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import modelo.Marca;
+import modelo.Impresores;
 
 /**
  *
  * @author danie
  */
-public class ManejadorMarcasDB implements ICRUD {
+public class ManejadorImpresorDB implements ICRUD {
 
     Connection conpost;
+    int idcategoria = 2020;
 
     @Override
     public boolean insertar(Object obj) {
@@ -29,12 +27,15 @@ public class ManejadorMarcasDB implements ICRUD {
         conpost = connDB.posgresConn();
         boolean insertado = false;
         Statement stmt;
-        if (obj instanceof Marca) {
-            Marca temp = new Marca();
-            temp = (Marca) obj;
+        if (obj instanceof Impresores) {
+            Impresores temp = new Impresores();
+            temp = (Impresores) obj;
             try {
                 stmt = conpost.createStatement();
-                String sql = "insert into marca(idmarca, descripcion) values(" + temp.getId() + "," + "'" + temp.getDescripcion() + "');";
+                String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                stmt.executeUpdate(sql);
+                sql = "insert into impresor(idarticulo,tipo_impre,interface_red_impre,paginas_min_impre,resolucion_impre) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + "'" + temp.getInterfacered() + "'" + "," + temp.getPaginasminuto() + "," + "'" + temp.getResolucion() + ");";
                 stmt.executeUpdate(sql);
                 insertado = true;
                 conpost.close();
@@ -59,23 +60,7 @@ public class ManejadorMarcasDB implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-
-        ConexionDB connDB = new ConexionDB();
-        conpost = connDB.posgresConn();
-        Statement stmt;
-        try {
-            stmt = conpost.createStatement();
-            String sql = "select * from marca where id = " + id + ";";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                String descripcion = rs.getString("nombre");
-                System.out.println("ID marca = " + id);
-                System.out.println("Nombre marca = " + descripcion);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ManejadorMarcasDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -90,23 +75,7 @@ public class ManejadorMarcasDB implements ICRUD {
 
     @Override
     public ArrayList consultarTodos() {
-        ConexionDB connDB = new ConexionDB();
-        conpost = connDB.posgresConn();
-        Statement stmt;
-        try {
-            stmt = conpost.createStatement();
-            String sql = "select * from marca order by idmarca";
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                int id = rs.getInt("idmarca");
-                String descripcion = rs.getString("nombre");
-                System.out.println("ID marca = " + id);
-                System.out.println("Nombre marca = " + descripcion);
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(ManejadorMarcasDB.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
