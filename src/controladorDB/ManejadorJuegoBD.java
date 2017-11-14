@@ -10,13 +10,13 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import modelo.Consolas;
+import modelo.Juegos;
 
 /**
  *
  * @author danie
  */
-public class ManejadorConsolaDB implements ICRUD {
+public class ManejadorJuegoBD implements ICRUD {
 
     Connection conpost;
     int idcategoria = 3030;
@@ -27,15 +27,15 @@ public class ManejadorConsolaDB implements ICRUD {
         conpost = connDB.posgresConn();
         boolean insertado = false;
         Statement stmt;
-        if (obj instanceof Consolas) {
-            Consolas temp = new Consolas();
-            temp = (Consolas) obj;
+        if (obj instanceof Juegos) {
+            Juegos temp = new Juegos();
+            temp = (Juegos) obj;
             try {
                 stmt = conpost.createStatement();
-                String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
+                        + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
-                sql = "insert into consola(idarticulo,tipo_cons,numero_controles_cons,realidad_virtual_cons,capacidad_disco_cons) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + temp.getNumcontroles() + "," + "'" + temp.getRealidadvir() + "'" + "," + "'" + temp.getCapdiscoduro() + "'" + ");";
+                sql = "insert into videojuego(idarticulo,genero_juego,restriccion_edad_juego,plataforma_juego,numero_jugadores_juego) values(" + temp.getIdArticulo() + "," + "'" + temp.getGenero() + "'" + "," + "'" + temp.getRestedad() + "'" + "," + "'" + temp.getPlataforma() + "'" + "," + temp.getNumjugadores() + ");";
                 stmt.executeUpdate(sql);
                 insertado = true;
                 conpost.close();

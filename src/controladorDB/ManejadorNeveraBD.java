@@ -10,16 +10,16 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import modelo.Consolas;
+import modelo.Neveras;
 
 /**
  *
  * @author danie
  */
-public class ManejadorConsolaDB implements ICRUD {
+public class ManejadorNeveraBD implements ICRUD {
 
     Connection conpost;
-    int idcategoria = 3030;
+    int idcategoria = 4040;
 
     @Override
     public boolean insertar(Object obj) {
@@ -27,15 +27,15 @@ public class ManejadorConsolaDB implements ICRUD {
         conpost = connDB.posgresConn();
         boolean insertado = false;
         Statement stmt;
-        if (obj instanceof Consolas) {
-            Consolas temp = new Consolas();
-            temp = (Consolas) obj;
+        if (obj instanceof Neveras) {
+            Neveras temp = new Neveras();
+            temp = (Neveras) obj;
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
                         + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
-                sql = "insert into consola(idarticulo,tipo_cons,numero_controles_cons,realidad_virtual_cons,capacidad_disco_cons) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + temp.getNumcontroles() + "," + "'" + temp.getRealidadvir() + "'" + "," + "'" + temp.getCapdiscoduro() + "'" + ");";
+                sql = "insert into nevera(idarticulo,capacidad_congelador_nev,capacidad_frigorifero_nev,material_nev,tamaño_nev,sistema_nev) values(" + temp.getIdArticulo() + "," + "'" + temp.getCapcongelador() + "'" + "," + "'" + temp.getCapfrigorifero() + "'" + "," + "'" + temp.getMaterial() + "'" + "," + temp.getTamaño() + "," + "'" + temp.getSistema() + "'" + ");";
                 stmt.executeUpdate(sql);
                 insertado = true;
                 conpost.close();

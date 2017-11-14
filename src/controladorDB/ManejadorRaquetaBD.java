@@ -10,16 +10,16 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import modelo.Consolas;
+import modelo.Raquetas;
 
 /**
  *
  * @author danie
  */
-public class ManejadorConsolaDB implements ICRUD {
+public class ManejadorRaquetaBD implements ICRUD {
 
     Connection conpost;
-    int idcategoria = 3030;
+    int idcategoria = 1010;
 
     @Override
     public boolean insertar(Object obj) {
@@ -27,15 +27,15 @@ public class ManejadorConsolaDB implements ICRUD {
         conpost = connDB.posgresConn();
         boolean insertado = false;
         Statement stmt;
-        if (obj instanceof Consolas) {
-            Consolas temp = new Consolas();
-            temp = (Consolas) obj;
+        if (obj instanceof Raquetas) {
+            Raquetas temp = new Raquetas();
+            temp = (Raquetas) obj;
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
                         + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
-                sql = "insert into consola(idarticulo,tipo_cons,numero_controles_cons,realidad_virtual_cons,capacidad_disco_cons) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + temp.getNumcontroles() + "," + "'" + temp.getRealidadvir() + "'" + "," + "'" + temp.getCapdiscoduro() + "'" + ");";
+                sql = "insert into raqueta(idarticulo,tipo_marco_raq,longitud_raq,ancho_raq,peso_raq) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipomarco() + "'" + "," + temp.getLongitud() + "," + temp.getAncho() + "," + temp.getPeso() + ");";
                 stmt.executeUpdate(sql);
                 insertado = true;
                 conpost.close();

@@ -10,16 +10,16 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import modelo.Consolas;
+import modelo.Martillos;
 
 /**
  *
  * @author danie
  */
-public class ManejadorConsolaDB implements ICRUD {
+public class ManejadorMartilloBD implements ICRUD {
 
     Connection conpost;
-    int idcategoria = 3030;
+    int idcategoria = 5050;
 
     @Override
     public boolean insertar(Object obj) {
@@ -27,15 +27,15 @@ public class ManejadorConsolaDB implements ICRUD {
         conpost = connDB.posgresConn();
         boolean insertado = false;
         Statement stmt;
-        if (obj instanceof Consolas) {
-            Consolas temp = new Consolas();
-            temp = (Consolas) obj;
+        if (obj instanceof Martillos) {
+            Martillos temp = new Martillos();
+            temp = (Martillos) obj;
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
                         + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
-                sql = "insert into consola(idarticulo,tipo_cons,numero_controles_cons,realidad_virtual_cons,capacidad_disco_cons) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + temp.getNumcontroles() + "," + "'" + temp.getRealidadvir() + "'" + "," + "'" + temp.getCapdiscoduro() + "'" + ");";
+                sql = "insert into martillo(idarticulo,tipo_marti,material_mango_marti,material_cabezal_marti,peso_marti,tamaño_marti) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + "'" + temp.getMatmango() + "'" + "," + "'" + temp.getMatcabezal() + "'" + "," + temp.getPeso() + "," + "'" + temp.getTamaño() + "'" + ");";
                 stmt.executeUpdate(sql);
                 insertado = true;
                 conpost.close();
