@@ -608,7 +608,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         comp.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
 
         if (mancop.insertar(comp)) {
-            jLabelMensaje.setText("Computador Insertado");
+            jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
             jTable1.setValueAt(nombreMarcaTemporal, indiceFila, 1);

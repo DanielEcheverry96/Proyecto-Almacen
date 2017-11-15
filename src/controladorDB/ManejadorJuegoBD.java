@@ -7,6 +7,7 @@ package controladorDB;
 
 import controlador.ICRUD;
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -60,7 +61,22 @@ public class ManejadorJuegoBD implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Juegos temp = null;
+        ConexionDB connDB = new ConexionDB();
+        Statement stmt;
+        try {
+            stmt = conpost.createStatement();
+            ResultSet resultado = conpost.executeQuery("select * from Juego where idarticulo =" + id + ";");//
+            if (resultado.next()) {
+                //temp = new Bicicletas(idcategoria, material, tipo, id, id, nombre, id, id, descripcion, color, imagen, mar)
+            }
+            resultado.close();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return temp;
     }
 
     @Override
