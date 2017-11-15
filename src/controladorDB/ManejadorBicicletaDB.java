@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import modelo.Bicicletas;
+import modelo.Marca;
 
 /**
  *
@@ -62,15 +63,34 @@ public class ManejadorBicicletaDB implements ICRUD {
     @Override
     public Object consultarId(int id) {
         Bicicletas temp = null;
+        Marca mar = null;
         ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
         Statement stmt;
         try {
+            //SELECT *
+            //FROM producto INNER JOIN factura_producto ON (producto.referencia_producto = factura_producto.referencia_producto) AND (producto.referencia_producto=1023) INNER JOIN factura ON factura.numero_factura = factura_producto.numero_factura;
             stmt = conpost.createStatement();
-            ResultSet resultado = conpost.executeQuery("select * from bicicleta where idarticulo =" + id + ";");//
+            String sql = "select * from articulo inner join bicicleta on (articulo.idarticulo = bicicleta.idarticulo) AND (articulo.idarticulo = " + id + ") inner join marca on marca.idmarca = articulo.idmarca;";
+            ResultSet resultado = stmt.executeQuery(sql);
             if (resultado.next()) {
                 //temp = new Bicicletas(idcategoria, material, tipo, id, id, nombre, id, id, descripcion, color, imagen, mar)
+                temp = new Bicicletas();
+                mar = new Marca();
+                temp.setIdArticulo(resultado.getInt("idarticulo"));
+                mar.setId(resultado.getInt("idmarca"));
+                mar.setDescripcion(resultado.getString("descripcion"));
+                temp.setMar(mar);
+                temp.setNombre(resultado.getString("nombrearticulo"));
+                temp.setCantidad(resultado.getInt("cantidad"));
+                temp.setPrecio(resultado.getFloat("precio"));
+                temp.setColor(resultado.getString("color"));
+                temp.setImagen(resultado.getString("imagen"));
+                temp.setTamaniorueda(resultado.getInt("tamaño_rueda"));
+                temp.setMaterial(resultado.getString("material_bici"));
+                temp.setTipo(resultado.getString("tipo_bici"));
             }
-            resultado.close();
+
             stmt.close();
             conpost.close();
         } catch (SQLException e) {
