@@ -7,6 +7,7 @@ package controladorDB;
 
 import controlador.ICRUD;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,7 +53,37 @@ public class ManejadorBicicletaDB implements ICRUD {
 
     @Override
     public boolean modificar(int id, Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt = null;
+        Bicicletas temp = (Bicicletas) obj;
+        try {
+            String sql = "update articulo set idarticulo = ?, nombrearticulo = ?, cantidad = ?, color = ?, "
+                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ?";
+            stmt = conpost.prepareStatement(sql);
+            stmt.setInt(1, temp.getIdArticulo());
+            stmt.setString(2, temp.getNombre());
+            stmt.setInt(3, temp.getCantidad());
+            stmt.setString(4, temp.getColor());
+            stmt.setFloat(5, temp.getPrecio());
+            stmt.setString(6, temp.getImagen());
+            stmt.setInt(7, temp.getIdMarca());
+            stmt.setInt(8, idcategoria);
+            stmt.executeUpdate();
+            sql = "update bicicleta set idarticulo = ?,tamaño_rueda = ?,material_bici = ?,tipo_bici = ?";
+            stmt = conpost.prepareStatement(sql);
+            stmt.setInt(1, temp.getIdArticulo());
+            stmt.setInt(2, temp.getTamaniorueda());
+            stmt.setString(3, temp.getMaterial());
+            stmt.setString(4, temp.getTipo());
+            stmt.executeUpdate();
+            conpost.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
