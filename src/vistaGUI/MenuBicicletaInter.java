@@ -7,6 +7,7 @@ package vistaGUI;
 
 import controlador.ManejadorBicicletas;
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorBicicletaDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -33,12 +34,13 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
      * Creates new form MenuBicicletaInter
      */
     ManejadorObjetos manobj;
+    ManejadorBicicletaDB manbiciDB;
     ManejadorBicicletas manbici;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
     int indiceFila = 0;
-    String[] dato = new String[9]; 
+    String[] dato = new String[9];
     JFileChooser fileChooser = new JFileChooser();
     ImageIcon image = null;
     File archivo = null;
@@ -50,6 +52,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manbici = new ManejadorBicicletas();
+        manbiciDB = new ManejadorBicicletaDB();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -519,6 +522,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         bici.setTamaniorueda(Integer.parseInt(jTextFieldTamañorueda.getText()));
         bici.setMaterial(jTextFieldMaterialmontura.getText());
         bici.setTipo(jTextFieldTipobicicleta.getText());
+        System.out.println(idMarcaTemporal);
 
         if (manbici.insertar(bici)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
@@ -543,6 +547,12 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");
+        }
+
+        if (manbiciDB.insertar(bici)) {
+            System.out.println("inserto bien");
+        } else {
+            System.out.println("no inserto bien");
         }
 
         limpiar();

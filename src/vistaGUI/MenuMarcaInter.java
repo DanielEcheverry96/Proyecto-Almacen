@@ -6,6 +6,7 @@
 package vistaGUI;
 
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorMarcasDB;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Marca;
@@ -20,6 +21,7 @@ public class MenuMarcaInter extends javax.swing.JFrame {
      * Creates new form MenuMarcaInter
      */
     ManejadorObjetos manobj;
+    ManejadorMarcasDB manmarDB;
     Integer idMarcaTemporal = null;
     DefaultTableModel model;
     int indiceFila = 0;
@@ -29,6 +31,7 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
+        manmarDB = new ManejadorMarcasDB();
         model = new DefaultTableModel();
         model.addColumn("ID");
         model.addColumn("Marca");
@@ -284,6 +287,12 @@ public class MenuMarcaInter extends javax.swing.JFrame {
             manobj.consultarTodos();
         } else {
             jMensaje.setText("Marca no insertada");
+        }
+
+        if (manmarDB.insertar(mar)) {
+            System.out.println("marca insertada en DB");
+        } else {
+            System.out.println("no DB");
         }
 
         limpiar();

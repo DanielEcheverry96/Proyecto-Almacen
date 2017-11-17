@@ -29,17 +29,36 @@ public class ManejadorBicicletaDB implements ICRUD {
         ConexionDB connDB = new ConexionDB();
         conpost = connDB.posgresConn();
         boolean insertado = false;
-        Statement stmt;
+        PreparedStatement stmt = null;
         if (obj instanceof Bicicletas) {
             Bicicletas temp = new Bicicletas();
             temp = (Bicicletas) obj;
             try {
-                stmt = conpost.createStatement();
-                String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
-                stmt.executeUpdate(sql);
-                sql = "insert into bicicleta(idarticulo,tamaño_rueda,material_bici,tipo_bici) values(" + temp.getIdArticulo() + "," + temp.getTamaniorueda() + "," + "'" + temp.getMaterial() + "'" + "," + "'" + temp.getTipo() + "'" + ");";
-                stmt.executeUpdate(sql);
+
+                //String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(?, ?, ?, ?, ?, ?, ?, ?);";
+                //stmt = conpost.createStatement();
+                stmt = conpost.prepareStatement("INSERT INTO articulo(idarticulo,nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                stmt.setInt(1, temp.getIdArticulo());
+                stmt.setString(2, temp.getNombre());
+                stmt.setInt(3, temp.getCantidad());
+                stmt.setString(4, temp.getColor());
+                stmt.setFloat(5, temp.getPrecio());
+                stmt.setString(6, temp.getImagen());
+                stmt.setInt(7, 4);
+                stmt.setInt(8, idcategoria);
+//idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria
+//                String sql = "insert into articulo() values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
+//                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + 4 + "," + idcategoria + ");";
+                stmt.executeUpdate();
+                //sql = "insert into bicicleta(idarticulo,tamaño_rueda,material_bici,tipo_bici) values(?, ?, ?, ?);";
+                stmt = conpost.prepareStatement("INSERT INTO bicicleta(idarticulo,tamaño_rueda,material_bici,tipo_bici) VALUES(?, ?, ?, ?)");
+                stmt.setInt(1, temp.getIdArticulo());
+                stmt.setInt(2, temp.getTamaniorueda());
+                stmt.setString(3, temp.getMaterial());
+                stmt.setString(4, temp.getTipo());
+//idarticulo,tamaño_rueda,material_bici,tipo_bici
+                //sql = "insert into bicicleta() values(" + temp.getIdArticulo() + "," + temp.getTamaniorueda() + "," + "'" + temp.getMaterial() + "'" + "," + "'" + temp.getTipo() + "'" + ");";
+                stmt.executeUpdate();
                 insertado = true;
                 conpost.close();
                 stmt.close();
