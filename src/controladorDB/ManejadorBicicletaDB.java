@@ -132,12 +132,39 @@ public class ManejadorBicicletaDB implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "delete from articulo where idarticulo = ?";
+            stmt = conpost.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean borrarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "truncate table bicicleta";
+            stmt = conpost.prepareStatement(sql);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
