@@ -36,7 +36,7 @@ public class ManejadorComputadorDB implements ICRUD {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getMar().getId() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into computador(idarticulo,capacidad_memoria_comp,tipo_teclado_comp,tipo_mouse_comp,tipo_pantalla_comp,capacidad_almacenamiento_comp) values(" + temp.getIdArticulo() + "," + "'" + temp.getCapmemoria() + "'" + "," + "'" + temp.getTipoteclado() + "'" + "," + "'" + temp.getTipomouse() + "'" + "," + "'" + temp.getTipopantalla() + "'" + "," + temp.getCapalmacenamiento() + ");";
                 stmt.executeUpdate(sql);

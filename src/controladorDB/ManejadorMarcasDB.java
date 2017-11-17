@@ -6,7 +6,10 @@
 package controladorDB;
 
 import controlador.ICRUD;
+import controlador.ICRUDDB;
+import controlador.ManejadorObjetos;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -19,7 +22,7 @@ import modelo.Marca;
  *
  * @author danie
  */
-public class ManejadorMarcasDB implements ICRUD {
+public class ManejadorMarcasDB implements ICRUDDB {
 
     Connection conpost;
 
@@ -40,7 +43,7 @@ public class ManejadorMarcasDB implements ICRUD {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -49,7 +52,26 @@ public class ManejadorMarcasDB implements ICRUD {
 
     @Override
     public boolean modificar(int id, Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt = null;
+        Marca temp = new Marca();
+        temp = (Marca) obj;
+        try {
+
+            String sql = "update marca set idmarca = ?, descripcion = ? ";
+            stmt = conpost.prepareStatement(sql);
+            stmt.setInt(1, temp.getId());
+            stmt.setString(2, temp.getDescripcion());
+            stmt.executeUpdate();
+            conpost.close();
+            stmt.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     @Override
@@ -59,7 +81,7 @@ public class ManejadorMarcasDB implements ICRUD {
 
     @Override
     public Object consultarId(int id) {
-
+        Marca temp = null;
         ConexionDB connDB = new ConexionDB();
         conpost = connDB.posgresConn();
         Statement stmt;
@@ -67,29 +89,60 @@ public class ManejadorMarcasDB implements ICRUD {
             stmt = conpost.createStatement();
             String sql = "select * from marca where id = " + id + ";";
             ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                String descripcion = rs.getString("nombre");
-                System.out.println("ID marca = " + id);
-                System.out.println("Nombre marca = " + descripcion);
+            if (rs.next()) {
+                temp = new Marca();
+                temp.setId(rs.getInt("idmarca"));
+                temp.setDescripcion(rs.getString("descripcion"));
+
             }
+            stmt.close();
+            conpost.close();
+
         } catch (SQLException ex) {
-            Logger.getLogger(ManejadorMarcasDB.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
-        return null;
+        return temp;
     }
 
     @Override
     public boolean borrar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "delete from marca where idmarca = ?";
+            stmt = conpost.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean borrarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "truncate table marca";
+            stmt = conpost.prepareStatement(sql);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public ArrayList consultarTodos() {
+    public void consultarTodos() {
         ConexionDB connDB = new ConexionDB();
         conpost = connDB.posgresConn();
         Statement stmt;
@@ -97,16 +150,16 @@ public class ManejadorMarcasDB implements ICRUD {
             stmt = conpost.createStatement();
             String sql = "select * from marca order by idmarca";
             ResultSet rs = stmt.executeQuery(sql);
+            ManejadorObjetos.arregloMarcas.clear();
             while (rs.next()) {
-                int id = rs.getInt("idmarca");
-                String descripcion = rs.getString("nombre");
-                System.out.println("ID marca = " + id);
-                System.out.println("Nombre marca = " + descripcion);
+                Marca temp = new Marca();
+                temp.setId(rs.getInt("idmarca"));
+                temp.setDescripcion(rs.getString("descripcion"));
+                ManejadorObjetos.arregloMarcas.add(temp);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(ManejadorMarcasDB.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
-        return null;
     }
 
 }

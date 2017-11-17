@@ -9,6 +9,8 @@ import controlador.ManejadorObjetos;
 import javax.swing.table.DefaultTableModel;
 import modelo.Computadores;
 import controlador.ManejadorComputadores;
+import controladorDB.ManejadorComputadorDB;
+import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -33,6 +35,8 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     ManejadorObjetos manObjetos;
     CategoriaElectronicosOficina mancate;
     ManejadorComputadores mancop;
+    ManejadorComputadorDB mancopDB;
+    ManejadorMarcasDB manmarDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = " ";
     DefaultTableModel model;
@@ -52,8 +56,10 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         manObjetos = new ManejadorObjetos();
+        manmarDB = new ManejadorMarcasDB();
         mancate = new CategoriaElectronicosOficina();
         mancop = new ManejadorComputadores();
+        mancopDB = new ManejadorComputadorDB();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -92,7 +98,13 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manObjetos.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manObjetos.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
+        manmarDB.consultarTodos();
         for (int i = 0; i < manObjetos.arregloMarcas.size(); i++) {
             jComboBoxMarca.addItem(manObjetos.arregloMarcas.get(i).getDescripcion());
         }
@@ -519,8 +531,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        mancop.consultarTodos();
-
+        //mancop.consultarTodos();
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
@@ -633,6 +644,12 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             mancop.consultarTodos();
         } else {
             jLabelMensaje.setText("Computador no insertado");
+        }
+
+        if (mancopDB.insertar(comp)) {
+            System.out.println("inserto BD");
+        } else {
+            System.out.println("no BD");
         }
 
         limpiar();
