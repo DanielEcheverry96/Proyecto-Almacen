@@ -39,7 +39,7 @@ public class ManejadorImpresorDB implements ICRUDDB {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getMar().getId() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into impresor(idarticulo,tipo_impre,interface_red_impre,paginas_min_impre,resolucion_impre) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + "'" + temp.getInterfacered() + "'" + "," + temp.getPaginasminuto() + "," + "'" + temp.getResolucion() + ");";
                 stmt.executeUpdate(sql);
@@ -47,7 +47,7 @@ public class ManejadorImpresorDB implements ICRUDDB {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -62,7 +62,7 @@ public class ManejadorImpresorDB implements ICRUDDB {
         Impresores temp = (Impresores) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
+                    + "precio = ?, imagen = ?, idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getNombre());
@@ -70,11 +70,11 @@ public class ManejadorImpresorDB implements ICRUDDB {
             stmt.setString(3, temp.getColor());
             stmt.setFloat(4, temp.getPrecio());
             stmt.setString(5, temp.getImagen());
-            stmt.setInt(6, temp.getMar().getId());
-            stmt.setInt(7, idcategoria);
+            //stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update impresor set tipo = ?,interface_red = ?,paginas_minuto = ?,resolucion = ? where idarticulo = "+ id + "";
+            sql = "update impresor set tipo_impre = ?,interface_red_impre = ?,paginas_min_impre = ?,resolucion_impre = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getTipo());
@@ -121,10 +121,10 @@ public class ManejadorImpresorDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setTipo(resultado.getString("tipo"));
-                temp.setInterfacered(resultado.getString("interface_red"));
-                temp.setPaginasminuto(resultado.getInt("paginas_minuto"));
-                temp.setResolucion(resultado.getString("resolucion"));
+                temp.setTipo(resultado.getString("tipo_impre"));
+                temp.setInterfacered(resultado.getString("interface_red_impre"));
+                temp.setPaginasminuto(resultado.getInt("paginas_min_impre"));
+                temp.setResolucion(resultado.getString("resolucion_impre"));
             }
 
             stmt.close();
@@ -193,10 +193,10 @@ public class ManejadorImpresorDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setTipo(resultado.getString("tipo"));
-                temp.setInterfacered(resultado.getString("interface_red"));
-                temp.setPaginasminuto(resultado.getInt("paginas_minuto"));
-                temp.setResolucion(resultado.getString("resolucion"));
+                temp.setTipo(resultado.getString("tipo_impre"));
+                temp.setInterfacered(resultado.getString("interface_red_impre"));
+                temp.setPaginasminuto(resultado.getInt("paginas_min_impre"));
+                temp.setResolucion(resultado.getString("resolucion_impre"));
                 catelec.arregloimpresores.add(temp);
             }
         } catch (Exception e) {

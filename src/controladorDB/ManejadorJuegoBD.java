@@ -39,7 +39,7 @@ public class ManejadorJuegoBD implements ICRUDDB {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getMar().getId() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into videojuego(idarticulo,genero_juego,restriccion_edad_juego,plataforma_juego,numero_jugadores_juego) values(" + temp.getIdArticulo() + "," + "'" + temp.getGenero() + "'" + "," + "'" + temp.getRestedad() + "'" + "," + "'" + temp.getPlataforma() + "'" + "," + temp.getNumjugadores() + ");";
                 stmt.executeUpdate(sql);
@@ -47,7 +47,7 @@ public class ManejadorJuegoBD implements ICRUDDB {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -62,18 +62,18 @@ public class ManejadorJuegoBD implements ICRUDDB {
         Juegos temp = (Juegos) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
+                    + "precio = ?, imagen = ?, idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
-           stmt.setString(1, temp.getNombre());
+            stmt.setString(1, temp.getNombre());
             stmt.setInt(2, temp.getCantidad());
             stmt.setFloat(3, temp.getPrecio());
             stmt.setString(4, temp.getImagen());
-            stmt.setInt(5, temp.getMar().getId());
-            stmt.setInt(6, idcategoria);
+            //stmt.setInt(5, temp.getMar().getId());
+            stmt.setInt(5, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update juego set genero = ?,restriccion_edad = ?,plataforma = ?,numero_jugadores = ? where idarticulo = "+ id + "";
+            sql = "update videojuego set genero_juego = ?,restriccion_edad_juego = ?,plataforma_juego = ?,numero_jugadores_juego = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getGenero());
@@ -106,7 +106,7 @@ public class ManejadorJuegoBD implements ICRUDDB {
             //SELECT *
             //FROM producto INNER JOIN factura_producto ON (producto.referencia_producto = factura_producto.referencia_producto) AND (producto.referencia_producto=1023) INNER JOIN factura ON factura.numero_factura = factura_producto.numero_factura;
             stmt = conpost.createStatement();
-            String sql = "select * from articulo inner join computador on (articulo.idarticulo = computador.idarticulo) AND (articulo.idarticulo = " + id + ") inner join marca on marca.idmarca = articulo.idmarca;";
+            String sql = "select * from articulo inner join videojuego on (articulo.idarticulo = videojuego.idarticulo) AND (articulo.idarticulo = " + id + ") inner join marca on marca.idmarca = articulo.idmarca;";
             ResultSet resultado = stmt.executeQuery(sql);
             if (resultado.next()) {
                 temp = new Juegos();
@@ -119,10 +119,10 @@ public class ManejadorJuegoBD implements ICRUDDB {
                 temp.setCantidad(resultado.getInt("cantidad"));
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setGenero(resultado.getString("genero"));
-                temp.setRestedad(resultado.getString("restriccion_edad"));
-                temp.setPlataforma(resultado.getString("plataforma"));
-                temp.setNumjugadores(resultado.getInt("numero_jugadores"));
+                temp.setGenero(resultado.getString("genero_juego"));
+                temp.setRestedad(resultado.getString("restriccion_edad_juego"));
+                temp.setPlataforma(resultado.getString("plataforma_juego"));
+                temp.setNumjugadores(resultado.getInt("numero_jugadores_juego"));
             }
 
             stmt.close();
@@ -158,7 +158,7 @@ public class ManejadorJuegoBD implements ICRUDDB {
         conpost = connDB.posgresConn();
         PreparedStatement stmt;
         try {
-            String sql = "truncate table juego";
+            String sql = "truncate table videojuego";
             stmt = conpost.prepareStatement(sql);
             stmt.executeUpdate();
             stmt.close();
@@ -177,7 +177,7 @@ public class ManejadorJuegoBD implements ICRUDDB {
         Statement stmt;
         try {
             stmt = conpost.createStatement();
-            ResultSet resultado = stmt.executeQuery("select * from articulo inner join juego on (articulo.idarticulo = juego.idarticulo) inner join marca on marca.idmarca = articulo.idmarca");
+            ResultSet resultado = stmt.executeQuery("select * from articulo inner join videojuego on (articulo.idarticulo = videojuego.idarticulo) inner join marca on marca.idmarca = articulo.idmarca");
             catevid.arreglojuegos.clear();
             while (resultado.next()) {
                 Juegos temp = new Juegos();
@@ -189,12 +189,12 @@ public class ManejadorJuegoBD implements ICRUDDB {
                 temp.setNombre(resultado.getString("nombrearticulo"));
                 temp.setCantidad(resultado.getInt("cantidad"));
                 temp.setPrecio(resultado.getFloat("precio"));
-                temp.setColor(resultado.getString("color"));
+                //temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setGenero(resultado.getString("genero"));
-                temp.setRestedad(resultado.getString("restriccion_edad"));
-                temp.setPlataforma(resultado.getString("plataforma"));
-                temp.setNumjugadores(resultado.getInt("numero_jugadores"));
+                temp.setGenero(resultado.getString("genero_juego"));
+                temp.setRestedad(resultado.getString("restriccion_edad_juego"));
+                temp.setPlataforma(resultado.getString("plataforma_juego"));
+                temp.setNumjugadores(resultado.getInt("numero_jugadores_juego"));
                 catevid.arreglojuegos.add(temp);
             }
         } catch (Exception e) {

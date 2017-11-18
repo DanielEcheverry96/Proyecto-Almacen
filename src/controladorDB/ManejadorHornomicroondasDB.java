@@ -39,7 +39,7 @@ public class ManejadorHornomicroondasDB implements ICRUDDB {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getMar().getId() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into hornomicroonda(idarticulo,capacidad_hornomicro,compartimiento_hornomicro,potencia_hornomicro,voltaje_hornomicro) values(" + temp.getIdArticulo() + "," + "'" + temp.getCapacidad() + "'" + "," + "'" + temp.getCompartimiento() + "'" + "," + "'" + temp.getPotencia() + "'" + "," + "'" + temp.getVoltaje() + "'" + ");";
                 stmt.executeUpdate(sql);
@@ -47,7 +47,7 @@ public class ManejadorHornomicroondasDB implements ICRUDDB {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -62,7 +62,7 @@ public class ManejadorHornomicroondasDB implements ICRUDDB {
         Hornosmicroondas temp = (Hornosmicroondas) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
+                    + "precio = ?, imagen = ?,  idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getNombre());
@@ -70,11 +70,11 @@ public class ManejadorHornomicroondasDB implements ICRUDDB {
             stmt.setString(3, temp.getColor());
             stmt.setFloat(4, temp.getPrecio());
             stmt.setString(5, temp.getImagen());
-            stmt.setInt(6, temp.getMar().getId());
-            stmt.setInt(7, idcategoria);
+            //stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update hornomicroonda set capacidad = ?,compartimiento = ?,potencia = ?,voltaje = ? where idarticulo = "+ id + "";
+            sql = "update hornomicroonda set capacidad_hornomicro = ?,compartimiento_hornomicro = ?,potencia_hornomicro = ?,voltaje_hornomicro = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getCapacidad());
@@ -121,10 +121,10 @@ public class ManejadorHornomicroondasDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setCapacidad(resultado.getString("capacidad"));
-                temp.setCompartimiento(resultado.getString("compartimiento"));
-                temp.setPotencia(resultado.getString("potencia"));
-                temp.setVoltaje(resultado.getString("voltaje"));
+                temp.setCapacidad(resultado.getString("capacidad_hornomicro"));
+                temp.setCompartimiento(resultado.getString("compartimiento_hornomicro"));
+                temp.setPotencia(resultado.getString("potencia_hornomicro"));
+                temp.setVoltaje(resultado.getString("voltaje_hornomicro"));
             }
 
             stmt.close();
@@ -193,10 +193,10 @@ public class ManejadorHornomicroondasDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setCapacidad(resultado.getString("capacidad"));
-                temp.setCompartimiento(resultado.getString("compartimiento"));
-                temp.setPotencia(resultado.getString("potencia"));
-                temp.setVoltaje(resultado.getString("voltaje"));
+                temp.setCapacidad(resultado.getString("capacidad_hornomicro"));
+                temp.setCompartimiento(resultado.getString("compartimiento_hornomicro"));
+                temp.setPotencia(resultado.getString("potencia_hornomicro"));
+                temp.setVoltaje(resultado.getString("voltaje_hornomicro"));
                 catelec.arreglohornosmicroondas.add(temp);
             }
         } catch (Exception e) {

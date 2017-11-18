@@ -39,7 +39,7 @@ public class ManejadorCelularBD implements ICRUDDB {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getMar().getId() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into celular(idarticulo,tipo_procesador_cel,tamaño_pantalla_cel,tamaño_memoria_cel,capacidad_almacenamiento_cel,tipo_pantalla_cel,interface_red_cel) values(" + temp.getIdArticulo() + "," + "'" + temp.getTiprocesador() + "'" + "," + temp.getTamañodepantalla() + "," + temp.getTammemoria() + "," + temp.getCapalmacenamiento() + "," + "'" + temp.getTipodepantalla() + "'" + "," + "'" + temp.getInterfacered() + "'" + ");";
                 stmt.executeUpdate(sql);
@@ -62,7 +62,7 @@ public class ManejadorCelularBD implements ICRUDDB {
         TelefonosCelulares temp = (TelefonosCelulares) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
+                    + "precio = ?, imagen = ?, idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getNombre());
@@ -70,11 +70,11 @@ public class ManejadorCelularBD implements ICRUDDB {
             stmt.setString(3, temp.getColor());
             stmt.setFloat(4, temp.getPrecio());
             stmt.setString(5, temp.getImagen());
-            stmt.setInt(6, temp.getMar().getId());
-            stmt.setInt(7, idcategoria);
+            //stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update celular set tipo_procesador = ?,tamaño_pantalla = ?,tamaño_memoria = ?,capacidad_almcenamiento= ?,tipo_pantalla= ?,interface_red= ? where idarticulo = "+ id + "";
+            sql = "update celular set tipo_procesador_cel = ?,tamaño_pantalla_cel = ?,tamaño_memoria_cel = ?,capacidad_almcenamiento_cel= ?,tipo_pantalla_cel= ?,interface_red_cel= ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getTiprocesador());
@@ -123,12 +123,12 @@ public class ManejadorCelularBD implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setTiprocesador(resultado.getString("tipo_procesador"));
-                temp.setTamañodepantalla(resultado.getInt("tamaño_pantalla"));
-                temp.setTammemoria(resultado.getInt("tamaño_memoria"));
-                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento"));
-                temp.setTipodepantalla(resultado.getString("tipo_pantalla"));
-                temp.setInterfacered(resultado.getString("interface_red"));
+                temp.setTiprocesador(resultado.getString("tipo_procesador_cel"));
+                temp.setTamañodepantalla(resultado.getInt("tamaño_pantalla_cel"));
+                temp.setTammemoria(resultado.getInt("tamaño_memoria_cel"));
+                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento_cel"));
+                temp.setTipodepantalla(resultado.getString("tipo_pantalla_cel"));
+                temp.setInterfacered(resultado.getString("interface_red_cel"));
             }
 
             stmt.close();
@@ -197,12 +197,12 @@ public class ManejadorCelularBD implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setTiprocesador(resultado.getString("tipo_procesador"));
-                temp.setTamañodepantalla(resultado.getInt("tamaño_pantalla"));
-                temp.setTammemoria(resultado.getInt("tamaño_memoria"));
-                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento"));
-                temp.setTipodepantalla(resultado.getString("tipo_pantalla"));
-                temp.setInterfacered(resultado.getString("interface_red"));
+                temp.setTiprocesador(resultado.getString("tipo_procesador_cel"));
+                temp.setTamañodepantalla(resultado.getInt("tamaño_pantalla_cel"));
+                temp.setTammemoria(resultado.getInt("tamaño_memoria_cel"));
+                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento_cel"));
+                temp.setTipodepantalla(resultado.getString("tipo_pantalla_cel"));
+                temp.setInterfacered(resultado.getString("interface_red_cel"));
                 catel.arreglotelefonoscelulares.add(temp);
             }
         } catch (Exception e) {

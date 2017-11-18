@@ -39,7 +39,7 @@ public class ManejadorHornoelectricoygasDB implements ICRUDDB {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getMar().getId() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into hornoelectricoygas(idarticulo,potencia_hornogas,numero_bandejas_hornogas,gratinador_hornogas,tipo_control_hornogas,temperatura_max_hornogas) values(" + temp.getIdArticulo() + "," + "'" + temp.getPotencia() + "'" + "," + temp.getNumbandejas() + "," + "'" + temp.getGratinador() + "'" + "," + "'" + temp.getTipocontrol() + "'" + "," + temp.getTemperaturamax() + ");";
                 stmt.executeUpdate(sql);
@@ -47,7 +47,7 @@ public class ManejadorHornoelectricoygasDB implements ICRUDDB {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -62,7 +62,7 @@ public class ManejadorHornoelectricoygasDB implements ICRUDDB {
         Hornoselectricosygas temp = (Hornoselectricosygas) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
+                    + "precio = ?, imagen = ?, idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getNombre());
@@ -70,11 +70,11 @@ public class ManejadorHornoelectricoygasDB implements ICRUDDB {
             stmt.setString(3, temp.getColor());
             stmt.setFloat(4, temp.getPrecio());
             stmt.setString(5, temp.getImagen());
-            stmt.setInt(6, temp.getMar().getId());
-            stmt.setInt(7, idcategoria);
+            //stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update hornoelectricoygas set potencia = ?,numero_bandejas = ?,gratinador = ?,tipo_control= ?,temperatura_maxima= ? where idaerticulo = "+ id + "";
+            sql = "update hornoelectricoygas set potencia_hornogas = ?,numero_bandejas_hornogas = ?,gratinador_hornogas = ?,tipo_control_hornogas= ?,temperatura_max_hornogas= ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getPotencia());
@@ -122,11 +122,11 @@ public class ManejadorHornoelectricoygasDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setPotencia(resultado.getString("potencia"));
-                temp.setNumbandejas(resultado.getInt("numero_bandejas"));
-                temp.setGratinador(resultado.getString("gratinador"));
-                temp.setTipocontrol(resultado.getString("tipo_control"));
-                temp.setTemperaturamax(resultado.getInt("temperatura_maxima"));
+                temp.setPotencia(resultado.getString("potencia_hornogas"));
+                temp.setNumbandejas(resultado.getInt("numero_bandejas_hornogas"));
+                temp.setGratinador(resultado.getString("gratinador_hornogas"));
+                temp.setTipocontrol(resultado.getString("tipo_control_hornogas"));
+                temp.setTemperaturamax(resultado.getInt("temperatura_max_hornogas"));
             }
 
             stmt.close();
@@ -195,11 +195,11 @@ public class ManejadorHornoelectricoygasDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setPotencia(resultado.getString("potencia"));
-                temp.setNumbandejas(resultado.getInt("numero_bandejas"));
-                temp.setGratinador(resultado.getString("gratinador"));
-                temp.setTipocontrol(resultado.getString("tipo_control"));
-                temp.setTemperaturamax(resultado.getInt("temperatura_maxima"));
+                temp.setPotencia(resultado.getString("potencia_hornogas"));
+                temp.setNumbandejas(resultado.getInt("numero_bandejas_hornogas"));
+                temp.setGratinador(resultado.getString("gratinador_hornogas"));
+                temp.setTipocontrol(resultado.getString("tipo_control_hornogas"));
+                temp.setTemperaturamax(resultado.getInt("temperatura_max_hornogas"));
                 catelec.arreglohornoselectricosygas.add(temp);
             }
         } catch (Exception e) {
@@ -207,5 +207,3 @@ public class ManejadorHornoelectricoygasDB implements ICRUDDB {
         }
     }
 }
-
-

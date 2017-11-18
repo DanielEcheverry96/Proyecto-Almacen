@@ -47,7 +47,7 @@ public class ManejadorComputadorDB implements ICRUDDB {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -62,7 +62,7 @@ public class ManejadorComputadorDB implements ICRUDDB {
         Computadores temp = (Computadores) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "" ;
+                    + "precio = ?, imagen = ?,  idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getNombre());
@@ -70,11 +70,11 @@ public class ManejadorComputadorDB implements ICRUDDB {
             stmt.setString(3, temp.getColor());
             stmt.setFloat(4, temp.getPrecio());
             stmt.setString(5, temp.getImagen());
-            stmt.setInt(6, temp.getMar().getId());
-            stmt.setInt(7, idcategoria);
+            //stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update computador set capacidad_memoria = ?,tipo_teclado = ?,tipo_mouse = ?,tipo_pantalla= ?,capacidad_almacenamiento= ? where idarticulo = "+ id +"";
+            sql = "update computador set capacidad_memoria_comp = ?,tipo_teclado_comp = ?,tipo_mouse_comp = ?,tipo_pantalla_comp= ?,capacidad_almacenamiento_comp= ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getCapmemoria());
@@ -122,11 +122,11 @@ public class ManejadorComputadorDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setCapmemoria(resultado.getString("capacidad_memoria"));
-                temp.setTipoteclado(resultado.getString("tipo_teclado"));
-                temp.setTipomouse(resultado.getString("tipo_mouse"));
-                temp.setTipopantalla(resultado.getString("tipo_pantalla"));
-                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento"));
+                temp.setCapmemoria(resultado.getString("capacidad_memoria_comp"));
+                temp.setTipoteclado(resultado.getString("tipo_teclado_comp"));
+                temp.setTipomouse(resultado.getString("tipo_mouse_comp"));
+                temp.setTipopantalla(resultado.getString("tipo_pantalla_comp"));
+                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento_comp"));
             }
 
             stmt.close();
@@ -195,11 +195,11 @@ public class ManejadorComputadorDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setCapmemoria(resultado.getString("capacidad_memoria"));
-                temp.setTipoteclado(resultado.getString("tipo_teclado"));
-                temp.setTipomouse(resultado.getString("tipo_mouse"));
-                temp.setTipopantalla(resultado.getString("tipo_pantalla"));
-                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento"));
+                temp.setCapmemoria(resultado.getString("capacidad_memoria_comp"));
+                temp.setTipoteclado(resultado.getString("tipo_teclado_comp"));
+                temp.setTipomouse(resultado.getString("tipo_mouse_comp"));
+                temp.setTipopantalla(resultado.getString("tipo_pantalla_comp"));
+                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento_comp"));
                 cate.arreglocomputadores.add(temp);
             }
         } catch (Exception e) {
@@ -207,5 +207,3 @@ public class ManejadorComputadorDB implements ICRUDDB {
         }
     }
 }
-
-

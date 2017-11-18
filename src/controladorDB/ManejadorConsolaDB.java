@@ -39,7 +39,7 @@ public class ManejadorConsolaDB implements ICRUDDB {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getMar().getId() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into consola(idarticulo,tipo_cons,numero_controles_cons,realidad_virtual_cons,capacidad_disco_cons) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + temp.getNumcontroles() + "," + "'" + temp.getRealidadvir() + "'" + "," + "'" + temp.getCapdiscoduro() + "'" + ");";
                 stmt.executeUpdate(sql);
@@ -47,7 +47,7 @@ public class ManejadorConsolaDB implements ICRUDDB {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -62,7 +62,7 @@ public class ManejadorConsolaDB implements ICRUDDB {
         Consolas temp = (Consolas) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
+                    + "precio = ?, imagen = ?, idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getNombre());
@@ -70,11 +70,11 @@ public class ManejadorConsolaDB implements ICRUDDB {
             stmt.setString(3, temp.getColor());
             stmt.setFloat(4, temp.getPrecio());
             stmt.setString(5, temp.getImagen());
-            stmt.setInt(6, temp.getMar().getId());
-            stmt.setInt(7, idcategoria);
+            //stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update computador set tipo = ?,numero_controles = ?,realidad_virtual = ?,capacidad_discoduro= ? where idarticulo = "+ id + "";
+            sql = "update consola set tipo_cons = ?,numero_controles_cons = ?,realidad_virtual_cons = ?,capacidad_disco_cons= ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getTipo());
@@ -121,10 +121,10 @@ public class ManejadorConsolaDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setTipo(resultado.getString("tipo"));
-                temp.setNumcontroles(resultado.getInt("numero_controles"));
-                temp.setRealidadvir(resultado.getString("realidad_virtual"));
-                temp.setCapdiscoduro(resultado.getString("capacidad_discoduro"));
+                temp.setTipo(resultado.getString("tipo_cons"));
+                temp.setNumcontroles(resultado.getInt("numero_controles_cons"));
+                temp.setRealidadvir(resultado.getString("realidad_virtual_cons"));
+                temp.setCapdiscoduro(resultado.getString("capacidad_disco_cons"));
             }
 
             stmt.close();
@@ -160,7 +160,7 @@ public class ManejadorConsolaDB implements ICRUDDB {
         conpost = connDB.posgresConn();
         PreparedStatement stmt;
         try {
-            String sql = "truncate table computador";
+            String sql = "truncate table consola";
             stmt = conpost.prepareStatement(sql);
             stmt.executeUpdate();
             stmt.close();
@@ -193,9 +193,9 @@ public class ManejadorConsolaDB implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setNumcontroles(resultado.getInt("numero_controles"));
-                temp.setRealidadvir(resultado.getString("realidad_virtual"));
-                temp.setCapdiscoduro(resultado.getString("capacidad_discoduro"));
+                temp.setNumcontroles(resultado.getInt("numero_controles_cons"));
+                temp.setRealidadvir(resultado.getString("realidad_virtual_cons"));
+                temp.setCapdiscoduro(resultado.getString("capacidad_disco_cons"));
                 catevid.arregloconsolas.add(temp);
             }
         } catch (Exception e) {
@@ -204,4 +204,3 @@ public class ManejadorConsolaDB implements ICRUDDB {
     }
 
 }
-

@@ -39,7 +39,7 @@ public class ManejadorMartilloBD implements ICRUDDB {
             try {
                 stmt = conpost.createStatement();
                 String sql = "insert into articulo(idarticulo, nombrearticulo,cantidad,color,precio,imagen,idmarca,idcategoria) values(" + temp.getIdArticulo() + "," + "'" + temp.getNombre() + "'" + "," + temp.getCantidad()
-                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getIdMarca() + "," + idcategoria + ");";
+                        + "," + "'" + temp.getColor() + "'" + "," + temp.getPrecio() + "," + "'" + temp.getImagen() + "'" + "," + temp.getMar().getId() + "," + idcategoria + ");";
                 stmt.executeUpdate(sql);
                 sql = "insert into martillo(idarticulo,tipo_marti,material_mango_marti,material_cabezal_marti,peso_marti,tamaño_marti) values(" + temp.getIdArticulo() + "," + "'" + temp.getTipo() + "'" + "," + "'" + temp.getMatmango() + "'" + "," + "'" + temp.getMatcabezal() + "'" + "," + temp.getPeso() + "," + "'" + temp.getTamaño() + "'" + ");";
                 stmt.executeUpdate(sql);
@@ -47,7 +47,7 @@ public class ManejadorMartilloBD implements ICRUDDB {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                ex.printStackTrace();
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -62,7 +62,7 @@ public class ManejadorMartilloBD implements ICRUDDB {
         Martillos temp = (Martillos) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
+                    + "precio = ?, imagen = ?, idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getNombre());
@@ -70,18 +70,18 @@ public class ManejadorMartilloBD implements ICRUDDB {
             stmt.setString(3, temp.getColor());
             stmt.setFloat(4, temp.getPrecio());
             stmt.setString(5, temp.getImagen());
-            stmt.setInt(6, temp.getMar().getId());
-            stmt.setInt(7, idcategoria);
+            //stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update martillo set material_mango = ?,material_cabezal = ?,peso = ?,tamaño= ?,tipo= ? where idarticulo = "+ id + "";
+            sql = "update martillo set tipo_marti = ?,material_mango_marti = ?,material_cabezal_marti = ?,peso_marti= ?,tamaño_marti= ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
-            stmt.setString(1, temp.getMatmango());
-            stmt.setString(2, temp.getMatcabezal());
-            stmt.setInt(3, temp.getPeso());
-            stmt.setString(4, temp.getTamaño());
-            stmt.setString(5, temp.getTipo());
+            stmt.setString(2, temp.getMatmango());
+            stmt.setString(3, temp.getMatcabezal());
+            stmt.setInt(4, temp.getPeso());
+            stmt.setString(5, temp.getTamaño());
+            stmt.setString(1, temp.getTipo());
             stmt.executeUpdate();
             conpost.close();
             stmt.close();
@@ -122,11 +122,11 @@ public class ManejadorMartilloBD implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setMatmango(resultado.getString("material_mango"));
-                temp.setMatcabezal(resultado.getString("material_cabezal"));
-                temp.setPeso(resultado.getInt("peso"));
-                temp.setTamaño(resultado.getString("tamaño"));
-                temp.setTipo(resultado.getString("tipo"));
+                temp.setMatmango(resultado.getString("material_mango_marti"));
+                temp.setMatcabezal(resultado.getString("material_cabezal_marti"));
+                temp.setPeso(resultado.getInt("peso_marti"));
+                temp.setTamaño(resultado.getString("tamaño_marti"));
+                temp.setTipo(resultado.getString("tipo_marti"));
             }
 
             stmt.close();
@@ -181,7 +181,7 @@ public class ManejadorMartilloBD implements ICRUDDB {
         Statement stmt;
         try {
             stmt = conpost.createStatement();
-            ResultSet resultado = stmt.executeQuery("select * from articulo inner join martillos on (articulo.idarticulo = martillos.idarticulo) inner join marca on marca.idmarca = articulo.idmarca");
+            ResultSet resultado = stmt.executeQuery("select * from articulo inner join martillo on (articulo.idarticulo = martillo.idarticulo) inner join marca on marca.idmarca = articulo.idmarca");
             cateh.arreglomartillos.clear();
             while (resultado.next()) {
                 Martillos temp = new Martillos();
@@ -195,11 +195,11 @@ public class ManejadorMartilloBD implements ICRUDDB {
                 temp.setPrecio(resultado.getFloat("precio"));
                 temp.setColor(resultado.getString("color"));
                 temp.setImagen(resultado.getString("imagen"));
-                temp.setMatmango(resultado.getString("material_mango"));
-                temp.setMatcabezal(resultado.getString("material_cabezal"));
-                temp.setPeso(resultado.getInt("peso"));
-                temp.setTamaño(resultado.getString("tamaño"));
-                temp.setTipo(resultado.getString("tipo"));
+                temp.setMatmango(resultado.getString("material_mango_marti"));
+                temp.setMatcabezal(resultado.getString("material_cabezal_marti"));
+                temp.setPeso(resultado.getInt("peso_marti"));
+                temp.setTamaño(resultado.getString("tamaño_marti"));
+                temp.setTipo(resultado.getString("tipo_marti"));
                 cateh.arreglomartillos.add(temp);
             }
         } catch (Exception e) {
