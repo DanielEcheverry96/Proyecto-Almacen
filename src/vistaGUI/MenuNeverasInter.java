@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorNeveras;
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorNeveraBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuNeverasInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorNeveras mannev;
+    ManejadorMarcasDB manmarDB;
+    ManejadorNeveraBD mannevDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mannev = new ManejadorNeveras();
+        manmarDB = new ManejadorMarcasDB();
+        mannevDB = new ManejadorNeveraBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -88,9 +94,15 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -488,7 +500,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        mannev.consultarTodos();
+        mannevDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -580,7 +592,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         nev.setTamaño(Integer.parseInt(jTextFieldTamañoNevera.getText()));
         nev.setSistema(jTextFieldSistemaNevera.getText());
 
-        if (mannev.insertar(nev)) {
+        if (mannevDB.insertar(nev)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -684,13 +696,21 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             nevmod.setSistema(jTextFieldSistemaNevera.getText());
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = mannev.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (mannev.modificar(posicion, nevmod)) {
-                    JOptionPane.showMessageDialog(this, "Nevera modificada exitosamente");
-                    indiceFila--;
-                }
-            } else {
+//            int posicion = mannev.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (mannev.modificar(posicion, nevmod)) {
+//                    JOptionPane.showMessageDialog(this, "Nevera modificada exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+              if (mannevDB.modificar(a, nevmod)) {
+                JOptionPane.showMessageDialog(this, "Nevera modificada exitosamente");
+                indiceFila--;
+                mannevDB.consultarTodos();
+
+              } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -699,13 +719,21 @@ public class MenuNeverasInter extends javax.swing.JFrame {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Neveras resultado = (Neveras) mannev.consultarId(idBuscado);
-        if (resultado == null) {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Neveras resultado = (Neveras) mannev.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Nevera no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "La Nevera encontrada es:\n" + resultado.toString());
+//        }
+          try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Neveras resultado = (Neveras) mannevDB.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "La nevera encontrada es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Nevera no encontrada");
-        } else {
-            JOptionPane.showMessageDialog(this, "La Nevera encontrada es:\n" + resultado.toString());
+
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -716,7 +744,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (mannev.borrar(idEliminar)) {
+            if (mannevDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Nevera borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -729,7 +757,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (mannev.borrarTodo()) {
+        if (mannevDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

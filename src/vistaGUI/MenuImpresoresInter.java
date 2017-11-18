@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorImpresores;
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorImpresorDB;
+import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorImpresores manimp;
+    ManejadorMarcasDB manmarDB;
+    ManejadorImpresorDB manimpDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manimp = new ManejadorImpresores();
+        manmarDB = new ManejadorMarcasDB();
+        manimpDB = new ManejadorImpresorDB();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -87,9 +93,15 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
-    public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
+      public void inicializarComboBox() {
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -460,7 +472,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        manimp.consultarTodos();
+        manimpDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -536,7 +548,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
         imp.setPaginasminuto(Integer.parseInt(jTextFieldPaginasporMinuto.getText()));
         imp.setResolucion(jTextFieldResolucion.getText());
 
-        if (manimp.insertar(imp)) {
+        if (manimpDB.insertar(imp)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -622,13 +634,21 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             impmod.setResolucion(jTextFieldResolucion.getText());
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manimp.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manimp.modificar(posicion, impmod)) {
-                    JOptionPane.showMessageDialog(this, "Impresor modificado exitosamente");
-                    indiceFila--;
-                }
-            } else {
+//            int posicion = manimp.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manimp.modificar(posicion, impmod)) {
+//                    JOptionPane.showMessageDialog(this, "Impresor modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+              if (manimpDB.modificar(a, impmod)) {
+                JOptionPane.showMessageDialog(this, "Impresor modificado exitosamente");
+                indiceFila--;
+                manimpDB.consultarTodos();
+
+              } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -637,13 +657,21 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Impresores resultado = (Impresores) manimp.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Impresor no encontrado");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Impresores resultado = (Impresores) manimp.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Impresor no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El impresor encontrado es:\n" + resultado.toString());
+//        }
+          try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Impresores resultado = (Impresores) manimpDB.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "El impresor encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Impresor no encontrado");
+
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -654,7 +682,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manimp.borrar(idEliminar)) {
+            if (manimpDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Impresor borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -667,7 +695,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (manimp.borrarTodo()) {
+        if (manimpDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

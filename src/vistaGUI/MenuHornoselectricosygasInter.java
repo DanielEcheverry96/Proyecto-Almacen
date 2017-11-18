@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorHornoselectricosygas;
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorHornoelectricoygasDB;
+import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorHornoselectricosygas manhorneg;
+    ManejadorMarcasDB manmarDB;
+    ManejadorHornoelectricoygasDB manhornegDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manhorneg = new ManejadorHornoselectricosygas();
+        manmarDB = new ManejadorMarcasDB();
+        manhornegDB = new ManejadorHornoelectricoygasDB();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -88,9 +94,15 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
-    public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
+      public void inicializarComboBox() {
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -486,7 +498,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        manhorneg.consultarTodos();
+        manhornegDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -578,7 +590,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
         horno.setTipocontrol(jTextFieldTipoControl.getText());
         horno.setTemperaturamax(Integer.parseInt(jTextFieldTemperaturaMaxima.getText()));
 
-        if (manhorneg.insertar(horno)) {
+        if (manhornegDB.insertar(horno)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -683,13 +695,21 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             hornomod.setTemperaturamax(Integer.parseInt(jTextFieldTemperaturaMaxima.getText()));
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manhorneg.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manhorneg.modificar(posicion, hornomod)) {
-                    JOptionPane.showMessageDialog(this, "Horno modificado exitosamente");
-                    indiceFila--;
-                }
-            } else {
+//            int posicion = manhorneg.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manhorneg.modificar(posicion, hornomod)) {
+//                    JOptionPane.showMessageDialog(this, "Horno modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+              if (manhornegDB.modificar(a, hornomod)) {
+                JOptionPane.showMessageDialog(this, "horno modificado exitosamente");
+                indiceFila--;
+                manhornegDB.consultarTodos();
+
+              } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -699,13 +719,21 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Hornoselectricosygas resultado = (Hornoselectricosygas) manhorneg.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Horno no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El Horno encontrado es:\n" + resultado.toString());
+//        }
+          try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Hornoselectricosygas resultado = (Hornoselectricosygas) manhornegDB.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "El horno encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "horno no encontrado");
 
-        Hornoselectricosygas resultado = (Hornoselectricosygas) manhorneg.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Horno no encontrado");
-        } else {
-            JOptionPane.showMessageDialog(this, "El Horno encontrado es:\n" + resultado.toString());
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -716,7 +744,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manhorneg.borrar(idEliminar)) {
+            if (manhornegDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Horno borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -729,7 +757,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (manhorneg.borrarTodo()) {
+        if (manhornegDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

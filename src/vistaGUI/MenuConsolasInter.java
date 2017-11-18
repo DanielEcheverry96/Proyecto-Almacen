@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorConsolas;
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorConsolaDB;
+import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuConsolasInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorConsolas mancons;
+    ManejadorMarcasDB manmarDB;
+    ManejadorConsolaDB manconsDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,7 +54,9 @@ public class MenuConsolasInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mancons = new ManejadorConsolas();
-model = new DefaultTableModel() {
+        manmarDB = new ManejadorMarcasDB();
+        manconsDB = new ManejadorConsolaDB();
+        model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
                 switch (column) {
@@ -87,9 +93,15 @@ model = new DefaultTableModel() {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -466,7 +478,7 @@ model = new DefaultTableModel() {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        mancons.consultarTodos();
+        manconsDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -550,7 +562,7 @@ model = new DefaultTableModel() {
         cons.setRealidadvir(jTextFieldRealidadvirtual.getText());
         cons.setCapdiscoduro(jTextFieldCapacidadDiscoduro.getText());
 
-        if (mancons.insertar(cons)) {
+        if (manconsDB.insertar(cons)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -644,13 +656,21 @@ model = new DefaultTableModel() {
             consmod.setCapdiscoduro(jTextFieldCapacidadDiscoduro.getText());
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = mancons.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (mancons.modificar(posicion, consmod)) {
-                    JOptionPane.showMessageDialog(this, "Consola modificada exitosamente");
-                    indiceFila--;
-                }
-            } else {
+//            int posicion = mancons.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (mancons.modificar(posicion, consmod)) {
+//                    JOptionPane.showMessageDialog(this, "Consola modificada exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+              if (manconsDB.modificar(a, consmod)) {
+                JOptionPane.showMessageDialog(this, "Consola modificada exitosamente");
+                indiceFila--;
+                manconsDB.consultarTodos();
+
+              } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -659,13 +679,21 @@ model = new DefaultTableModel() {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Consolas resultado = (Consolas) mancons.consultarId(idBuscado);
-        if (resultado == null) {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Consolas resultado = (Consolas) mancons.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Consola no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "La Consola encontrada es:\n" + resultado.toString());
+//        }
+          try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Consolas resultado = (Consolas) manconsDB.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "La consola encontrada es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Consola no encontrada");
-        } else {
-            JOptionPane.showMessageDialog(this, "La Consola encontrada es:\n" + resultado.toString());
+
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -676,7 +704,7 @@ model = new DefaultTableModel() {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (mancons.borrar(idEliminar)) {
+            if (manconsDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Consola borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -689,7 +717,7 @@ model = new DefaultTableModel() {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (mancons.borrarTodo()) {
+        if (manconsDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

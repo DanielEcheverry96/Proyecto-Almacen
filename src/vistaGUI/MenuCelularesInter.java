@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorTelefonosCelulares;
+import controladorDB.ManejadorCelularBD;
+import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuCelularesInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorTelefonosCelulares mancel;
+    ManejadorMarcasDB manmarDB;
+    ManejadorCelularBD mancelDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mancel = new ManejadorTelefonosCelulares();
+        manmarDB = new ManejadorMarcasDB();
+        mancelDB = new ManejadorCelularBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -90,9 +96,15 @@ public class MenuCelularesInter extends javax.swing.JFrame {
 
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -507,7 +519,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        mancel.consultarTodos();
+        mancelDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -604,7 +616,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         cel.setTipodepantalla(jTextFieldTipoPantalla.getText());
         cel.setInterfacered(jTextFieldInterfaceRed.getText());
 
-        if (mancel.insertar(cel)) {
+        if (mancelDB.insertar(cel)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -711,13 +723,21 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             celmod.setInterfacered(jTextFieldInterfaceRed.getText());
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = mancel.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (mancel.modificar(posicion, celmod)) {
-                    JOptionPane.showMessageDialog(this, "Telefono Celular modificado exitosamente");
-                    indiceFila--;
-                }
-            } else {
+//            int posicion = mancel.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (mancel.modificar(posicion, celmod)) {
+//                    JOptionPane.showMessageDialog(this, "Telefono Celular modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+              if (mancelDB.modificar(a, celmod)) {
+                JOptionPane.showMessageDialog(this, "Celular modificado exitosamente");
+                indiceFila--;
+                mancelDB.consultarTodos();
+
+              } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -726,13 +746,21 @@ public class MenuCelularesInter extends javax.swing.JFrame {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        TelefonosCelulares resultado = (TelefonosCelulares) mancel.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Telefono Celular no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El Telefono Celular encontrado es:\n" + resultado.toString());
+//        }
+          try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            TelefonosCelulares resultado = (TelefonosCelulares) mancelDB.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "El celular encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Celular no encontrado");
 
-        TelefonosCelulares resultado = (TelefonosCelulares) mancel.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Telefono Celular no encontrada");
-        } else {
-            JOptionPane.showMessageDialog(this, "El Telefono Celular encontrado es:\n" + resultado.toString());
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -743,7 +771,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (mancel.borrar(idEliminar)) {
+            if (mancelDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Celular borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -756,7 +784,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (mancel.borrarTodo()) {
+        if (mancelDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

@@ -532,6 +532,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
         //mancop.consultarTodos();
+        mancopDB.consultarTodos();
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
@@ -618,7 +619,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         comp.setTipopantalla(jTextFieldTipoPantalla.getText());
         comp.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
 
-        if (mancop.insertar(comp)) {
+        if (mancopDB.insertar(comp)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(jTextFieldId.getText(), indiceFila, 0);
@@ -644,12 +645,12 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             mancop.consultarTodos();
         } else {
             jLabelMensaje.setText("Computador no insertado");
-        }
-
-        if (mancopDB.insertar(comp)) {
-            System.out.println("inserto BD");
-        } else {
-            System.out.println("no BD");
+//        }
+//
+//        if (mancopDB.insertar(comp)) {
+//            System.out.println("inserto BD");
+//        } else {
+//            System.out.println("no BD");
         }
 
         limpiar();
@@ -722,12 +723,20 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             compmod.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = mancop.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (mancop.modificar(posicion, compmod)) {
-                    JOptionPane.showMessageDialog(this, "Computador modificado exitosamente");
-                    indiceFila--;
-                }
+//            int posicion = mancop.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (mancop.modificar(posicion, compmod)) {
+//                    JOptionPane.showMessageDialog(this, "Computador modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+            if (mancopDB.modificar(a, compmod)) {
+                JOptionPane.showMessageDialog(this, "computador modificado exitosamente");
+                indiceFila--;
+                mancopDB.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
@@ -738,13 +747,21 @@ public class MenuComputadorInter extends javax.swing.JFrame {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Computadores resultado = (Computadores) mancop.consultarId(idBuscado);
-        if (resultado == null) {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Computadores resultado = (Computadores) mancop.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Computador no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El Computador encontrado es:\n" + resultado.toString());
+//        }
+          try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Computadores resultado = (Computadores) mancopDB.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "El computador encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Computador no encontrado");
-        } else {
-            JOptionPane.showMessageDialog(this, "El Computador encontrado es:\n" + resultado.toString());
+
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -755,7 +772,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (mancop.borrar(idEliminar)) {
+            if (mancopDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Computador borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -769,7 +786,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (mancop.borrarTodo()) {
+        if (mancopDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

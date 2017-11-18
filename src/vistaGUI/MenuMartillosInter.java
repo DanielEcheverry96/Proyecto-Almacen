@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorMartillos;
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorMartilloBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuMartillosInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorMartillos manmart;
+    ManejadorMarcasDB manmarDB;
+    ManejadorMartilloBD manmartDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manmart = new ManejadorMartillos();
+        manmarDB = new ManejadorMarcasDB();
+        manmartDB = new ManejadorMartilloBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -88,9 +94,15 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -485,7 +497,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        manmart.consultarTodos();
+        manmartDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -569,7 +581,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         mart.setPeso(Integer.parseInt(jTextFieldPesoMartillo.getText()));
         mart.setTamaño(jTextFieldTamañoMartillo.getText());
 
-        if (manmart.insertar(mart)) {
+        if (manmartDB.insertar(mart)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -667,13 +679,21 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             martmod.setTipo(jTextFieldTamañoMartillo.getText());
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manmart.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manmart.modificar(posicion, martmod)) {
-                    JOptionPane.showMessageDialog(this, "Martillo modificado exitosamente");
-                    indiceFila--;
-                }
-            } else {
+//            int posicion = manmart.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manmart.modificar(posicion, martmod)) {
+//                    JOptionPane.showMessageDialog(this, "Martillo modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+              if (manmartDB.modificar(a, martmod)) {
+                JOptionPane.showMessageDialog(this, "Martillo modificado exitosamente");
+                indiceFila--;
+                manmartDB.consultarTodos();
+
+              } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -683,13 +703,21 @@ public class MenuMartillosInter extends javax.swing.JFrame {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Martillos resultado = (Martillos) manmart.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Martillo no encontrado");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Martillos resultado = (Martillos) manmart.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Martillo no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El Martillo encontrado es:\n" + resultado.toString());
+//        }
+          try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Martillos resultado = (Martillos) manmartDB.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "El Martillo encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Martillo no encontrado");
+
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -700,7 +728,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manmart.borrar(idEliminar)) {
+            if (manmartDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Martillo borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -713,7 +741,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (manmart.borrarTodo()) {
+        if (manmartDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

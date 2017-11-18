@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorHornosmicroondas;
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorHornomicroondasDB;
+import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorHornosmicroondas manhornmic;
+    ManejadorMarcasDB manmarDB;
+    ManejadorHornomicroondasDB manhornmicDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manhornmic = new ManejadorHornosmicroondas();
+        manmarDB = new ManejadorMarcasDB();
+        manhornmicDB = new ManejadorHornomicroondasDB();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -88,9 +94,15 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -465,7 +477,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        manhornmic.consultarTodos();
+        manhornmicDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -555,7 +567,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         hornmic.setPotencia(jTextFieldPotencia.getText());
         hornmic.setVoltaje(jTextFieldVoltaje.getText());
 
-        if (manhornmic.insertar(hornmic)) {
+        if (manhornmicDB.insertar(hornmic)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -655,13 +667,21 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
             hornmicmod.setPotencia(jTextFieldVoltaje.getText());
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manhornmic.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manhornmic.modificar(posicion, hornmicmod)) {
-                    JOptionPane.showMessageDialog(this, "Horno microondas modificado exitosamente");
-                    indiceFila--;
-                }
-            } else {
+//            int posicion = manhornmic.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manhornmic.modificar(posicion, hornmicmod)) {
+//                    JOptionPane.showMessageDialog(this, "Horno microondas modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+              if (manhornmicDB.modificar(a, hornmicmod)) {
+                JOptionPane.showMessageDialog(this, "Celular modificado exitosamente");
+                indiceFila--;
+                manhornmicDB.consultarTodos();
+
+              } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -670,13 +690,21 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Hornosmicroondas resultado = (Hornosmicroondas) manhornmic.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Horno microondas no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El Horno microondas encontrada es:\n" + resultado.toString());
+//        }
+          try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Hornosmicroondas resultado = (Hornosmicroondas) manhornmicDB.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "El horno encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Horno no encontrado");
 
-        Hornosmicroondas resultado = (Hornosmicroondas) manhornmic.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Horno microondas no encontrado");
-        } else {
-            JOptionPane.showMessageDialog(this, "El Horno microondas encontrada es:\n" + resultado.toString());
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -687,7 +715,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manhornmic.borrar(idEliminar)) {
+            if (manhornmicDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Horno microondas borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -700,7 +728,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (manhornmic.borrarTodo()) {
+        if (manhornmicDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

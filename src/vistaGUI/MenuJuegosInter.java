@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorJuegos;
 import controlador.ManejadorObjetos;
+import controladorDB.ManejadorJuegoBD;
+import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuJuegosInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorJuegos manjueg;
+    ManejadorMarcasDB manmarDB;
+    ManejadorJuegoBD manjuegDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manjueg = new ManejadorJuegos();
+        manmarDB = new ManejadorMarcasDB();
+        manjuegDB = new ManejadorJuegoBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -86,9 +92,15 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -447,7 +459,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        manjueg.consultarTodos();
+        manjuegDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -520,7 +532,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         jueg.setPlataforma(jTextFieldPlataforma.getText());
         jueg.setNumjugadores(Integer.parseInt(jTextFieldNumeroJugadores.getText()));
 
-        if (manjueg.insertar(jueg)) {
+        if (manjuegDB.insertar(jueg)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -603,13 +615,21 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             juegmod.setNumjugadores(Integer.parseInt(jTextFieldNumeroJugadores.getText()));
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manjueg.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manjueg.modificar(posicion, juegmod)) {
-                    JOptionPane.showMessageDialog(this, "Juego modificado exitosamente");
-                    indiceFila--;
-                }
-            } else {
+//            int posicion = manjueg.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manjueg.modificar(posicion, juegmod)) {
+//                    JOptionPane.showMessageDialog(this, "Juego modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+              if (manjuegDB.modificar(a, juegmod)) {
+                JOptionPane.showMessageDialog(this, "Juego modificado exitosamente");
+                indiceFila--;
+                manjuegDB.consultarTodos();
+
+              } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -618,13 +638,21 @@ public class MenuJuegosInter extends javax.swing.JFrame {
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
 
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Juegos resultado = (Juegos) manjueg.consultarId(idBuscado);
-        if (resultado == null) {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Juegos resultado = (Juegos) manjueg.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Juego no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El Juego encontrado es:\n" + resultado.toString());
+//        }
+try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Juegos resultado = (Juegos) manjuegDB.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "El juego encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Juego no encontrado");
-        } else {
-            JOptionPane.showMessageDialog(this, "El Juego encontrado es:\n" + resultado.toString());
+
         }
 
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
@@ -635,7 +663,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manjueg.borrar(idEliminar)) {
+            if (manjuegDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Juego borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -648,7 +676,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
 
-        if (manjueg.borrarTodo()) {
+        if (manjuegDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }
