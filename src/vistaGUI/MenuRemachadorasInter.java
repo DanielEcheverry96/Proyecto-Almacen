@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorRemachadoras;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorRemachadoraBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorRemachadoras manrem;
+    ManejadorMarcasDB manmarDB;
+    ManejadorRemachadoraBD manremBD;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manrem = new ManejadorRemachadoras();
+        manmarDB = new ManejadorMarcasDB();
+        manremBD = new ManejadorRemachadoraBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -85,9 +91,15 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -462,7 +474,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        manrem.consultarTodos();
+        manremBD.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -551,7 +563,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         rema.setTiporemache(jTextFieldTipoRemache.getText());
         rema.setCalibre(Double.parseDouble(jTextFieldCalibre.getText()));
 
-        if (manrem.insertar(rema)) {
+        if (manremBD.insertar(rema)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -596,6 +608,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             jTextFieldPotencia.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
             jTextFieldTipoRemache.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldCalibre.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 9).toString();
             try {
 
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -639,32 +652,49 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             remammod.setPotencia(jTextFieldPotencia.getText());
             remammod.setTiporemache(jTextFieldTipoRemache.getText());
             remammod.setCalibre(Double.parseDouble(jTextFieldCalibre.getText()));
+            remammod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manrem.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manrem.modificar(posicion, remammod)) {
-                    JOptionPane.showMessageDialog(this, "La remachadora se ha modificado exitosamente");
-                    indiceFila--;
-                }
+//            int posicion = manrem.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manrem.modificar(posicion, remammod)) {
+//                    JOptionPane.showMessageDialog(this, "La remachadora se ha modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error al modificar");
+//        }
+            if (manremBD.modificar(a, remammod)) {
+                JOptionPane.showMessageDialog(this, "Bicicleta modificada exitosamente");
+                indiceFila--;
+                manremBD.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar");
+            limpiar();
         }
-
-        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Remachadoras resultado = (Remachadoras) manrem.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Remachadora no encontrada");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Remachadoras resultado = (Remachadoras) manrem.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Remachadora no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "La remachadora encontrada es:\n" + resultado.toString());
+//        }
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Remachadoras resultado = (Remachadoras) manremBD.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "La remachadora encontrada es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Remachadora no encontrada");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -674,7 +704,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manrem.borrar(idEliminar)) {
+            if (manremBD.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Remachadora borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -685,7 +715,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (manrem.borrarTodo()) {
+        if (manremBD.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorVestidosCalle;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorVestidocalleBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorVestidosCalle manves;
+    ManejadorMarcasDB manmarDB;
+    ManejadorVestidocalleBD manvesBD;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manves = new ManejadorVestidosCalle();
+        manmarDB = new ManejadorMarcasDB();
+        manvesBD = new ManejadorVestidocalleBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -85,9 +91,15 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -451,7 +463,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        manves.consultarTodos();
+        manvesBD.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -486,13 +498,22 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxMarcaItemStateChanged
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        VestidosCalle resultado = (VestidosCalle) manves.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Vestido de calle no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El vestido de calle encontrado es:\n" + resultado.toString());
+//        }
 
-        VestidosCalle resultado = (VestidosCalle) manves.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Vestido de calle no encontrado");
-        } else {
-            JOptionPane.showMessageDialog(this, "El vestido de calle encontrado es:\n" + resultado.toString());
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            VestidosCalle resultado = (VestidosCalle) manvesBD.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "El vestido encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Vestido no encontrado");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -537,7 +558,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
         vescal.setTalla(jComboBoxTalla.getItemAt(jComboBoxTalla.getSelectedIndex()));
         vescal.setTipousuario(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()));
 
-        if (manves.insertar(vescal)) {
+        if (manvesBD.insertar(vescal)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -581,6 +602,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
             String tipo = (jTable1.getValueAt(filaSeleccionada, 6).toString());
             String talla = (jTable1.getValueAt(filaSeleccionada, 7).toString());
             String usuario = (jTable1.getValueAt(filaSeleccionada, 8).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 9).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -610,40 +632,59 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
             vescalmod.setTipo(tipo);
             vescalmod.setTalla(talla);
             vescalmod.setTipousuario(usuario);
+            vescalmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manves.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manves.modificar(posicion, vescalmod)) {
-                    JOptionPane.showMessageDialog(this, "El vestido de calle se ha modificado exitosamente");
-                    indiceFila--;
-                }
+//            int posicion = manves.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manves.modificar(posicion, vescalmod)) {
+//                    JOptionPane.showMessageDialog(this, "El vestido de calle se ha modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error al modificar");
+//        }
+            if (manvesBD.modificar(a, vescalmod)) {
+                JOptionPane.showMessageDialog(this, "Vestido modificado exitosamente");
+                indiceFila--;
+                manvesBD.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar");
         }
         limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonBorrarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarUnoActionPerformed
-        int filaSeleccionada = jTable1.getSelectedRow();
-        if (filaSeleccionada >= 0) {
-            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
-            model.removeRow(filaSeleccionada);
-            if (manves.borrar(idEliminar)) {
-                JOptionPane.showMessageDialog(this, "Vestido de calle borrado exitosamente");
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al borrar");
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al borrar");
+//        int filaSeleccionada = jTable1.getSelectedRow();
+//        if (filaSeleccionada >= 0) {
+//            int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+//            model.removeRow(filaSeleccionada);
+//            if (manves.borrar(idEliminar)) {
+//                JOptionPane.showMessageDialog(this, "Vestido de calle borrado exitosamente");
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al borrar");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error al borrar");
+//        }
+
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            VestidosCalle resultado = (VestidosCalle) manvesBD.consultarId(idBuscado);
+            JOptionPane.showMessageDialog(this, "El vestido encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Vestido no encontrado");
+
         }
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (manves.borrarTodo()) {
+        if (manvesBD.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

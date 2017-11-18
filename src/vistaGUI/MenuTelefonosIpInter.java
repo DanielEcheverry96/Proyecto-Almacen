@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorTelefonosIp;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorTelefonoIpBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorTelefonosIp mantelip;
+    ManejadorMarcasDB manmarDB;
+    ManejadorTelefonoIpBD mantelipBD;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mantelip = new ManejadorTelefonosIp();
+        manmarDB = new ManejadorMarcasDB();
+        mantelipBD = new ManejadorTelefonoIpBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -84,9 +90,15 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -451,7 +463,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTipoProcesadorActionPerformed
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        mantelip.consultarTodos();
+        mantelipBD.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -524,7 +536,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
         telip.setTipoprocesador(jTextFieldTipoProcesador.getText());
         telip.setInterfacered(jTextFieldInterfaceRed.getText());
 
-        if (mantelip.insertar(telip)) {
+        if (mantelipBD.insertar(telip)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -566,6 +578,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             jTextFieldColor.setText(jTable1.getValueAt(filaSeleccionada, 5).toString());
             jTextFieldTipoProcesador.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
             jTextFieldInterfaceRed.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 8).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -594,31 +607,48 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
             telipmod.setColor(jTextFieldColor.getText());
             telipmod.setTipoprocesador(jTextFieldTipoProcesador.getText());
             telipmod.setInterfacered(jTextFieldInterfaceRed.getText());
+            telipmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = mantelip.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (mantelip.modificar(posicion, telipmod)) {
-                    JOptionPane.showMessageDialog(this, "El telefono Ip se ha modificado exitosamente");
-                    indiceFila--;
-                }
+//            int posicion = mantelip.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (mantelip.modificar(posicion, telipmod)) {
+//                    JOptionPane.showMessageDialog(this, "El telefono Ip se ha modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error al modificar");
+            if (mantelipBD.modificar(a, telipmod)) {
+                JOptionPane.showMessageDialog(this, "El telefono Ip se ha modificado exitosamente");
+                indiceFila--;
+                mantelipBD.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar");
         }
         limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        TelefonosIp resultado = (TelefonosIp) mantelip.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Telefono Ip no encontrado");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        TelefonosIp resultado = (TelefonosIp) mantelip.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Telefono Ip no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El telefono Ip encontrado es:\n" + resultado.toString());
+//        }
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            TelefonosIp resultado = (TelefonosIp) mantelipBD.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "El telefono Ip encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Telefono Ip no encontrado");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -627,7 +657,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (mantelip.borrar(idEliminar)) {
+            if (mantelipBD.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Telefono Ip borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -638,7 +668,7 @@ public class MenuTelefonosIpInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (mantelip.borrarTodo()) {
+        if (mantelipBD.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

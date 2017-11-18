@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorRopaDeportiva;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorRopadeportivaBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorRopaDeportiva manrop;
+    ManejadorMarcasDB manmarDB;
+    ManejadorRopadeportivaBD manropBD;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manrop = new ManejadorRopaDeportiva();
+        manmarDB = new ManejadorMarcasDB();
+        manropBD = new ManejadorRopadeportivaBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -85,9 +91,15 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -473,7 +485,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        manrop.consultarTodos();
+        manropBD.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -548,7 +560,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
         ropdep.setTalla(jComboBoxTalla.getItemAt(jComboBoxTalla.getSelectedIndex()));
         ropdep.setTipousuario(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()));
 
-        if (manrop.insertar(ropdep)) {
+        if (manropBD.insertar(ropdep)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -593,6 +605,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
             String tipo = (jTable1.getValueAt(filaSeleccionada, 6).toString());
             String talla = (jTable1.getValueAt(filaSeleccionada, 7).toString());
             String usuario = (jTable1.getValueAt(filaSeleccionada, 8).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 9).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -622,32 +635,50 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
             ropdepmod.setTipo(tipo);
             ropdepmod.setTalla(talla);
             ropdepmod.setTipousuario(usuario);
+            ropdepmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manrop.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manrop.modificar(posicion, ropdepmod)) {
-                    JOptionPane.showMessageDialog(this, "La ropa deportiva se ha modificado exitosamente");
-                    indiceFila--;
-                }
+//            int posicion = manrop.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manrop.modificar(posicion, ropdepmod)) {
+//                    JOptionPane.showMessageDialog(this, "La ropa deportiva se ha modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error al modificar");
+//        }
+            if (manropBD.modificar(a, ropdepmod)) {
+                JOptionPane.showMessageDialog(this, "La ropa deportiva modificada exitosamente");
+                indiceFila--;
+                manropBD.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar");
         }
 
         limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        RopaDeportiva resultado = (RopaDeportiva) manrop.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Ropa deportiva no encontrada");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        RopaDeportiva resultado = (RopaDeportiva) manrop.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Ropa deportiva no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "La ropa deportiva encontrada es:\n" + resultado.toString());
+//        }
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            RopaDeportiva resultado = (RopaDeportiva) manropBD.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "La ropa deportiva encontrada es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Ropa deportiva no encontrada");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -656,7 +687,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manrop.borrar(idEliminar)) {
+            if (manropBD.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Ropa deportiva borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -667,7 +698,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (manrop.borrarTodo()) {
+        if (manropBD.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

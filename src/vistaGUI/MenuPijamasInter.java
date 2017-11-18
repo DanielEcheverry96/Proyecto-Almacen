@@ -7,8 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorPijamas;
-import controladorDB.ManejadorBicicletaDB;
 import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorPijamaBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -36,6 +36,8 @@ public class MenuPijamasInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorPijamas manpij;
+    ManejadorMarcasDB manmarDB;
+    ManejadorPijamaBD manpijDB;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -52,6 +54,8 @@ public class MenuPijamasInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manpij = new ManejadorPijamas();
+        manmarDB = new ManejadorMarcasDB();
+        manpijDB = new ManejadorPijamaBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -87,9 +91,15 @@ public class MenuPijamasInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -467,7 +477,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
 
-        manpij.consultarTodos();
+        manpijDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -533,7 +543,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
         pijam.setTalla(jComboBoxTalla.getItemAt(jComboBoxTalla.getSelectedIndex()));
         pijam.setTipousuario(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()));
 
-        if (manpij.insertar(pijam)) {
+        if (manpijDB.insertar(pijam)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -580,6 +590,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
             String tipo = (jTable1.getValueAt(filaSeleccionada, 6).toString());
             String talla = (jTable1.getValueAt(filaSeleccionada, 7).toString());
             String usuario = (jTable1.getValueAt(filaSeleccionada, 8).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 9).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -610,31 +621,50 @@ public class MenuPijamasInter extends javax.swing.JFrame {
             pijammod.setTipo(tipo);
             pijammod.setTalla(talla);
             pijammod.setTipousuario(usuario);
+            pijammod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manpij.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manpij.modificar(posicion, pijammod)) {
-                    JOptionPane.showMessageDialog(this, "La pijama se ha modificado exitosamente");
-                    indiceFila--;
-                }
+//            int posicion = manpij.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manpij.modificar(posicion, pijammod)) {
+//                    JOptionPane.showMessageDialog(this, "La pijama se ha modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error al modificar");
+//        }
+            if (manpijDB.modificar(a, pijammod)) {
+                JOptionPane.showMessageDialog(this, "La pijama se ha modificado exitosamente");
+                indiceFila--;
+                manpijDB.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar");
+            limpiar();
         }
-        limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Pijamas resultado = (Pijamas) manpij.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Pijama no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "La pijama encontrada es:\n" + resultado.toString());
+//        }
 
-        Pijamas resultado = (Pijamas) manpij.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Pijama no encontrada");
-        } else {
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Pijamas resultado = (Pijamas) manpijDB.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "La pijama encontrada es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Pijama no encontrada");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -644,7 +674,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manpij.borrar(idEliminar)) {
+            if (manpijDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Pijama borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -655,7 +685,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (manpij.borrarTodo()) {
+        if (manpijDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorZapatos;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorZapatoBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuZapatosInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorZapatos manzap;
+    ManejadorMarcasDB manmarDB;
+    ManejadorZapatoBD manzapBD;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manzap = new ManejadorZapatos();
+        manmarDB = new ManejadorMarcasDB();
+        manzapBD = new ManejadorZapatoBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -85,9 +91,15 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -449,7 +461,7 @@ public class MenuZapatosInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        manzap.consultarTodos();
+        manzapBD.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -531,7 +543,7 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         zap.setTallanumerica(Integer.parseInt(jTextFieldTallaNumerica.getText()));
         zap.setTipousuario(jComboBoxUsuario.getItemAt(jComboBoxUsuario.getSelectedIndex()));
 
-        if (manzap.insertar(zap)) {
+        if (manzapBD.insertar(zap)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -575,6 +587,7 @@ public class MenuZapatosInter extends javax.swing.JFrame {
             String tipo = (jTable1.getValueAt(filaSeleccionada, 6).toString());
             jTextFieldTallaNumerica.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             String usuario = (jTable1.getValueAt(filaSeleccionada, 8).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 9).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -611,32 +624,50 @@ public class MenuZapatosInter extends javax.swing.JFrame {
             zapmod.setTipozapato(tipo);
             zapmod.setTallanumerica(Integer.parseInt(jTextFieldTallaNumerica.getText()));
             zapmod.setTipousuario(usuario);
+            zapmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manzap.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manzap.modificar(posicion, zapmod)) {
-                    JOptionPane.showMessageDialog(this, "El zapato se ha modificado exitosamente");
-                    indiceFila--;
-                }
+//            int posicion = manzap.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manzap.modificar(posicion, zapmod)) {
+//                    JOptionPane.showMessageDialog(this, "El zapato se ha modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error al modificar");
+//        }
+            if (manzapBD.modificar(a, zapmod)) {
+                JOptionPane.showMessageDialog(this, "Zapato modificado exitosamente");
+                indiceFila--;
+                manzapBD.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar");
         }
 
         limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Zapatos resultado = (Zapatos) manzap.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Zapato no encontrado");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Zapatos resultado = (Zapatos) manzap.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Zapato no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El zapato encontrado es:\n" + resultado.toString());
+//        }
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Zapatos resultado = (Zapatos) manzapBD.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "El zapato encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Zapato no encontrado");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -645,7 +676,7 @@ public class MenuZapatosInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manzap.borrar(idEliminar)) {
+            if (manzapBD.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Zapato borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -656,7 +687,7 @@ public class MenuZapatosInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (manzap.borrarTodo()) {
+        if (manzapBD.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

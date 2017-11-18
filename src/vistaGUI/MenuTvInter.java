@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorTelevisores;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorTelevisorBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuTvInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorTelevisores mantv;
+    ManejadorMarcasDB manmarDB;
+    ManejadorTelevisorBD mantvBD;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuTvInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mantv = new ManejadorTelevisores();
+        manmarDB = new ManejadorMarcasDB();
+        mantvBD = new ManejadorTelevisorBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -86,9 +92,15 @@ public class MenuTvInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -469,7 +481,7 @@ public class MenuTvInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        mantv.consultarTodos();
+        mantvBD.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -564,7 +576,7 @@ public class MenuTvInter extends javax.swing.JFrame {
         tv.setTipopantalla(jTextFieldTipoPantalla.getText());
         tv.setResolucion(jTextFieldResolucion.getText());
 
-        if (mantv.insertar(tv)) {
+        if (mantvBD.insertar(tv)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -611,6 +623,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             jTextFieldTamañoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldTipoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldResolucion.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 10).toString();
 
             try {
 
@@ -657,31 +670,38 @@ public class MenuTvInter extends javax.swing.JFrame {
             tvmod.setTampantalla(Integer.parseInt(jTextFieldTamañoPantalla.getText()));
             tvmod.setTipopantalla(jTextFieldTipoPantalla.getText());
             tvmod.setResolucion(jTextFieldResolucion.getText());
+            tvmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = mantv.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (mantv.modificar(posicion, tvmod)) {
-                    JOptionPane.showMessageDialog(this, "El televisor se ha modificado exitosamente");
-                    indiceFila--;
-                }
+//           
+            if (mantvBD.modificar(a, tvmod)) {
+                JOptionPane.showMessageDialog(this, "Televisor modificado exitosamente");
+                indiceFila--;
+                mantvBD.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar");
         }
         limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Televisores resultado = (Televisores) mantv.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Televisor no encontrado");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Televisores resultado = (Televisores) mantv.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Televisor no encontrado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El televisor encontrado es:\n" + resultado.toString());
+//        }
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Televisores resultado = (Televisores) mantvBD.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "El televisor encontrado es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Televisor no encontrado");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -690,7 +710,7 @@ public class MenuTvInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (mantv.borrar(idEliminar)) {
+            if (mantvBD.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Televisor borrado exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -701,7 +721,7 @@ public class MenuTvInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (mantv.borrarTodo()) {
+        if (mantvBD.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

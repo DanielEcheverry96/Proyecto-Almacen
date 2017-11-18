@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorSierras;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorSierraBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuSierrasInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorSierras mansie;
+    ManejadorMarcasDB manmarDB;
+    ManejadorSierraBD mansieBD;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         mansie = new ManejadorSierras();
+        manmarDB = new ManejadorMarcasDB();
+        mansieBD = new ManejadorSierraBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -87,9 +93,15 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -491,7 +503,7 @@ public class MenuSierrasInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTipoActionPerformed
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        mansie.consultarTodos();
+        mansieBD.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -598,7 +610,7 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         sie.setPeso(Float.parseFloat(jTextFieldPeso.getText()));
         sie.setDiametrodisco(Float.parseFloat(jTextFieldDiametroDisco.getText()));
 
-        if (mansie.insertar(sie)) {
+        if (mansieBD.insertar(sie)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -646,6 +658,7 @@ public class MenuSierrasInter extends javax.swing.JFrame {
             jTextFieldVelocidad.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldPeso.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldDiametroDisco.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 11).toString();
 
             try {
 
@@ -707,32 +720,50 @@ public class MenuSierrasInter extends javax.swing.JFrame {
             siemod.setVelocidad(Integer.parseInt(jTextFieldVelocidad.getText()));
             siemod.setPeso(Float.parseFloat(jTextFieldPeso.getText()));
             siemod.setDiametrodisco(Float.parseFloat(jTextFieldDiametroDisco.getText()));
+            siemod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = mansie.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (mansie.modificar(posicion, siemod)) {
-                    JOptionPane.showMessageDialog(this, "La sierra se ha modificado exitosamente");
-                    indiceFila--;
-                }
+//            int posicion = mansie.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (mansie.modificar(posicion, siemod)) {
+//                    JOptionPane.showMessageDialog(this, "La sierra se ha modificado exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Error al modificar");
+//        }
+            if (mansieBD.modificar(a, siemod)) {
+                JOptionPane.showMessageDialog(this, "La sierra modificada exitosamente");
+                indiceFila--;
+                mansieBD.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error al modificar");
         }
 
         limpiar();
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Sierras resultado = (Sierras) mansie.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Sierra no encontrada");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Sierras resultado = (Sierras) mansie.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Sierra no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "La sierra encontrada es:\n" + resultado.toString());
+//        }
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Sierras resultado = (Sierras) mansieBD.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "La sierra encontrada es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Sierra no encontrada");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -741,7 +772,7 @@ public class MenuSierrasInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (mansie.borrar(idEliminar)) {
+            if (mansieBD.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Sierra borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -752,7 +783,7 @@ public class MenuSierrasInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (mansie.borrarTodo()) {
+        if (mansieBD.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }

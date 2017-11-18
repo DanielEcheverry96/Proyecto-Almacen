@@ -60,7 +60,7 @@ public class ManejadorVestidocalleBD implements ICRUDDB {
         VestidosCalle temp = (VestidosCalle) obj;
         try {
             String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = " + id + "";
+                    + "precio = ?, imagen = ?,  idcategoria = ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
             //stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getNombre());
@@ -68,8 +68,8 @@ public class ManejadorVestidocalleBD implements ICRUDDB {
             stmt.setString(3, temp.getColor());
             stmt.setFloat(4, temp.getPrecio());
             stmt.setString(5, temp.getImagen());
-            stmt.setInt(6, temp.getMar().getId());
-            stmt.setInt(7, idcategoria);
+            //stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
             sql = "update vestido set tipo_vestido = ?,talla_vestido = ?,tipo_usuario_vestido = ? where idarticulo = " + id + "";

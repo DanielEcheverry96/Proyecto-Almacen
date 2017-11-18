@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controlador.ManejadorRaquetas;
+import controladorDB.ManejadorMarcasDB;
+import controladorDB.ManejadorRaquetaBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ItemEvent;
@@ -34,6 +36,8 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
      */
     ManejadorObjetos manobj;
     ManejadorRaquetas manraq;
+    ManejadorMarcasDB manmarDB;
+    ManejadorRaquetaBD manraqBD;
     Integer idMarcaTemporal = null;
     String nombreMarcaTemporal = "";
     DefaultTableModel model;
@@ -50,6 +54,8 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manraq = new ManejadorRaquetas();
+        manmarDB = new ManejadorMarcasDB();
+        manraqBD = new ManejadorRaquetaBD();
         model = new DefaultTableModel() {
             @Override
             public Class<?> getColumnClass(int column) {
@@ -86,9 +92,15 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
         jTable1.setRowMargin(5);
     }
 
+//    public void inicializarComboBox() {
+//        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
+//            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+//        }
+//    }
     public void inicializarComboBox() {
-        for (int i = 0; i < manobj.arregloMarcas.size(); i++) {
-            jComboBoxMarca.addItem(manobj.arregloMarcas.get(i).getDescripcion());
+        manmarDB.consultarTodos();
+        for (int i = 0; i < ManejadorObjetos.arregloMarcas.size(); i++) {
+            jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
 
@@ -478,7 +490,7 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
-        manraq.consultarTodos();
+        manraqBD.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -570,7 +582,7 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
         raque.setAncho(Float.parseFloat(jTextFieldAncho.getText()));
         raque.setPeso(Float.parseFloat(jTextFieldPeso.getText()));
 
-        if (manraq.insertar(raque)) {
+        if (manraqBD.insertar(raque)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             model.insertRow(indiceFila, dato);
@@ -618,7 +630,7 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
             jTextFieldLongitud.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldAncho.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldPeso.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
-
+            String img = jTable1.getValueAt(filaSeleccionada, 10).toString();
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
                     throw new ValidaCantidad();
@@ -670,29 +682,47 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
             raqmod.setLongitud(Integer.parseInt(jTextFieldLongitud.getText()));
             raqmod.setAncho(Float.parseFloat(jTextFieldAncho.getText()));
             raqmod.setPeso(Float.parseFloat(jTextFieldPeso.getText()));
-
+            raqmod.setImagen(img);
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-            int posicion = manraq.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manraq.modificar(posicion, raqmod)) {
-                    JOptionPane.showMessageDialog(this, "Raqueta modificada exitosamente");
-                    indiceFila--;
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            int posicion = manraq.busquedaBinaria(a);
+//            if (!(posicion == -1)) {
+//                if (manraq.modificar(posicion, raqmod)) {
+//                    JOptionPane.showMessageDialog(this, "Raqueta modificada exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+
+            if (manraqBD.modificar(a, raqmod)) {
+                JOptionPane.showMessageDialog(this, "Raqueta modificada exitosamente");
+                indiceFila--;
+                manraqBD.consultarTodos();
             }
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al modificar");
         }
+
         limpiar();
+
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonConsultarUnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarUnoActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Raquetas resultado = (Raquetas) manraq.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Raqueta no encontrada");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Raquetas resultado = (Raquetas) manraq.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Raqueta no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "La raqueta encontrada es:\n" + resultado.toString());
+//        }
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Raquetas resultado = (Raquetas) manraqBD.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "La raqueta encontrada es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Raqueta no encontrada");
+
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -701,7 +731,7 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manraq.borrar(idEliminar)) {
+            if (manraqBD.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Raqueta borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -713,7 +743,7 @@ public class MenuRaquetasInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonBorrarUnoActionPerformed
 
     private void jButtonBorrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBorrarTodosActionPerformed
-        if (manraq.borrarTodo()) {
+        if (manraqBD.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }
