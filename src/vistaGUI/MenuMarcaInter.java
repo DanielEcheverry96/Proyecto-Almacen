@@ -278,7 +278,7 @@ public class MenuMarcaInter extends javax.swing.JFrame {
             return;
         }
         Marca mar = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
-        if (manobj.insertar(mar)) {
+        if (manmarDB.insertar(mar)) {
             jMensaje.setText("Marca Insertada");
             model.insertRow(indiceFila, dato);
             jTable2.setValueAt(jTextFieldId.getText(), indiceFila, 0);
@@ -289,17 +289,11 @@ public class MenuMarcaInter extends javax.swing.JFrame {
             jMensaje.setText("Marca no insertada");
         }
 
-        if (manmarDB.insertar(mar)) {
-            System.out.println("marca insertada en DB");
-        } else {
-            System.out.println("no DB");
-        }
-
         limpiar();
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        manobj.consultarTodos();
+        manmarDB.consultarTodos();
 
         while (model.getRowCount() > 0) {
             model.removeRow(0);
@@ -319,7 +313,7 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         if (filaSeleccionada >= 0) {
             int idEliminar = Integer.parseInt(jTable2.getValueAt(filaSeleccionada, 0).toString());
             model.removeRow(filaSeleccionada);
-            if (manobj.borrar(idEliminar)) {
+            if (manmarDB.borrar(idEliminar)) {
                 JOptionPane.showMessageDialog(this, "Marca borrada exitosamente");
             } else {
                 JOptionPane.showMessageDialog(this, "Error al borrar");
@@ -339,11 +333,19 @@ public class MenuMarcaInter extends javax.swing.JFrame {
             jTextFieldMarca.setText(jTable2.getValueAt(filaSeleccionada, 1).toString());
             Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             int posicion = manobj.busquedaBinaria(a);
-            if (!(posicion == -1)) {
-                if (manobj.modificar(posicion, marmod)) {
-                    JOptionPane.showMessageDialog(this, "Marca modificada exitosamente");
-                    indiceFila--;
-                }
+//            if (!(posicion == -1)) {
+//                if (manobj.modificar(posicion, marmod)) {
+//                    JOptionPane.showMessageDialog(this, "Marca modificada exitosamente");
+//                    indiceFila--;
+//                }
+//            } else {
+//                JOptionPane.showMessageDialog(this, "Error al modificar");
+//            }
+            if (manmarDB.modificar(a, marmod)) {
+                JOptionPane.showMessageDialog(this, "Marca se ha modificado exitosamente");
+                indiceFila--;
+                manmarDB.consultarTodos();
+
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
@@ -352,18 +354,26 @@ public class MenuMarcaInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
-
-        Marca resultado = (Marca) manobj.consultarId(idBuscado);
-        if (resultado == null) {
-            JOptionPane.showMessageDialog(this, "Marca no encontrada");
-        } else {
+//        int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+//
+//        Marca resultado = (Marca) manobj.consultarId(idBuscado);
+//        if (resultado == null) {
+//            JOptionPane.showMessageDialog(this, "Marca no encontrada");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "La marca encontrada es:\n" + resultado.toString());
+//        }
+        try {
+            int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
+            Marca resultado = (Marca) manmarDB.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "La marca encontrada es:\n" + resultado.toString());
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "Marca no encontrada");
+
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (manobj.borrarTodo()) {
+        if (manmarDB.borrarTodo()) {
             while (model.getRowCount() > 0) {
                 model.removeRow(0);
             }
