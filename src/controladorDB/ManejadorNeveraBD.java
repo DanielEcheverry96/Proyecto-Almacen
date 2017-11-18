@@ -6,12 +6,14 @@
 package controladorDB;
 
 import controlador.ICRUD;
+import controlador.ICRUDDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import modelo.CategoriaElectrodomesticos;
 import modelo.Marca;
 import modelo.Neveras;
 
@@ -19,10 +21,11 @@ import modelo.Neveras;
  *
  * @author danie
  */
-public class ManejadorNeveraBD implements ICRUD {
+public class ManejadorNeveraBD implements ICRUDDB {
 
     Connection conpost;
     int idcategoria = 4040;
+    CategoriaElectrodomesticos catelec = new CategoriaElectrodomesticos();
 
     @Override
     public boolean insertar(Object obj) {
@@ -58,26 +61,27 @@ public class ManejadorNeveraBD implements ICRUD {
         PreparedStatement stmt = null;
         Neveras temp = (Neveras) obj;
         try {
-            String sql = "update articulo set idarticulo = ?, nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ?";
+            String sql = "update articulo set, nombrearticulo = ?, cantidad = ?, color = ?, "
+                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
             stmt = conpost.prepareStatement(sql);
-            stmt.setInt(1, temp.getIdArticulo());
-            stmt.setString(2, temp.getNombre());
-            stmt.setInt(3, temp.getCantidad());
-            stmt.setString(4, temp.getColor());
-            stmt.setFloat(5, temp.getPrecio());
-            stmt.setString(6, temp.getImagen());
-            stmt.setInt(7, temp.getIdMarca());
-            stmt.setInt(8, idcategoria);
+//            stmt.setInt(1, temp.getIdArticulo());
+            stmt.setString(1, temp.getNombre());
+            stmt.setInt(2, temp.getCantidad());
+            stmt.setString(3, temp.getColor());
+            stmt.setFloat(4, temp.getPrecio());
+            stmt.setString(5, temp.getImagen());
+            stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(7, idcategoria);
             stmt.executeUpdate();
-            sql = "update nevera set idarticulo = ?,capacidad_congelador = ?,capacidad_frigorifico = ?,material= ?,tamaño = ?,sistema = ?";
+            stmt = null;
+            sql = "update nevera set capacidad_congelador = ?,capacidad_frigorifico = ?,material= ?,tamaño = ?,sistema = ? where idarticulo = "+ id + "";
             stmt = conpost.prepareStatement(sql);
-            stmt.setInt(1, temp.getIdArticulo());
-            stmt.setString(2, temp.getCapcongelador());
-            stmt.setString(3, temp.getCapfrigorifero());
-            stmt.setString(4, temp.getMaterial());
-            stmt.setFloat(5, temp.getTamaño());
-            stmt.setString(6, temp.getSistema());
+//            stmt.setInt(1, temp.getIdArticulo());
+            stmt.setString(1, temp.getCapcongelador());
+            stmt.setString(2, temp.getCapfrigorifero());
+            stmt.setString(3, temp.getMaterial());
+            stmt.setFloat(4, temp.getTamaño());
+            stmt.setString(5, temp.getSistema());
             stmt.executeUpdate();
             conpost.close();
             stmt.close();
@@ -135,17 +139,71 @@ public class ManejadorNeveraBD implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "delete from articulo where idarticulo = ?";
+            stmt = conpost.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean borrarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "truncate table nevera";
+            stmt = conpost.prepareStatement(sql);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public ArrayList consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void consultarTodos() {
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        Statement stmt;
+        try {
+            stmt = conpost.createStatement();
+            ResultSet resultado = stmt.executeQuery("select * from articulo inner join nevera on (articulo.idarticulo = nevera.idarticulo) inner join marca on marca.idmarca = articulo.idmarca");
+            catelec.arregloneveras.clear();
+            while (resultado.next()) {
+                Neveras temp = new Neveras();
+                Marca mar = new Marca();
+                temp.setIdArticulo(resultado.getInt("idarticulo"));
+                mar.setId(resultado.getInt("idmarca"));
+                mar.setDescripcion(resultado.getString("descripcion"));
+                temp.setMar(mar);
+                temp.setNombre(resultado.getString("nombrearticulo"));
+                temp.setCantidad(resultado.getInt("cantidad"));
+                temp.setPrecio(resultado.getFloat("precio"));
+                temp.setColor(resultado.getString("color"));
+                temp.setImagen(resultado.getString("imagen"));
+                temp.setCapcongelador(resultado.getString("capacidad_congelador"));
+                temp.setCapfrigorifero(resultado.getString("capacidad_frigorifico"));
+                temp.setMaterial(resultado.getString("material"));
+                temp.setTamaño(resultado.getInt("tamaño"));
+                temp.setSistema(resultado.getString("sistema"));
+                catelec.arregloneveras.add(temp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
-
 }

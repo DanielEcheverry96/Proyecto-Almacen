@@ -6,12 +6,14 @@
 package controladorDB;
 
 import controlador.ICRUD;
+import controlador.ICRUDDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import modelo.CategoriaHerramientas;
 import modelo.Marca;
 import modelo.Martillos;
 
@@ -19,10 +21,11 @@ import modelo.Martillos;
  *
  * @author danie
  */
-public class ManejadorMartilloBD implements ICRUD {
+public class ManejadorMartilloBD implements ICRUDDB {
 
     Connection conpost;
     int idcategoria = 5050;
+    CategoriaHerramientas cateh = new CategoriaHerramientas();
 
     @Override
     public boolean insertar(Object obj) {
@@ -58,26 +61,27 @@ public class ManejadorMartilloBD implements ICRUD {
         PreparedStatement stmt = null;
         Martillos temp = (Martillos) obj;
         try {
-            String sql = "update articulo set idarticulo = ?, nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ?";
+            String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
+                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
             stmt = conpost.prepareStatement(sql);
-            stmt.setInt(1, temp.getIdArticulo());
-            stmt.setString(2, temp.getNombre());
-            stmt.setInt(3, temp.getCantidad());
-            stmt.setString(4, temp.getColor());
-            stmt.setFloat(5, temp.getPrecio());
-            stmt.setString(6, temp.getImagen());
-            stmt.setInt(7, temp.getIdMarca());
-            stmt.setInt(8, idcategoria);
+//            stmt.setInt(1, temp.getIdArticulo());
+            stmt.setString(1, temp.getNombre());
+            stmt.setInt(2, temp.getCantidad());
+            stmt.setString(3, temp.getColor());
+            stmt.setFloat(4, temp.getPrecio());
+            stmt.setString(5, temp.getImagen());
+            stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(7, idcategoria);
             stmt.executeUpdate();
-            sql = "update martillo set idarticulo = ?,material_mango = ?,material_cabezal = ?,peso = ?,tamaño= ?,tipo= ?";
+            stmt = null;
+            sql = "update martillo set material_mango = ?,material_cabezal = ?,peso = ?,tamaño= ?,tipo= ? where idarticulo = "+ id + "";
             stmt = conpost.prepareStatement(sql);
-            stmt.setInt(1, temp.getIdArticulo());
-            stmt.setString(2, temp.getMatmango());
-            stmt.setString(3, temp.getMatcabezal());
-            stmt.setInt(4, temp.getPeso());
-            stmt.setString(5, temp.getTamaño());
-            stmt.setString(6, temp.getTipo());
+//            stmt.setInt(1, temp.getIdArticulo());
+            stmt.setString(1, temp.getMatmango());
+            stmt.setString(2, temp.getMatcabezal());
+            stmt.setInt(3, temp.getPeso());
+            stmt.setString(4, temp.getTamaño());
+            stmt.setString(5, temp.getTipo());
             stmt.executeUpdate();
             conpost.close();
             stmt.close();
@@ -135,17 +139,71 @@ public class ManejadorMartilloBD implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "delete from articulo where idarticulo = ?";
+            stmt = conpost.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean borrarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "truncate table martillo";
+            stmt = conpost.prepareStatement(sql);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public ArrayList consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void consultarTodos() {
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        Statement stmt;
+        try {
+            stmt = conpost.createStatement();
+            ResultSet resultado = stmt.executeQuery("select * from articulo inner join martillos on (articulo.idarticulo = martillos.idarticulo) inner join marca on marca.idmarca = articulo.idmarca");
+            cateh.arreglomartillos.clear();
+            while (resultado.next()) {
+                Martillos temp = new Martillos();
+                Marca mar = new Marca();
+                temp.setIdArticulo(resultado.getInt("idarticulo"));
+                mar.setId(resultado.getInt("idmarca"));
+                mar.setDescripcion(resultado.getString("descripcion"));
+                temp.setMar(mar);
+                temp.setNombre(resultado.getString("nombrearticulo"));
+                temp.setCantidad(resultado.getInt("cantidad"));
+                temp.setPrecio(resultado.getFloat("precio"));
+                temp.setColor(resultado.getString("color"));
+                temp.setImagen(resultado.getString("imagen"));
+                temp.setMatmango(resultado.getString("material_mango"));
+                temp.setMatcabezal(resultado.getString("material_cabezal"));
+                temp.setPeso(resultado.getInt("peso"));
+                temp.setTamaño(resultado.getString("tamaño"));
+                temp.setTipo(resultado.getString("tipo"));
+                cateh.arreglomartillos.add(temp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
-
 }

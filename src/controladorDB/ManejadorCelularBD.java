@@ -6,12 +6,14 @@
 package controladorDB;
 
 import controlador.ICRUD;
+import controlador.ICRUDDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import modelo.CategoriaElectronicosOficina;
 import modelo.Marca;
 import modelo.TelefonosCelulares;
 
@@ -19,10 +21,11 @@ import modelo.TelefonosCelulares;
  *
  * @author danie
  */
-public class ManejadorCelularBD implements ICRUD {
+public class ManejadorCelularBD implements ICRUDDB {
 
     Connection conpost;
     int idcategoria = 2020;
+    CategoriaElectronicosOficina catel = new CategoriaElectronicosOficina();
 
     @Override
     public boolean insertar(Object obj) {
@@ -58,27 +61,28 @@ public class ManejadorCelularBD implements ICRUD {
         PreparedStatement stmt = null;
         TelefonosCelulares temp = (TelefonosCelulares) obj;
         try {
-            String sql = "update articulo set idarticulo = ?, nombrearticulo = ?, cantidad = ?, color = ?, "
-                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ?";
+            String sql = "update articulo set nombrearticulo = ?, cantidad = ?, color = ?, "
+                    + "precio = ?, imagen = ?, idmarca = ?, idcategoria = ? where idarticulo = "+ id + "";
             stmt = conpost.prepareStatement(sql);
-            stmt.setInt(1, temp.getIdArticulo());
-            stmt.setString(2, temp.getNombre());
-            stmt.setInt(3, temp.getCantidad());
-            stmt.setString(4, temp.getColor());
-            stmt.setFloat(5, temp.getPrecio());
-            stmt.setString(6, temp.getImagen());
-            stmt.setInt(7, temp.getIdMarca());
-            stmt.setInt(8, idcategoria);
+//            stmt.setInt(1, temp.getIdArticulo());
+            stmt.setString(1, temp.getNombre());
+            stmt.setInt(2, temp.getCantidad());
+            stmt.setString(3, temp.getColor());
+            stmt.setFloat(4, temp.getPrecio());
+            stmt.setString(5, temp.getImagen());
+            stmt.setInt(6, temp.getMar().getId());
+            stmt.setInt(7, idcategoria);
             stmt.executeUpdate();
-            sql = "update celular set idarticulo = ?,tipo_procesador = ?,tamaño_pantalla = ?,tamaño_memoria = ?,capacidad_almcenamiento= ?,tipo_pantalla= ?,interface_red= ?";
+            stmt = null;
+            sql = "update celular set tipo_procesador = ?,tamaño_pantalla = ?,tamaño_memoria = ?,capacidad_almcenamiento= ?,tipo_pantalla= ?,interface_red= ? where idarticulo = "+ id + "";
             stmt = conpost.prepareStatement(sql);
-            stmt.setInt(1, temp.getIdArticulo());
-            stmt.setString(2, temp.getTiprocesador());
-            stmt.setInt(3, temp.getTamañodepantalla());
-            stmt.setInt(4, temp.getTammemoria());
-            stmt.setInt(5, temp.getCapalmacenamiento());
-            stmt.setString(6, temp.getTipodepantalla());
-            stmt.setString(7, temp.getInterfacered());
+//            stmt.setInt(1, temp.getIdArticulo());
+            stmt.setString(1, temp.getTiprocesador());
+            stmt.setInt(2, temp.getTamañodepantalla());
+            stmt.setInt(3, temp.getTammemoria());
+            stmt.setInt(4, temp.getCapalmacenamiento());
+            stmt.setString(5, temp.getTipodepantalla());
+            stmt.setString(6, temp.getInterfacered());
             stmt.executeUpdate();
             conpost.close();
             stmt.close();
@@ -137,17 +141,72 @@ public class ManejadorCelularBD implements ICRUD {
 
     @Override
     public boolean borrar(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "delete from articulo where idarticulo = ?";
+            stmt = conpost.prepareStatement(sql);
+            stmt.setInt(1, id);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
     public boolean borrarTodo() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        PreparedStatement stmt;
+        try {
+            String sql = "truncate table celular";
+            stmt = conpost.prepareStatement(sql);
+            stmt.executeUpdate();
+            stmt.close();
+            conpost.close();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public ArrayList consultarTodos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void consultarTodos() {
+        ConexionDB connDB = new ConexionDB();
+        conpost = connDB.posgresConn();
+        Statement stmt;
+        try {
+            stmt = conpost.createStatement();
+            ResultSet resultado = stmt.executeQuery("select * from articulo inner join celular on (articulo.idarticulo = celular.idarticulo) inner join marca on marca.idmarca = articulo.idmarca");
+            catel.arreglotelefonoscelulares.clear();
+            while (resultado.next()) {
+                TelefonosCelulares temp = new TelefonosCelulares();
+                Marca mar = new Marca();
+                temp.setIdArticulo(resultado.getInt("idarticulo"));
+                mar.setId(resultado.getInt("idmarca"));
+                mar.setDescripcion(resultado.getString("descripcion"));
+                temp.setMar(mar);
+                temp.setNombre(resultado.getString("nombrearticulo"));
+                temp.setCantidad(resultado.getInt("cantidad"));
+                temp.setPrecio(resultado.getFloat("precio"));
+                temp.setColor(resultado.getString("color"));
+                temp.setImagen(resultado.getString("imagen"));
+                temp.setTiprocesador(resultado.getString("tipo_procesador"));
+                temp.setTamañodepantalla(resultado.getInt("tamaño_pantalla"));
+                temp.setTammemoria(resultado.getInt("tamaño_memoria"));
+                temp.setCapalmacenamiento(resultado.getInt("capacidad_almacenamiento"));
+                temp.setTipodepantalla(resultado.getString("tipo_pantalla"));
+                temp.setInterfacered(resultado.getString("interface_red"));
+                catel.arreglotelefonoscelulares.add(temp);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
-
 }
