@@ -67,7 +67,7 @@ public class ManejadorBicicletaDB implements ICRUDDB {
                 conpost.close();
                 stmt.close();
             } catch (SQLException ex) {
-                System.out.println(ex.getMessage());;
+                System.out.println(ex.getMessage());
                 return insertado;
             }
         }
@@ -145,7 +145,7 @@ public class ManejadorBicicletaDB implements ICRUDDB {
                 temp.setMaterial(resultado.getString("material_bici"));
                 temp.setTipo(resultado.getString("tipo_bici"));
             }
-
+            resultado.close();
             stmt.close();
             conpost.close();
         } catch (SQLException e) {
