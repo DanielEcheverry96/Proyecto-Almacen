@@ -103,6 +103,7 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
         comboBoxPermisos = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         botonOrdenar = new javax.swing.JButton();
+        jLabelMensaje = new javax.swing.JLabel();
 
         setTitle("Usuario");
 
@@ -272,7 +273,10 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
                                     .addComponent(botonBorrarUno)
                                     .addComponent(botonConsultarTodos)
                                     .addComponent(botonBorrarTodos)
-                                    .addComponent(botonOrdenar))))))
+                                    .addComponent(botonOrdenar)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -322,7 +326,10 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
                 .addGap(9, 9, 9)
                 .addComponent(botonOrdenar)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         pack();
@@ -334,6 +341,30 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
 
     private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
         Usuario usuarioInsertar = new Usuario();
+        try {
+            if (!ValidaEmail.validaEmail(campoEmail.getText())) {
+                throw new ValidaEmail();
+            }
+            if (!ValidaPassword.validaPassword(campoPassword.getText())) {
+                throw new ValidaPassword();
+            }
+            if (!ValidaNombreusuario.validaNombreusuario(campoUsuario.getText())) {
+                throw new ValidaNombreusuario();
+            } 
+        }catch (ValidaEmail e) {
+            jLabelMensaje.setText("El email que ingreso no es valido o no existe");
+            campoEmail.setText("");
+            return;
+        } catch (ValidaPassword e) {
+            jLabelMensaje.setText("El password que ingreso no es valido o no existe");
+            campoPassword.setText("");
+            return;
+        } catch (ValidaNombreusuario e) {
+            jLabelMensaje.setText("El nombre de usuario que ingreso no es valido");
+            campoUsuario.setText("");
+            return;
+        }
+        
         usuarioInsertar.setCedula(Integer.parseInt(campoCedula.getText()));
         usuarioInsertar.setPermisos(comboBoxPermisos.getSelectedIndex());
         usuarioInsertar.setNombre(campoNombre.getText());
@@ -409,6 +440,31 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
             campoUsuario.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
             campoPassword.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             campoDireccion.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
+            
+            try {
+            if (!ValidaEmail.validaEmail(campoEmail.getText())) {
+                throw new ValidaEmail();
+            }
+            if (!ValidaPassword.validaPassword(campoPassword.getText())) {
+                throw new ValidaPassword();
+            }
+            if (!ValidaNombreusuario.validaNombreusuario(campoUsuario.getText())) {
+                throw new ValidaNombreusuario();
+            } 
+        }catch (ValidaEmail e) {
+            jLabelMensaje.setText("El email que ingreso no es valido o no existe");
+            campoEmail.setText("");
+            return;
+        } catch (ValidaPassword e) {
+            jLabelMensaje.setText("El password que ingreso no es valido o no existe");
+            campoPassword.setText("");
+            return;
+        } catch (ValidaNombreusuario e) {
+            jLabelMensaje.setText("El nombre de usuario que ingreso no es valido");
+            campoUsuario.setText("");
+            return;
+        }
+            
             Usuario usuarioModificado = new Usuario();
             usuarioModificado.setCedula(Integer.parseInt(campoCedula.getText()));
             usuarioModificado.setPermisos((int) idPermisosTemporal);
@@ -539,6 +595,7 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
     private javax.swing.JTextField campoUsuario;
     private javax.swing.JComboBox<String> comboBoxPermisos;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabelMensaje;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel labelApellido;
