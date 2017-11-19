@@ -27,8 +27,8 @@ public class MenuMarcaInter extends javax.swing.JFrame {
     int indiceFila = 0;
     String[] dato = new String[2];
 
-    public MenuMarcaInter() {
-        initComponents();
+    public MenuMarcaInter() {       
+        initComponents(); 
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manmarDB = new ManejadorMarcasDB();
@@ -37,7 +37,6 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         model.addColumn("Marca");
         jTable2.setModel(model);
         model.insertRow(indiceFila, dato);
-
     }
 
     public void limpiar() {
@@ -200,21 +199,18 @@ public class MenuMarcaInter extends javax.swing.JFrame {
                             .addComponent(jButtonInsertar))
                         .addGap(6, 6, 6))
                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addGap(73, 73, 73))
             .addGroup(layout.createSequentialGroup()
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTitulo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jMensaje, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
-                        .addContainerGap(154, Short.MAX_VALUE))))
+                        .addContainerGap(154, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jTitulo)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane2)
@@ -223,9 +219,9 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jTitulo)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -240,7 +236,7 @@ public class MenuMarcaInter extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButtonOrdenarNombreDesc))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
+                        .addGap(57, 57, 57)
                         .addComponent(jButtonInsertar)
                         .addGap(14, 14, 14)
                         .addComponent(jButton3)

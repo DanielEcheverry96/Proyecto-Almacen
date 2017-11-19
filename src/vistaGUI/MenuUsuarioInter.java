@@ -30,6 +30,7 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
 
     public MenuUsuarioInter() {
         initComponents();
+        this.setLocationRelativeTo(null);
         model = new DefaultTableModel();
         model.addColumn("Cédula");
         model.addColumn("Permisos");
