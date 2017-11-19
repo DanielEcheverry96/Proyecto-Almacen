@@ -87,7 +87,7 @@ public class ManejadorMarcasDB implements ICRUDDB {
         Statement stmt;
         try {
             stmt = conpost.createStatement();
-            String sql = "select * from marca where id = " + id + ";";
+            String sql = "select * from marca where idmarca = " + id + ";";
             ResultSet rs = stmt.executeQuery(sql);
             if (rs.next()) {
                 temp = new Marca();
