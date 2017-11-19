@@ -631,7 +631,7 @@ public class MenuSierrasInter extends javax.swing.JFrame {
             image = new ImageIcon(ruta);
             labelImagen.setIcon(image);
             indiceFila++;
-            mansie.consultarTodos();
+            mansieBD.consultarTodos();
         } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");

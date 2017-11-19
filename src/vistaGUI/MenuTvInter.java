@@ -597,7 +597,7 @@ public class MenuTvInter extends javax.swing.JFrame {
             labelImagen.setIcon(image);
 
             indiceFila++;
-            mantv.consultarTodos();
+            mantvBD.consultarTodos();
         } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");

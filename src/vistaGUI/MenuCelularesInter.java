@@ -668,6 +668,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             jTextFieldCapacidadAlmacenamiento.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldTipoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
             jTextFieldInterfaceRed.setText(jTable1.getValueAt(filaSeleccionada, 11).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 12).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -721,6 +722,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             celmod.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
             celmod.setTipodepantalla(jTextFieldTipoPantalla.getText());
             celmod.setInterfacered(jTextFieldInterfaceRed.getText());
+            celmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = mancel.busquedaBinaria(a);

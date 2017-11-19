@@ -614,6 +614,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
             jTextFieldCompartimiento.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldPotencia.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldVoltaje.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 10).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -665,6 +666,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
             hornmicmod.setCompartimiento(jTextFieldCompartimiento.getText());
             hornmicmod.setPotencia(jTextFieldPotencia.getText());
             hornmicmod.setPotencia(jTextFieldVoltaje.getText());
+            hornmicmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = manhornmic.busquedaBinaria(a);

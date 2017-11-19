@@ -577,6 +577,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             jTextFieldRestricciondeEdad.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
             jTextFieldPlataforma.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldNumeroJugadores.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 9).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -613,6 +614,7 @@ public class MenuJuegosInter extends javax.swing.JFrame {
             juegmod.setRestedad(jTextFieldRestricciondeEdad.getText());
             juegmod.setPlataforma(jTextFieldPlataforma.getText());
             juegmod.setNumjugadores(Integer.parseInt(jTextFieldNumeroJugadores.getText()));
+            juegmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = manjueg.busquedaBinaria(a);

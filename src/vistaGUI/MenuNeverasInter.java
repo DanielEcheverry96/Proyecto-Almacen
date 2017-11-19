@@ -641,6 +641,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             jTextFieldMaterialNevera.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldTamañoNevera.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldSistemaNevera.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 11).toString();
 
             try {
 
@@ -694,6 +695,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             nevmod.setMaterial(jTextFieldMaterialNevera.getText());
             nevmod.setTamaño(Integer.parseInt(jTextFieldTamañoNevera.getText()));
             nevmod.setSistema(jTextFieldSistemaNevera.getText());
+            nevmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = mannev.busquedaBinaria(a);

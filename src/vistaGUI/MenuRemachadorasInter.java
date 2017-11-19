@@ -582,7 +582,7 @@ public class MenuRemachadorasInter extends javax.swing.JFrame {
             image = new ImageIcon(ruta);
             labelImagen.setIcon(image);
             indiceFila++;
-            manrem.consultarTodos();
+            manremBD.consultarTodos();
         } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");

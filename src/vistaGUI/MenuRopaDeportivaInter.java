@@ -579,7 +579,7 @@ public class MenuRopaDeportivaInter extends javax.swing.JFrame {
             image = new ImageIcon(ruta);
             labelImagen.setIcon(image);
             indiceFila++;
-            manrop.consultarTodos();
+            manropBD.consultarTodos();
         } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");

@@ -577,7 +577,7 @@ public class MenuVestidoCalleInter extends javax.swing.JFrame {
             image = new ImageIcon(ruta);
             labelImagen.setIcon(image);
             indiceFila++;
-            manves.consultarTodos();
+            manvesBD.consultarTodos();
         } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");

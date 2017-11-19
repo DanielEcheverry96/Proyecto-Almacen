@@ -640,6 +640,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             jTextFieldGratinador.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldTipoControl.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldTemperaturaMaxima.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 11).toString();
 
             try {
 
@@ -693,6 +694,7 @@ public class MenuHornoselectricosygasInter extends javax.swing.JFrame {
             hornomod.setGratinador(jTextFieldGratinador.getText());
             hornomod.setTipocontrol(jTextFieldTipoControl.getText());
             hornomod.setTemperaturamax(Integer.parseInt(jTextFieldTemperaturaMaxima.getText()));
+            hornomod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = manhorneg.busquedaBinaria(a);

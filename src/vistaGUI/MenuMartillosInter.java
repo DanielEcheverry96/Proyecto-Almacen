@@ -630,6 +630,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             jTextFieldMaterialCabezal.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldPesoMartillo.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldTamañoMartillo.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 11).toString();
 
             try {
 
@@ -677,6 +678,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             martmod.setTipo(jTextFieldMaterialCabezal.getText());
             martmod.setTipo(jTextFieldPesoMartillo.getText());
             martmod.setTipo(jTextFieldTamañoMartillo.getText());
+            martmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = manmart.busquedaBinaria(a);

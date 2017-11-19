@@ -610,6 +610,7 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             jTextFieldNumeroControles.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldRealidadvirtual.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldCapacidadDiscoduro.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 10).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -654,6 +655,7 @@ public class MenuConsolasInter extends javax.swing.JFrame {
             consmod.setNumcontroles(Integer.parseInt(jTextFieldNumeroControles.getText()));
             consmod.setRealidadvir(jTextFieldRealidadvirtual.getText());
             consmod.setCapdiscoduro(jTextFieldCapacidadDiscoduro.getText());
+            consmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = mancons.busquedaBinaria(a);

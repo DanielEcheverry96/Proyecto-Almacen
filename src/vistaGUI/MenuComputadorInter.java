@@ -676,6 +676,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             jTextFieldTipoMouse.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldTipoPantalla.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
             jTextFieldCapacidadAlmacenamiento.setText(jTable1.getValueAt(filaSeleccionada, 10).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 11).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -721,6 +722,7 @@ public class MenuComputadorInter extends javax.swing.JFrame {
             compmod.setTipomouse(jTextFieldTipoMouse.getText());
             compmod.setTipopantalla(jTextFieldTipoPantalla.getText());
             compmod.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
+            compmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = mancop.busquedaBinaria(a);

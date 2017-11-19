@@ -562,7 +562,7 @@ public class MenuZapatosInter extends javax.swing.JFrame {
             image = new ImageIcon(ruta);
             labelImagen.setIcon(image);
             indiceFila++;
-            manzap.consultarTodos();
+            manzapBD.consultarTodos();
         } else {
             jLabelMensaje.setText("Error al insertar");
             //JOptionPane.showMessageDialog(this, "Error al insertar");

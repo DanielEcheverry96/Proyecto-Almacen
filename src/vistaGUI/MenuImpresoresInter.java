@@ -595,6 +595,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             jTextFieldInterfaceRed.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldPaginasporMinuto.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             jTextFieldResolucion.setText(jTable1.getValueAt(filaSeleccionada, 9).toString());
+            String img = jTable1.getValueAt(filaSeleccionada, 10).toString();
 
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
@@ -632,6 +633,7 @@ public class MenuImpresoresInter extends javax.swing.JFrame {
             impmod.setInterfacered(jTextFieldInterfaceRed.getText());
             impmod.setPaginasminuto(Integer.parseInt(jTextFieldPaginasporMinuto.getText()));
             impmod.setResolucion(jTextFieldResolucion.getText());
+            impmod.setImagen(img);
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = manimp.busquedaBinaria(a);
