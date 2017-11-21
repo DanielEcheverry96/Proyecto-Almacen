@@ -160,25 +160,9 @@ public class MenuLoginAdminInter extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIngresarActionPerformed
+       
         Usuario intentoUsuario = new Usuario(campoUsuario.getText(), campoPassword.getText());
-        
-        try{
-        if (!ValidaNombreusuario.validaNombreusuario(campoUsuario.getText())) {
-                throw new ValidaNombreusuario();
-            }
-            if (!ValidaPassword.validaPassword(campoPassword.getText())) {
-                throw new ValidaPassword();
-            }
-            }catch (ValidaNombreusuario e) {
-            jLabelMensaje.setText("El nombre de usuario que ingreso no es valido");
-            campoUsuario.setText("");
-            return;
-        } catch (ValidaPassword e) {
-            jLabelMensaje.setText("El password que ingreso no es valido");
-            campoPassword.setText("");
-            return;
-        }
-        
+
         switch (manusuBD.validaLogin(intentoUsuario)) {
             case 0:
                 MenuConsultaInter menuConsultas = new MenuConsultaInter();
