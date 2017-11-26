@@ -90,23 +90,33 @@
                   </Group>
               </Group>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonModificar" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonConsultarUno" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonConsultarTodo" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonBorrarUno" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonBorrarTodos" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonInsertar" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonModificar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonConsultarUno" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonConsultarTodo" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonBorrarUno" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonBorrarTodos" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButtonInsertar" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jlogo" alignment="1" min="-2" pref="60" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+          <Component id="jScrollPane1" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jlogo" min="-2" pref="60" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
@@ -449,5 +459,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
     </Container>
+    <Component class="javax.swing.JLabel" name="jlogo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

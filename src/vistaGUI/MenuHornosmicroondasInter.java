@@ -11,6 +11,7 @@ import controladorDB.ManejadorHornomicroondasDB;
 import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -92,6 +93,10 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         panelImagen.add(labelImagen, BorderLayout.CENTER);
         jTable1.setRowHeight(150);
         jTable1.setRowMargin(5);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
 //    public void inicializarComboBox() {
@@ -164,6 +169,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         jButtonOrdenarPrecioDesc = new javax.swing.JButton();
         botonFileChooserExaminar = new javax.swing.JButton();
         panelImagen = new javax.swing.JPanel();
+        jlogo = new javax.swing.JLabel();
 
         setTitle("Hornos Microondas");
 
@@ -309,6 +315,8 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
         panelImagen.setBackground(new java.awt.Color(204, 204, 204));
         panelImagen.setLayout(new java.awt.BorderLayout());
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -368,19 +376,20 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
                             .addComponent(jButtonInsertar))
                         .addGap(53, 53, 53))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonOrdenarID))
-                            .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonOrdenarID)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(245, 245, 245)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -438,7 +447,8 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
                                     .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(31, 31, 31))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonInsertar)
@@ -666,8 +676,14 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
             hornmicmod.setCompartimiento(jTextFieldCompartimiento.getText());
             hornmicmod.setPotencia(jTextFieldPotencia.getText());
             hornmicmod.setPotencia(jTextFieldVoltaje.getText());
-            hornmicmod.setImagen(img);
-
+            if (ruta.equals("E:\\daniel\\Descargas\\graySquare.jpeg")) {
+                hornmicmod.setImagen(img);
+            } else {
+                hornmicmod.setImagen(ruta);
+                ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+                image = new ImageIcon(ruta);
+                labelImagen.setIcon(image);
+            }
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = manhornmic.busquedaBinaria(a);
 //            if (!(posicion == -1)) {
@@ -678,12 +694,12 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
 //            } else {
 //                JOptionPane.showMessageDialog(this, "Error al modificar");
 //            }
-              if (manhornmicDB.modificar(a, hornmicmod)) {
+            if (manhornmicDB.modificar(a, hornmicmod)) {
                 JOptionPane.showMessageDialog(this, "Celular modificado exitosamente");
                 indiceFila--;
                 manhornmicDB.consultarTodos();
 
-              } else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -700,7 +716,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
 //        } else {
 //            JOptionPane.showMessageDialog(this, "El Horno microondas encontrada es:\n" + resultado.toString());
 //        }
-          try {
+        try {
             int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
             Hornosmicroondas resultado = (Hornosmicroondas) manhornmicDB.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "El horno encontrado es:\n" + resultado.toString());
@@ -962,6 +978,7 @@ public class MenuHornosmicroondasInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPotencia;
     private javax.swing.JTextField jTextFieldPrecio;
     private javax.swing.JTextField jTextFieldVoltaje;
+    private javax.swing.JLabel jlogo;
     private javax.swing.JPanel panelImagen;
     // End of variables declaration//GEN-END:variables
 }

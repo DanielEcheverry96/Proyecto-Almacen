@@ -7,6 +7,7 @@ package vistaGUI;
 
 import controlador.ManejadorCategoriaArticulo;
 import controladorDB.ManejadorCategoriaArticuloBD;
+import java.awt.Image;
 import java.io.File;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -73,6 +74,10 @@ public class MenuReporteCategoriaVideoJuegos extends javax.swing.JFrame {
         fileChooser.addChoosableFileFilter(imageFilter);
         jTable1.setRowHeight(150);
         jTable1.setRowMargin(5);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
     /**
@@ -92,6 +97,7 @@ public class MenuReporteCategoriaVideoJuegos extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         botonReporte = new javax.swing.JButton();
         jButtonOrdenarID = new javax.swing.JButton();
+        jlogo = new javax.swing.JLabel();
 
         setTitle("Reporte - Articulos Categoria VideoJuegos");
         setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -160,6 +166,8 @@ public class MenuReporteCategoriaVideoJuegos extends javax.swing.JFrame {
             }
         });
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -178,25 +186,29 @@ public class MenuReporteCategoriaVideoJuegos extends javax.swing.JFrame {
                             .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE))
                         .addGap(34, 34, 34)
                         .addComponent(jButtonOrdenarID)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(botonReporte)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(botonReporte)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreAsc)
+                            .addComponent(jButtonOrdenarPrecioAsc)
+                            .addComponent(jButtonOrdenarID))
+                        .addGap(11, 11, 11)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreDesc)
+                            .addComponent(jButtonOrdenarPrecioDesc)))
+                    .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonOrdenarNombreAsc)
-                    .addComponent(jButtonOrdenarPrecioAsc)
-                    .addComponent(jButtonOrdenarID))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonOrdenarNombreDesc)
-                    .addComponent(jButtonOrdenarPrecioDesc))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 242, Short.MAX_VALUE))
         );
 
         pack();
@@ -395,5 +407,6 @@ public class MenuReporteCategoriaVideoJuegos extends javax.swing.JFrame {
     private javax.swing.JButton jButtonOrdenarPrecioDesc;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlogo;
     // End of variables declaration//GEN-END:variables
 }

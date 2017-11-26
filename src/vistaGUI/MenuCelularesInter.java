@@ -11,6 +11,7 @@ import controladorDB.ManejadorCelularBD;
 import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -93,6 +94,10 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         panelImagen.add(labelImagen, BorderLayout.CENTER);
         jTable1.setRowHeight(150);
         jTable1.setRowMargin(5);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
 
     }
 
@@ -172,6 +177,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         jButtonOrdenarPrecioDesc = new javax.swing.JButton();
         botonFileChooserExaminar = new javax.swing.JButton();
         panelImagen = new javax.swing.JPanel();
+        jlogo = new javax.swing.JLabel();
 
         setTitle("Telefono Celular\n");
 
@@ -334,6 +340,8 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         panelImagen.setBackground(new java.awt.Color(204, 204, 204));
         panelImagen.setLayout(new java.awt.BorderLayout());
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -406,13 +414,16 @@ public class MenuCelularesInter extends javax.swing.JFrame {
                         .addComponent(jButtonOrdenarID)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonModificar)
-                    .addComponent(jButtonConsultarUno)
-                    .addComponent(jButtonConsultarTodo)
-                    .addComponent(jButtonBorrarUno)
-                    .addComponent(jButtonBorrarTodos)
-                    .addComponent(jButtonInsertar))
-                .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonModificar)
+                            .addComponent(jButtonConsultarUno)
+                            .addComponent(jButtonConsultarTodo)
+                            .addComponent(jButtonBorrarUno)
+                            .addComponent(jButtonBorrarTodos)
+                            .addComponent(jButtonInsertar))
+                        .addContainerGap())
+                    .addComponent(jlogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
             .addGroup(layout.createSequentialGroup()
                 .addGap(153, 153, 153)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -421,9 +432,12 @@ public class MenuCelularesInter extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTitulo)
-                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelTitulo))
+                    .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(9, 9, 9)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -722,7 +736,14 @@ public class MenuCelularesInter extends javax.swing.JFrame {
             celmod.setCapalmacenamiento(Integer.parseInt(jTextFieldCapacidadAlmacenamiento.getText()));
             celmod.setTipodepantalla(jTextFieldTipoPantalla.getText());
             celmod.setInterfacered(jTextFieldInterfaceRed.getText());
-            celmod.setImagen(img);
+            if (ruta.equals("E:\\daniel\\Descargas\\graySquare.jpeg")) {
+                celmod.setImagen(img);
+            } else {
+                celmod.setImagen(ruta);
+                ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+                image = new ImageIcon(ruta);
+                labelImagen.setIcon(image);
+            }
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = mancel.busquedaBinaria(a);
@@ -734,12 +755,12 @@ public class MenuCelularesInter extends javax.swing.JFrame {
 //            } else {
 //                JOptionPane.showMessageDialog(this, "Error al modificar");
 //            }
-              if (mancelDB.modificar(a, celmod)) {
+            if (mancelDB.modificar(a, celmod)) {
                 JOptionPane.showMessageDialog(this, "Celular modificado exitosamente");
                 indiceFila--;
                 mancelDB.consultarTodos();
 
-              } else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -756,7 +777,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
 //        } else {
 //            JOptionPane.showMessageDialog(this, "El Telefono Celular encontrado es:\n" + resultado.toString());
 //        }
-          try {
+        try {
             int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
             TelefonosCelulares resultado = (TelefonosCelulares) mancelDB.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "El celular encontrado es:\n" + resultado.toString());
@@ -1034,6 +1055,7 @@ public class MenuCelularesInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTamañoPantalla;
     private javax.swing.JTextField jTextFieldTipoPantalla;
     private javax.swing.JTextField jTextFieldTipoProcesador;
+    private javax.swing.JLabel jlogo;
     private javax.swing.JPanel panelImagen;
     // End of variables declaration//GEN-END:variables
 }

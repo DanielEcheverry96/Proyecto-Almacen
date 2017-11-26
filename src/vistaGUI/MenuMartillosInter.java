@@ -11,6 +11,7 @@ import controladorDB.ManejadorMarcasDB;
 import controladorDB.ManejadorMartilloBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -92,6 +93,10 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         panelImagen.add(labelImagen, BorderLayout.CENTER);
         jTable1.setRowHeight(150);
         jTable1.setRowMargin(5);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
 //    public void inicializarComboBox() {
@@ -167,6 +172,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         jButtonOrdenarPrecioDesc = new javax.swing.JButton();
         botonFileChooserExaminar = new javax.swing.JButton();
         panelImagen = new javax.swing.JPanel();
+        jlogo = new javax.swing.JLabel();
 
         setTitle("Martillos");
 
@@ -321,6 +327,8 @@ public class MenuMartillosInter extends javax.swing.JFrame {
         panelImagen.setBackground(new java.awt.Color(204, 204, 204));
         panelImagen.setLayout(new java.awt.BorderLayout());
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -331,9 +339,21 @@ public class MenuMartillosInter extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(48, 48, 48)
+                                .addComponent(jButtonOrdenarID)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -354,38 +374,29 @@ public class MenuMartillosInter extends javax.swing.JFrame {
                                     .addComponent(jTextFieldNombre, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTextFieldPrecio)
                                     .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(80, 80, 80)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelTipoMartillo)
-                                    .addComponent(jLabelMaterialMango)
-                                    .addComponent(jLabelMaterialCabezal)
-                                    .addComponent(jLabelPesoMartillo)
-                                    .addComponent(jLabelTamañoMartillo))
-                                .addGap(40, 40, 40)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jTextFieldMaterialCabezal, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldMaterialMango, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldTipoMartillo, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldPesoMartillo, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextFieldTamañoMartillo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(51, 51, 51)
-                                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(73, 73, 73)
-                                        .addComponent(botonFileChooserExaminar))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonOrdenarNombreAsc)
-                                    .addComponent(jButtonOrdenarNombreDesc))
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonOrdenarPrecioDesc)
-                                    .addComponent(jButtonOrdenarPrecioAsc))
-                                .addGap(17, 17, 17)
-                                .addComponent(jButtonOrdenarID)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                        .addGap(80, 80, 80)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabelTipoMartillo)
+                                            .addComponent(jLabelMaterialMango)
+                                            .addComponent(jLabelMaterialCabezal)
+                                            .addComponent(jLabelPesoMartillo)
+                                            .addComponent(jLabelTamañoMartillo))
+                                        .addGap(40, 40, 40)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextFieldMaterialCabezal, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldMaterialMango, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldTipoMartillo, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldPesoMartillo, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldTamañoMartillo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                                        .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(35, 35, 35))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(botonFileChooserExaminar)
+                                        .addGap(57, 57, 57)))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButtonModificar)
                             .addComponent(jButtonConsultarUno)
@@ -404,14 +415,17 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabelTitulo)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButtonInsertar)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonModificar)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButtonConsultarUno)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelTitulo)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButtonInsertar)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButtonModificar)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButtonConsultarUno))
+                            .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(14, 14, 14)
                         .addComponent(jButtonConsultarTodo)
                         .addGap(14, 14, 14)
@@ -419,9 +433,9 @@ public class MenuMartillosInter extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addComponent(jButtonBorrarTodos))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(86, 86, 86)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -466,21 +480,25 @@ public class MenuMartillosInter extends javax.swing.JFrame {
                                 .addGap(8, 8, 8)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelColor)
-                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(53, 53, 53)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jButtonOrdenarNombreAsc)
+                                            .addComponent(jButtonOrdenarPrecioAsc))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                            .addComponent(jButtonOrdenarNombreDesc)
+                                            .addComponent(jButtonOrdenarPrecioDesc)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jButtonOrdenarID)
+                                        .addGap(15, 15, 15))))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(76, 76, 76)
                                 .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(botonFileChooserExaminar)))
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreAsc)
-                            .addComponent(jButtonOrdenarPrecioAsc)
-                            .addComponent(jButtonOrdenarID))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButtonOrdenarNombreDesc)
-                            .addComponent(jButtonOrdenarPrecioDesc))))
+                                .addGap(18, 18, 18)
+                                .addComponent(botonFileChooserExaminar)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -678,7 +696,14 @@ public class MenuMartillosInter extends javax.swing.JFrame {
             martmod.setTipo(jTextFieldMaterialCabezal.getText());
             martmod.setTipo(jTextFieldPesoMartillo.getText());
             martmod.setTipo(jTextFieldTamañoMartillo.getText());
-            martmod.setImagen(img);
+            if (ruta.equals("E:\\daniel\\Descargas\\graySquare.jpeg")) {
+                martmod.setImagen(img);
+            } else {
+                martmod.setImagen(ruta);
+                ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+                image = new ImageIcon(ruta);
+                labelImagen.setIcon(image);
+            }
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = manmart.busquedaBinaria(a);
@@ -690,12 +715,12 @@ public class MenuMartillosInter extends javax.swing.JFrame {
 //            } else {
 //                JOptionPane.showMessageDialog(this, "Error al modificar");
 //            }
-              if (manmartDB.modificar(a, martmod)) {
+            if (manmartDB.modificar(a, martmod)) {
                 JOptionPane.showMessageDialog(this, "Martillo modificado exitosamente");
                 indiceFila--;
                 manmartDB.consultarTodos();
 
-              } else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -713,7 +738,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
 //        } else {
 //            JOptionPane.showMessageDialog(this, "El Martillo encontrado es:\n" + resultado.toString());
 //        }
-          try {
+        try {
             int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
             Martillos resultado = (Martillos) manmartDB.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "El Martillo encontrado es:\n" + resultado.toString());
@@ -986,6 +1011,7 @@ public class MenuMartillosInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPrecio;
     private javax.swing.JTextField jTextFieldTamañoMartillo;
     private javax.swing.JTextField jTextFieldTipoMartillo;
+    private javax.swing.JLabel jlogo;
     private javax.swing.JPanel panelImagen;
     // End of variables declaration//GEN-END:variables
 }

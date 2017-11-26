@@ -24,95 +24,98 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
-                      <Component id="jLabelMensaje" min="-2" pref="347" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="jLabelTitulo" min="-2" pref="209" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="jlogo" min="-2" pref="60" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelTitulo" min="-2" pref="209" max="-2" attributes="0"/>
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" alignment="1" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="1" attributes="0">
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jLabelId" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabelMarca" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabelCantidad" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  <Component id="jLabelPrecio" alignment="0" min="-2" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jLabelColor" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="jLabelId" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelMarca" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelNombre" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelCantidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabelPrecio" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jTextFieldCantidad" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jComboBoxMarca" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldId" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldNombre" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldPrecio" alignment="1" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldColor" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabelTipoImpresor" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelTipoInterfaceRed" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelPaginasporMinuto" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabelResolucion" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButtonOrdenarNombreAsc" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButtonOrdenarNombreDesc" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jButtonOrdenarPrecioDesc" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jButtonOrdenarPrecioAsc" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabelColor" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                                   </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jTextFieldCantidad" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jComboBoxMarca" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldId" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldNombre" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldPrecio" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldColor" alignment="1" min="-2" pref="80" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jLabelTipoImpresor" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelTipoInterfaceRed" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelPaginasporMinuto" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelResolucion" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonOrdenarNombreAsc" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonOrdenarNombreDesc" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jButtonOrdenarID" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="jTextFieldPaginasporMinuto" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldInterfaceRed" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldTipoImpresor" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="jTextFieldResolucion" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                      <Component id="panelImagen" min="-2" pref="133" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jButtonOrdenarPrecioDesc" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonOrdenarPrecioAsc" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButtonOrdenarID" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jTextFieldPaginasporMinuto" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldInterfaceRed" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldTipoImpresor" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTextFieldResolucion" alignment="0" min="-2" pref="80" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="panelImagen" alignment="0" min="-2" pref="133" max="-2" attributes="0"/>
                                   <Group type="102" alignment="1" attributes="0">
                                       <Component id="botonFileChooserExaminar" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
+                              <EmptySpace pref="47" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jButtonModificar" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonConsultarUno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonConsultarTodo" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonBorrarUno" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonBorrarTodos" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jButtonInsertar" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="33" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jButtonModificar" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonConsultarUno" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonConsultarTodo" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonBorrarUno" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonBorrarTodos" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButtonInsertar" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="245" max="-2" attributes="0"/>
+              <Component id="jLabelMensaje" min="-2" pref="347" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -123,7 +126,12 @@
                   <Group type="102" attributes="0">
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabelTitulo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="jlogo" alignment="0" min="-2" pref="60" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -180,31 +188,25 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jButtonInsertar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="jButtonModificar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                              <Component id="jButtonConsultarUno" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                              <Component id="jButtonConsultarTodo" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
-                              <Component id="jButtonBorrarUno" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                              <Component id="jButtonBorrarTodos" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="panelImagen" min="-2" pref="132" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="botonFileChooserExaminar" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
+                      <Component id="panelImagen" min="-2" pref="132" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="botonFileChooserExaminar" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jButtonInsertar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="jButtonModificar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                      <Component id="jButtonConsultarUno" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                      <Component id="jButtonConsultarTodo" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="14" pref="14" max="-2" attributes="0"/>
+                      <Component id="jButtonBorrarUno" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Component id="jButtonBorrarTodos" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButtonOrdenarNombreAsc" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButtonOrdenarPrecioAsc" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -478,5 +480,10 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout"/>
     </Container>
+    <Component class="javax.swing.JLabel" name="jlogo">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jLabel1"/>
+      </Properties>
+    </Component>
   </SubComponents>
 </Form>

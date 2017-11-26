@@ -11,6 +11,7 @@ import controladorDB.ManejadorMarcasDB;
 import controladorDB.ManejadorPijamaBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -89,6 +90,10 @@ public class MenuPijamasInter extends javax.swing.JFrame {
         panelImagen.add(labelImagen, BorderLayout.CENTER);
         jTable1.setRowHeight(150);
         jTable1.setRowMargin(5);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
 //    public void inicializarComboBox() {
@@ -158,6 +163,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
         jButtonOrdenarID = new javax.swing.JButton();
         panelImagen = new javax.swing.JPanel();
         botonFileChooser = new javax.swing.JButton();
+        jlogo = new javax.swing.JLabel();
 
         setTitle("Pijamas");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -308,6 +314,8 @@ public class MenuPijamasInter extends javax.swing.JFrame {
             }
         });
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -317,7 +325,6 @@ public class MenuPijamasInter extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -364,10 +371,9 @@ public class MenuPijamasInter extends javax.swing.JFrame {
                                         .addGap(23, 23, 23)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jComboBoxUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jComboBoxTipo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jComboBoxTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxTalla, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBoxTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
                                         .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(47, 47, 47)))))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -380,7 +386,8 @@ public class MenuPijamasInter extends javax.swing.JFrame {
                         .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addContainerGap(703, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(208, 208, 208)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -433,12 +440,10 @@ public class MenuPijamasInter extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelColor)
                             .addComponent(jTextFieldColor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonBorrarTodos)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(jButtonBorrarTodos))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jButtonOrdenarNombreAsc)
                                     .addComponent(jButtonOrdenarPrecioAsc))
@@ -448,7 +453,8 @@ public class MenuPijamasInter extends javax.swing.JFrame {
                                     .addComponent(jButtonOrdenarPrecioDesc))))
                         .addGap(18, 18, 18))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButtonInsertar)
@@ -621,7 +627,14 @@ public class MenuPijamasInter extends javax.swing.JFrame {
             pijammod.setTipo(tipo);
             pijammod.setTalla(talla);
             pijammod.setTipousuario(usuario);
-            pijammod.setImagen(img);
+            if (ruta.equals("E:\\daniel\\Descargas\\graySquare.jpeg")) {
+                pijammod.setImagen(img);
+            } else {
+                pijammod.setImagen(ruta);
+                ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+                image = new ImageIcon(ruta);
+                labelImagen.setIcon(image);
+            }
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = manpij.busquedaBinaria(a);
@@ -914,6 +927,7 @@ public class MenuPijamasInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldId;
     private javax.swing.JTextField jTextFieldNombre;
     private javax.swing.JTextField jTextFieldPrecio;
+    private javax.swing.JLabel jlogo;
     private javax.swing.JPanel panelImagen;
     // End of variables declaration//GEN-END:variables
 }

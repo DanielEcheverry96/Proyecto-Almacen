@@ -11,6 +11,7 @@ import controladorDB.ManejadorMarcasDB;
 import controladorDB.ManejadorNeveraBD;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -66,7 +67,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
                         return String.class;
                 }
             }
-        };;        
+        };;
         model.addColumn("Id");
         model.addColumn("Nombre Marca");
         model.addColumn("Nombre");
@@ -92,6 +93,10 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         panelImagen.add(labelImagen, BorderLayout.CENTER);
         jTable1.setRowHeight(150);
         jTable1.setRowMargin(5);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
 //    public void inicializarComboBox() {
@@ -168,6 +173,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         jButtonOrdenarPrecioDesc = new javax.swing.JButton();
         botonFileChooserExaminar = new javax.swing.JButton();
         panelImagen = new javax.swing.JPanel();
+        jlogo = new javax.swing.JLabel();
 
         setTitle("Neveras");
 
@@ -322,28 +328,31 @@ public class MenuNeverasInter extends javax.swing.JFrame {
         panelImagen.setBackground(new java.awt.Color(204, 204, 204));
         panelImagen.setLayout(new java.awt.BorderLayout());
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonOrdenarNombreAsc)
-                                    .addComponent(jButtonOrdenarNombreDesc))
-                                .addGap(22, 22, 22)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonOrdenarPrecioDesc)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jButtonOrdenarPrecioAsc)
-                                        .addGap(26, 26, 26)
-                                        .addComponent(jButtonOrdenarID))))
+                                .addComponent(jLabelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonOrdenarNombreDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonOrdenarNombreAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(48, 48, 48)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonOrdenarPrecioDesc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonOrdenarPrecioAsc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(48, 48, 48)
+                                .addComponent(jButtonOrdenarID))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -380,31 +389,37 @@ public class MenuNeverasInter extends javax.swing.JFrame {
                                             .addComponent(jTextFieldCapacidadCongelador, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextFieldTamañoNevera, javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jTextFieldSistemaNevera, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                                         .addComponent(panelImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(botonFileChooserExaminar)
-                                        .addGap(20, 20, 20))))))
+                                        .addGap(19, 19, 19))))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(261, 261, 261)
                         .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(35, 35, 35)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonModificar)
-                    .addComponent(jButtonConsultarUno)
-                    .addComponent(jButtonConsultarTodo)
-                    .addComponent(jButtonBorrarUno)
-                    .addComponent(jButtonBorrarTodos)
-                    .addComponent(jButtonInsertar))
-                .addGap(27, 27, 27))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonModificar)
+                            .addComponent(jButtonConsultarUno)
+                            .addComponent(jButtonConsultarTodo)
+                            .addComponent(jButtonBorrarUno)
+                            .addComponent(jButtonBorrarTodos)
+                            .addComponent(jButtonInsertar))
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,7 +483,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
                                         .addGap(14, 14, 14)
                                         .addComponent(jButtonBorrarUno))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(botonFileChooserExaminar)))
                                 .addGap(18, 18, 18)
                                 .addComponent(jButtonBorrarTodos))))
@@ -476,15 +491,19 @@ public class MenuNeverasInter extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jLabelTitulo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonOrdenarNombreAsc)
-                    .addComponent(jButtonOrdenarPrecioAsc)
-                    .addComponent(jButtonOrdenarID))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonOrdenarNombreDesc)
-                    .addComponent(jButtonOrdenarPrecioDesc))
-                .addGap(49, 49, 49)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreAsc)
+                            .addComponent(jButtonOrdenarPrecioAsc))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButtonOrdenarNombreDesc)
+                            .addComponent(jButtonOrdenarPrecioDesc))
+                        .addGap(49, 49, 49))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButtonOrdenarID)
+                        .addGap(64, 64, 64)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -695,7 +714,14 @@ public class MenuNeverasInter extends javax.swing.JFrame {
             nevmod.setMaterial(jTextFieldMaterialNevera.getText());
             nevmod.setTamaño(Integer.parseInt(jTextFieldTamañoNevera.getText()));
             nevmod.setSistema(jTextFieldSistemaNevera.getText());
-            nevmod.setImagen(img);
+            if (ruta.equals("E:\\daniel\\Descargas\\graySquare.jpeg")) {
+                nevmod.setImagen(img);
+            } else {
+                nevmod.setImagen(ruta);
+                ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+                image = new ImageIcon(ruta);
+                labelImagen.setIcon(image);
+            }
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
 //            int posicion = mannev.busquedaBinaria(a);
@@ -707,12 +733,12 @@ public class MenuNeverasInter extends javax.swing.JFrame {
 //            } else {
 //                JOptionPane.showMessageDialog(this, "Error al modificar");
 //            }
-              if (mannevDB.modificar(a, nevmod)) {
+            if (mannevDB.modificar(a, nevmod)) {
                 JOptionPane.showMessageDialog(this, "Nevera modificada exitosamente");
                 indiceFila--;
                 mannevDB.consultarTodos();
 
-              } else {
+            } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
         }
@@ -729,7 +755,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
 //        } else {
 //            JOptionPane.showMessageDialog(this, "La Nevera encontrada es:\n" + resultado.toString());
 //        }
-          try {
+        try {
             int idBuscado = Integer.parseInt(JOptionPane.showInputDialog(this, "Digite el ID a buscar"));
             Neveras resultado = (Neveras) mannevDB.consultarId(idBuscado);
             JOptionPane.showMessageDialog(this, "La nevera encontrada es:\n" + resultado.toString());
@@ -998,6 +1024,7 @@ public class MenuNeverasInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPrecio;
     private javax.swing.JTextField jTextFieldSistemaNevera;
     private javax.swing.JTextField jTextFieldTamañoNevera;
+    private javax.swing.JLabel jlogo;
     private javax.swing.JPanel panelImagen;
     // End of variables declaration//GEN-END:variables
 }

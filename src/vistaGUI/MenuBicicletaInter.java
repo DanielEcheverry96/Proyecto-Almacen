@@ -11,6 +11,7 @@ import controladorDB.ManejadorBicicletaDB;
 import controladorDB.ManejadorMarcasDB;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.io.File;
 import javax.imageio.ImageIO;
@@ -48,7 +49,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
     File archivo = null;
     String ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
     JLabel labelImagen = new JLabel("", new ImageIcon(ruta), JLabel.CENTER);
-
+    
     public MenuBicicletaInter() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -77,7 +78,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         model.addColumn("Material Montura");
         model.addColumn("Tipo Bicicleta");
         model.addColumn("Imagen");
-
+        
         jTable1.setModel(model);
         jTable1.getColumnModel().getColumn(0).setMinWidth(30);
         jTable1.getColumnModel().getColumn(9).setMinWidth(150);
@@ -90,7 +91,10 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         panelImagen.add(labelImagen, BorderLayout.CENTER);
         jTable1.setRowHeight(150);
         jTable1.setRowMargin(5);
-
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
 //    public void inicializarComboBox() {
@@ -104,7 +108,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jComboBoxMarca.addItem(ManejadorObjetos.arregloMarcas.get(i).getDescripcion());
         }
     }
-
+    
     public void limpiar() {
         jTextFieldId.setText("");
         jTextFieldNombre.setText("");
@@ -160,6 +164,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         jButtonOrdenarID = new javax.swing.JButton();
         botonFileChooserExaminar = new javax.swing.JButton();
         panelImagen = new javax.swing.JPanel();
+        jlogo = new javax.swing.JLabel();
 
         setTitle("Bicicletas");
 
@@ -307,6 +312,8 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         panelImagen.setBackground(new java.awt.Color(204, 204, 204));
         panelImagen.setLayout(new java.awt.BorderLayout());
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -365,20 +372,26 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                                 .addComponent(botonFileChooserExaminar)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonModificar)
-                    .addComponent(jButtonConsultarUno)
-                    .addComponent(jButtonConsultarTodo)
-                    .addComponent(jButtonBorrarUno)
-                    .addComponent(jButtonBorrarTodos)
-                    .addComponent(jButtonInsertar))
-                .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonModificar)
+                            .addComponent(jButtonConsultarUno)
+                            .addComponent(jButtonConsultarTodo)
+                            .addComponent(jButtonBorrarUno)
+                            .addComponent(jButtonBorrarTodos)
+                            .addComponent(jButtonInsertar))
+                        .addContainerGap())
+                    .addComponent(jlogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelTitulo)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelTitulo))
+                    .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -459,13 +472,13 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
     private void jButtonConsultarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConsultarTodoActionPerformed
         manbiciDB.consultarTodos();
-
+        
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
-
+        
         indiceFila = 0;
-
+        
         for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
@@ -485,7 +498,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
     private void jButtonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonInsertarActionPerformed
         Bicicletas bici = new Bicicletas();
-
+        
         try {
             if (!ValidaEnteros.validaEnteros(jTextFieldId.getText())) {
                 throw new ValidaEnteros();
@@ -498,7 +511,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             }
             if (!ValidaTamRueda.validaTamRueda(jTextFieldTamañorueda.getText())) {
                 throw new ValidaTamRueda();
-
+                
             }
         } catch (ValidaEnteros e) {
             jLabelMensaje.setText("El id que ingreso no es valido");
@@ -517,7 +530,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jTextFieldTamañorueda.setText("");
             return;
         }
-
+        
         Marca mar = new Marca();
         bici.setIdArticulo(Integer.parseInt(jTextFieldId.getText()));
         mar.setId(idMarcaTemporal);
@@ -532,7 +545,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         bici.setMaterial(jTextFieldMaterialmontura.getText());
         bici.setTipo(jTextFieldTipobicicleta.getText());
         System.out.println(idMarcaTemporal);
-
+        
         if (manbiciDB.insertar(bici)) {
             jLabelMensaje.setText("El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
             //JOptionPane.showMessageDialog(this, "El articulo " + jTextFieldNombre.getText() + " se insertó correctamente");
@@ -567,12 +580,12 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonInsertarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-
+        
         int filaSeleccionada = jTable1.getSelectedRow();
         //System.out.println(filaSeleccionada);
 
         if (filaSeleccionada >= 0) {
-
+            
             Bicicletas bicimod = new Bicicletas();
             int a = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             jTextFieldId.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
@@ -585,7 +598,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             jTextFieldMaterialmontura.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             jTextFieldTipobicicleta.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
             String img = jTable1.getValueAt(filaSeleccionada, 9).toString();
-
+            
             try {
                 if (!ValidaCantidad.validaCantidad(jTextFieldCantidad.getText())) {
                     throw new ValidaCantidad();
@@ -595,7 +608,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                 }
                 if (!ValidaTamRueda.validaTamRueda(jTextFieldTamañorueda.getText())) {
                     throw new ValidaTamRueda();
-
+                    
                 }
             } catch (ValidaCantidad e) {
                 jLabelMensaje.setText("La cantidad que ingreso no es valida");
@@ -622,7 +635,14 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             bicimod.setTamaniorueda(Integer.parseInt(jTextFieldTamañorueda.getText()));
             bicimod.setMaterial(jTextFieldMaterialmontura.getText());
             bicimod.setTipo(jTextFieldTipobicicleta.getText());
-            bicimod.setImagen(img);
+            if (ruta.equals("E:\\daniel\\Descargas\\graySquare.jpeg")) {
+                bicimod.setImagen(img);
+            } else {
+                bicimod.setImagen(ruta);
+                ruta = "E:\\daniel\\Descargas\\graySquare.jpeg";
+                image = new ImageIcon(ruta);
+                labelImagen.setIcon(image);
+            }
 
             //Marca marmod = new Marca(Integer.parseInt(jTextFieldId.getText()), jTextFieldMarca.getText());
             //int posicion = manbici.busquedaBinaria(a);
@@ -638,7 +658,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Bicicleta modificada exitosamente");
                 indiceFila--;
                 manbiciDB.consultarTodos();
-
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Error al modificar");
             }
@@ -661,7 +681,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "La bicicleta encontrada es:\n" + resultado.toString());
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "Bicicleta no encontrada");
-
+            
         }
     }//GEN-LAST:event_jButtonConsultarUnoActionPerformed
 
@@ -698,7 +718,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxMarcaActionPerformed
 
     private void jComboBoxMarcaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jComboBoxMarcaItemStateChanged
-
+        
         if (evt.getStateChange() == ItemEvent.SELECTED) {
             if (jComboBoxMarca.getItemCount() > 0) {
                 idMarcaTemporal = ManejadorObjetos.arregloMarcas.get(jComboBoxMarca.getSelectedIndex()).getId();
@@ -713,9 +733,9 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
-
+        
         indiceFila = 0;
-
+        
         for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
@@ -734,13 +754,13 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
     private void jButtonOrdenarPrecioAscActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioAscActionPerformed
         manbici.quicksort();
-
+        
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
-
+        
         indiceFila = 0;
-
+        
         for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
@@ -762,9 +782,9 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
-
+        
         indiceFila = 0;
-
+        
         for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
@@ -783,13 +803,13 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
     private void jButtonOrdenarPrecioDescActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarPrecioDescActionPerformed
         manbici.quicksortDesc();
-
+        
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
-
+        
         indiceFila = 0;
-
+        
         for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
@@ -808,13 +828,13 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
 
     private void jButtonOrdenarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOrdenarIDActionPerformed
         manbici.sort();
-
+        
         while (model.getRowCount() > 0) {
             model.removeRow(0);
         }
-
+        
         indiceFila = 0;
-
+        
         for (int i = 0; i < CategoriaDeportivos.arreglobicicletas.size(); i++) {
             model.insertRow(indiceFila, dato);
             jTable1.setValueAt(CategoriaDeportivos.arreglobicicletas.get(i).getIdArticulo(), indiceFila, 0);
@@ -909,6 +929,7 @@ public class MenuBicicletaInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldPrecio;
     private javax.swing.JTextField jTextFieldTamañorueda;
     private javax.swing.JTextField jTextFieldTipobicicleta;
+    private javax.swing.JLabel jlogo;
     private javax.swing.JPanel panelImagen;
     // End of variables declaration//GEN-END:variables
 

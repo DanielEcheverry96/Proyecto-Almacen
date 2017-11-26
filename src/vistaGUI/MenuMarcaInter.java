@@ -7,6 +7,8 @@ package vistaGUI;
 
 import controlador.ManejadorObjetos;
 import controladorDB.ManejadorMarcasDB;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Marca;
@@ -27,8 +29,8 @@ public class MenuMarcaInter extends javax.swing.JFrame {
     int indiceFila = 0;
     String[] dato = new String[2];
 
-    public MenuMarcaInter() {       
-        initComponents(); 
+    public MenuMarcaInter() {
+        initComponents();
         this.setLocationRelativeTo(null);
         manobj = new ManejadorObjetos();
         manmarDB = new ManejadorMarcasDB();
@@ -37,6 +39,10 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         model.addColumn("Marca");
         jTable2.setModel(model);
         model.insertRow(indiceFila, dato);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
     public void limpiar() {
@@ -72,6 +78,7 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         jButtonOrdenarNombreAsc = new javax.swing.JButton();
         jButtonOrdenarNombreDesc = new javax.swing.JButton();
         jButtonOrdenarID = new javax.swing.JButton();
+        jlogo = new javax.swing.JLabel();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -89,7 +96,6 @@ public class MenuMarcaInter extends javax.swing.JFrame {
         setTitle("Marcas\n");
 
         jTitulo.setFont(new java.awt.Font("Segoe UI Historic", 3, 36)); // NOI18N
-        jTitulo.setForeground(new java.awt.Color(0, 0, 204));
         jTitulo.setText("Marcas");
 
         jMarca.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -172,6 +178,8 @@ public class MenuMarcaInter extends javax.swing.JFrame {
             }
         });
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -210,42 +218,43 @@ public class MenuMarcaInter extends javax.swing.JFrame {
                         .addContainerGap(154, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jTitulo)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane2)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))))
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jTitulo)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jId)
-                            .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jMarca)
-                            .addComponent(jTextFieldMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonOrdenarNombreAsc)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonOrdenarNombreDesc))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addComponent(jButtonInsertar)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton3)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton4)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton5)
-                        .addGap(14, 14, 14)
-                        .addComponent(jButton1)))
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jTitulo)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jId)
+                                    .addComponent(jTextFieldId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jMarca)
+                                    .addComponent(jTextFieldMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonOrdenarNombreAsc)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonOrdenarNombreDesc))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(57, 57, 57)
+                                .addComponent(jButtonInsertar)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButton3)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButton4)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButton5)
+                                .addGap(14, 14, 14)
+                                .addComponent(jButton1))))
+                    .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
@@ -484,5 +493,6 @@ public class MenuMarcaInter extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldId;
     private javax.swing.JTextField jTextFieldMarca;
     private javax.swing.JLabel jTitulo;
+    private javax.swing.JLabel jlogo;
     // End of variables declaration//GEN-END:variables
 }

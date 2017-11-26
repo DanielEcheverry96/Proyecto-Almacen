@@ -5,6 +5,9 @@
  */
 package vistaGUI;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author danie
@@ -17,6 +20,10 @@ public class MenuPrincipalInter extends javax.swing.JFrame {
     public MenuPrincipalInter() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
     /**
@@ -28,6 +35,7 @@ public class MenuPrincipalInter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jlogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem21 = new javax.swing.JMenuItem();
@@ -69,6 +77,8 @@ public class MenuPrincipalInter extends javax.swing.JFrame {
         jMenuItem22 = new javax.swing.JMenuItem();
 
         setTitle("Menu Principal");
+
+        jlogo.setText("jLabel1");
 
         jMenu1.setText("Manejo datos aplicacion");
 
@@ -345,11 +355,15 @@ public class MenuPrincipalInter extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 340, Short.MAX_VALUE)
+                .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 219, Short.MAX_VALUE))
         );
 
         pack();
@@ -380,7 +394,7 @@ public class MenuPrincipalInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem5ItemStateChanged
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        
+
         MenuComputadorInter mcointer = new MenuComputadorInter();
         mcointer.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
@@ -396,7 +410,7 @@ public class MenuPrincipalInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem17ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        
+
         MenuConsolasInter mconinter = new MenuConsolasInter();
         mconinter.setVisible(true);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -407,13 +421,13 @@ public class MenuPrincipalInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        
+
         MenuHornoselectricosygasInter mheginter = new MenuHornoselectricosygasInter();
         mheginter.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        
+
         MenuHornosmicroondasInter mhminter = new MenuHornosmicroondasInter();
         mhminter.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -578,5 +592,6 @@ public class MenuPrincipalInter extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JLabel jlogo;
     // End of variables declaration//GEN-END:variables
 }

@@ -63,17 +63,17 @@ public class ManejadorUsuarioBD implements ICRUDDB {
         PreparedStatement consulta = null;
         Usuario temp = (Usuario) obj;
         try {
-            consulta = conpost.prepareStatement("UPDATE usuario SET cedula_usuario = ?, permisos = ?, nombre = ?, apellido = ?, email = ?, telefono = ?, usuario = ?, password = ?, direccion = ? WHERE cedula_usuario = ?");
-            consulta.setInt(1, temp.getCedula());
-            consulta.setInt(2, temp.getPermisos());
-            consulta.setString(3, temp.getNombre());
-            consulta.setString(4, temp.getApellido());
-            consulta.setString(5, temp.getEmail());
-            consulta.setString(6, temp.getTelefono());
-            consulta.setString(7, temp.getUsuario());
-            consulta.setString(8, temp.getPassword());
-            consulta.setString(9, temp.getDireccion());
-            consulta.setInt(10, id);
+            consulta = conpost.prepareStatement("UPDATE usuario SET permisos = ?, nombre = ?, apellido = ?, email = ?, telefono = ?, usuario = ?, password = ?, direccion = ? WHERE cedula_usuario = " + id + "");
+            //consulta.setInt(1, temp.getCedula());
+            consulta.setInt(1, temp.getPermisos());
+            consulta.setString(2, temp.getNombre());
+            consulta.setString(3, temp.getApellido());
+            consulta.setString(4, temp.getEmail());
+            consulta.setString(5, temp.getTelefono());
+            consulta.setString(6, temp.getUsuario());
+            consulta.setString(7, temp.getPassword());
+            consulta.setString(8, temp.getDireccion());
+            //consulta.setInt(9, id);
             consulta.executeUpdate();
             consulta.close();
             conpost.close();
@@ -187,9 +187,9 @@ public class ManejadorUsuarioBD implements ICRUDDB {
             conpost.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            return 2;
+            return 3;
         }
-        return 2;
+        return 3;
     }
 
 }

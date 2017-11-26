@@ -7,7 +7,11 @@ package vistaGUI;
 
 import controlador.ManejadorUsuario;
 import controladorDB.ManejadorUsuarioBD;
+import java.awt.Image;
 import java.awt.event.ItemEvent;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Usuario;
@@ -46,6 +50,10 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
         jTable1.setModel(model);
         model.insertRow(indiceFila, dato);
         iniciarCombobox();
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
     private void limpiar() {
@@ -104,14 +112,17 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         botonOrdenar = new javax.swing.JButton();
         jLabelMensaje = new javax.swing.JLabel();
+        jlogo = new javax.swing.JLabel();
 
         setTitle("Usuario");
 
-        labelUsuario.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        labelUsuario.setFont(new java.awt.Font("Segoe UI Historic", 3, 36)); // NOI18N
         labelUsuario.setText("USUARIO");
 
+        labelCedula.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelCedula.setText("Cédula");
 
+        labelNombre.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelNombre.setText("Nombre");
 
         campoNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -120,8 +131,10 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
             }
         });
 
+        labelApellido.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelApellido.setText("Apellido");
 
+        labelDireccion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelDireccion.setText("Dirección");
 
         botonInsertar.setText("Insertar");
@@ -179,12 +192,16 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        labelEmail.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelEmail.setText("email");
 
+        labelTelefono.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelTelefono.setText("Teléfono");
 
+        labelUser.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelUser.setText("Nombre de usuario");
 
+        labelPassword.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         labelPassword.setText("Contraseña");
 
         comboBoxPermisos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -199,6 +216,7 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("Permisos de usuario");
 
         botonOrdenar.setText("Ordenar");
@@ -208,100 +226,113 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
             }
         });
 
+        jlogo.setText("jLabel1");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(187, 187, 187)
-                        .addComponent(labelUsuario))
+                        .addComponent(labelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comboBoxPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelEmail)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(16, 16, 16)
-                                .addComponent(labelTelefono)
-                                .addGap(18, 18, 18)
-                                .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelUser)
                                 .addGap(9, 9, 9)
-                                .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labelDireccion)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(campoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(labelPassword)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(campoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(comboBoxPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelCedula)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelNombre)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(labelApellido)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(61, 61, 61)
+                                .addComponent(labelEmail)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(17, 17, 17)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(labelPassword)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(campoPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(labelDireccion)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(campoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonInsertar)
-                                    .addComponent(botonConsultarUno)
-                                    .addComponent(botonModificar)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(botonBorrarUno)
-                                    .addComponent(botonConsultarTodos)
-                                    .addComponent(botonBorrarTodos)
-                                    .addComponent(botonOrdenar)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelTelefono)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(11, 11, 11))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelApellido)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(40, 40, 40)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(botonConsultarTodos)
+                                .addComponent(botonBorrarTodos)
+                                .addComponent(botonBorrarUno)
+                                .addComponent(botonOrdenar))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(botonInsertar)
+                                .addComponent(botonConsultarUno)
+                                .addComponent(botonModificar)))
+                        .addGap(89, 89, 89))))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(132, 132, 132)
+                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(labelUsuario)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botonInsertar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(labelCedula)
-                        .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelNombre)
-                        .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(labelApellido)
-                        .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelUsuario))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelEmail)
-                            .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelTelefono)
-                            .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(labelCedula)
+                            .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(14, 14, 14)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelNombre)
+                                    .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelEmail)
+                                    .addComponent(campoEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelApellido)
+                                    .addComponent(campoApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(14, 14, 14)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(labelTelefono)
+                                    .addComponent(campoTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(labelUser)
                             .addComponent(campoUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -312,24 +343,27 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
                             .addComponent(comboBoxPermisos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel1)
                             .addComponent(labelDireccion)
-                            .addComponent(campoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botonBorrarUno)))
+                            .addComponent(campoDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addComponent(botonInsertar)
+                        .addGap(14, 14, 14)
                         .addComponent(botonModificar)
-                        .addGap(5, 5, 5)
+                        .addGap(14, 14, 14)
                         .addComponent(botonConsultarUno)
-                        .addGap(8, 8, 8)
-                        .addComponent(botonConsultarTodos)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(botonBorrarTodos)
-                .addGap(9, 9, 9)
-                .addComponent(botonOrdenar)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabelMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonConsultarTodos)
+                        .addGap(14, 14, 14)
+                        .addComponent(botonBorrarTodos)
+                        .addGap(14, 14, 14)
+                        .addComponent(botonBorrarUno)
+                        .addGap(14, 14, 14)
+                        .addComponent(botonOrdenar)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         pack();
@@ -342,6 +376,9 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
     private void botonInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonInsertarActionPerformed
         Usuario usuarioInsertar = new Usuario();
         try {
+            if (!ValidaEnteros.validaEnteros(campoCedula.getText())) {
+                throw new ValidaEnteros();
+            }
             if (!ValidaEmail.validaEmail(campoEmail.getText())) {
                 throw new ValidaEmail();
             }
@@ -350,8 +387,12 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
             }
             if (!ValidaNombreusuario.validaNombreusuario(campoUsuario.getText())) {
                 throw new ValidaNombreusuario();
-            } 
-        }catch (ValidaEmail e) {
+            }
+        } catch (ValidaEnteros e) {
+            jLabelMensaje.setText("La cedula que ingreso no es valido");
+            campoCedula.setText("");
+            return;
+        } catch (ValidaEmail e) {
             jLabelMensaje.setText("El email que ingreso no es valido o no existe");
             campoEmail.setText("");
             return;
@@ -364,7 +405,7 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
             campoUsuario.setText("");
             return;
         }
-        
+
         usuarioInsertar.setCedula(Integer.parseInt(campoCedula.getText()));
         usuarioInsertar.setPermisos(comboBoxPermisos.getSelectedIndex());
         usuarioInsertar.setNombre(campoNombre.getText());
@@ -431,8 +472,10 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
         int filaSeleccionada = jTable1.getSelectedRow();
 
         if (filaSeleccionada >= 0) {
-            int id = Integer.parseInt(campoCedula.getText());
+
             campoCedula.setText(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            //int id = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
+            comboBoxPermisos.setSelectedIndex(Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 1).toString()));
             campoNombre.setText(jTable1.getValueAt(filaSeleccionada, 2).toString());
             campoApellido.setText(jTable1.getValueAt(filaSeleccionada, 3).toString());
             campoEmail.setText(jTable1.getValueAt(filaSeleccionada, 4).toString());
@@ -440,32 +483,40 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
             campoUsuario.setText(jTable1.getValueAt(filaSeleccionada, 6).toString());
             campoPassword.setText(jTable1.getValueAt(filaSeleccionada, 7).toString());
             campoDireccion.setText(jTable1.getValueAt(filaSeleccionada, 8).toString());
-            
+
             try {
-            if (!ValidaEmail.validaEmail(campoEmail.getText())) {
-                throw new ValidaEmail();
+                if (!ValidaEnteros.validaEnteros(campoCedula.getText())) {
+                    throw new ValidaEnteros();
+                }
+                if (!ValidaEmail.validaEmail(campoEmail.getText())) {
+                    throw new ValidaEmail();
+                }
+                if (!ValidaPassword.validaPassword(campoPassword.getText())) {
+                    throw new ValidaPassword();
+                }
+                if (!ValidaNombreusuario.validaNombreusuario(campoUsuario.getText())) {
+                    throw new ValidaNombreusuario();
+                }
+            } catch (ValidaEnteros e) {
+                jLabelMensaje.setText("La cedula que ingreso no es valido");
+                campoCedula.setText("");
+                return;
+            } catch (ValidaEmail e) {
+                jLabelMensaje.setText("El email que ingreso no es valido o no existe");
+                campoEmail.setText("");
+                return;
+            } catch (ValidaPassword e) {
+                jLabelMensaje.setText("El password que ingreso no es valido o no existe");
+                campoPassword.setText("");
+                return;
+            } catch (ValidaNombreusuario e) {
+                jLabelMensaje.setText("El nombre de usuario que ingreso no es valido");
+                campoUsuario.setText("");
+                return;
             }
-            if (!ValidaPassword.validaPassword(campoPassword.getText())) {
-                throw new ValidaPassword();
-            }
-            if (!ValidaNombreusuario.validaNombreusuario(campoUsuario.getText())) {
-                throw new ValidaNombreusuario();
-            } 
-        }catch (ValidaEmail e) {
-            jLabelMensaje.setText("El email que ingreso no es valido o no existe");
-            campoEmail.setText("");
-            return;
-        } catch (ValidaPassword e) {
-            jLabelMensaje.setText("El password que ingreso no es valido o no existe");
-            campoPassword.setText("");
-            return;
-        } catch (ValidaNombreusuario e) {
-            jLabelMensaje.setText("El nombre de usuario que ingreso no es valido");
-            campoUsuario.setText("");
-            return;
-        }
-            
+
             Usuario usuarioModificado = new Usuario();
+            int id = Integer.parseInt(jTable1.getValueAt(filaSeleccionada, 0).toString());
             usuarioModificado.setCedula(Integer.parseInt(campoCedula.getText()));
             usuarioModificado.setPermisos((int) idPermisosTemporal);
             usuarioModificado.setNombre(campoNombre.getText());
@@ -598,6 +649,7 @@ public class MenuUsuarioInter extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelMensaje;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlogo;
     private javax.swing.JLabel labelApellido;
     private javax.swing.JLabel labelCedula;
     private javax.swing.JLabel labelDireccion;

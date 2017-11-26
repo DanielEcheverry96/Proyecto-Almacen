@@ -74,7 +74,7 @@ public class ManejadorCelularBD implements ICRUDDB {
             stmt.setInt(6, idcategoria);
             stmt.executeUpdate();
             stmt = null;
-            sql = "update celular set tipo_procesador_cel = ?,tamaño_pantalla_cel = ?,tamaño_memoria_cel = ?,capacidad_almcenamiento_cel= ?,tipo_pantalla_cel= ?,interface_red_cel= ? where idarticulo = " + id + "";
+            sql = "update celular set tipo_procesador_cel = ?,tamaño_pantalla_cel = ?,tamaño_memoria_cel = ?,capacidad_almacenamiento_cel= ?,tipo_pantalla_cel= ?,interface_red_cel= ? where idarticulo = " + id + "";
             stmt = conpost.prepareStatement(sql);
 //            stmt.setInt(1, temp.getIdArticulo());
             stmt.setString(1, temp.getTiprocesador());

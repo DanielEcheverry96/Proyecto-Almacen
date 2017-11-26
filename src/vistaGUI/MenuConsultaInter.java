@@ -5,6 +5,9 @@
  */
 package vistaGUI;
 
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author danie
@@ -17,6 +20,10 @@ public class MenuConsultaInter extends javax.swing.JFrame {
     public MenuConsultaInter() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/imagenes/icono.jpg")).getImage());
+        ImageIcon ilogo = new ImageIcon(getClass().getResource("/imagenes/icono.jpg"));
+        ImageIcon logo = new ImageIcon(ilogo.getImage().getScaledInstance(jlogo.getWidth(), jlogo.getHeight(), Image.SCALE_DEFAULT));
+        jlogo.setIcon(logo);
     }
 
     /**
@@ -28,6 +35,7 @@ public class MenuConsultaInter extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jlogo = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -40,6 +48,8 @@ public class MenuConsultaInter extends javax.swing.JFrame {
         jMenuItem7 = new javax.swing.JMenuItem();
 
         setTitle("Consulta");
+
+        jlogo.setText("jLabel1");
 
         jMenu1.setText("Reportes");
 
@@ -111,11 +121,15 @@ public class MenuConsultaInter extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 340, Short.MAX_VALUE)
+                .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jlogo, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 219, Short.MAX_VALUE))
         );
 
         pack();
@@ -127,8 +141,8 @@ public class MenuConsultaInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       MenuReporteCategoriaDeportivos menudep = new MenuReporteCategoriaDeportivos();
-       menudep.setVisible(true);
+        MenuReporteCategoriaDeportivos menudep = new MenuReporteCategoriaDeportivos();
+        menudep.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
@@ -147,13 +161,13 @@ public class MenuConsultaInter extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       MenuReporteCategoriaElectrodomesticos menuele = new MenuReporteCategoriaElectrodomesticos();
-       menuele.setVisible(true);
+        MenuReporteCategoriaElectrodomesticos menuele = new MenuReporteCategoriaElectrodomesticos();
+        menuele.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-       MenuReporteCategoria menucat = new MenuReporteCategoria();
-       menucat.setVisible(true);
+        MenuReporteCategoria menucat = new MenuReporteCategoria();
+        menucat.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
 
     /**
@@ -202,5 +216,6 @@ public class MenuConsultaInter extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JLabel jlogo;
     // End of variables declaration//GEN-END:variables
 }
